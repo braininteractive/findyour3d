@@ -15,6 +15,8 @@ urlpatterns = [
     # User management
     url(r'^users/', include('findyour3d.users.urls', namespace='users')),
     url(r'^accounts/', include('allauth.urls')),
+    url(r'^customers/', include('findyour3d.customer.urls', namespace='customers')),
+    url(r'^company/', include('findyour3d.company.urls', namespace='company')),
 
     # Your stuff: custom urls includes go here
 
