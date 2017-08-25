@@ -32,16 +32,8 @@
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
 
-
-    {% if messages %}
-        {% for message in messages %}
-            <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">{{ message }}</div>
-        {% endfor %}
-    {% endif %}
-
     {% block content %}
     {% endblock content %}
-
 
 {% block modal %}{% endblock modal %}
 
