@@ -273,3 +273,4 @@ ADMIN_URL = r'^admin/'
 
 # Your common stuff: Below this line define 3rd party library settings
 # ------------------------------------------------------------------------------
+SENDGRID_API_KEY = env('SENDGRID_API_KEY', default='')
