@@ -274,3 +274,5 @@ ADMIN_URL = r'^admin/'
 # Your common stuff: Below this line define 3rd party library settings
 # ------------------------------------------------------------------------------
 SENDGRID_API_KEY = env('SENDGRID_API_KEY', default='')
+EMAIL_HOST = 'localhost'
+DEFAULT_FROM_EMAIL = 'FindYour3D.io <no-reply@findyour3d.herokuapp.com>'
