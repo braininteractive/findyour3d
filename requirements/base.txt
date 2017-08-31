@@ -50,5 +50,5 @@ redis>=2.10.5
 
 # Your custom requirements go here
 django-multiselectfield==0.1.8
-sendgrid==5.1.0
-sendgrid-django==4.0.4
+sendgrid==3.6.5
+sendgrid-django==3.0.0
