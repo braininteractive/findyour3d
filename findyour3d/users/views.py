@@ -17,7 +17,11 @@ class UserRedirectView(LoginRequiredMixin, RedirectView):
     permanent = False
 
     def get_redirect_url(self):
-        return reverse('home')
+        if self.request.user.user_type == 1:
+            if self.request.user.customer_set.all():
+                return reverse('customers:detail', kwargs={'pk': self.request.user.customer_set.first().pk})
+            else:
+                return reverse('customers:add')
 
 
 class UserUpdateView(LoginRequiredMixin, UpdateView):

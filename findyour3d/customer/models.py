@@ -51,7 +51,7 @@ STATES_CHOICES = (
     ('IL', 'Illinois'),
     ('IN', 'Indiana'),
     ('IA', 'Iowa'),
-    ('KS', 'Kansas)'),
+    ('KS', 'Kansas'),
     ('KY', 'Kentucky'),
     ('LA', 'Louisiana'),
     ('ME', 'Maine'),

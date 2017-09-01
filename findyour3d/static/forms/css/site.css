@@ -9,7 +9,7 @@ body {
   height: 100%;
   height: -webkit-calc(100% - 66px);
   height:         calc(100% - 66px);
-  font-family: "Roboto", sans-serif;
+  /*font-family: "Roboto", sans-serif;*/
   color: rgba(163, 175, 183, .9);
   background: #263238;
   -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, .08);
@@ -103,7 +103,7 @@ body {
 .site-menu-arrow {
   position: relative;
   display: inline-block;
-  font-family: 'Web Icons';
+  /*font-family: 'Web Icons';*/
   font-style: normal;
   font-weight: normal;
   -webkit-transition: -webkit-transform .15s;
@@ -339,7 +339,7 @@ body.site-gridmenu-active {
   top: -1px;
   right: -3px;
   display: inline-block;
-  font-family: 'Web Icons';
+  /*font-family: 'Web Icons';*/
   font-size: 14px;
   font-style: normal;
   font-weight: normal;
@@ -2164,7 +2164,7 @@ fieldset[disabled] .checkbox-custom label {
 }
 .checkbox-custom input[type="checkbox"]:checked + label::after,
 .checkbox-custom input[type="radio"]:checked + label::after {
-  font-family: "Web Icons";
+  /*font-family: "Web Icons";*/
   content: "\f192";
 }
 .checkbox-custom input[type="checkbox"]:disabled + label,
