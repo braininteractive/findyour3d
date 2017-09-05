@@ -1,4 +1,5 @@
 from django.core.urlresolvers import reverse
+from django.http import HttpResponseForbidden
 from django.views.generic import DetailView, ListView, RedirectView, UpdateView
 
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -22,6 +23,13 @@ class UserRedirectView(LoginRequiredMixin, RedirectView):
                 return reverse('customers:detail', kwargs={'pk': self.request.user.customer_set.first().pk})
             else:
                 return reverse('customers:add')
+        elif self.request.user.user_type == 2:
+            if self.request.user.company_set.all():
+                return reverse('company:detail', kwargs={'pk': self.request.user.company_set.first().pk})
+            else:
+                return reverse('company:add')
+        else:
+            return HttpResponseForbidden()
 
 
 class UserUpdateView(LoginRequiredMixin, UpdateView):

@@ -88,12 +88,30 @@ STATES_CHOICES = (
     ('WY', 'Wyoming'),
 )
 
+METAL_CONCERN_CHOICES = (
+    (0, 'Conductivity'),
+    (1, 'Strength')
+)
+
+METAL_DECISION_CHOICES = (
+    (0, 'I want the very best for top dollar. ($250+ per print)'),
+    (1, 'No, but I still want a high quality metal')
+)
+
 
 class Customer(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
+
+    basic_material = models.IntegerField(choices=BASIC_MATERIAL_CHOICES, default=0)
+
+    # Metals
+    # is_precious_metal = models.BooleanField(default=False)
+    # is_functional_metal = models.BooleanField(default=False)
+    # metal_concern = models.IntegerField(choices=METAL_CONCERN_CHOICES, default=0)
+    # metal_decision = models.IntegerField(choices=METAL_DECISION_CHOICES, default=0)
+
     prototype_type = models.IntegerField(choices=PROTOTYPES_CHOICES, default=0)
     need_assistance = models.IntegerField(choices=ASSISTANCE_CHOICES, default=0)
-    basic_material = models.IntegerField(choices=BASIC_MATERIAL_CHOICES, default=0)
     material = models.IntegerField(choices=MATERIAL_CHOICES, blank=True, null=True)
     process = models.IntegerField(choices=PROCESS_CHOICES, blank=True, null=True)
     is_flexible = models.BooleanField(default=True)
@@ -106,6 +124,7 @@ class Customer(models.Model):
     state = models.CharField(max_length=3, choices=STATES_CHOICES, blank=True, null=True)
     description = models.TextField()
     cad_file = models.FileField(upload_to='cads/', blank=True, null=True)
+
     created_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)
 
     def __str__(self):

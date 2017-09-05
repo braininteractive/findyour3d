@@ -10,7 +10,7 @@ class AddCompanyForm(forms.ModelForm):
                   'full_name', 'email', 'phone', 'website', 'ideal_customer',
                   'is_cad_assistance', 'budget', 'basic_material', 'consideration',
                   'printing_options', 'material', 'top_printing_processes',
-                  'description']
+                  'description', 'user']
 
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control'}),
@@ -25,11 +25,17 @@ class AddCompanyForm(forms.ModelForm):
             'budget': forms.Select(attrs={'class': 'form-control edited'}),
             'basic_material': forms.Select(attrs={'class': 'form-control edited'}),
             'consideration': forms.Select(attrs={'class': 'form-control edited'}),
-            'printing_options': forms.Select(attrs={'class': 'form-control edited'}),
+            'printing_options': forms.SelectMultiple(attrs={'class': 'form-control edited'}),
             'material': forms.Select(attrs={'class': 'form-control edited'}),
-            'top_printing_processes': forms.Select(attrs={'class': 'form-control edited'}),
+            'top_printing_processes': forms.SelectMultiple(attrs={'class': 'form-control edited'}),
             'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
+            'user': forms.HiddenInput(),
         }
 
     def __init__(self, *args, **kwargs):
+        self.user = None
+        if 'user' in kwargs['initial']:
+            self.user = kwargs['initial'].pop('user')
+
         super(AddCompanyForm, self).__init__(*args, **kwargs)
+        self.fields['user'].initial = self.user

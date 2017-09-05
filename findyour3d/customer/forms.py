@@ -13,7 +13,7 @@ class AddCustomerForm(forms.ModelForm):
         widgets = {
             'prototype_type': forms.Select(attrs={'class': 'form-control edited'}),
             'need_assistance': forms.Select(attrs={'class': 'form-control edited'}),
-            'basic_material': forms.Select(attrs={'class': 'form-control edited'}),
+            # 'basic_material': forms.Select(attrs={'class': 'form-control edited'}),
             'material': forms.Select(attrs={'class': 'form-control edited'}),
             'process': forms.Select(attrs={'class': 'form-control edited'}),
             'size': forms.Select(attrs={'class': 'form-control edited'}),
@@ -23,7 +23,14 @@ class AddCustomerForm(forms.ModelForm):
             'state': forms.Select(attrs={'class': 'form-control edited'}),
             'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
             'cad_file': forms.ClearableFileInput(attrs={'class': 'form-control'}),
+            'basic_material': forms.RadioSelect(attrs={'id': 'a_value', 'class': 'md-radiobtn'}),
+            'user': forms.HiddenInput(),
         }
 
     def __init__(self, *args, **kwargs):
+        self.user = None
+        if 'user' in kwargs['initial']:
+            self.user = kwargs['initial'].pop('user')
+
         super(AddCustomerForm, self).__init__(*args, **kwargs)
+        self.fields['user'].initial = self.user

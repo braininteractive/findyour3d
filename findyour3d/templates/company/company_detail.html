@@ -1,0 +1,12 @@
+{% extends 'base_form.html' %}
+
+{% block title %} {{ object.display_name }}{% endblock %}
+
+{% block content %}
+
+<div class="light">
+    <h3>Company: {{ object.display_name }}</h3>
+    <h3>Email: {{ object.email }}</h3>
+
+</div>
+{% endblock %}
