@@ -58,6 +58,7 @@ LOCAL_APPS = [
     # Your stuff: custom apps go here
     'findyour3d.customer.apps.CustomerConfig',
     'findyour3d.company.apps.CompanyConfig',
+    'findyour3d.contact.apps.ContactConfig'
 ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps

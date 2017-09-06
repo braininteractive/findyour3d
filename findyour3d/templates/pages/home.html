@@ -1,16 +1,20 @@
 {% extends "base.html" %}
 {% load staticfiles i18n %}
 
+{% block title %} Home {% endblock %}
+
 {% block content %}
     <div id="preloader">
         <div id="status"> <img src="{% static 'img/preloader.gif' %}" height="64" width="64" alt=""> </div>
     </div>
     <!-- Navigation -->
-    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation" id="page-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse"> <i class="fa fa-bars"></i> </button>
-                <a class="navbar-brand page-scroll" href="#page-top"> <i class="fa fa-paper-plane-o"></i> FindYour3D</a> </div>
+                <a class="navbar-brand page-scroll" href="#page-top">
+                    <i class="fa fa-paper-plane-o"></i> Your3D</a>
+            </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
@@ -18,10 +22,10 @@
                     <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
                     <li class="hidden"> <a href="#page-top"></a> </li>
                     <li> <a class="page-scroll" href="#about">About</a> </li>
-                    <li> <a class="page-scroll" href="#services">Services</a> </li>
-                    <li> <a class="page-scroll" href="#works">Portfolio</a> </li>
-                    <li> <a class="page-scroll" href="#team">Team</a> </li>
-                    <li> <a class="page-scroll" href="#testimonials">Testimonials</a> </li>
+{#                    <li> <a class="page-scroll" href="#services">Services</a> </li>#}
+{#                    <li> <a class="page-scroll" href="#works">Portfolio</a> </li>#}
+{#                    <li> <a class="page-scroll" href="#team">Team</a> </li>#}
+                    <li> <a class="page-scroll" href="#testimonials">Businesses</a> </li>
                     <li> <a class="page-scroll" href="#contact">Contact</a> </li>
                     {% if request.user.is_authenticated %}
                         <li><a class="page-scroll" href="{% url 'users:redirect' %}">Form</a></li>
@@ -42,9 +46,12 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-10 col-md-offset-1">
-                        <h1>We are <span class="brand-heading">FindYour3D</span></h1>
-                        <p class="intro-text">A full-service digital agency that loves what we do</p>
-                        <a href="#about" class="btn btn-default page-scroll">Learn More</a> </div>
+                        <h1><span class="brand-heading">Find Your 3D</span></h1>
+                        <p class="intro-text">Tired of searching for the perfect fit for your project?
+                            Let us help. We compare the top 3D Printing Services to find you the best fit for you.
+                        </p>
+                        <a href="#about" class="btn btn-default page-scroll">BRING YOUR PROJECT TO LIFE</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -53,7 +60,7 @@
     <div id="about">
         <div class="container">
             <div class="section-title text-center center">
-                <h2>About us</h2>
+                <h2>A Little Bit About Us</h2>
                 <hr>
             </div>
             <div class="row">
@@ -61,290 +68,330 @@
                 <div class="col-md-4">
                     <div class="about-text">
                         <h4>Who We Are</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam. Sed commodo nibh ante facilisis bibendum dolor feugiat at. Duis sed dapibus leo nec ornare diam commodo nibh.</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam. Sed commodo nibh ante facilisis bibendum. </p>
+                        <p>
+                            ​Find Your 3D was founded on the sole mission to streamline the process of bringing a
+                            project from idea to final product for everyone, especially beginners to 3D
+                            printing. Often times finding the best service to bring your project to life
+                            can be difficult and time consuming. So we set out to change it. We match you
+                            and your project to the best provider for a simple and fast process.
+                        </p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="about-text">
                         <h4>What We Do</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam. Sed commodo nibh ante facilisis bibendum dolor feugiat at. Duis sed dapibus leo nec ornare diam.</p>
-                        <ul>
-                            <li>Lorem ipsum dolor sit amet</li>
-                            <li>Consectetur adipiscing commodo</li>
-                            <li>Duis sed dapibus leo sed dapibus</li>
-                            <li>Sed commodo nibh ante bibendum</li>
-                        </ul>
+                        <p>
+                            We aim to partner with the top 3D Printing Services in the Nation and continue to
+                            expand our network everyday. We bring you directly to the services that best fit
+                            you, your project, and most importantly your budget and goals. If you are
+                            business looking to join our network, please visit our Businesses page for
+                            more information.
+                        </p>
+
+
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <!-- Services Section -->
-    <div id="services" class="text-center">
-        <div class="container">
-            <div class="section-title center">
-                <h2>Our Services</h2>
-                <hr>
-            </div>
-            <div class="space"></div>
+
             <div class="row">
-                <div class="col-md-3 col-sm-6">
-                    <div class="service"> <i class="fa fa-desktop"></i>
-                        <h3>Web Design</h3>
-                        <p>Lorem ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend pellentesque natoque etiam.</p>
-                    </div>
+                <div class="col-md-offset-4 col-md-4">
+                    <h5>Bring Your Project to Life Now</h5>
+                    <a href="{% url 'account_signup' %}" class="btn btn-default">FILL OUT OUR FORM</a>
                 </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="service"> <i class="fa fa-cogs"></i>
-                        <h3>Web Development</h3>
-                        <p>Lorem ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend pellentesque.</p>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="service"> <i class="fa fa-tablet"></i>
-                        <h3>App Design</h3>
-                        <p>Lorem ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend pellentesque natoque etiam.</p>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="service"><i class="fa fa-html5"></i>
-                        <h3>PSD to HTML5</h3>
-                        <p>Lorem ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend pellentesque natoque.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="space"></div>
-            <div class="row">
-                <div class="col-md-3 col-sm-6">
-                    <div class="service"><i class="fa fa-wordpress"></i>
-                        <h3>WordPress</h3>
-                        <p>Lorem ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend pellentesque natoque etiam.</p>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="service"><i class="fa fa-bullhorn"></i>
-                        <h3>Marketing</h3>
-                        <p>Lorem ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend pellentesque.</p>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="service"><i class="fa fa-rocket"></i>
-                        <h3>Branding</h3>
-                        <p>Lorem ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend pellentesque natoque etiam.</p>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="service"><i class="fa fa-leaf"></i>
-                        <h3>Print Design</h3>
-                        <p>Lorem ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend pellentesque natoque.</p>
-                    </div>
+                <div class="col-md-4">
+                    <h5>Join Our Network Now</h5>
+                    <a href="{% url 'account_signup' %}?type=business" class="btn btn-default">BUSINESSES</a>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Portfolio Section -->
-    <div id="works">
-        <div class="container"> <!-- Container -->
-            <div class="section-title text-center center">
-                <h2>Our Portfolio</h2>
-                <hr>
-                <div class="clearfix"></div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diamcommodo nibh ante facilisis.</p>
-            </div>
-            <div class="categories">
-                <ul class="cat">
-                    <li>
-                        <ol class="type">
-                            <li><a href="#" data-filter="*" class="active">All</a></li>
-                            <li><a href="#" data-filter=".lorem">Web Design</a></li>
-                            <li><a href="#" data-filter=".consectetur">Web Development</a></li>
-                            <li><a href="#" data-filter=".dapibus">Branding</a></li>
-                        </ol>
-                    </li>
-                </ul>
-                <div class="clearfix"></div>
-            </div>
-            <div class="row">
-                <div class="portfolio-items">
-                    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 lorem">
-                        <div class="portfolio-item">
-                            <div class="hover-bg"> <a href="{% static 'img/portfolio/01.jpg' %}" title="Project description" rel="prettyPhoto">
-                                <div class="hover-text">
-                                    <h4>Project Title</h4>
-                                    <p>Web Design</p>
-                                </div>
-                                <img src="{% static 'img/portfolio/01.jpg' %}" class="img-responsive" alt="Project Title"> </a> </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 consectetur">
-                        <div class="portfolio-item">
-                            <div class="hover-bg"> <a href="{% static 'img/portfolio/02.jpg' %}" title="Project description" rel="prettyPhoto">
-                                <div class="hover-text">
-                                    <h4>Project Title</h4>
-                                    <p>Web Development</p>
-                                </div>
-                                <img src="{% static 'img/portfolio/02.jpg' %}" class="img-responsive" alt="Project Title"> </a> </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 lorem">
-                        <div class="portfolio-item">
-                            <div class="hover-bg"> <a href="{% static 'img/portfolio/03.jpg' %}" title="Project description" rel="prettyPhoto">
-                                <div class="hover-text">
-                                    <h4>Project Title</h4>
-                                    <p>Web Design</p>
-                                </div>
-                                <img src="{% static 'img/portfolio/03.jpg' %}" class="img-responsive" alt="Project Title"> </a> </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 lorem">
-                        <div class="portfolio-item">
-                            <div class="hover-bg"> <a href="{% static 'img/portfolio/04.jpg' %}" title="Project description" rel="prettyPhoto">
-                                <div class="hover-text">
-                                    <h4>Project Title</h4>
-                                    <p>Web Design</p>
-                                </div>
-                                <img src="{% static 'img/portfolio/04.jpg' %}" class="img-responsive" alt="Project Title"> </a> </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 consectetur">
-                        <div class="portfolio-item">
-                            <div class="hover-bg"> <a href="{% static 'img/portfolio/05.jpg' %}" title="Project description" rel="prettyPhoto">
-                                <div class="hover-text">
-                                    <h4>Project Title</h4>
-                                    <p>Web Development</p>
-                                </div>
-                                <img src="{% static 'img/portfolio/05.jpg' %}" class="img-responsive" alt="Project Title"> </a> </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 dapibus">
-                        <div class="portfolio-item">
-                            <div class="hover-bg"> <a href="{% static 'img/portfolio/06.jpg' %}" title="Project description" rel="prettyPhoto">
-                                <div class="hover-text">
-                                    <h4>Project Title</h4>
-                                    <p>Branding</p>
-                                </div>
-                                <img src="{% static 'img/portfolio/06.jpg' %}" class="img-responsive" alt="Project Title"> </a> </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 dapibus consectetur">
-                        <div class="portfolio-item">
-                            <div class="hover-bg"> <a href="{% static 'img/portfolio/07.jpg' %}" title="Project description" rel="prettyPhoto">
-                                <div class="hover-text">
-                                    <h4>Project Title</h4>
-                                    <p>Web Development, Branding</p>
-                                </div>
-                                <img src="{% static 'img/portfolio/07.jpg' %}" class="img-responsive" alt="Project Title"> </a> </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 lorem">
-                        <div class="portfolio-item">
-                            <div class="hover-bg"> <a href="{% static 'img/portfolio/08.jpg' %}" title="Project description" rel="prettyPhoto">
-                                <div class="hover-text">
-                                    <h4>Project Title</h4>
-                                    <p>Web Design</p>
-                                </div>
-                                <img src="{% static 'img/portfolio/08.jpg' %}" class="img-responsive" alt="Project Title"> </a> </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Team Section -->
-    <div id="team" class="text-center">
-        <div class="container">
-            <div class="section-title center">
-                <h2>Meet the team</h2>
-                <hr>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diamcommodo nibh ante facilisis.</p>
-            </div>
-            <div id="row">
-                <div class="col-xs-6 col-md-3 col-sm-6">
-                    <div class="thumbnail"> <img src="{% static 'img/team/01.jpg' %}" alt="..." class="img-thumbnail team-img">
-                        <div class="caption">
-                            <h3>John Doe</h3>
-                            <p>Founder / CEO</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-6 col-md-3 col-sm-6">
-                    <div class="thumbnail"> <img src="{% static 'img/team/02.jpg' %}" alt="..." class="img-thumbnail team-img">
-                        <div class="caption">
-                            <h3>Mike Doe</h3>
-                            <p>Web Designer</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-6 col-md-3 col-sm-6">
-                    <div class="thumbnail"> <img src="{% static 'img/team/03.jpg' %}" alt="..." class="img-thumbnail team-img">
-                        <div class="caption">
-                            <h3>Jane Doe</h3>
-                            <p>Creative Director</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-6 col-md-3 col-sm-6">
-                    <div class="thumbnail"> <img src="{% static 'img/team/04.jpg' %}" alt="..." class="img-thumbnail team-img">
-                        <div class="caption">
-                            <h3>Larry Show</h3>
-                            <p>Project Manager</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
+{#    <!-- Services Section -->#}
+{#    <div id="services" class="text-center">#}
+{#        <div class="container">#}
+{#            <div class="section-title center">#}
+{#                <h2>Our Services</h2>#}
+{#                <hr>#}
+{#            </div>#}
+{#            <div class="space"></div>#}
+{#            <div class="row">#}
+{#                <div class="col-md-3 col-sm-6">#}
+{#                    <div class="service"> <i class="fa fa-desktop"></i>#}
+{#                        <h3>Web Design</h3>#}
+{#                        <p>Lorem ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend pellentesque natoque etiam.</p>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="col-md-3 col-sm-6">#}
+{#                    <div class="service"> <i class="fa fa-cogs"></i>#}
+{#                        <h3>Web Development</h3>#}
+{#                        <p>Lorem ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend pellentesque.</p>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="col-md-3 col-sm-6">#}
+{#                    <div class="service"> <i class="fa fa-tablet"></i>#}
+{#                        <h3>App Design</h3>#}
+{#                        <p>Lorem ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend pellentesque natoque etiam.</p>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="col-md-3 col-sm-6">#}
+{#                    <div class="service"><i class="fa fa-html5"></i>#}
+{#                        <h3>PSD to HTML5</h3>#}
+{#                        <p>Lorem ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend pellentesque natoque.</p>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="space"></div>#}
+{#            <div class="row">#}
+{#                <div class="col-md-3 col-sm-6">#}
+{#                    <div class="service"><i class="fa fa-wordpress"></i>#}
+{#                        <h3>WordPress</h3>#}
+{#                        <p>Lorem ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend pellentesque natoque etiam.</p>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="col-md-3 col-sm-6">#}
+{#                    <div class="service"><i class="fa fa-bullhorn"></i>#}
+{#                        <h3>Marketing</h3>#}
+{#                        <p>Lorem ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend pellentesque.</p>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="col-md-3 col-sm-6">#}
+{#                    <div class="service"><i class="fa fa-rocket"></i>#}
+{#                        <h3>Branding</h3>#}
+{#                        <p>Lorem ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend pellentesque natoque etiam.</p>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="col-md-3 col-sm-6">#}
+{#                    <div class="service"><i class="fa fa-leaf"></i>#}
+{#                        <h3>Print Design</h3>#}
+{#                        <p>Lorem ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend pellentesque natoque.</p>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#    <!-- Portfolio Section -->#}
+{#    <div id="works">#}
+{#        <div class="container"> <!-- Container -->#}
+{#            <div class="section-title text-center center">#}
+{#                <h2>Our Portfolio</h2>#}
+{#                <hr>#}
+{#                <div class="clearfix"></div>#}
+{#                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diamcommodo nibh ante facilisis.</p>#}
+{#            </div>#}
+{#            <div class="categories">#}
+{#                <ul class="cat">#}
+{#                    <li>#}
+{#                        <ol class="type">#}
+{#                            <li><a href="#" data-filter="*" class="active">All</a></li>#}
+{#                            <li><a href="#" data-filter=".lorem">Web Design</a></li>#}
+{#                            <li><a href="#" data-filter=".consectetur">Web Development</a></li>#}
+{#                            <li><a href="#" data-filter=".dapibus">Branding</a></li>#}
+{#                        </ol>#}
+{#                    </li>#}
+{#                </ul>#}
+{#                <div class="clearfix"></div>#}
+{#            </div>#}
+{#            <div class="row">#}
+{#                <div class="portfolio-items">#}
+{#                    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 lorem">#}
+{#                        <div class="portfolio-item">#}
+{#                            <div class="hover-bg"> <a href="{% static 'img/portfolio/01.jpg' %}" title="Project description" rel="prettyPhoto">#}
+{#                                <div class="hover-text">#}
+{#                                    <h4>Project Title</h4>#}
+{#                                    <p>Web Design</p>#}
+{#                                </div>#}
+{#                                <img src="{% static 'img/portfolio/01.jpg' %}" class="img-responsive" alt="Project Title"> </a> </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 consectetur">#}
+{#                        <div class="portfolio-item">#}
+{#                            <div class="hover-bg"> <a href="{% static 'img/portfolio/02.jpg' %}" title="Project description" rel="prettyPhoto">#}
+{#                                <div class="hover-text">#}
+{#                                    <h4>Project Title</h4>#}
+{#                                    <p>Web Development</p>#}
+{#                                </div>#}
+{#                                <img src="{% static 'img/portfolio/02.jpg' %}" class="img-responsive" alt="Project Title"> </a> </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 lorem">#}
+{#                        <div class="portfolio-item">#}
+{#                            <div class="hover-bg"> <a href="{% static 'img/portfolio/03.jpg' %}" title="Project description" rel="prettyPhoto">#}
+{#                                <div class="hover-text">#}
+{#                                    <h4>Project Title</h4>#}
+{#                                    <p>Web Design</p>#}
+{#                                </div>#}
+{#                                <img src="{% static 'img/portfolio/03.jpg' %}" class="img-responsive" alt="Project Title"> </a> </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 lorem">#}
+{#                        <div class="portfolio-item">#}
+{#                            <div class="hover-bg"> <a href="{% static 'img/portfolio/04.jpg' %}" title="Project description" rel="prettyPhoto">#}
+{#                                <div class="hover-text">#}
+{#                                    <h4>Project Title</h4>#}
+{#                                    <p>Web Design</p>#}
+{#                                </div>#}
+{#                                <img src="{% static 'img/portfolio/04.jpg' %}" class="img-responsive" alt="Project Title"> </a> </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 consectetur">#}
+{#                        <div class="portfolio-item">#}
+{#                            <div class="hover-bg"> <a href="{% static 'img/portfolio/05.jpg' %}" title="Project description" rel="prettyPhoto">#}
+{#                                <div class="hover-text">#}
+{#                                    <h4>Project Title</h4>#}
+{#                                    <p>Web Development</p>#}
+{#                                </div>#}
+{#                                <img src="{% static 'img/portfolio/05.jpg' %}" class="img-responsive" alt="Project Title"> </a> </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 dapibus">#}
+{#                        <div class="portfolio-item">#}
+{#                            <div class="hover-bg"> <a href="{% static 'img/portfolio/06.jpg' %}" title="Project description" rel="prettyPhoto">#}
+{#                                <div class="hover-text">#}
+{#                                    <h4>Project Title</h4>#}
+{#                                    <p>Branding</p>#}
+{#                                </div>#}
+{#                                <img src="{% static 'img/portfolio/06.jpg' %}" class="img-responsive" alt="Project Title"> </a> </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 dapibus consectetur">#}
+{#                        <div class="portfolio-item">#}
+{#                            <div class="hover-bg"> <a href="{% static 'img/portfolio/07.jpg' %}" title="Project description" rel="prettyPhoto">#}
+{#                                <div class="hover-text">#}
+{#                                    <h4>Project Title</h4>#}
+{#                                    <p>Web Development, Branding</p>#}
+{#                                </div>#}
+{#                                <img src="{% static 'img/portfolio/07.jpg' %}" class="img-responsive" alt="Project Title"> </a> </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 lorem">#}
+{#                        <div class="portfolio-item">#}
+{#                            <div class="hover-bg"> <a href="{% static 'img/portfolio/08.jpg' %}" title="Project description" rel="prettyPhoto">#}
+{#                                <div class="hover-text">#}
+{#                                    <h4>Project Title</h4>#}
+{#                                    <p>Web Design</p>#}
+{#                                </div>#}
+{#                                <img src="{% static 'img/portfolio/08.jpg' %}" class="img-responsive" alt="Project Title"> </a> </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#    <!-- Team Section -->#}
+{#    <div id="team" class="text-center">#}
+{#        <div class="container">#}
+{#            <div class="section-title center">#}
+{#                <h2>Meet the team</h2>#}
+{#                <hr>#}
+{#                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diamcommodo nibh ante facilisis.</p>#}
+{#            </div>#}
+{#            <div id="row">#}
+{#                <div class="col-xs-6 col-md-3 col-sm-6">#}
+{#                    <div class="thumbnail"> <img src="{% static 'img/team/01.jpg' %}" alt="..." class="img-thumbnail team-img">#}
+{#                        <div class="caption">#}
+{#                            <h3>John Doe</h3>#}
+{#                            <p>Founder / CEO</p>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="col-xs-6 col-md-3 col-sm-6">#}
+{#                    <div class="thumbnail"> <img src="{% static 'img/team/02.jpg' %}" alt="..." class="img-thumbnail team-img">#}
+{#                        <div class="caption">#}
+{#                            <h3>Mike Doe</h3>#}
+{#                            <p>Web Designer</p>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="col-xs-6 col-md-3 col-sm-6">#}
+{#                    <div class="thumbnail"> <img src="{% static 'img/team/03.jpg' %}" alt="..." class="img-thumbnail team-img">#}
+{#                        <div class="caption">#}
+{#                            <h3>Jane Doe</h3>#}
+{#                            <p>Creative Director</p>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="col-xs-6 col-md-3 col-sm-6">#}
+{#                    <div class="thumbnail"> <img src="{% static 'img/team/04.jpg' %}" alt="..." class="img-thumbnail team-img">#}
+{#                        <div class="caption">#}
+{#                            <h3>Larry Show</h3>#}
+{#                            <p>Project Manager</p>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+
     <!-- Testimonials Section -->
     <div id="testimonials" class="text-center">
         <div class="container">
             <div class="section-title center">
-                <h2>What our clients say</h2>
+                <h1>Joining our network is simple, affordable, and fast. Just like our service.​</h1>
                 <hr>
             </div>
             <div class="row">
                 <div class="col-md-10 col-md-offset-1">
                     <div class="row testimonials">
                         <div class="col-sm-4">
-                            <blockquote><i class="fa fa-quote-left"></i>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elitduis sed dapibus leo nec ornare.</p>
+                            <blockquote>
+                                <h3 style="color: white">Fill Out and Submit Our Form</h3>
                                 <div class="clients-name">
-                                    <p><strong>John Doe</strong><br>
-                                        <em>CEO, Company Inc.</em></p>
+                                    <p>
+                                        Select <strong>"Join Now"</strong> and you will be taken to a separate
+                                        page to fill out our simple form about your business and what you're
+                                        looking for in customers.
+                                    </p>
                                 </div>
                             </blockquote>
                         </div>
                         <div class="col-sm-4">
-                            <blockquote><i class="fa fa-quote-left"></i>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elitduis sed dapibus leo nec ornare.</p>
+                            <blockquote>
+                                <h3 style="color: white">Select a Plan Based on Your Company's Needs</h3>
                                 <div class="clients-name">
-                                    <p><strong>Jane Doe</strong><br>
-                                        <em>CEO, Company Inc.</em></p>
+                                    <p>
+                                        At the end of the submission you'll be taken to our pricing plans.
+                                        We have a variety of pricing plans that cater towards your business.
+                                        Whether you want to cast a wide net or have a targeted strategy we
+                                        can provide it.
+                                    </p>
                                 </div>
                             </blockquote>
                         </div>
                         <div class="col-sm-4">
-                            <blockquote><i class="fa fa-quote-left"></i>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elitduis sed dapibus leo nec ornare.</p>
+                            <blockquote>
+                                <h3 style="color: white">We'll Send Customer's Right to You</h3>
                                 <div class="clients-name">
-                                    <p><strong>Chris Smith</strong><br>
-                                        <em>CEO, Company Inc.</em></p>
+                                    <p>
+                                        Once you're in our system we'll find customers that are actively
+                                        searching for the exact services that your company provides. ​Once
+                                        they find you, we'll send the specifications of their project directly
+                                        to you.
+                                    </p>
                                 </div>
                             </blockquote>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <a href="{% url 'account_signup' %}?type=business"
+                       class="btn btn-default page-scroll">START THE PROCESS NOW</a>
+                </div>
+            </div>
         </div>
     </div>
-
     <!-- Contact Section -->
     <div id="contact" class="text-center">
         <div class="container">
             <div class="section-title center">
                 <h2>Contact us</h2>
                 <hr>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diamcommodo nibh ante facilisis.</p>
+                <p>
+                    Do you have a question, comment, suggestion, or just want to reach out, go for it!
+                    We're always looking for feedback from our customers. Fill out our short form below
+                    and we'll get back to you.
+                </p>
             </div>
             <div class="col-md-8 col-md-offset-2">
                 <div class="col-md-4">
@@ -367,24 +414,45 @@
                 <div class="clearfix"></div>
             </div>
             <div class="col-md-8 col-md-offset-2">
-                <h3>Leave us a message</h3>
-                <form name="sentMessage" id="contactForm" novalidate>
+                <h3>Reach Out To Us</h3>
+
+                <form method="post" action="{% url 'contact:form' %}">
+                    {% csrf_token %}
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input type="text" id="name" class="form-control" placeholder="Name" required="required">
+                                <input type="text" id="name" class="form-control" placeholder="Name"
+                                required="required" name="name">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input type="email" id="email" class="form-control" placeholder="Email" required="required">
+                                <input type="text" id="company" class="form-control" placeholder="Company"
+                                name="company">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="email" id="email" class="form-control" placeholder="Email"
+                                       required="required" name="email">
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" id="email" class="form-control"
+                                       placeholder="How can we help you" name="subject">
+                                <p class="help-block text-danger">{{ form }}</p>
+                            </div>
+                        </div>
+                    </div>
                     <div class="form-group">
-                        <textarea name="message" id="message" class="form-control" rows="4" placeholder="Message" required></textarea>
+                        <textarea name="body" id="message" class="form-control" rows="4" placeholder="Message" required></textarea>
                         <p class="help-block text-danger"></p>
                     </div>
                     <div id="success"></div>
@@ -406,7 +474,7 @@
     </div>
     <div id="footer">
         <div class="container">
-            <p>Copyright &copy; </p>
+            <p>Copyright 2017 &copy; <a href="http://findyour3d.com">findyour3d.com</a></p>
         </div>
     </div>
 {% endblock content %}

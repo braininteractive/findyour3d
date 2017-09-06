@@ -21,3 +21,25 @@
 
 {% endblock %}
 
+{% block extra_js %}
+    <script>
+    $.urlParam = function(name){
+        var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+        if (results==null){
+            return null;
+        }
+        else{
+            return results[1] || 0;
+        }
+    };
+
+    var userType = $.urlParam('type');
+
+    if (userType == "business") {
+        var inpt = $('#id_user_type');
+        inpt.val(2).change();
+        inpt.attr('disabled','disabled')
+    }
+    </script>
+{% endblock extra_js %}
+

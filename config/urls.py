@@ -6,22 +6,21 @@ from django.views.generic import TemplateView
 from django.views import defaults as default_views
 
 urlpatterns = [
-    url(r'^$', TemplateView.as_view(template_name='pages/home.html'), name='home'),
-    url(r'^about/$', TemplateView.as_view(template_name='pages/about.html'), name='about'),
+                  url(r'^$', TemplateView.as_view(template_name='pages/home.html'), name='home'),
 
-    # Django Admin, use {% url 'admin:index' %}
-    url(settings.ADMIN_URL, admin.site.urls),
+                  # Django Admin, use {% url 'admin:index' %}
+                  url(settings.ADMIN_URL, admin.site.urls),
 
-    # User management
-    url(r'^users/', include('findyour3d.users.urls', namespace='users')),
-    url(r'^accounts/', include('allauth.urls')),
-    url(r'^customers/', include('findyour3d.customer.urls', namespace='customers')),
-    url(r'^company/', include('findyour3d.company.urls', namespace='company')),
+                  # User management
+                  url(r'^users/', include('findyour3d.users.urls', namespace='users')),
+                  url(r'^accounts/', include('allauth.urls')),
 
-    # Your stuff: custom urls includes go here
+                  # Your stuff: custom urls includes go here
+                  url(r'^customers/', include('findyour3d.customer.urls', namespace='customers')),
+                  url(r'^company/', include('findyour3d.company.urls', namespace='company')),
+                  url(r'^contact/', include('findyour3d.contact.urls', namespace='contact')),
 
-
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
     # This allows the error pages to be debugged during development, just visit
@@ -35,5 +34,5 @@ if settings.DEBUG:
     if 'debug_toolbar' in settings.INSTALLED_APPS:
         import debug_toolbar
         urlpatterns = [
-            url(r'^__debug__/', include(debug_toolbar.urls)),
-        ] + urlpatterns
+                          url(r'^__debug__/', include(debug_toolbar.urls)),
+                      ] + urlpatterns
