@@ -89,13 +89,50 @@ STATES_CHOICES = (
 )
 
 METAL_CONCERN_CHOICES = (
-    (0, 'Conductivity'),
-    (1, 'Strength')
+    (0, 'None'),
+    (1, 'Conductivity'),
+    (2, 'Strength')
+)
+
+PLASTIC_CONCERN_CHOICES = (
+    (0, 'None'),
+    (1, 'My chief concern is cost'),
+    (2, 'My chief concern is quality of the print')
 )
 
 METAL_DECISION_CHOICES = (
-    (0, 'I want the very best for top dollar. ($250+ per print)'),
-    (1, 'No, but I still want a high quality metal')
+    (0, 'None'),
+    (1, 'I want the very best for top dollar. ($250+ per print)'),
+    (2, 'No, but I still want a high quality metal')
+)
+
+OTHER_DECISION_CHOICES = (
+    (0, 'None'),
+    (1, 'I want my project to be wood-like'),
+    (2, 'I want my project to be made from stone')
+)
+
+IF_FOOD_SAFE_CHOICES = (
+    (0, 'None'),
+    (1, 'Yes, I want my project to be as functional as possible for the cost'),
+    (2, 'No, I just need my projected to be printed very simply')
+)
+
+IF_NOT_FOOD_SAFE_CHOICES = (
+    (0, 'None'),
+    (1, 'Higher Prices'),
+    (2, 'As Basic as possible')
+)
+PLASTIC_DECISION_CHOICES = (
+    (0, 'None'),
+    (1, 'Yes, I am willing to pay slightly more to get a better material'),
+    (2, 'No I want my project to pretty simple for a pretty low price')
+)
+HEAT_RESISTANCE_CHOICES = (
+    (0, 'None'),
+    (1, 'I want my project to be able to withstand heat.'),
+    (2, 'My project requires neither heat resistance or flexibility'),
+    (3, 'I want my project to be flexible'),
 )
 
 
@@ -104,11 +141,39 @@ class Customer(models.Model):
 
     basic_material = models.IntegerField(choices=BASIC_MATERIAL_CHOICES, default=0)
 
-    # Metals
-    # is_precious_metal = models.BooleanField(default=False)
-    # is_functional_metal = models.BooleanField(default=False)
-    # metal_concern = models.IntegerField(choices=METAL_CONCERN_CHOICES, default=0)
-    # metal_decision = models.IntegerField(choices=METAL_DECISION_CHOICES, default=0)
+    # METALS
+    is_precious_metal = models.NullBooleanField()
+    # if NOT is_precious_metal:
+    metal_concern = models.IntegerField(choices=METAL_CONCERN_CHOICES, default=0)
+    metal_decision = models.IntegerField(choices=METAL_DECISION_CHOICES, default=0)
+
+    # OTHER
+    other_materials = models.IntegerField(choices=OTHER_DECISION_CHOICES, default=0)
+
+    # PLASTIC/RESINS
+    plastic_concern = models.IntegerField(choices=PLASTIC_CONCERN_CHOICES, default=0)
+
+    # if Cost:
+    is_food_safe_plastic = models.NullBooleanField()
+    # if is_food_safe_plastic:
+    is_functional_or_basic = models.IntegerField(choices=IF_FOOD_SAFE_CHOICES, default=0)
+    # if NOT is_food_safe_plastic:
+    plastic_decision = models.IntegerField(choices=PLASTIC_DECISION_CHOICES, default=0)
+
+    # if Quality:
+    heat_resistance = models.IntegerField(choices=HEAT_RESISTANCE_CHOICES, default=0)
+    # if Heat:
+    is_extreme_strength = models.NullBooleanField()
+    # if NOT is_extreme_strength:
+    is_better_appearance = models.NullBooleanField()
+
+    # if neither:
+    is_highest_detail = models.NullBooleanField()
+    # if is_highest_detail:
+    is_full_color = models.NullBooleanField()
+
+    # if flexible:
+    is_able_to_bend = models.NullBooleanField()
 
     prototype_type = models.IntegerField(choices=PROTOTYPES_CHOICES, default=0)
     need_assistance = models.IntegerField(choices=ASSISTANCE_CHOICES, default=0)

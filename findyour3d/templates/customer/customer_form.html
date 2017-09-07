@@ -13,320 +13,144 @@
 {% block content %}
 
 
-{#    <div class="container">#}
-{#        <div class="portlet light bordered" id="form_wizard_1">#}
-{#            <div class="portlet-body form">#}
-{#                <form class="form-horizontal" action="#" id="submit_form" method="POST">#}
-{#                    <div class="form-wizard">#}
-{#                        <div class="form-body">#}
-{#                            <ul class="nav nav-pills nav-justified steps">#}
-{#                                <li>#}
-{#                                    <a href="#tab1" data-toggle="tab" class="step">#}
-{#                                        <span class="number"> 1 </span>#}
-{#                                        <span class="desc">#}
-{#                                            <i class="fa fa-check"></i> Your Basic Material Type </span>#}
-{#                                    </a>#}
-{#                                </li>#}
-{#                                <li>#}
-{#                                    <a href="#tab2" data-toggle="tab" class="step">#}
-{#                                        <span class="number"> 2 </span>#}
-{#                                        <span class="desc">#}
-{#                                            <i class="fa fa-check"></i> Profile Setup </span>#}
-{#                                    </a>#}
-{#                                </li>#}
-{#                                <li>#}
-{#                                    <a href="#tab3" data-toggle="tab" class="step active">#}
-{#                                        <span class="number"> 3 </span>#}
-{#                                        <span class="desc">#}
-{#                                            <i class="fa fa-check"></i> Billing Setup </span>#}
-{#                                    </a>#}
-{#                                </li>#}
-{#                                <li>#}
-{#                                    <a href="#tab4" data-toggle="tab" class="step">#}
-{#                                        <span class="number"> 4 </span>#}
-{#                                        <span class="desc">#}
-{#                                            <i class="fa fa-check"></i> Confirm </span>#}
-{#                                    </a>#}
-{#                                </li>#}
-{#                            </ul>#}
-{#                            <div id="bar" class="progress progress-striped" role="progressbar">#}
-{#                                <div class="progress-bar progress-bar-success"> </div>#}
-{#                            </div>#}
-{#                            <div class="tab-content">#}
-{#                                <div class="alert alert-danger display-none">#}
-{#                                    <button class="close" data-dismiss="alert"></button>#}
-{#                                    You have some form errors. Please check below. </div>#}
-{#                                <div class="alert alert-success display-none">#}
-{#                                    <button class="close" data-dismiss="alert"></button>#}
-{#                                    Your form validation is successful! </div>#}
-{#                                <div class="tab-pane active" id="tab1">#}
-{##}
-{#                                    <h3 class="block">{{ form.basic_material.label|title }}</h3>#}
-{##}
-{##}
-{#                                    <div class="form-group">#}
-{#                                        <div class="col-md-6">#}
-{#                                            <div class="form-group form-md-radios">#}
-{#                                                <p>#}
-{#                                                    {{ form.basic_material.label|title }}#}
-{#                                                    <span class="widget-title-color-red">*</span>#}
-{#                                                </p>#}
-{#                                                <div class="md-radio-inline">#}
-{#                                                    {% for radio in form.basic_material %}#}
-{#                                                        <div class="md-radio">#}
-{#                                                            {{ radio.tag }}#}
-{#                                                            <label for="a_value_{{ forloop.counter0 }}">#}
-{#                                                                <span></span>#}
-{#                                                                <span class="check"></span>#}
-{#                                                                <span class="box"></span>#}
-{#                                                                {{ radio.choice_label }}</label>#}
-{#                                                        </div>#}
-{#                                                    {% endfor %}#}
-{#                                                </div>#}
-{#                                            </div>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{##}
-{#                                </div>#}
-{#                                <div class="tab-pane" id="tab2">#}
-{#                                    <h3 class="block">Provide your profile details</h3>#}
-{#                                    <div class="form-group">#}
-{#                                        <label class="control-label col-md-3">Fullname#}
-{#                                            <span class="required"> * </span>#}
-{#                                        </label>#}
-{#                                        <div class="col-md-4">#}
-{#                                            <input type="text" class="form-control" name="fullname" />#}
-{#                                            <span class="help-block"> Provide your fullname </span>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                    <div class="form-group">#}
-{#                                        <label class="control-label col-md-3">Phone Number#}
-{#                                            <span class="required"> * </span>#}
-{#                                        </label>#}
-{#                                        <div class="col-md-4">#}
-{#                                            <input type="text" class="form-control" name="phone" />#}
-{#                                            <span class="help-block"> Provide your phone number </span>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                    <div class="form-group">#}
-{#                                        <label class="control-label col-md-3">Gender#}
-{#                                            <span class="required"> * </span>#}
-{#                                        </label>#}
-{#                                        <div class="col-md-4">#}
-{#                                            <div class="radio-list">#}
-{#                                                <label>#}
-{#                                                    <input type="radio" name="gender" value="M" data-title="Male" /> Male </label>#}
-{#                                                <label>#}
-{#                                                    <input type="radio" name="gender" value="F" data-title="Female" /> Female </label>#}
-{#                                            </div>#}
-{#                                            <div id="form_gender_error"> </div>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                    <div class="form-group">#}
-{#                                        <label class="control-label col-md-3">Address#}
-{#                                            <span class="required"> * </span>#}
-{#                                        </label>#}
-{#                                        <div class="col-md-4">#}
-{#                                            <input type="text" class="form-control" name="address" />#}
-{#                                            <span class="help-block"> Provide your street address </span>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                    <div class="form-group">#}
-{#                                        <label class="control-label col-md-3">City/Town#}
-{#                                            <span class="required"> * </span>#}
-{#                                        </label>#}
-{#                                        <div class="col-md-4">#}
-{#                                            <input type="text" class="form-control" name="city" />#}
-{#                                            <span class="help-block"> Provide your city or town </span>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                    <div class="form-group">#}
-{#                                        <label class="control-label col-md-3">Country</label>#}
-{#                                        <div class="col-md-4">#}
-{#                                            <select name="country" id="country_list" class="form-control">#}
-{#                                                <option value=""></option>#}
-{#                                                <option value="AF">Afghanistan</option>#}
-{#                                                <option value="AL">Albania</option>#}
-{#                                                <option value="DZ">Algeria</option>#}
-{#                                                <option value="AS">American Samoa</option>#}
-{#                                                <option value="AD">Andorra</option>#}
-{#                                            </select>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                    <div class="form-group">#}
-{#                                        <label class="control-label col-md-3">Remarks</label>#}
-{#                                        <div class="col-md-4">#}
-{#                                            <textarea class="form-control" rows="3" name="remarks"></textarea>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                </div>#}
-{#                                <div class="tab-pane" id="tab3">#}
-{#                                    <h3 class="block">Provide your billing and credit card details</h3>#}
-{#                                    <div class="form-group">#}
-{#                                        <label class="control-label col-md-3">Card Holder Name#}
-{#                                            <span class="required"> * </span>#}
-{#                                        </label>#}
-{#                                        <div class="col-md-4">#}
-{#                                            <input type="text" class="form-control" name="card_name" />#}
-{#                                            <span class="help-block"> </span>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                    <div class="form-group">#}
-{#                                        <label class="control-label col-md-3">Card Number#}
-{#                                            <span class="required"> * </span>#}
-{#                                        </label>#}
-{#                                        <div class="col-md-4">#}
-{#                                            <input type="text" class="form-control" name="card_number" />#}
-{#                                            <span class="help-block"> </span>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                    <div class="form-group">#}
-{#                                        <label class="control-label col-md-3">CVC#}
-{#                                            <span class="required"> * </span>#}
-{#                                        </label>#}
-{#                                        <div class="col-md-4">#}
-{#                                            <input type="text" placeholder="" class="form-control" name="card_cvc" />#}
-{#                                            <span class="help-block"> </span>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                    <div class="form-group">#}
-{#                                        <label class="control-label col-md-3">Expiration(MM/YYYY)#}
-{#                                            <span class="required"> * </span>#}
-{#                                        </label>#}
-{#                                        <div class="col-md-4">#}
-{#                                            <input type="text" placeholder="MM/YYYY" maxlength="7" class="form-control" name="card_expiry_date" />#}
-{#                                            <span class="help-block"> e.g 11/2020 </span>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                    <div class="form-group">#}
-{#                                        <label class="control-label col-md-3">Payment Options#}
-{#                                            <span class="required"> * </span>#}
-{#                                        </label>#}
-{#                                        <div class="col-md-4">#}
-{#                                            <div class="checkbox-list">#}
-{#                                                <label>#}
-{#                                                    <input type="checkbox" name="payment[]" value="1" data-title="Auto-Pay with this Credit Card." /> Auto-Pay with this Credit Card </label>#}
-{#                                                <label>#}
-{#                                                    <input type="checkbox" name="payment[]" value="2" data-title="Email me monthly billing." /> Email me monthly billing </label>#}
-{#                                            </div>#}
-{#                                            <div id="form_payment_error"> </div>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                </div>#}
-{#                                <div class="tab-pane" id="tab4">#}
-{#                                    <h3 class="block">Confirm your account</h3>#}
-{#                                    <h4 class="form-section">Account</h4>#}
-{#                                    <div class="form-group">#}
-{#                                        <label class="control-label col-md-3">Username:</label>#}
-{#                                        <div class="col-md-4">#}
-{#                                            <p class="form-control-static" data-display="username"> </p>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                    <div class="form-group">#}
-{#                                        <label class="control-label col-md-3">Email:</label>#}
-{#                                        <div class="col-md-4">#}
-{#                                            <p class="form-control-static" data-display="email"> </p>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                    <h4 class="form-section">Profile</h4>#}
-{#                                    <div class="form-group">#}
-{#                                        <label class="control-label col-md-3">Fullname:</label>#}
-{#                                        <div class="col-md-4">#}
-{#                                            <p class="form-control-static" data-display="fullname"> </p>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                    <div class="form-group">#}
-{#                                        <label class="control-label col-md-3">Gender:</label>#}
-{#                                        <div class="col-md-4">#}
-{#                                            <p class="form-control-static" data-display="gender"> </p>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                    <div class="form-group">#}
-{#                                        <label class="control-label col-md-3">Phone:</label>#}
-{#                                        <div class="col-md-4">#}
-{#                                            <p class="form-control-static" data-display="phone"> </p>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                    <div class="form-group">#}
-{#                                        <label class="control-label col-md-3">Address:</label>#}
-{#                                        <div class="col-md-4">#}
-{#                                            <p class="form-control-static" data-display="address"> </p>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                    <div class="form-group">#}
-{#                                        <label class="control-label col-md-3">City/Town:</label>#}
-{#                                        <div class="col-md-4">#}
-{#                                            <p class="form-control-static" data-display="city"> </p>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                    <div class="form-group">#}
-{#                                        <label class="control-label col-md-3">Country:</label>#}
-{#                                        <div class="col-md-4">#}
-{#                                            <p class="form-control-static" data-display="country"> </p>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                    <div class="form-group">#}
-{#                                        <label class="control-label col-md-3">Remarks:</label>#}
-{#                                        <div class="col-md-4">#}
-{#                                            <p class="form-control-static" data-display="remarks"> </p>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                    <h4 class="form-section">Billing</h4>#}
-{#                                    <div class="form-group">#}
-{#                                        <label class="control-label col-md-3">Card Holder Name:</label>#}
-{#                                        <div class="col-md-4">#}
-{#                                            <p class="form-control-static" data-display="card_name"> </p>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                    <div class="form-group">#}
-{#                                        <label class="control-label col-md-3">Card Number:</label>#}
-{#                                        <div class="col-md-4">#}
-{#                                            <p class="form-control-static" data-display="card_number"> </p>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                    <div class="form-group">#}
-{#                                        <label class="control-label col-md-3">CVC:</label>#}
-{#                                        <div class="col-md-4">#}
-{#                                            <p class="form-control-static" data-display="card_cvc"> </p>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                    <div class="form-group">#}
-{#                                        <label class="control-label col-md-3">Expiration:</label>#}
-{#                                        <div class="col-md-4">#}
-{#                                            <p class="form-control-static" data-display="card_expiry_date"> </p>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                    <div class="form-group">#}
-{#                                        <label class="control-label col-md-3">Payment Options:</label>#}
-{#                                        <div class="col-md-4">#}
-{#                                            <p class="form-control-static" data-display="payment[]"> </p>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                </div>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                        <div class="form-actions">#}
-{#                            <div class="row">#}
-{#                                <div class="col-md-offset-3 col-md-9">#}
-{#                                    <a href="javascript:;" class="btn default button-previous">#}
-{#                                        <i class="fa fa-angle-left"></i> Back </a>#}
-{#                                    <a href="javascript:;" class="btn btn-outline green button-next"> Continue#}
-{#                                        <i class="fa fa-angle-right"></i>#}
-{#                                    </a>#}
-{#                                    <a href="javascript:;" class="btn green button-submit"> Submit#}
-{#                                        <i class="fa fa-check"></i>#}
-{#                                    </a>#}
-{#                                </div>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                </form>#}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
-
-
-
+    {#    <div class="container">#}
+    {#        <div class="portlet light bordered" id="form_wizard_1">#}
+    {#            <div class="portlet-body form">#}
+    {#                <form class="form-horizontal" action="#" id="submit_form" method="POST">#}
+    {#                    <div class="form-wizard">#}
+    {#                        <div class="form-body">#}
+    {#                            <ul class="nav nav-pills nav-justified steps">#}
+    {#                                <li>#}
+    {#                                    <a href="#tab1" data-toggle="tab" class="step">#}
+    {#                                        <span class="number"> 1 </span>#}
+    {#                                        <span class="desc">#}
+    {#                                                <i class="fa fa-check"></i> Your Basic Material Type </span>#}
+    {#                                    </a>#}
+    {#                                </li>#}
+    {#                                <li>#}
+    {#                                    <a href="#tab2" data-toggle="tab" class="step">#}
+    {#                                        <span class="number"> 2 </span>#}
+    {#                                        <span class="desc second_step">#}
+    {#                                        <i class="fa fa-check"></i>#}
+    {#                                            Profile Setup </span>#}
+    {#                                    </a>#}
+    {#                                </li>#}
+    {#                                <li>#}
+    {#                                    <a href="#tab3" data-toggle="tab" class="step active">#}
+    {#                                        <span class="number"> 3 </span>#}
+    {#                                        <span class="desc third_step">#}
+    {#                                                <i class="fa fa-check"></i> Billing Setup </span>#}
+    {#                                    </a>#}
+    {#                                </li>#}
+    {#                                <li>#}
+    {#                                    <a href="#tab4" data-toggle="tab" class="step">#}
+    {#                                        <span class="number four_step"> 4 </span>#}
+    {#                                        <span class="desc">#}
+    {#                                                <i class="fa fa-check"></i> Confirm </span>#}
+    {#                                    </a>#}
+    {#                                </li>#}
+    {#                            </ul>#}
+    {#                            <div id="bar" class="progress progress-striped" role="progressbar">#}
+    {#                                <div class="progress-bar progress-bar-success"> </div>#}
+    {#                            </div>#}
+    {#                            <div class="tab-content">#}
+    {#                                <div class="alert alert-danger display-none">#}
+    {#                                    <button class="close" data-dismiss="alert"></button>#}
+    {#                                    You have some form errors. Please check below. </div>#}
+    {#                                <div class="alert alert-success display-none">#}
+    {#                                    <button class="close" data-dismiss="alert"></button>#}
+    {#                                    Your form validation is successful! </div>#}
+    {##}
+    {#                                <div class="tab-pane active" id="tab1">#}
+    {#                                    <h3 class="block">{{ form.basic_material.label|title }}</h3>#}
+    {#                                    <div class="form-group">#}
+    {#                                        <div class="col-md-6">#}
+    {#                                            <div class="form-group form-md-radios">#}
+    {#                                                <p>#}
+    {#                                                    {{ form.basic_material.label|title }}#}
+    {#                                                    <span class="widget-title-color-red">*</span>#}
+    {#                                                </p>#}
+    {#                                                <div class="md-radio-inline">#}
+    {#                                                    {% for radio in form.basic_material %}#}
+    {#                                                        <div class="md-radio">#}
+    {#                                                            {{ radio.tag }}#}
+    {#                                                            <label for="a_value_{{ forloop.counter0 }}">#}
+    {#                                                                <span></span>#}
+    {#                                                                <span class="check"></span>#}
+    {#                                                                <span class="box"></span>#}
+    {#                                                                {{ radio.choice_label }}</label>#}
+    {#                                                        </div>#}
+    {#                                                    {% endfor %}#}
+    {#                                                </div>#}
+    {#                                            </div>#}
+    {#                                        </div>#}
+    {#                                    </div>#}
+    {#                                </div>#}
+    {##}
+    {#                                <div class="tab-pane" id="tab2">#}
+    {#                                    <h3 class="block">Do you want your project to be constructed by functional#}
+    {#                                        metals or precious metals, such as silver or gold?</h3>#}
+    {#                                    <div class="row">#}
+    {#                                        <div class="col-md-6">#}
+    {#                                            <div class="form-group form-md-line-input form-md-floating-label#}
+    {#                            {% if form.is_precious_metal.errors %}has-error{% endif %}">#}
+    {#                                                {{ form.is_precious_metal }}#}
+    {#                                                <label for="form_control_1">{{ form.is_precious_metal.label|title }}</label>#}
+    {#                                            </div>#}
+    {#                                        </div>#}
+    {#                                    </div>#}
+    {##}
+    {#                                </div>#}
+    {#                                <div class="tab-pane" id="tab3">#}
+    {#                                    <h3 class="block">Provide your billing and credit card details</h3>#}
+    {#                                    <div class="form-group">#}
+    {#                                        <label class="control-label col-md-3">Card Holder Name#}
+    {#                                            <span class="required"> * </span>#}
+    {#                                        </label>#}
+    {#                                        <div class="col-md-4">#}
+    {#                                            <input type="text" class="form-control" name="card_name" />#}
+    {#                                            <span class="help-block"> </span>#}
+    {#                                        </div>#}
+    {#                                    </div>#}
+    {#                                </div>#}
+    {#                                <div class="tab-pane" id="tab4">#}
+    {#                                    <h3 class="block">Confirm your account</h3>#}
+    {#                                    <h4 class="form-section">Account</h4>#}
+    {#                                    <div class="form-group">#}
+    {#                                        <label class="control-label col-md-3">Username:</label>#}
+    {#                                        <div class="col-md-4">#}
+    {#                                            <p class="form-control-static" data-display="username"> </p>#}
+    {#                                        </div>#}
+    {#                                    </div>#}
+    {#                                    <div class="form-group">#}
+    {#                                        <label class="control-label col-md-3">Email:</label>#}
+    {#                                        <div class="col-md-4">#}
+    {#                                            <p class="form-control-static" data-display="email"> </p>#}
+    {#                                        </div>#}
+    {#                                    </div>#}
+    {##}
+    {#                                </div>#}
+    {#                            </div>#}
+    {#                        </div>#}
+    {#                        <div class="form-actions">#}
+    {#                            <div class="row">#}
+    {#                                <div class="col-md-offset-3 col-md-9">#}
+    {#                                    <a href="javascript:;" class="btn default button-previous">#}
+    {#                                        <i class="fa fa-angle-left"></i> Back </a>#}
+    {#                                    <a href="javascript:;" class="btn btn-outline green button-next"> Continue#}
+    {#                                        <i class="fa fa-angle-right"></i>#}
+    {#                                    </a>#}
+    {#                                    <a href="javascript:;" class="btn green button-submit"> Submit#}
+    {#                                        <i class="fa fa-check"></i>#}
+    {#                                    </a>#}
+    {#                                </div>#}
+    {#                            </div>#}
+    {#                        </div>#}
+    {#                    </div>#}
+    {#                </form>#}
+    {#            </div>#}
+    {#        </div>#}
+    {#    </div>#}
 
     {#    <a href="">#}
     {#        <h2 class="post-title">#}
@@ -338,190 +162,29 @@
     {#        </h3>#}
     {#    </a>#}
 
-
     <div class="container">
         {% if form.errors %}
             <div class="alert alert-danger">
                 {{ form.errors }}
             </div>
         {% endif %}
-        <form autocomplete="off" action="" method="post">
-            {% csrf_token %}
-            <div class="form-body">
 
-                {{ form.user }}
+        <div class="row">
+            <div class="col-md-9 col-md-offset-2">
+                <form action="" method="post">{% csrf_token %}
+                    <div class="form-actions">
+                        {{ form|crispy }}
+                        <div class="row">
+                                <button type="submit" class="btn green button-submit"> Submit
+                                    <i class="fa fa-check"></i>
+                                </button>
+                        </div>
+                    </div>
+                </form>
 
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group form-md-line-input form-md-floating-label
-                            {% if form.prototype_type.errors %}has-error{% endif %}">
-                            {{ form.prototype_type }}
-                            <label for="form_control_1">{{ form.prototype_type.label|title }}</label>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group form-md-line-input form-md-floating-label
-                        {% if form.need_assistance.errors %}has-error{% endif %}">
-                            {{ form.need_assistance }}
-                            <label for="form_control_1">{{ form.need_assistance.label|title }}</label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group form-md-radios">
-                            <p>
-                                {{ form.basic_material.label|title }}
-                                <span class="widget-title-color-red">*</span>
-                            </p>
-                            <div class="md-radio-inline">
-                                {% for radio in form.basic_material %}
-                                    <div class="md-radio">
-                                        {{ radio.tag }}
-                                        <label for="a_value_{{ forloop.counter0 }}">
-                                            <span></span>
-                                            <span class="check"></span>
-                                            <span class="box"></span>
-                                            {{ radio.choice_label }}</label>
-                                    </div>
-                                {% endfor %}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group form-md-line-input form-md-floating-label
-                            {% if form.material.errors %}has-error{% endif %}">
-                            {{ form.material }}
-                            <label for="form_control_1">{{ form.material.label|title }}</label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group form-md-line-input form-md-floating-label
-                            {% if form.process.errors %}has-error{% endif %}">
-                            {{ form.process }}
-                            <label for="form_control_1">{{ form.process.label|title }}</label>
-                        </div>
-                    </div>
-                    <div class="col-md-6 form-group">
-                        <div class="md-checkbox
-                                    {% if form.is_flexible.errors %}has-error{% endif %}">
-                            {{ form.is_flexible }}
-                            <label for="{{ form.is_flexible.id_for_label }}">
-                                <span></span>
-                                <span class="check"></span>
-                                <span class="box"></span>
-                                {{ form.is_flexible.label }}
-                            </label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-6 form-group">
-                        <div class="md-checkbox
-                                    {% if form.is_semi_biodegradable.errors %}has-error{% endif %}">
-                            {{ form.is_semi_biodegradable }}
-                            <label for="{{ form.is_semi_biodegradable.id_for_label }}">
-                                <span></span>
-                                <span class="check"></span>
-                                <span class="box"></span>
-                                {{ form.is_semi_biodegradable.label }}
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col-md-6 form-group">
-                        <div class="md-checkbox
-                                    {% if form.is_heat_withstand.errors %}has-error{% endif %}">
-                            {{ form.is_heat_withstand }}
-                            <label for="{{ form.is_heat_withstand.id_for_label }}">
-                                <span></span>
-                                <span class="check"></span>
-                                <span class="box"></span>
-                                {{ form.is_heat_withstand.label }}
-                            </label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group form-md-line-input form-md-floating-label
-                            {% if form.size.errors %}has-error{% endif %}">
-                            {{ form.size }}
-                            <label for="form_control_1">{{ form.size.label|title }}</label>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="form-group form-md-line-input form-md-floating-label
-                            {% if form.consideration.errors %}has-error{% endif %}">
-                            {{ form.consideration }}
-                            <label for="form_control_1">{{ form.consideration.label|title }}</label>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group form-md-line-input form-md-floating-label
-                            {% if form.budget.errors %}has-error{% endif %}">
-                            {{ form.budget }}
-                            <label for="form_control_1">{{ form.budget.label|title }}</label>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group form-md-line-input form-md-floating-label
-                            {% if form.geo_matters.errors %}has-error{% endif %}">
-                            {{ form.geo_matters }}
-                            <label for="form_control_1">{{ form.geo_matters.label|title }}</label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group form-md-line-input form-md-floating-label
-                            {% if form.state.errors %}has-error{% endif %}">
-                            {{ form.state }}
-                            <label for="form_control_1">{{ form.state.label|title }}</label>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="fileinput fileinput-new" data-provides="fileinput">
-                            <div class="input-group input-large">
-                                <div class="form-control uneditable-input input-fixed input-medium" data-trigger="fileinput">
-                                    <i class="fa fa-file fileinput-exists"></i>&nbsp;
-                                    <span class="fileinput-filename"> </span>
-                                </div>
-                                <span class="input-group-addon btn default btn-file">
-                                                            <span class="fileinput-new"> Select file </span>
-                                                            <span class="fileinput-exists"> Change </span>
-                                                            {{ form.cad_file }} </span>
-                                <a href="javascript:;" class="input-group-addon btn red fileinput-exists" data-dismiss="fileinput"> Remove </a>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group form-md-line-input form-md-floating-label
-                            {% if form.description.errors %}has-error{% endif %}">
-                            {{ form.description }}
-                            <label class="form_control_1">{{ form.description.label }}</label>
-                        </div>
-                    </div>
-                </div>
-
-                <button type="submit" class="btn btn-default">Submit</button>
             </div>
-        </form>
+        </div>
+
     </div>
 {% endblock content %}
 
@@ -533,6 +196,24 @@
     <script src="{% static 'forms/select2/js/select2.full.min.js' %}" type="text/javascript"></script>
     <script src="{% static 'forms/js/app.js' %}" type="text/javascript"></script>
     <script src="{% static 'forms/js/form-wizard.min.js' %}" type="text/javascript"></script>
+
+    <script>
+        var basicMaterial = $('#id_basic_material');
+        $('input[type=radio][name=basic_material]').on('change', function () {
+            if (this.value=1){
+                $('.second_step').text('What kind of metals?')
+            }
+            console.log(this.value)
+        });
+        $('#id_is_precious_metal').on('change', function () {
+            if (this.value=1){
+                $('.third_step').text('What kind of metals?')
+            }
+        })
+
+    </script>
+
+
 {% endblock extra_js %}
 
 
