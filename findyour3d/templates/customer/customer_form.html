@@ -13,251 +13,303 @@
 {% block content %}
 
     <div class="container">
-        {% if form.errors %}
-            <div class="alert alert-danger">
-                {{ form.errors }}
-            </div>
-        {% endif %}
-
-        <div class="row">
-            <div class="col-md-9 col-md-offset-2">
-                <h1>Bring Your Project To Life.</h1>
-                <h3>Let us help. Fill out our form below and we will match your project to the nation's top providers based on your criteria.</h3>
-                <h4 class="bold">If you're unfamiliar with some of the terms, see our about page and download our 3D Printing 101 Guide.</h4>
-                <form action="" method="post">{% csrf_token %}
-                    <div class="form-actions">
-                        {{ form.user }}
-                        <div class="form-group">
-                            <div class="col-md-12">
-                                <div class="form-group form-md-radios">
-                                    <p>
-                                        {{ form.prototype_type.label|title }}
-                                        <span class="widget-title-color-red">*</span>
-                                    </p>
-                                    <div class="md-radio-inline">
-                                        {% for radio in form.prototype_type %}
-                                            <div class="md-radio">
-                                                {{ radio.tag }}
-                                                <label for="a_value_{{ forloop.counter0 }}">
-                                                    <span></span>
-                                                    <span class="check"></span>
-                                                    <span class="box"></span>
-                                                    {{ radio.choice_label }}</label>
-                                            </div>
-                                        {% endfor %}
-                                    </div>
-                                </div>
+        <div class="portlet light bordered" id="form_wizard_1">
+            <div class="portlet-body form">
+                {% if form.errors %}
+                    <div class="alert alert-danger">
+                        {{ form.errors }}
+                    </div>
+                {% endif %}
+                <h3>Bring Your Project To Life.</h3>
+                <h4>Let us help. Fill out our form below and we will match your project to the nation's top providers based on your criteria.</h4>
+                <h5 class="bold">If you're unfamiliar with some of the terms, see our about page and download our 3D Printing 101 Guide.</h5>
+                <form class="form-horizontal" action="" id="submit_form" method="POST">
+                {% csrf_token %}
+                    <div class="form-wizard">
+                        <div class="form-body">
+                            <ul class="nav nav-pills nav-justified steps">
+                                <li>
+                                    <a href="#tab1" data-toggle="tab" class="step">
+                                        <span class="number"> 1 </span>
+                                        <span class="desc">
+                                                    <i class="fa fa-check"></i> Step 1 </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#tab2" data-toggle="tab" class="step">
+                                        <span class="number"> 2 </span>
+                                        <span class="desc second_step">
+                                            <i class="fa fa-check"></i>
+                                                Step 2 </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#tab3" data-toggle="tab" class="step active">
+                                        <span class="number"> 3 </span>
+                                        <span class="desc third_step">
+                                                    <i class="fa fa-check"></i> Step 3 </span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <div id="bar" class="progress progress-striped" role="progressbar">
+                                <div class="progress-bar progress-bar-success"> </div>
                             </div>
-                        </div>
+                            <div class="tab-content">
+                                <div class="alert alert-danger display-none">
+                                    <button class="close" data-dismiss="alert"></button>
+                                    You have some form errors. Please check below. </div>
+                                <div class="alert alert-success display-none">
+                                    <button class="close" data-dismiss="alert"></button>
+                                    Your form validation is successful! </div>
 
-                        <div class="form-group">
-                            <div class="col-md-12">
-                                <div class="form-group form-md-radios">
-                                    <p>
-                                        {{ form.budget.label|title }}
-                                        <span class="widget-title-color-red">*</span>
-                                    </p>
-                                    <div class="md-radio-inline">
-                                        {% for radio in form.budget %}
-                                            <div class="md-radio">
-                                                {{ radio.tag }}
-                                                <label for="b_value_{{ forloop.counter0 }}">
-                                                    <span></span>
-                                                    <span class="check"></span>
-                                                    <span class="box"></span>
-                                                    {{ radio.choice_label }}</label>
+                                <div class="tab-pane active" id="tab1">
+                                    {{ form.user }}
+                                    <div class="form-group">
+                                        <div class="col-md-10 col-md-offset-2">
+                                            <div class="form-group form-md-radios">
+                                                <p>
+                                                    {{ form.prototype_type.label|title }}
+                                                    <span class="widget-title-color-red">*</span>
+                                                </p>
+                                                <div class="md-radio-inline">
+                                                    {% for radio in form.prototype_type %}
+                                                        <div class="md-radio">
+                                                            {{ radio.tag }}
+                                                            <label for="a_value_{{ forloop.counter0 }}">
+                                                                <span></span>
+                                                                <span class="check"></span>
+                                                                <span class="box"></span>
+                                                                {{ radio.choice_label }}</label>
+                                                        </div>
+                                                    {% endfor %}
+                                                </div>
                                             </div>
-                                        {% endfor %}
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
 
-                        <div class="form-group">
-                            <div class="col-md-12">
-                                <div class="form-group form-md-radios">
-                                    <p>
-                                        {{ form.customer_type.label|title }}
-                                        <span class="widget-title-color-red">*</span>
-                                    </p>
-                                    <div class="md-radio-inline">
-                                        {% for radio in form.customer_type %}
-                                            <div class="md-radio">
-                                                {{ radio.tag }}
-                                                <label for="c_value_{{ forloop.counter0 }}">
-                                                    <span></span>
-                                                    <span class="check"></span>
-                                                    <span class="box"></span>
-                                                    {{ radio.choice_label }}</label>
+                                    <div class="form-group">
+                                        <div class="col-md-10 col-md-offset-2">
+                                            <div class="form-group form-md-radios">
+                                                <p>
+                                                    {{ form.budget.label|title }}
+                                                    <span class="widget-title-color-red">*</span>
+                                                </p>
+                                                <div class="md-radio-inline">
+                                                    {% for radio in form.budget %}
+                                                        <div class="md-radio">
+                                                            {{ radio.tag }}
+                                                            <label for="b_value_{{ forloop.counter0 }}">
+                                                                <span></span>
+                                                                <span class="check"></span>
+                                                                <span class="box"></span>
+                                                                {{ radio.choice_label }}</label>
+                                                        </div>
+                                                    {% endfor %}
+                                                </div>
                                             </div>
-                                        {% endfor %}
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
 
-                        <div class="col-md-12">
-                            <div class="form-group form-md-line-input form-md-floating-label
+                                    <div class="form-group">
+                                        <div class="col-md-10 col-md-offset-2">
+                                            <div class="form-group form-md-radios">
+                                                <p>
+                                                    {{ form.customer_type.label|title }}
+                                                    <span class="widget-title-color-red">*</span>
+                                                </p>
+                                                <div class="md-radio-inline">
+                                                    {% for radio in form.customer_type %}
+                                                        <div class="md-radio">
+                                                            {{ radio.tag }}
+                                                            <label for="c_value_{{ forloop.counter0 }}">
+                                                                <span></span>
+                                                                <span class="check"></span>
+                                                                <span class="box"></span>
+                                                                {{ radio.choice_label }}</label>
+                                                        </div>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-10 col-md-offset-2">
+                                        <div class="form-group form-md-line-input form-md-floating-label
                             {% if form.material.errors %}has-error{% endif %}">
-                                {{ form.material }}
-                                <label for="form_control_1">{{ form.material.label|title }}</label>
-                            </div>
-                        </div>
+                                            {{ form.material }}
+                                            <label for="form_control_1">{{ form.material.label|title }}</label>
+                                        </div>
+                                    </div>
 
-                        <div class="col-md-12">
-                            <div class="form-group form-md-line-input form-md-floating-label
+                                    <div class="col-md-10 col-md-offset-2">
+                                        <div class="form-group form-md-line-input form-md-floating-label
                             {% if form.process.errors %}has-error{% endif %}">
-                                {{ form.process }}
-                                <label for="form_control_1">{{ form.process.label|title }}</label>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-12">
-                                <div class="form-group form-md-radios">
-                                    <p>
-                                        {{ form.size.label|title }}
-                                        <span class="widget-title-color-red">*</span>
-                                    </p>
-                                    <div class="md-radio-inline">
-                                        {% for radio in form.size %}
-                                            <div class="md-radio">
-                                                {{ radio.tag }}
-                                                <label for="d_value_{{ forloop.counter0 }}">
-                                                    <span></span>
-                                                    <span class="check"></span>
-                                                    <span class="box"></span>
-                                                    {{ radio.choice_label }}</label>
-                                            </div>
-                                        {% endfor %}
+                                            {{ form.process }}
+                                            <label for="form_control_1">{{ form.process.label|title }}</label>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
 
-                        <div class="form-group">
-                            <div class="col-md-12">
-                                <div class="form-group form-md-radios">
-                                    <p>
-                                        {{ form.need_assistance.label|title }}
-                                        <span class="widget-title-color-red">*</span>
-                                    </p>
-                                    <div class="md-radio-inline">
-                                        {% for radio in form.need_assistance %}
-                                            <div class="md-radio">
-                                                {{ radio.tag }}
-                                                <label for="e_value_{{ forloop.counter0 }}">
-                                                    <span></span>
-                                                    <span class="check"></span>
-                                                    <span class="box"></span>
-                                                    {{ radio.choice_label }}</label>
+                                </div>
+
+                                <div class="tab-pane" id="tab2">
+                                    <div class="form-group">
+                                        <div class="col-md-10 col-md-offset-2">
+                                            <div class="form-group form-md-radios">
+                                                <p>
+                                                    {{ form.size.label|title }}
+                                                    <span class="widget-title-color-red">*</span>
+                                                </p>
+                                                <div class="md-radio-inline">
+                                                    {% for radio in form.size %}
+                                                        <div class="md-radio">
+                                                            {{ radio.tag }}
+                                                            <label for="d_value_{{ forloop.counter0 }}">
+                                                                <span></span>
+                                                                <span class="check"></span>
+                                                                <span class="box"></span>
+                                                                {{ radio.choice_label }}</label>
+                                                        </div>
+                                                    {% endfor %}
+                                                </div>
                                             </div>
-                                        {% endfor %}
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
 
-                        <div class="form-group">
-                            <div class="col-md-12">
-                                <div class="form-group form-md-radios">
-                                    <p>
-                                        {{ form.is_time_sensitive.label|title }}
-                                        <span class="widget-title-color-red">*</span>
-                                    </p>
-                                    <div class="md-radio-inline">
-                                        {% for radio in form.is_time_sensitive %}
-                                            <div class="md-radio">
-                                                {{ radio.tag }}
-                                                <label for="f_value_{{ forloop.counter0 }}">
-                                                    <span></span>
-                                                    <span class="check"></span>
-                                                    <span class="box"></span>
-                                                    {{ radio.choice_label }}</label>
+                                    <div class="form-group">
+                                        <div class="col-md-10 col-md-offset-2">
+                                            <div class="form-group form-md-radios">
+                                                <p>
+                                                    {{ form.need_assistance.label|title }}
+                                                    <span class="widget-title-color-red">*</span>
+                                                </p>
+                                                <div class="md-radio-inline">
+                                                    {% for radio in form.need_assistance %}
+                                                        <div class="md-radio">
+                                                            {{ radio.tag }}
+                                                            <label for="e_value_{{ forloop.counter0 }}">
+                                                                <span></span>
+                                                                <span class="check"></span>
+                                                                <span class="box"></span>
+                                                                {{ radio.choice_label }}</label>
+                                                        </div>
+                                                    {% endfor %}
+                                                </div>
                                             </div>
-                                        {% endfor %}
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
 
-                        <div class="form-group">
-                            <div class="col-md-12">
-                                <div class="form-group form-md-radios">
-                                    <p>
-                                        {{ form.shipping.label|title }}
-                                        <span class="widget-title-color-red">*</span>
-                                    </p>
-                                    <div class="md-radio-inline">
-                                        {% for radio in form.shipping %}
-                                            <div class="md-radio">
-                                                {{ radio.tag }}
-                                                <label for="g_value_{{ forloop.counter0 }}">
-                                                    <span></span>
-                                                    <span class="check"></span>
-                                                    <span class="box"></span>
-                                                    {{ radio.choice_label }}</label>
+                                    <div class="form-group">
+                                        <div class="col-md-10 col-md-offset-2">
+                                            <div class="form-group form-md-radios">
+                                                <p>
+                                                    {{ form.is_time_sensitive.label|title }}
+                                                    <span class="widget-title-color-red">*</span>
+                                                </p>
+                                                <div class="md-radio-inline">
+                                                    {% for radio in form.is_time_sensitive %}
+                                                        <div class="md-radio">
+                                                            {{ radio.tag }}
+                                                            <label for="f_value_{{ forloop.counter0 }}">
+                                                                <span></span>
+                                                                <span class="check"></span>
+                                                                <span class="box"></span>
+                                                                {{ radio.choice_label }}</label>
+                                                        </div>
+                                                    {% endfor %}
+                                                </div>
                                             </div>
-                                        {% endfor %}
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
 
-                        <div class="col-md-12">
-                            <div class="form-group form-md-line-input form-md-floating-label
+                                    <div class="form-group">
+                                        <div class="col-md-10 col-md-offset-2">
+                                            <div class="form-group form-md-radios">
+                                                <p>
+                                                    {{ form.shipping.label|title }}
+                                                    <span class="widget-title-color-red">*</span>
+                                                </p>
+                                                <div class="md-radio-inline">
+                                                    {% for radio in form.shipping %}
+                                                        <div class="md-radio">
+                                                            {{ radio.tag }}
+                                                            <label for="g_value_{{ forloop.counter0 }}">
+                                                                <span></span>
+                                                                <span class="check"></span>
+                                                                <span class="box"></span>
+                                                                {{ radio.choice_label }}</label>
+                                                        </div>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <div class="tab-pane" id="tab3">
+                                    <div class="col-md-10 col-md-offset-2">
+                                        <div class="form-group form-md-line-input form-md-floating-label
                             {% if form.geo_matters.errors %}has-error{% endif %}">
-                                {{ form.geo_matters }}
-                                <label for="form_control_1">{{ form.geo_matters.label|title }}</label>
-                            </div>
-                        </div>
-
-                        <div class="col-md-12">
-                            <div class="form-group form-md-line-input form-md-floating-label
-                            {% if form.zip.errors %}has-error{% endif %}">
-                                {{ form.zip }}
-                                <label for="form_control_1">{{ form.zip.label|title }}</label>
-                            </div>
-                        </div>
-
-                        <div class="col-md-12">
-                            <div class="form-group form-md-line-input form-md-floating-label
-                            {% if form.description.errors %}has-error{% endif %}">
-                                {{ form.description }}
-                                <label for="form_control_1">{{ form.description.label|title }}</label>
-                            </div>
-                        </div>
-
-                        <div class="col-md-12">
-                            <div class="fileinput fileinput-new" data-provides="fileinput">
-                                <div class="input-group input-large">
-                                    <div class="form-control uneditable-input input-fixed input-medium" data-trigger="fileinput">
-                                        <i class="fa fa-file fileinput-exists"></i>&nbsp;
-                                        <span class="fileinput-filename"> </span>
+                                            {{ form.geo_matters }}
+                                            <label for="form_control_1">{{ form.geo_matters.label|title }}</label>
+                                        </div>
                                     </div>
-                                    <span class="input-group-addon btn default btn-file">
+
+                                    <div class="col-md-10 col-md-offset-2">
+                                        <div class="form-group form-md-line-input form-md-floating-label
+                            {% if form.zip.errors %}has-error{% endif %}">
+                                            {{ form.zip }}
+                                            <label for="form_control_1">{{ form.zip.label|title }}</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-10 col-md-offset-2">
+                                        <div class="form-group form-md-line-input form-md-floating-label
+                            {% if form.description.errors %}has-error{% endif %}">
+                                            {{ form.description }}
+                                            <label for="form_control_1">{{ form.description.label|title }}</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-10 col-md-offset-2">
+                                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                                            <div class="input-group input-large">
+                                                <div class="form-control uneditable-input input-fixed input-medium" data-trigger="fileinput">
+                                                    <i class="fa fa-file fileinput-exists"></i>&nbsp;
+                                                    <span class="fileinput-filename"> </span>
+                                                </div>
+                                                <span class="input-group-addon btn default btn-file">
                                                             <span class="fileinput-new"> Select file </span>
                                                             <span class="fileinput-exists"> Change </span>
                                                             {{ form.cad_file }} </span>
-                                    <a href="javascript:;" class="input-group-addon btn red fileinput-exists" data-dismiss="fileinput"> Remove </a>
+                                                <a href="javascript:;" class="input-group-addon btn red fileinput-exists" data-dismiss="fileinput"> Remove </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <div class="row">
+                                <div class="col-md-offset-3 col-md-9">
+                                    <a href="javascript:;" class="btn default button-previous">
+                                        <i class="fa fa-angle-left"></i> Back </a>
+                                    <a href="javascript:;" class="btn btn-outline green button-next"> Continue
+                                        <i class="fa fa-angle-right"></i>
+                                    </a>
+                                    <button type="submit" class="btn green button-submit"> Submit
+                                        <i class="fa fa-check"></i>
+                                    </button>
                                 </div>
                             </div>
                         </div>
-
-
-                        {#                        {{ form|crispy }}#}
-                        <div class="row">
-                            <button type="submit" class="btn btn-outline green button-next"> Continue
-                                <i class="fa fa-angle-right"></i>
-                            </button>
-                        </div>
                     </div>
                 </form>
-
             </div>
         </div>
-
     </div>
+
 {% endblock content %}
 
 {% block extra_js %}
@@ -272,14 +324,14 @@
 {% endblock extra_js %}
 
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-10">
-            <form action="" method="post">
-                {% csrf_token %}
-                {{ form|crispy }}
-                <button type="submit" class="btn btn-default">Submit</button>
-            </form>
-        </div>
-    </div>
-</div>
+{#<div class="container">#}
+{#    <div class="row">#}
+{#        <div class="col-md-10">#}
+{#            <form action="" method="post">#}
+{#                {% csrf_token %}#}
+{#                {{ form|crispy }}#}
+{#                <button type="submit" class="btn btn-default">Submit</button>#}
+{#            </form>#}
+{#        </div>#}
+{#    </div>#}
+{#</div>#}
