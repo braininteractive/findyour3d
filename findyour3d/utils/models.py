@@ -6,10 +6,11 @@ BASIC_MATERIAL_CHOICES = (
 )
 
 BUDGET_CHOICES = (
-    (0, 'Under $100'),
-    (1, '$100 - 500'),
-    (2, '$500 - 2,500'),
-    (3, '$2,500+'),
+    (0, 'Less than $100'),
+    (1, '$100 - 250'),
+    (2, '$250 - 500'),
+    (2, '500 - 2,500'),
+    (3, '$2,500 plus'),
 )
 
 CONSIDERATION_CHOICES = (

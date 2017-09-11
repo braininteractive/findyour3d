@@ -43,8 +43,63 @@ BEND_CHOICES = (
     (3, "I want my project to feel and act almost like rubber")
 )
 
+TIME_CHOICES = (
+    (0, 'No, timing is not an issue for me.'),
+    (1, 'Yes, I need this project manufactured as soon as physically possible.')
+)
+
 
 class AddCustomerForm(forms.ModelForm):
+
+    class Meta:
+        model = Customer
+        fields = ['prototype_type', 'customer_type', 'need_assistance', 'material', 'process',
+                  'size', 'is_time_sensitive', 'shipping', 'zip',
+                  'budget', 'geo_matters', 'description', 'cad_file', 'user']
+
+        widgets = {
+            'prototype_type': forms.RadioSelect(attrs={'id': 'a_value', 'class': 'md-radiobtn'}),
+            'budget': forms.RadioSelect(attrs={'id': 'b_value', 'class': 'md-radiobtn'}),
+            'customer_type': forms.RadioSelect(attrs={'id': 'c_value', 'class': 'md-radiobtn'}),
+            'material': forms.Select(attrs={'class': 'form-control edited'}),
+            'process': forms.Select(attrs={'class': 'form-control edited'}),
+            'size': forms.RadioSelect(attrs={'id': 'd_value', 'class': 'md-radiobtn'}),
+            'need_assistance': forms.RadioSelect(attrs={'id': 'e_value', 'class': 'md-radiobtn'}),
+            'is_time_sensitive': forms.RadioSelect(attrs={'id': 'f_value', 'class': 'md-radiobtn'},
+                                                   choices=TIME_CHOICES),
+            'shipping': forms.RadioSelect(attrs={'id': 'g_value', 'class': 'md-radiobtn'}),
+            'geo_matters': forms.Select(attrs={'class': 'form-control edited'}),
+            'zip': forms.TextInput(attrs={'class': 'form-control edited'}),
+            'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
+            'cad_file': forms.ClearableFileInput(attrs={'class': 'form-control'}),
+
+            'user': forms.HiddenInput(),
+        }
+
+    def __init__(self, *args, **kwargs):
+        self.user = None
+        if 'user' in kwargs['initial']:
+            self.user = kwargs['initial'].pop('user')
+
+        super(AddCustomerForm, self).__init__(*args, **kwargs)
+        self.fields['user'].initial = self.user
+        self.fields['prototype_type'].label = 'Is this a single "Prototype" run or multiple unit batch?'
+        self.fields['budget'].label = 'Roughly what is your overall budget for this project?'
+        self.fields['customer_type'].label = 'What would you classify yourself as?'
+        self.fields['material'].label = 'If you know the exact Material you wish to use, enter it here.'
+        self.fields['process'].label = 'If you know the exact process you want to use, select it here.'
+        self.fields['size'].label = 'Roughly what will be the size of your design?'
+        self.fields['need_assistance'].label = 'Will you need assistance rendering a 3D CAD model for printing?'
+        self.fields['is_time_sensitive'].label = 'Is this project time sensitive?'
+        self.fields['shipping'].label = 'Do you require any of the following shipping options for your project?'
+        self.fields['geo_matters'].label = 'Does Geographic Proximity to your provider matter?'
+        self.fields['zip'].label = 'If Yes, please enter your Zip Code.'
+        self.fields['description'].label = 'Please write a description of your project and any additional ' \
+                                           'comments you would like your service provider to know.'
+        self.fields['cad_file'].label = 'If you have a CAD File for your project, please upload it here. '
+
+
+class AddAdvancedCustomerForm(forms.ModelForm):
 
     class Meta:
         model = Customer
@@ -53,23 +108,10 @@ class AddCustomerForm(forms.ModelForm):
                   'plastic_concern', 'is_food_safe_plastic', 'is_functional_or_basic',
                   'plastic_decision', 'heat_resistance', 'is_extreme_strength', 'is_better_appearance',
                   'is_highest_detail', 'is_full_color', 'is_able_to_bend',
-                  'prototype_type', 'need_assistance', 'material', 'process',
-                  'is_flexible', 'is_semi_biodegradable', 'is_heat_withstand', 'size',
-                  'consideration', 'budget', 'geo_matters', 'description', 'cad_file', 'user', 'state']
+
+                  'user']
 
         widgets = {
-            'prototype_type': forms.Select(attrs={'class': 'form-control edited'}),
-            'need_assistance': forms.Select(attrs={'class': 'form-control edited'}),
-            'material': forms.Select(attrs={'class': 'form-control edited'}),
-            'process': forms.Select(attrs={'class': 'form-control edited'}),
-            'size': forms.Select(attrs={'class': 'form-control edited'}),
-            'consideration': forms.Select(attrs={'class': 'form-control edited'}),
-            'budget': forms.Select(attrs={'class': 'form-control edited'}),
-            'geo_matters': forms.Select(attrs={'class': 'form-control edited'}),
-            'state': forms.Select(attrs={'class': 'form-control edited'}),
-            'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
-            'cad_file': forms.ClearableFileInput(attrs={'class': 'form-control'}),
-
             # 'basic_material': forms.RadioSelect(attrs={'id': 'a_value', 'class': 'md-radiobtn'}),
             'basic_material': forms.Select(attrs={'class': 'form-control edited'}),
 
@@ -97,7 +139,7 @@ class AddCustomerForm(forms.ModelForm):
         if 'user' in kwargs['initial']:
             self.user = kwargs['initial'].pop('user')
 
-        super(AddCustomerForm, self).__init__(*args, **kwargs)
+        super(AddAdvancedCustomerForm, self).__init__(*args, **kwargs)
         self.fields['user'].initial = self.user
         self.fields['is_precious_metal'].label = 'Do you want your project to be constructed by functional metals ' \
                                                  'or precious metals, such as silver or gold?'
@@ -122,4 +164,3 @@ class AddCustomerForm(forms.ModelForm):
         self.fields['is_full_color'].label = 'Will Your project require rich and full color?'
         self.fields['is_able_to_bend'].label = 'Do you want your project to be able to bend under some ' \
                                                'pressure or act similar to rubber?'
-

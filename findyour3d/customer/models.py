@@ -135,9 +135,34 @@ HEAT_RESISTANCE_CHOICES = (
     (3, 'I want my project to be flexible'),
 )
 
+CUSTOMER_TYPE_CHOICES = (
+    (0, 'Individual'),
+    (1, 'A Small Business'),
+    (2, 'Industrial Business')
+)
+
+SHIPPING_CHOICES = (
+    (0, 'No, timing is not an issue for me.'),
+    (1, 'Yes, I need this project manufactured as soon as physically possible.')
+)
+
 
 class Customer(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
+
+    prototype_type = models.IntegerField(choices=PROTOTYPES_CHOICES, default=0)
+    budget = models.IntegerField(choices=BUDGET_CHOICES, default=0)
+    customer_type = models.IntegerField(choices=CUSTOMER_TYPE_CHOICES, default=0)
+    material = models.IntegerField(choices=MATERIAL_CHOICES, blank=True, null=True)
+    process = models.IntegerField(choices=PROCESS_CHOICES, blank=True, null=True)
+    size = models.IntegerField(choices=SIZES_CHOICES, default=0)
+    need_assistance = models.IntegerField(choices=ASSISTANCE_CHOICES, default=0)
+    is_time_sensitive = models.BooleanField(default=False)
+    shipping = models.IntegerField(choices=SHIPPING_CHOICES, default=0)
+    geo_matters = models.IntegerField(choices=GEO_MATTERS_CHOICES, default=0)
+    zip = models.IntegerField(blank=True, null=True)
+    description = models.TextField()
+    cad_file = models.FileField(upload_to='cads/', blank=True, null=True)
 
     basic_material = models.IntegerField(choices=BASIC_MATERIAL_CHOICES, default=0)
 
@@ -175,20 +200,13 @@ class Customer(models.Model):
     # if flexible:
     is_able_to_bend = models.NullBooleanField()
 
-    prototype_type = models.IntegerField(choices=PROTOTYPES_CHOICES, default=0)
-    need_assistance = models.IntegerField(choices=ASSISTANCE_CHOICES, default=0)
-    material = models.IntegerField(choices=MATERIAL_CHOICES, blank=True, null=True)
-    process = models.IntegerField(choices=PROCESS_CHOICES, blank=True, null=True)
+    # NOT IN USE
     is_flexible = models.BooleanField(default=True)
     is_semi_biodegradable = models.BooleanField(default=True)
     is_heat_withstand = models.BooleanField(default=True)
-    size = models.IntegerField(choices=SIZES_CHOICES, default=0)
     consideration = models.IntegerField(choices=CONSIDERATION_CHOICES, default=0)
-    budget = models.IntegerField(choices=BUDGET_CHOICES, default=0)
-    geo_matters = models.IntegerField(choices=GEO_MATTERS_CHOICES, default=0)
     state = models.CharField(max_length=3, choices=STATES_CHOICES, blank=True, null=True)
-    description = models.TextField()
-    cad_file = models.FileField(upload_to='cads/', blank=True, null=True)
+    is_advanced_filled = models.BooleanField(default=False)
 
     created_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)
 
