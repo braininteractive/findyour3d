@@ -1,8 +1,8 @@
 BASIC_MATERIAL_CHOICES = (
     (0, 'Plastic / Resin'),
     (1, 'Metal'),
-    (2, 'Stone'),
-    (3, 'Other')
+    (3, 'Other'),
+    (4, '---'),
 )
 
 BUDGET_CHOICES = (

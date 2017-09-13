@@ -45,10 +45,11 @@ class AddAdvancedCustomerView(LoginRequiredMixin, CreateView):
     template_name = 'customer/customer_advanced_form.html'
 
     def dispatch(self, request, *args, **kwargs):
-        if self.request.user.user_type == 1:
-            if self.request.user.customer_set.all():
-                if self.request.user.customer_set.first().is_advanced_filled:
-                    return redirect('customers:detail', self.request.user.customer_set.first().pk)
+        if self.request.user.is_authenticated():
+            if self.request.user.user_type == 1:
+                if self.request.user.customer_set.all():
+                    if self.request.user.customer_set.first().is_advanced_filled:
+                        return redirect('customers:detail', self.request.user.customer_set.first().pk)
         return super(AddAdvancedCustomerView, self).dispatch(request, *args, **kwargs)
 
     def get_success_url(self):

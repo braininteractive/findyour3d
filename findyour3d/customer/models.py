@@ -164,7 +164,7 @@ class Customer(models.Model):
     description = models.TextField()
     cad_file = models.FileField(upload_to='cads/', blank=True, null=True)
 
-    basic_material = models.IntegerField(choices=BASIC_MATERIAL_CHOICES, default=0)
+    basic_material = models.IntegerField(choices=BASIC_MATERIAL_CHOICES, default=4)
 
     # METALS
     is_precious_metal = models.NullBooleanField()

@@ -3,8 +3,8 @@ from .models import Customer
 
 METAL_DECISION_CHOICES = (
     (1, 'Unknown'),
-    (2, 'I want the very best for top dollar. ($250+ per print)'),
-    (3, 'No, but I still want a high quality metal')
+    (2, 'I want my project to be constructed from precious metals. ($250+ per print)'),
+    (3, 'I want my project constructed by more functional metals')
 )
 
 IS_FOOD_SAFE_CHOICES = (
@@ -130,7 +130,6 @@ class AddAdvancedCustomerForm(forms.ModelForm):
             'is_able_to_bend': forms.Select(attrs={'class': 'form-control edited'},
                                             choices=BEND_CHOICES),
 
-
             'user': forms.HiddenInput(),
         }
 
@@ -141,6 +140,7 @@ class AddAdvancedCustomerForm(forms.ModelForm):
 
         super(AddAdvancedCustomerForm, self).__init__(*args, **kwargs)
         self.fields['user'].initial = self.user
+        self.fields['basic_material'].label = 'Select your basic Material type'
         self.fields['is_precious_metal'].label = 'Do you want your project to be constructed by functional metals ' \
                                                  'or precious metals, such as silver or gold?'
         self.fields['metal_concern'].label = 'Which is your chief concern? Conductivity or pure Strength'
