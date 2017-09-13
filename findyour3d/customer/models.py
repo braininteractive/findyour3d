@@ -146,6 +146,48 @@ SHIPPING_CHOICES = (
     (1, 'Yes, I need this project manufactured as soon as physically possible.')
 )
 
+METAL_CHOICES = (
+    (0, 'None'),
+    (2, 'I want my project to be constructed from precious metals. ($250+ per print)'),
+    (3, 'I want my project constructed by more functional metals')
+)
+
+IS_FOOD_SAFE_CHOICES = (
+    (0, 'Unknown'),
+    (2, 'I want my project to be generally safe around food'),
+    (3, "No, I don't need my project to be foodsafe")
+)
+
+EXTREME_CHOICES = (
+    (0, 'Unknown'),
+    (2, 'I am willing to spend top dollar ($250+) for the very best quality available'),
+    (3, "No I don't need extreme strength and performance")
+)
+
+APPEARANCE_CHOICES = (
+    (0, 'Unknown'),
+    (2, 'I want a more functional material for my project'),
+    (3, 'I want a better looking appearance for my project')
+)
+
+BEST_DETAILS_CHOICES = (
+    (0, 'Unknown'),
+    (2, 'Yes, I want the highest detail possible'),
+    (3, "I want detail, but don't need the highest detail possible")
+)
+
+COLORS_CHOICES = (
+    (0, 'Unknown'),
+    (2, 'Yes, I want rich and full colors for my project'),
+    (3, "No I don't need my project to have full colors, just printed in high detail")
+)
+
+BEND_CHOICES = (
+    (0, 'Unknown'),
+    (2, 'I want my project to handle some bending, but not to be rubber like'),
+    (3, "I want my project to feel and act almost like rubber")
+)
+
 
 class Customer(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
@@ -167,7 +209,7 @@ class Customer(models.Model):
     basic_material = models.IntegerField(choices=BASIC_MATERIAL_CHOICES, default=4)
 
     # METALS
-    is_precious_metal = models.NullBooleanField()
+    is_precious_metal = models.IntegerField(choices=METAL_CHOICES, default=0)
     # if NOT is_precious_metal:
     metal_concern = models.IntegerField(choices=METAL_CONCERN_CHOICES, default=0)
     metal_decision = models.IntegerField(choices=METAL_DECISION_CHOICES, default=0)
@@ -179,7 +221,7 @@ class Customer(models.Model):
     plastic_concern = models.IntegerField(choices=PLASTIC_CONCERN_CHOICES, default=0)
 
     # if Cost:
-    is_food_safe_plastic = models.NullBooleanField()
+    is_food_safe_plastic = models.IntegerField(choices=IS_FOOD_SAFE_CHOICES, default=0)
     # if is_food_safe_plastic:
     is_functional_or_basic = models.IntegerField(choices=IF_FOOD_SAFE_CHOICES, default=0)
     # if NOT is_food_safe_plastic:
@@ -188,24 +230,25 @@ class Customer(models.Model):
     # if Quality:
     heat_resistance = models.IntegerField(choices=HEAT_RESISTANCE_CHOICES, default=0)
     # if Heat:
-    is_extreme_strength = models.NullBooleanField()
+    is_extreme_strength = models.IntegerField(choices=EXTREME_CHOICES, default=0)
     # if NOT is_extreme_strength:
-    is_better_appearance = models.NullBooleanField()
+    is_better_appearance = models.IntegerField(choices=APPEARANCE_CHOICES, default=0)
 
     # if neither:
-    is_highest_detail = models.NullBooleanField()
+    is_highest_detail = models.IntegerField(choices=BEST_DETAILS_CHOICES, default=0)
     # if is_highest_detail:
-    is_full_color = models.NullBooleanField()
+    is_full_color = models.IntegerField(choices=COLORS_CHOICES, default=0)
 
     # if flexible:
-    is_able_to_bend = models.NullBooleanField()
+    is_able_to_bend = models.IntegerField(choices=BEND_CHOICES, default=0)
 
     # NOT IN USE
-    is_flexible = models.BooleanField(default=True)
-    is_semi_biodegradable = models.BooleanField(default=True)
-    is_heat_withstand = models.BooleanField(default=True)
-    consideration = models.IntegerField(choices=CONSIDERATION_CHOICES, default=0)
-    state = models.CharField(max_length=3, choices=STATES_CHOICES, blank=True, null=True)
+    # is_flexible = models.BooleanField(default=True)
+    # is_semi_biodegradable = models.BooleanField(default=True)
+    # is_heat_withstand = models.BooleanField(default=True)
+    # consideration = models.IntegerField(choices=CONSIDERATION_CHOICES, default=0)
+    # state = models.CharField(max_length=3, choices=STATES_CHOICES, blank=True, null=True)
+
     is_advanced_filled = models.BooleanField(default=False)
 
     created_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)

@@ -1,48 +1,6 @@
 from django import forms
 from .models import Customer
 
-METAL_DECISION_CHOICES = (
-    (1, 'Unknown'),
-    (2, 'I want my project to be constructed from precious metals. ($250+ per print)'),
-    (3, 'I want my project constructed by more functional metals')
-)
-
-IS_FOOD_SAFE_CHOICES = (
-    (1, 'Unknown'),
-    (2, 'I want my project to be generally safe around food'),
-    (3, "No, I don't need my project to be foodsafe")
-)
-
-EXTREME_CHOICES = (
-    (1, 'Unknown'),
-    (2, 'I am willing to spend top dollar ($250+) for the very best quality available'),
-    (3, "No I don't need extreme strength and performance")
-)
-
-APPEARANCE_CHOICES = (
-    (1, 'Unknown'),
-    (2, 'I want a more functional material for my project'),
-    (3, 'I want a better looking appearance for my project')
-)
-
-BEST_DETAILS_CHOICES = (
-    (1, 'Unknown'),
-    (2, 'Yes, I want the highest detail possible'),
-    (3, "I want detail, but don't need the highest detail possible")
-)
-
-COLORS_CHOICES = (
-    (1, 'Unknown'),
-    (2, 'Yes, I want rich and full colors for my project'),
-    (3, "No I don't need my project to have full colors, just printed in high detail")
-)
-
-BEND_CHOICES = (
-    (1, 'Unknown'),
-    (2, 'I want my project to handle some bending, but not to be rubber like'),
-    (3, "I want my project to feel and act almost like rubber")
-)
-
 TIME_CHOICES = (
     (0, 'No, timing is not an issue for me.'),
     (1, 'Yes, I need this project manufactured as soon as physically possible.')
@@ -50,7 +8,6 @@ TIME_CHOICES = (
 
 
 class AddCustomerForm(forms.ModelForm):
-
     class Meta:
         model = Customer
         fields = ['prototype_type', 'customer_type', 'need_assistance', 'material', 'process',
@@ -107,39 +64,24 @@ class AddAdvancedCustomerForm(forms.ModelForm):
                   'other_materials',
                   'plastic_concern', 'is_food_safe_plastic', 'is_functional_or_basic',
                   'plastic_decision', 'heat_resistance', 'is_extreme_strength', 'is_better_appearance',
-                  'is_highest_detail', 'is_full_color', 'is_able_to_bend',
-
-                  'user']
+                  'is_highest_detail', 'is_full_color', 'is_able_to_bend']
 
         widgets = {
-            # 'basic_material': forms.RadioSelect(attrs={'id': 'a_value', 'class': 'md-radiobtn'}),
             'basic_material': forms.Select(attrs={'class': 'form-control edited'}),
+            'is_precious_metal': forms.Select(attrs={'class': 'form-control edited'}),
+            'is_food_safe_plastic': forms.Select(attrs={'class': 'form-control edited'}),
+            'is_extreme_strength': forms.Select(attrs={'class': 'form-control edited'}),
+            'is_better_appearance': forms.Select(attrs={'class': 'form-control edited'}),
+            'is_highest_detail': forms.Select(attrs={'class': 'form-control edited'}),
+            'is_full_color': forms.Select(attrs={'class': 'form-control edited'}),
+            'is_able_to_bend': forms.Select(attrs={'class': 'form-control edited'}),
 
-            'is_precious_metal': forms.Select(attrs={'class': 'form-control edited'},
-                                              choices=METAL_DECISION_CHOICES),
-            'is_food_safe_plastic': forms.Select(attrs={'class': 'form-control edited'},
-                                                 choices=IS_FOOD_SAFE_CHOICES),
-            'is_extreme_strength': forms.Select(attrs={'class': 'form-control edited'},
-                                                choices=EXTREME_CHOICES),
-            'is_better_appearance': forms.Select(attrs={'class': 'form-control edited'},
-                                                 choices=APPEARANCE_CHOICES),
-            'is_highest_detail': forms.Select(attrs={'class': 'form-control edited'},
-                                              choices=BEST_DETAILS_CHOICES),
-            'is_full_color': forms.Select(attrs={'class': 'form-control edited'},
-                                          choices=COLORS_CHOICES),
-            'is_able_to_bend': forms.Select(attrs={'class': 'form-control edited'},
-                                            choices=BEND_CHOICES),
-
-            'user': forms.HiddenInput(),
         }
 
     def __init__(self, *args, **kwargs):
-        self.user = None
-        if 'user' in kwargs['initial']:
-            self.user = kwargs['initial'].pop('user')
 
         super(AddAdvancedCustomerForm, self).__init__(*args, **kwargs)
-        self.fields['user'].initial = self.user
+
         self.fields['basic_material'].label = 'Select your basic Material type'
         self.fields['is_precious_metal'].label = 'Do you want your project to be constructed by functional metals ' \
                                                  'or precious metals, such as silver or gold?'

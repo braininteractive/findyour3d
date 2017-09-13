@@ -5,162 +5,12 @@
 {% block title %}Add Customer{% endblock title %}
 
 {% block extra_css %}
-    <link href="{% static 'forms/js/bootstrap-fileinput/bootstrap-fileinput.css'%}"
-          rel="stylesheet"  type="text/css" />
-    <link href="{% static 'forms/select2/css/select2.min.css' %}" rel="stylesheet" type="text/css" />
+{#    <link href="{% static 'forms/js/bootstrap-fileinput/bootstrap-fileinput.css'%}"#}
+{#          rel="stylesheet"  type="text/css" />#}
+{#    <link href="{% static 'forms/select2/css/select2.min.css' %}" rel="stylesheet" type="text/css" />#}
 {% endblock extra_css %}
 
 {% block content %}
-
-
-    {#    <div class="container">#}
-    {#        <div class="portlet light bordered" id="form_wizard_1">#}
-    {#            <div class="portlet-body form">#}
-    {#                <form class="form-horizontal" action="#" id="submit_form" method="POST">#}
-    {#                    <div class="form-wizard">#}
-    {#                        <div class="form-body">#}
-    {#                            <ul class="nav nav-pills nav-justified steps">#}
-    {#                                <li>#}
-    {#                                    <a href="#tab1" data-toggle="tab" class="step">#}
-    {#                                        <span class="number"> 1 </span>#}
-    {#                                        <span class="desc">#}
-    {#                                                <i class="fa fa-check"></i> Your Basic Material Type </span>#}
-    {#                                    </a>#}
-    {#                                </li>#}
-    {#                                <li>#}
-    {#                                    <a href="#tab2" data-toggle="tab" class="step">#}
-    {#                                        <span class="number"> 2 </span>#}
-    {#                                        <span class="desc second_step">#}
-    {#                                        <i class="fa fa-check"></i>#}
-    {#                                            Profile Setup </span>#}
-    {#                                    </a>#}
-    {#                                </li>#}
-    {#                                <li>#}
-    {#                                    <a href="#tab3" data-toggle="tab" class="step active">#}
-    {#                                        <span class="number"> 3 </span>#}
-    {#                                        <span class="desc third_step">#}
-    {#                                                <i class="fa fa-check"></i> Billing Setup </span>#}
-    {#                                    </a>#}
-    {#                                </li>#}
-    {#                                <li>#}
-    {#                                    <a href="#tab4" data-toggle="tab" class="step">#}
-    {#                                        <span class="number four_step"> 4 </span>#}
-    {#                                        <span class="desc">#}
-    {#                                                <i class="fa fa-check"></i> Confirm </span>#}
-    {#                                    </a>#}
-    {#                                </li>#}
-    {#                            </ul>#}
-    {#                            <div id="bar" class="progress progress-striped" role="progressbar">#}
-    {#                                <div class="progress-bar progress-bar-success"> </div>#}
-    {#                            </div>#}
-    {#                            <div class="tab-content">#}
-    {#                                <div class="alert alert-danger display-none">#}
-    {#                                    <button class="close" data-dismiss="alert"></button>#}
-    {#                                    You have some form errors. Please check below. </div>#}
-    {#                                <div class="alert alert-success display-none">#}
-    {#                                    <button class="close" data-dismiss="alert"></button>#}
-    {#                                    Your form validation is successful! </div>#}
-    {##}
-    {#                                <div class="tab-pane active" id="tab1">#}
-    {#                                    <h3 class="block">{{ form.basic_material.label|title }}</h3>#}
-    {#                                    <div class="form-group">#}
-    {#                                        <div class="col-md-6">#}
-    {#                                            <div class="form-group form-md-radios">#}
-    {#                                                <p>#}
-    {#                                                    {{ form.basic_material.label|title }}#}
-    {#                                                    <span class="widget-title-color-red">*</span>#}
-    {#                                                </p>#}
-    {#                                                <div class="md-radio-inline">#}
-    {#                                                    {% for radio in form.basic_material %}#}
-    {#                                                        <div class="md-radio">#}
-    {#                                                            {{ radio.tag }}#}
-    {#                                                            <label for="a_value_{{ forloop.counter0 }}">#}
-    {#                                                                <span></span>#}
-    {#                                                                <span class="check"></span>#}
-    {#                                                                <span class="box"></span>#}
-    {#                                                                {{ radio.choice_label }}</label>#}
-    {#                                                        </div>#}
-    {#                                                    {% endfor %}#}
-    {#                                                </div>#}
-    {#                                            </div>#}
-    {#                                        </div>#}
-    {#                                    </div>#}
-    {#                                </div>#}
-    {##}
-    {#                                <div class="tab-pane" id="tab2">#}
-    {#                                    <h3 class="block">Do you want your project to be constructed by functional#}
-    {#                                        metals or precious metals, such as silver or gold?</h3>#}
-    {#                                    <div class="row">#}
-    {#                                        <div class="col-md-6">#}
-    {#                                            <div class="form-group form-md-line-input form-md-floating-label#}
-    {#                            {% if form.is_precious_metal.errors %}has-error{% endif %}">#}
-    {#                                                {{ form.is_precious_metal }}#}
-    {#                                                <label for="form_control_1">{{ form.is_precious_metal.label|title }}</label>#}
-    {#                                            </div>#}
-    {#                                        </div>#}
-    {#                                    </div>#}
-    {##}
-    {#                                </div>#}
-    {#                                <div class="tab-pane" id="tab3">#}
-    {#                                    <h3 class="block">Provide your billing and credit card details</h3>#}
-    {#                                    <div class="form-group">#}
-    {#                                        <label class="control-label col-md-3">Card Holder Name#}
-    {#                                            <span class="required"> * </span>#}
-    {#                                        </label>#}
-    {#                                        <div class="col-md-4">#}
-    {#                                            <input type="text" class="form-control" name="card_name" />#}
-    {#                                            <span class="help-block"> </span>#}
-    {#                                        </div>#}
-    {#                                    </div>#}
-    {#                                </div>#}
-    {#                                <div class="tab-pane" id="tab4">#}
-    {#                                    <h3 class="block">Confirm your account</h3>#}
-    {#                                    <h4 class="form-section">Account</h4>#}
-    {#                                    <div class="form-group">#}
-    {#                                        <label class="control-label col-md-3">Username:</label>#}
-    {#                                        <div class="col-md-4">#}
-    {#                                            <p class="form-control-static" data-display="username"> </p>#}
-    {#                                        </div>#}
-    {#                                    </div>#}
-    {#                                    <div class="form-group">#}
-    {#                                        <label class="control-label col-md-3">Email:</label>#}
-    {#                                        <div class="col-md-4">#}
-    {#                                            <p class="form-control-static" data-display="email"> </p>#}
-    {#                                        </div>#}
-    {#                                    </div>#}
-    {##}
-    {#                                </div>#}
-    {#                            </div>#}
-    {#                        </div>#}
-    {#                        <div class="form-actions">#}
-    {#                            <div class="row">#}
-    {#                                <div class="col-md-offset-3 col-md-9">#}
-    {#                                    <a href="javascript:;" class="btn default button-previous">#}
-    {#                                        <i class="fa fa-angle-left"></i> Back </a>#}
-    {#                                    <a href="javascript:;" class="btn btn-outline green button-next"> Continue#}
-    {#                                        <i class="fa fa-angle-right"></i>#}
-    {#                                    </a>#}
-    {#                                    <a href="javascript:;" class="btn green button-submit"> Submit#}
-    {#                                        <i class="fa fa-check"></i>#}
-    {#                                    </a>#}
-    {#                                </div>#}
-    {#                            </div>#}
-    {#                        </div>#}
-    {#                    </div>#}
-    {#                </form>#}
-    {#            </div>#}
-    {#        </div>#}
-    {#    </div>#}
-
-    {#    <a href="">#}
-    {#        <h2 class="post-title">#}
-    {#            We're excited to welcome you to our network#}
-    {#        </h2>#}
-    {#        <h3 class="post-subtitle">#}
-    {#            You're almost there. Below we have your business's profile.#}
-    {#            It will help us connect you to your customers.#}
-    {#        </h3>#}
-    {#    </a>#}
 
     <div class="container">
         {% if form.errors %}
@@ -173,12 +23,13 @@
             <div class="col-md-9 col-md-offset-2">
                 <form action="" method="post">{% csrf_token %}
                     <div class="form-actions">
-
-                        {{ form|crispy }}
                         <div class="row">
+                            {{ form|crispy }}
                             <button type="submit" class="btn btn-outline blue button-next" id="save"> Submit
                                 <i class="fa fa-check"></i>
                             </button>
+
+{#                            <a class="btn btn-default button-next"><i class="fa fa-times"></i> Cancel</a>#}
                         </div>
                     </div>
                 </form>
@@ -233,14 +84,18 @@
         var ableToBendBlock = $('#div_id_is_able_to_bend');
 
         var all = [saveButton, preciousMetalBlock, metalConcernBlock, metalDecisionBlock, otherMaterialsBlock,
-        plasticConcernBlock, foodSafePlasticBlock, functionalOrBasicBlock, plasticDecisionBlock,
-        heatResistanceBlock, extremeStrengthBlock, betterAppearanceBlock, highestDetailBlock,
-        fullColorBlock, ableToBendBlock];
+            plasticConcernBlock, foodSafePlasticBlock, functionalOrBasicBlock, plasticDecisionBlock,
+            heatResistanceBlock, extremeStrengthBlock, betterAppearanceBlock, highestDetailBlock,
+            fullColorBlock, ableToBendBlock];
 
         $.each(all, function(){ $(this).hide()});
 
         basicMaterial.on('change', function () {
-            basicMaterial.attr('disabled', true);
+            basicMaterial.attr('readonly', true);
+            basicMaterial.prop('disabled', true);
+            console.log(basicMaterial.val());
+
+
             $('#div_id_basic_material').append('<small> <a onclick="location.reload()">Change basic material</a> </small>');
             // metals
             if (this.value==1){
@@ -257,7 +112,7 @@
                                     saveButton.show()
                                 })
                             }
-                            if (this.value==1){
+                            if (this.value==0){
                                 metalDecisionBlock.hide();
                                 metalDecision.val(0);
 
@@ -283,11 +138,11 @@
                 plasticConcern.on('change', function () {
                     saveButton.hide();
                     highestDetailBlock.hide();
-                    highestDetail.val(1);
+                    highestDetail.val(0);
                     ableToBendBlock.hide();
-                    ableToBend.val(1);
+                    ableToBend.val(0);
                     extremeStrengthBlock.hide();
-                    extremeStrength.val(1);
+                    extremeStrength.val(0);
 
                     if (this.value==1){ // cost
                         heatResistanceBlock.hide();
@@ -303,6 +158,9 @@
                                 functionalOrBasicBlock.show();
                                 functionalOrBasic.on('change', function () {
                                     saveButton.show();
+                                    if (this.value==0){
+                                        saveButton.hide();
+                                    }
                                 })
                             }
                             if (this.value==3){
@@ -312,13 +170,23 @@
                                 plasticDecisionBlock.show();
                                 plasticDecision.on('change', function () {
                                     saveButton.show();
+                                    if (this.value==0){
+                                        saveButton.hide();
+                                    }
+
                                 })
+                            }
+                            if (this.value==1){
+                                plasticDecisionBlock.hide();
+                                plasticDecision.val(0);
+                                functionalOrBasicBlock.hide();
+                                functionalOrBasic.val(0);
                             }
                         })
                     }
                     if (this.value==2){ // quality
                         foodSafePlasticBlock.hide();
-                        foodSafePlastic.val(1);
+                        foodSafePlastic.val(0);
                         functionalOrBasicBlock.hide();
                         functionalOrBasic.val(0);
                         plasticDecisionBlock.hide();
@@ -326,13 +194,17 @@
 
                         heatResistanceBlock.show();
                         heatResistance.on('change', function () {
+                            saveButton.hide();
                             betterAppearanceBlock.hide();
-                            betterAppearance.val(1);
+                            betterAppearance.val(0);
+                            ableToBendBlock.hide();
+                            ableToBend.val(0);
+
                             if (this.value==1){ // able
                                 highestDetailBlock.hide();
-                                highestDetail.val(1);
+                                highestDetail.val(0);
                                 ableToBendBlock.hide();
-                                ableToBend.val(1);
+                                ableToBend.val(0);
 
                                 extremeStrengthBlock.show();
                                 extremeStrength.on('change', function () {
@@ -341,45 +213,98 @@
                                         betterAppearanceBlock.show();
                                         betterAppearance.on('change', function () {
                                             saveButton.show();
+                                            if (this.value==1){
+                                                saveButton.hide();
+                                            }
                                         })
                                     }
                                     if (this.value==2){
                                         betterAppearanceBlock.hide();
-                                        betterAppearance.val(1);
+                                        betterAppearance.val(0);
                                         saveButton.show();
                                     }
                                 })
                             }
                             if (this.value==2){ // neither
                                 extremeStrengthBlock.hide();
-                                extremeStrength.val(1);
-                                ableToBend.val(1);
+                                extremeStrength.val(0);
+                                ableToBend.val(0);
 
                                 highestDetailBlock.show();
                                 highestDetail.on('change', function () {
+                                    fullColorBlock.hide();
+                                    fullColor.val(0);
+                                    saveButton.hide();
+
                                     if (this.value==2){
                                         fullColorBlock.show();
                                         fullColor.on('change', function () {
                                             saveButton.show();
+                                            if (this.value==1){
+                                                saveButton.hide();
+                                            }
                                         })
+                                    }
+                                    if (this.value==3){
+                                        saveButton.show();
                                     }
                                 })
                             }
                             if (this.value==3){ // flexible
                                 highestDetailBlock.hide();
-                                highestDetail.val(1);
+                                highestDetail.val(0);
                                 extremeStrengthBlock.hide();
-                                extremeStrength.val(1);
+                                extremeStrength.val(0);
 
                                 ableToBendBlock.show();
                                 ableToBend.on('change', function () {
                                     saveButton.show();
+                                    if (this.value==1){
+                                        saveButton.hide();
+                                    }
                                 })
+                            }
+                            if (this.value==0){
+                                console.log('close heat');
+                                highestDetailBlock.hide();
+                                highestDetail.val(0);
+                                ableToBendBlock.hide();
+                                ableToBend.val(0);
+                                extremeStrengthBlock.hide();
+                                extremeStrength.val(0);
+                                fullColorBlock.hide();
+                                fullColor.val(0);
+                                plasticDecisionBlock.hide();
+                                plasticDecision.val(0);
                             }
                         })
                     }
+                    if (this.value==0){
+                        console.log('close child');
+                        heatResistanceBlock.hide();
+                        heatResistance.val(0);
+                        highestDetailBlock.hide();
+                        highestDetail.val(0);
+                        ableToBendBlock.hide();
+                        ableToBend.val(0);
+                        extremeStrengthBlock.hide();
+                        extremeStrength.val(0);
+                        fullColorBlock.hide();
+                        fullColor.val(0);
+                        plasticDecisionBlock.hide();
+                        plasticDecision.val(0);
+                        foodSafePlasticBlock.hide();
+                        foodSafePlastic.val(0);
+                        functionalOrBasicBlock.hide();
+                        functionalOrBasic.val(0);
+                    }
                 })
             }
+        });
+        $('form').submit(function(e) {
+            $(':disabled').each(function(e) {
+                $(this).removeAttr('disabled');
+            })
         });
 
     </script>
