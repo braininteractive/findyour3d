@@ -109,14 +109,23 @@
                             if (this.value==2){ // conductivity
                                 metalDecisionBlock.show();
                                 metalDecision.on('change', function () {
-                                    saveButton.show()
+                                    saveButton.show();
+                                    if (this.value==0){
+                                        saveButton.hide()
+                                    }
                                 })
+                            }
+                            if (this.value==1){
+                                metalDecisionBlock.hide();
+                                metalDecision.val(0);
+
+                                saveButton.show();
                             }
                             if (this.value==0){
                                 metalDecisionBlock.hide();
                                 metalDecision.val(0);
 
-                                saveButton.show()
+                                saveButton.hide();
                             }
                         })
                     }
