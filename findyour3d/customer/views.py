@@ -17,17 +17,28 @@ class AddCustomerView(LoginRequiredMixin, CreateView):
             if self.request.user.user_type == 1:
                 if self.request.user.customer_set.all():
                     if self.request.user.customer_set.first().is_advanced_filled:
-                        return redirect('customers:detail', self.request.user.customer_set.first().pk)
+                        return reverse('dashboard:company')
+                        # return redirect('customers:detail', self.request.user.customer_set.first().pk)
                     else:
                         return redirect('customers:advanced', self.request.user.customer_set.first().pk)
             else:
                 return HttpResponseForbidden()
         return super(AddCustomerView, self).dispatch(request, *args, **kwargs)
 
-    def get_success_url(self):
-        return reverse('customers:advanced', kwargs={'pk': self.object.pk})
+    def form_valid(self, form):
+        f = form.save(commit=False)
+        if f.material is not None and f.process is not None:
+            f.is_advanced_filled = True
+        f.save()
+        return super().form_valid(form)
 
-    def get_object(self):
+    def get_success_url(self):
+        if self.object.material is not None and self.object.process is not None:
+            return reverse('dashboard:company')
+        else:
+            return reverse('customers:advanced', kwargs={'pk': self.object.pk})
+
+    def get_object(self, queryset=None):
         return Customer.objects.get(user=self.request.user)
 
     def get_initial(self):
@@ -50,15 +61,15 @@ class AddAdvancedCustomerView(LoginRequiredMixin, UpdateView):
             if self.request.user.user_type == 1:
                 if self.request.user.customer_set.all():
                     if self.request.user.customer_set.first().is_advanced_filled:
-                        return redirect('customers:detail', self.request.user.customer_set.first().pk)
+                        return reverse('dashboard:company')
                 else:
                     return redirect('customers:add')
         return super(AddAdvancedCustomerView, self).dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
-        advanced = form.save(commit=False)
-        # advanced.is_advanced_filled = True
-        advanced.save()
+        f = form.save(commit=False)
+        f.is_advanced_filled = True
+        f.save()
         return super().form_valid(form)
 
     def get_success_url(self):

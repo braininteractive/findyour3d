@@ -1,0 +1,16 @@
+{% extends 'dashboard/base.html' %}
+
+{% block title %}Find Company{% endblock title %}
+
+{% block content %}
+    <div class="portlet light">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="fa fa-search"></i>{{ request.user.customer_set.first.get_material_display }},
+                {{ request.user.customer_set.first.get_process_display }}</div>
+        </div>
+        <div class="portlet-body">
+            test body
+        </div>
+    </div>
+{% endblock content %}
