@@ -10,6 +10,12 @@
 
     <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
 
+    {% if form.errors %}
+        <div class="alert alert-danger">
+            {{ form.errors }}
+        </div>
+    {% endif %}
+
     <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
         {% csrf_token %}
         {{ form|crispy }}
@@ -23,23 +29,28 @@
 
 {% block extra_js %}
     <script>
-    $.urlParam = function(name){
-        var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
-        if (results==null){
-            return null;
-        }
-        else{
-            return results[1] || 0;
-        }
-    };
+        $.urlParam = function(name){
+            var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+            if (results==null){
+                return null;
+            }
+            else{
+                return results[1] || 0;
+            }
+        };
 
-    var userType = $.urlParam('type');
+        var userType = $.urlParam('type');
 
-    if (userType == "business") {
-        var inpt = $('#id_user_type');
-        inpt.val(2).change();
-        inpt.attr('disabled','disabled')
-    }
+        if (userType == "business") {
+            var inpt = $('#id_user_type');
+            inpt.val(2).change();
+            inpt.attr('disabled','disabled')
+        }
+        $('form').submit(function(e) {
+            $(':disabled').each(function(e) {
+                $(this).removeAttr('disabled');
+            })
+        });
     </script>
 {% endblock extra_js %}
 

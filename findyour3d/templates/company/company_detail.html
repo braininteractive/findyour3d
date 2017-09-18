@@ -3,10 +3,38 @@
 {% block title %} {{ object.display_name }}{% endblock %}
 
 {% block content %}
+    <div class="row">
+        <div class="col-md12">
+            <div class="portlet light">
+                <h3>Company: {{ object.display_name }}</h3>
 
-<div class="light">
-    <h3>Company: {{ object.display_name }}</h3>
-    <h3>Email: {{ object.email }}</h3>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>Email: {{ object.email }}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p>Material: {{ object.get_material_display }}</p>
+                    </div>
+                </div>
 
-</div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>Process: {{ object.top_printing_processes }}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p>Customer: {{ object.get_ideal_customer_display }}</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>Budget: {{ object.get_budget_display }}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p>Consideration: {{ object.get_consideration_display }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

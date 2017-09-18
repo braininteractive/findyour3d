@@ -18,7 +18,6 @@ class AddCustomerView(LoginRequiredMixin, CreateView):
                 if self.request.user.customer_set.all():
                     if self.request.user.customer_set.first().is_advanced_filled:
                         return reverse('dashboard:company')
-                        # return redirect('customers:detail', self.request.user.customer_set.first().pk)
                     else:
                         return redirect('customers:advanced', self.request.user.customer_set.first().pk)
             else:
@@ -59,10 +58,10 @@ class AddAdvancedCustomerView(LoginRequiredMixin, UpdateView):
     def dispatch(self, request, *args, **kwargs):
         if self.request.user.is_authenticated():
             if self.request.user.user_type == 1:
-                if self.request.user.customer_set.all():
-                    if self.request.user.customer_set.first().is_advanced_filled:
-                        return reverse('dashboard:company')
-                else:
+                # if self.request.user.customer_set.all():
+                #     if self.request.user.customer_set.first().is_advanced_filled:
+                #         return reverse('dashboard:company')
+                if not self.request.user.customer_set.all():
                     return redirect('customers:add')
         return super(AddAdvancedCustomerView, self).dispatch(request, *args, **kwargs)
 

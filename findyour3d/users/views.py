@@ -1,5 +1,6 @@
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseForbidden
+from django.shortcuts import redirect
 from django.views.generic import DetailView, ListView, RedirectView, UpdateView
 
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -20,9 +21,13 @@ class UserRedirectView(LoginRequiredMixin, RedirectView):
     def get_redirect_url(self):
         if self.request.user.user_type == 1:
             if self.request.user.customer_set.all():
-                return reverse('customers:detail', kwargs={'pk': self.request.user.customer_set.first().pk})
+                if self.request.user.customer_set.first().is_advanced_filled:
+                    return reverse('dashboard:company')
+                else:
+                    return redirect('customers:advanced', self.request.user.customer_set.first().pk)
             else:
                 return reverse('customers:add')
+
         elif self.request.user.user_type == 2:
             if self.request.user.company_set.all():
                 return reverse('company:detail', kwargs={'pk': self.request.user.company_set.first().pk})

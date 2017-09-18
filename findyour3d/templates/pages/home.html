@@ -28,7 +28,7 @@
                     <li> <a class="page-scroll" href="#testimonials">Businesses</a> </li>
                     <li> <a class="page-scroll" href="#contact">Contact</a> </li>
                     {% if request.user.is_authenticated %}
-                        <li><a class="page-scroll" href="{% url 'users:redirect' %}">Form</a></li>
+                        <li><a class="page-scroll" href="{% url 'users:redirect' %}">Dashboard</a></li>
                         <li><a class="page-scroll" href="{% url 'account_logout' %}">Sign Out</a></li>
                     {% else %}
                         <li> <a class="page-scroll" href="{% url 'account_login' %}">Log In</a> </li>

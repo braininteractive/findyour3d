@@ -10,7 +10,12 @@
                 {{ request.user.customer_set.first.get_process_display }}</div>
         </div>
         <div class="portlet-body">
-            test body
+            {% for company in companies %}
+                <div class="">
+                    <h4>{{ company.display_name }}</h4>
+                    <small>{{ company.description }}</small>
+                </div>
+            {% endfor %}
         </div>
     </div>
 {% endblock content %}
