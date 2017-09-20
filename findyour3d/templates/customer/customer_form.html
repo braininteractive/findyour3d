@@ -301,6 +301,10 @@
                                     <button type="submit" class="btn green button-submit"> Submit
                                         <i class="fa fa-check"></i>
                                     </button>
+                                    {% if back_button %}
+                                        <a href="{% url 'dashboard:company' %}" class="btn btn-default button-next">
+                                            <i class="fa fa-times"></i> Cancel</a>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>

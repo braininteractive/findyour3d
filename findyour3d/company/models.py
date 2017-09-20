@@ -3,8 +3,8 @@ from django.conf import settings
 
 from multiselectfield import MultiSelectField
 
-from findyour3d.utils.models import (BASIC_MATERIAL_CHOICES, BUDGET_CHOICES, CONSIDERATION_CHOICES,
-                                     MATERIAL_CHOICES)
+from findyour3d.customer.models import (BASIC_MATERIAL_CHOICES, BUDGET_CHOICES, CONSIDERATION_CHOICES,
+                                        MATERIAL_CHOICES)
 
 CUSTOMER_CHOICES = (
     (0, 'Individuals'),

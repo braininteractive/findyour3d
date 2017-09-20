@@ -2,7 +2,7 @@
 {% load staticfiles %}
 {% load crispy_forms_tags %}
 
-{% block title %}Add Customer{% endblock title %}
+{% block title %}Wizard {% endblock title %}
 
 {% block extra_css %}
 {#    <link href="{% static 'forms/js/bootstrap-fileinput/bootstrap-fileinput.css'%}"#}
@@ -28,8 +28,10 @@
                             <button type="submit" class="btn btn-outline blue button-next" id="save"> Submit
                                 <i class="fa fa-check"></i>
                             </button>
-
-{#                            <a class="btn btn-default button-next"><i class="fa fa-times"></i> Cancel</a>#}
+                            {% if back_button %}
+                                <a href="{% url 'dashboard:company' %}" class="btn btn-default button-next">
+                                    <i class="fa fa-times"></i> Cancel</a>
+                            {% endif %}
                         </div>
                     </div>
                 </form>
@@ -90,6 +92,10 @@
 
         $.each(all, function(){ $(this).hide()});
 
+        basicMaterial.on('click', function () {
+            $('[name=basic_material]').val(0);
+        });
+
         basicMaterial.on('change', function () {
             basicMaterial.attr('readonly', true);
             basicMaterial.prop('disabled', true);
@@ -118,8 +124,8 @@
                             if (this.value==1){
                                 metalDecisionBlock.hide();
                                 metalDecision.val(0);
-                                metalConcernBlock.show();
-                                metalConcern.val(0);
+{#                                metalConcernBlock.show();#}
+{#                                metalConcern.val(0);#}
 
                                 saveButton.show();
                             }
