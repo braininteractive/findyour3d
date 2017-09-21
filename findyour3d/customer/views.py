@@ -1,3 +1,5 @@
+import logging
+
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseForbidden
 from django.shortcuts import redirect
@@ -6,6 +8,8 @@ from django.views.generic import CreateView, DetailView, UpdateView
 
 from .models import Customer
 from .forms import AddCustomerForm, AddAdvancedCustomerForm
+
+logger = logging.getLogger(__name__)
 
 
 class AddCustomerView(LoginRequiredMixin, CreateView):
@@ -121,6 +125,7 @@ class AddAdvancedCustomerView(LoginRequiredMixin, UpdateView):
                           'Direct Metal Laser Sintering (DMLS) or Selective Laser Melting (SLM). This is ideal '
                           'for a project that stands above in beauty and is worth every penny.')
                     f.process = 1
+                    f.material = 12
                 elif f.is_precious_metal == 3:
                     if f.metal_concern == 1:  # Conductivity
                         print('Copper (SLM / DMLS) Copper is a commonly used conductive metal that is rather '
@@ -130,6 +135,7 @@ class AddAdvancedCustomerView(LoginRequiredMixin, UpdateView):
                               'This is great for a rather cheap, detailed, and conductive metal prototype or'
                               ' design. ')
                         f.process = 1
+                        f.material = 13
                     elif f.metal_concern == 2:  # Strength
                         if f.metal_decision == 1:  # I want the very best for top dollar. ($250+ per print)
                             print('Inconel (SLM) Inconel is a family of superalloys that combine various metals'
@@ -138,6 +144,7 @@ class AddAdvancedCustomerView(LoginRequiredMixin, UpdateView):
                                   ' using Selective Laser Melting (SLM). This material is ideal for projects that'
                                   ' must undergo the most inhospitable conditions and continue to perform. ')
                             f.process = 1
+                            f.material = 14
                         elif f.metal_decision == 2:  # No, but I still want a high quality metal
                             print('Stainless Steel  (SLM / DMLS) Stainless Steel is an affordable, reliable, '
                                   'and strong alloy type that resists corrosion. An all around reliable material, '
@@ -149,9 +156,9 @@ class AddAdvancedCustomerView(LoginRequiredMixin, UpdateView):
                             f.process = 1
                             f.material = 9
                         else:
-                            print('Throw an error #2')
+                            logger.error('#2')
                     else:
-                        print('Throw an error #1')
+                        logger.error('#1')
 
                     pass
             elif f.basic_material == 3:  # Other
@@ -163,6 +170,7 @@ class AddAdvancedCustomerView(LoginRequiredMixin, UpdateView):
                           'Fused Deposition Modelling (FDM). This material and process is perfect for'
                           ' amazing wood-like trinkets, prototypes, or decor, cheaply and quickly.')
                     f.process = 0
+                    f.material = 15
                 elif f.other_materials == 2:  # I want my project to be from stone
                     print('Stone (BJ) Stone gives you the power of Michelangelo, easily and for far less cost. '
                           'Stone can be used to make amazing pieces of art that can be full-size if you desire.'
@@ -173,7 +181,7 @@ class AddAdvancedCustomerView(LoginRequiredMixin, UpdateView):
                     f.process = 4
                     f.material = 8
                 else:
-                    print('Throw an error #3')
+                    logger.error('#3')
             elif f.basic_material == 0:  # resin
                 if f.plastic_concern == 1:  # cost
                     if f.is_food_safe_plastic == 2:  # I want my project to be generally safe around food
@@ -199,7 +207,7 @@ class AddAdvancedCustomerView(LoginRequiredMixin, UpdateView):
                             f.process = 0
                             f.material = 0
                         else:
-                            print('Throw an error #4')
+                            logger.error('#4')
                     elif f.is_food_safe_plastic == 3:  # No, I don't need my project to be foodsafe
                         if f.plastic_decision == 1:  # Yes, .. to pay slightly more to get a better material
                             print('Nylon (FDM) Nylon is a family of synthetic polymers that are used in '
@@ -224,7 +232,7 @@ class AddAdvancedCustomerView(LoginRequiredMixin, UpdateView):
                             f.process = 0
                             f.material = 3
                         else:
-                            print('Throw an error #5')
+                            logger.error('#5')
                 elif f.plastic_concern == 2:  # quality
                     if f.heat_resistance == 1:  # I want my project to be able to withstand heat
                         if f.is_extreme_strength == 2:  # I am willing to spend top dollar ($250+)
@@ -235,6 +243,8 @@ class AddAdvancedCustomerView(LoginRequiredMixin, UpdateView):
                                   'industries because of high price. If youre looking for ultimate material'
                                   ' to keep your project operating under the harshest conditions for a '
                                   'premium cost, look no further.')
+                            f.process = 8
+                            f.material = 16
                             print('PEI (SLA) PEI or Polyetherimide is an extremely robust thermoplastic '
                                   'that can withstand extreme temperatures and stress. It is a close '
                                   'cousin to PEEK plastic with some difference. It is cheaper than '
@@ -242,6 +252,7 @@ class AddAdvancedCustomerView(LoginRequiredMixin, UpdateView):
                                   'A popular brand of this is call ULTEM made by SABIC. If youre '
                                   'looking for one of the toughest out there, but want to spend less '
                                   'than PEEK, PEI is the best option.')
+                            f.process = 6
                             f.material = 7
                         elif f.is_extreme_strength == 3:  # No I don't need extreme strength and performance
                             if f.is_better_appearance == 2:  # I want a more functional material for my project
@@ -264,10 +275,11 @@ class AddAdvancedCustomerView(LoginRequiredMixin, UpdateView):
                                       ' if youre looking for your project to not only be tough and resistant'
                                       ' to wear, but intricate and polished when finished.')
                                 f.process = 0
+                                f.material = 18
                             else:
-                                print('Throw an error #6')
+                                logger.error('#6')
                         else:
-                            print('Throw an error #7')
+                            logger.error('#7')
                     elif f.heat_resistance == 2:  # My project requires neither heat resistance or flexibility
                         if f.is_highest_detail == 2:  # Yes, I want the highest detail possible
                             if f.is_full_color == 2: # Yes, I want rich and full colors for my project
@@ -280,6 +292,8 @@ class AddAdvancedCustomerView(LoginRequiredMixin, UpdateView):
                                       'printing methods. This method is ideal for small and extremely '
                                       'intricate prototype designs. It is not recommended for anything '
                                       'other than small projects.')
+                                f.process = 7
+                                f.material = 19
                             elif f.is_full_color == 3:  # No I don't need my project to have full colors ...
                                 print('Resins (SLA) Resins that are printed via SLA are considered one of '
                                       'the best in terms of resolution and fine details. They are at the '
@@ -289,8 +303,10 @@ class AddAdvancedCustomerView(LoginRequiredMixin, UpdateView):
                                       ' using SLA for printing Resins are more expensive than more basic '
                                       'printing methods.This method is best if youre looking for speed and '
                                       'accuracy combined for your project. ')
+                                f.process = 6
+                                f.material = 19
                             else:
-                                print('Throw an error #7')
+                                logger.error('#8')
                         elif f.is_highest_detail == 3:  # I want detail, but don't need the highest detail possible
                             print('Nylons (SLS) Nylon is a family of synthetic polymers that are used in'
                                   ' countless everyday items. Nylon is considered one of the more versatile '
@@ -304,7 +320,7 @@ class AddAdvancedCustomerView(LoginRequiredMixin, UpdateView):
                             f.process = 2
                             f.material = 6
                         else:
-                            print('Throw an error #8')
+                            logger.error('#9')
 
                     elif f.heat_resistance == 3:  # I want my project to be flexible
                         if f.is_able_to_bend == 2:  # I want my project to handle some bending, ...
@@ -330,9 +346,9 @@ class AddAdvancedCustomerView(LoginRequiredMixin, UpdateView):
                             f.process = 0
                             f.material = 4
                         else:
-                            print('Throw an error #9')
+                            logger.error('#10')
                     else:
-                        print('Throw an error #10')
+                        logger.error('#11')
 
             f.save()
 

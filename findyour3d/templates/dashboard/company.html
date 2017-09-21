@@ -1,21 +1,57 @@
 {% extends 'dashboard/base.html' %}
+{% load staticfiles %}
 
 {% block title %}Find Company{% endblock title %}
 
 {% block content %}
-    <div class="portlet light">
-        <div class="portlet-title">
-            <div class="caption">
-                <i class="fa fa-search"></i>{{ request.user.customer_set.first.get_material_display }},
-                {{ request.user.customer_set.first.get_process_display }}</div>
-        </div>
-        <div class="portlet-body">
-            {% for company in companies %}
-                <div class="">
-                    <h4>{{ company.display_name }}</h4>
-                    <small>{{ company.description }}</small>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption font-green">
+                        <i class="fa fa-search font-green"></i>
+                        <span class="caption-subject bold uppercase">
+                        {{ request.user.customer_set.first.get_material_display }},
+                            {{ request.user.customer_set.first.get_process_display }}</span>
+                    </div>
                 </div>
-            {% endfor %}
+
+                <div class="general-item-list">
+                    {% for company in companies %}
+                        <div class="item">
+                            <div class="item-head">
+                                <div class="item-details">
+{#                                    <img class="item-pic rounded" src="{% static 'img/avatar80_1.jpg' %}">#}
+                                    <a href="" class="item-name primary-link">{{ company.display_name }}</a>
+                                    <span class="item-label">{{ company.full_name }}</span>
+                                </div>
+                                <span class="item-status">
+                            <button class="btn btn-sm btn-success invite">Apply</button>
+                        </span>
+                            </div>
+                            <div class="item-body">
+                                <p>{{ company.description }}</p>
+
+                                <div class="well">
+                                    <address>
+                                        <strong>{{ company.name }}</strong>
+                                        <br/> {{ company.address_line_1 }}
+                                        <br/> {{ company.address_line_2 }}
+                                        <br/>
+                                        <abbr title="Phone">P:</abbr> {{ company.phone }}</address>
+                                    <address>
+                                        <strong>{{ company.full_name }}</strong>
+                                        <br/>
+                                        <a href="mailto:{{ company.email }}"> {{ company.email }} </a>
+                                    </address>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
     </div>
+
 {% endblock content %}

@@ -4,7 +4,7 @@ from django.conf import settings
 from multiselectfield import MultiSelectField
 
 from findyour3d.customer.models import (BASIC_MATERIAL_CHOICES, BUDGET_CHOICES, CONSIDERATION_CHOICES,
-                                        MATERIAL_CHOICES)
+                                        MATERIAL_CHOICES, PROCESS_CHOICES)
 
 CUSTOMER_CHOICES = (
     (0, 'Individuals'),
@@ -40,7 +40,7 @@ class Company(models.Model):
     consideration = models.IntegerField(choices=CONSIDERATION_CHOICES, default=0)
     printing_options = MultiSelectField(choices=PRINTING_OPTIONS_CHOICES)
     material = models.IntegerField(choices=MATERIAL_CHOICES, blank=True, null=True)
-    top_printing_processes = MultiSelectField(choices=PRINTING_OPTIONS_CHOICES, max_choices=3)
+    top_printing_processes = MultiSelectField(choices=PROCESS_CHOICES, max_choices=3)
     description = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
 

@@ -12,8 +12,8 @@ BUDGET_CHOICES = (
     (0, 'Less than $100'),
     (1, '$100 - 250'),
     (2, '$250 - 500'),
-    (2, '500 - 2,500'),
-    (3, '$2,500 plus'),
+    (3, '500 - 2,500'),
+    (4, '$2,500 plus'),
 )
 
 CONSIDERATION_CHOICES = (
@@ -35,6 +35,14 @@ MATERIAL_CHOICES = (
     (9, 'Stainless Steel'),
     (10, 'Titanium'),
     (11, 'Aluminum'),
+    (12, 'Silver / Gold'),
+    (13, 'Copper'),
+    (14, 'Inconel'),
+    (15, 'Wood-Like'),
+    (16, 'PEEK'),
+    (17, 'PEI'),
+    (18, 'Alumide'),
+    (19, 'Resins'),
 )
 
 PROTOTYPES_CHOICES = (
@@ -54,6 +62,9 @@ PROCESS_CHOICES = (
     (3, 'Material Jetting (MJ)'),
     (4, 'Binder Jetting (BJ) (Stone)'),
     (5, 'Electron Beam Melting (EBM) (Metals)'),
+    (6, 'SLA'),
+    (7, 'PolyJet'),
+    (8, 'Various'),
 )
 
 SIZES_CHOICES = (

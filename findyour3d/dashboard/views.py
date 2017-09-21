@@ -22,8 +22,8 @@ class DashboardView(LoginRequiredMixin, ListView):
         user = self.request.user.customer_set.first()
         if all([user.material, user.process]):
             queryset = Company.objects.filter(
-                Q(material=user.material) | Q(top_printing_processes=str(user.process)) | Q(
-                    printing_options=str(user.process))
+                Q(material=user.material) & (Q(top_printing_processes__contains=str(user.process)) | Q(
+                    printing_options=str(user.process)))
             )
         else:
             queryset = None
