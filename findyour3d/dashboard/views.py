@@ -20,13 +20,9 @@ class DashboardView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         user = self.request.user.customer_set.first()
-        if all([user.material, user.process]):
-            queryset = Company.objects.filter(
-                Q(material=user.material) & (Q(top_printing_processes__contains=str(user.process)) | Q(
-                    printing_options=str(user.process)))
-            )
-        else:
-            queryset = None
+        queryset = Company.objects.filter(
+                Q(material=user.material) & Q(top_printing_processes__contains=str(user.process))
+        )
         return queryset
 
 
