@@ -14,41 +14,57 @@
                         <span class="caption-subject bold uppercase">
                         {{ request.user.customer_set.first.get_material_display }},
                             {{ request.user.customer_set.first.get_process_display }}</span>
+                        <small>Your filters</small>
                     </div>
                 </div>
 
                 <div class="general-item-list">
-                    {% for company in companies %}
-                        <div class="item">
-                            <div class="item-head">
-                                <div class="item-details">
-{#                                    <img class="item-pic rounded" src="{% static 'img/avatar80_1.jpg' %}">#}
-                                    <a href="" class="item-name primary-link">{{ company.display_name }}</a>
-                                    <span class="item-label">{{ company.full_name }}</span>
-                                </div>
-                                <span class="item-status">
+                    {% if companies %}
+                        {% for company in companies %}
+                            <div class="item">
+                                <div class="item-head">
+                                    <div class="item-details">
+                                        {# <img class="item-pic rounded" src="{% static 'img/avatar80_1.jpg' %}">#}
+                                        <a href="" class="item-name primary-link">{{ company.display_name }}</a>
+                                        <span class="item-label">{{ company.full_name }}</span>
+                                    </div>
+
+                                    <span class="item-status">
                             <button class="btn btn-sm btn-success invite">Apply</button>
                         </span>
-                            </div>
-                            <div class="item-body">
-                                <p>{{ company.description }}</p>
+                                </div>
+                                <div class="item-body">
+                                    <p>{{ company.description }}</p>
+                                    Materials: <b>{{ company.get_material_display }}</b> <br>
+                                    Processes: <b>{{ company.get_top_printing_processes_display }}</b> <br>
+                                    Budget: <b>{{ company.get_budget_display }}</b> <br>
+                                    Cad Assistance: <b>{{ company.is_cad_assistance }}</b> <br>
+                                    Consideration: <b>{{ company.get_consideration_display }}</b>
 
-                                <div class="well">
-                                    <address>
-                                        <strong>{{ company.name }}</strong>
-                                        <br/> {{ company.address_line_1 }}
-                                        <br/> {{ company.address_line_2 }}
-                                        <br/>
-                                        <abbr title="Phone">P:</abbr> {{ company.phone }}</address>
-                                    <address>
-                                        <strong>{{ company.full_name }}</strong>
-                                        <br/>
-                                        <a href="mailto:{{ company.email }}"> {{ company.email }} </a>
-                                    </address>
+                                    <p></p>
+
+                                    <div class="well">
+                                        <address>
+                                            <strong>{{ company.name }}</strong>
+                                            <br/> {{ company.address_line_1 }}
+                                            <br/> {{ company.address_line_2 }}
+                                            <br/>
+                                            <abbr title="Phone">P:</abbr> {{ company.phone }}</address>
+                                        <address>
+                                            <strong>{{ company.full_name }}</strong>
+                                            <br/>
+                                            <a href="mailto:{{ company.email }}"> {{ company.email }} </a>
+                                        </address>
+                                    </div>
                                 </div>
                             </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="alert alert-info text-center">
+                            Nothing Found :( <br>
+                            Try to change filters
                         </div>
-                    {% endfor %}
+                    {% endif %}
                 </div>
             </div>
         </div>
