@@ -92,7 +92,7 @@ hr {
 	width: 70px;
 	text-align: center;
 	position: relative;
-	background: #E75926;
+	background: black;
 	margin: 0 auto;
 	margin-bottom: 30px;
 	border: 0;
@@ -109,7 +109,7 @@ hr {
 	font-weight: 600;
 }
 .navbar-custom .navbar-brand i.fa {
-	color: #E75926;
+	color: gray;
 }
 .navbar-custom .navbar-brand:focus {
 	outline: 0;
@@ -121,7 +121,7 @@ hr {
 	padding: 0 4px;
 }
 .navbar-custom .navbar-toggle:hover, .navbar-custom .navbar-toggle:focus {
-	background-color: #E75926;
+	background-color: gray;
 	color: #ffffff;
 }
 .navbar-custom .navbar-brand .navbar-toggle:focus, .navbar-custom .navbar-brand .navbar-toggle:active {
@@ -137,13 +137,13 @@ hr {
 }
 .navbar-custom .nav li a:hover {
 	outline: 0;
-	color: #E75926;
+	color: gray;
 	background-color: transparent;
 }
 .navbar-custom .nav li a:focus, .navbar-custom .nav li a:active {
 	outline: 0;
 	background-color: transparent;
-	color: #E75926;
+	color: gray;
 }
 .navbar-custom .nav li.active {
 	outline: 0;
@@ -162,7 +162,7 @@ hr {
 	padding: 100px 0;
 	text-align: center;
 	color: #fff;
-	background: url(../img/intro-bg.jpg) no-repeat center center fixed;
+	background: url(../img/intro-bg_2.jpg) no-repeat center center fixed;
 	background-color: #000;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
@@ -180,8 +180,8 @@ hr {
 	text-transform: uppercase;
 }
 #intro .intro-body .brand-heading {
-	color: #E75926;
-	text-shadow: 0 4px #a13e1a;
+	color: white;
+	text-shadow: 0 4px gray;
 }
 #intro .intro-body .intro-text {
 	font-size: 18px;
@@ -200,17 +200,19 @@ hr {
 }
 }
 .btn-default {
-	color: #f6f6f6;
-	background: #cf5022;
+	color: black;
+	background: white;
 	border: 0;
 	padding: 12px 24px;
+  border-radius: 0px;
 	margin: 0 8px;
 	font-size: 18px;
 	transition: all 0.5s;
 }
 .btn-default:hover, .btn-default:focus, .btn-default.focus, .btn-default:active, .btn-default.active {
 	color: #f6f6f6;
-	background-color: #a13e1a;
+  border: 1px solid white;
+	background-color: transparent;
 }
 .section-title.center {
 	padding: 30px 0;
@@ -239,7 +241,7 @@ hr {
 	content: "✓";
 	font-weight: 600;
 	padding-right: 10px;
-	color: #e75926;
+	color: gray;
 }
 #about i.fa {
 	float: left;
@@ -256,10 +258,25 @@ hr {
 	margin-top: 20px;
 	margin-bottom: 30px;
 }
+#about .btn-default {
+	background: black;
+  color: white;
+	border: 0;
+	border-radius: 0px;
+	padding: 12px 24px;
+	margin: 0 8px;
+	font-size: 18px;
+}
+#about .btn-default:hover, #contact .btn-default:focus {
+	color: black;
+	background: transparent;
+  border: 1px black solid;
+}
+
 /* Services Section */
 #services {
 	padding: 140px 0;
-	background: url(../img/services-bg.jpg);
+	background: url(../img/services-bg_2.jpg);
 	background-size: cover;
 	background-attachment: fixed;
 }
@@ -267,15 +284,16 @@ hr {
 	padding: 20px 10px;
 }
 #services h2 {
-	color: #f6f6f6;
+  font-size: 25px;
+	color: black;
 }
 #services h3 {
 	font-size: 20px;
 	font-weight: 600;
-	color: #f6f6f6;
+	color: black;
 }
 #services p {
-	color: rgba(255,255,255,0.7);
+	color: black;
 }
 .space {
 	margin-top: 40px;
@@ -284,6 +302,21 @@ hr {
 	font-size: 36px;
 	color: #E75926;
 	transition: all 0.5s;
+}
+#services .btn-default {
+  text-transform: uppercase;
+	background: black;
+  color: white;
+	border: 0;
+	border-radius: 0px;
+	padding: 12px 24px;
+	margin: 0 8px;
+	font-size: 18px;
+}
+#services .btn-default:hover, #contact .btn-default:focus {
+	color: black;
+	background: transparent;
+  border: 1px black solid;
 }
 /* Gallery Section */
 #works {
@@ -419,8 +452,8 @@ ol.type li a:hover {
 	background: #e6e6e6;
 }
 img.img-thumbnail.team-img {
-	width: 200px;
-	height: 200px;
+	/*width: 200px;*/
+	/*height: 333px;*/
 	border: 0;
 	border-radius: 0;
 	background-color: #f6f6f6;
@@ -433,9 +466,23 @@ img.img-thumbnail.team-img {
 	padding: 9px;
 	color: #777;
 }
+#team .btn-default {
+	background: black;
+  color: white;
+	border: 0;
+	border-radius: 0px;
+	padding: 12px 24px;
+	margin: 0 8px;
+	font-size: 18px;
+}
+#team .btn-default:hover, #contact .btn-default:focus {
+	color: black;
+	background: transparent;
+  border: 1px black solid;
+}
 /* Testimonials Section */
 #testimonials {
-	background: url(../img/testimonials-bg.jpg);
+	background: url(../img/testimonials-bg_2.jpg);
 	background-size: cover;
 	background-attachment: fixed;
 	color: #ddd;
@@ -461,6 +508,22 @@ img.img-thumbnail.team-img {
 	border-top: 1px solid rgba(255,255,255,0.3);
 	padding: 20px 0;
 	margin-top: 10px;
+}
+#testimonials .btn-default {
+  text-transform: uppercase;
+	background: white;
+  color: black;
+	border: 0;
+	border-radius: 0px;
+	padding: 12px 24px;
+	margin: 0 8px;
+	font-size: 18px;
+	transition: all 0.5s;
+}
+#testimonials .btn-default:hover, #contact .btn-default:focus {
+	color: white;
+	background: transparent;
+  border: 1px white solid;
 }
 /* Contact Section */
 #contact {
@@ -520,17 +583,17 @@ label {
 	box-shadow: transparent;
 }
 #contact .btn-default {
-	background: #cf5022;
+	background: white;
 	border: 0;
-	border-radius: 4px;
+	border-radius: 0px;
 	padding: 10px 20px;
-	color: #f6f6f6;
+	color: black;
 	margin-top: 15px;
 	font-size: 15px;
 }
 #contact .btn-default:hover, #contact .btn-default:focus {
-	color: #f6f6f6;
-	background: #a13e1a;
+	color: white;
+	background: gray;
 }
 .btn:active, .btn.active {
 	background-image: none;
@@ -552,12 +615,12 @@ a:focus, .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:acti
 #contact .social i.fa {
 	font-size: 24px;
 	padding-top: 8px;
-	color: #cf5022;
+	color: black;
 	border-radius: 4px;
 	transition: all 0.3s;
 }
 #contact .social i.fa:hover {
-	color: #a13e1a;
+	color: gray;
 }
 /* Footer Section*/
 #footer {
@@ -570,7 +633,7 @@ a:focus, .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:acti
 	color: #999999;
 }
 #footer a:hover, a:focus {
-	color: #e75926;
+	color: white;
 }
 #footer p {
 	font-size: 13px;

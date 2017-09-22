@@ -22,10 +22,10 @@
                     <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
                     <li class="hidden"> <a href="#page-top"></a> </li>
                     <li> <a class="page-scroll" href="#about">About</a> </li>
+                    <li> <a class="page-scroll" href="#testimonials">Get started</a> </li>
+                    <li> <a class="page-scroll" href="#team">Business</a> </li>
 {#                    <li> <a class="page-scroll" href="#services">Services</a> </li>#}
 {#                    <li> <a class="page-scroll" href="#works">Portfolio</a> </li>#}
-{#                    <li> <a class="page-scroll" href="#team">Team</a> </li>#}
-                    <li> <a class="page-scroll" href="#testimonials">Businesses</a> </li>
                     <li> <a class="page-scroll" href="#contact">Contact</a> </li>
                     {% if request.user.is_authenticated %}
                         <li><a class="page-scroll" href="{% url 'users:redirect' %}">Dashboard</a></li>
@@ -46,7 +46,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-10 col-md-offset-1">
-                        <h1><span class="brand-heading">Find Your 3D</span></h1>
+                        <h1><span class="brand-heading">Your3D</span></h1>
                         <p class="intro-text">Tired of searching for the perfect fit for your project?
                             Let us help. We compare the top 3D Printing Services to find you the best fit for you.
                         </p>
@@ -64,111 +64,115 @@
                 <hr>
             </div>
             <div class="row">
-                <div class="col-md-4"><img src="{% static 'img/about.jpg' %}" class="img-responsive"></div>
-                <div class="col-md-4">
+
+                <div class="col-md-12 text-center">
+                    <p>Your3D was founded on the sole mission of streamlining the process of bringing your project
+                        from an idea to life. Finding the right service to help you with bring your project to life
+                        is difficult and time consuming. Not only that, but 3D printing can be complex and difficult
+                        to understand for beginners. So, we set out to change it.</p>
+
+                    <p>Simply answer a few questions about your budget, timetable, location, and your project’s
+                        specifications and goals and we take care of the rest. We provide you with a selection of
+                        the best manufacturers for you plus a basic material and process recommendation that is
+                        best suited for your project’s specs.</p>
+
+                    <p>Once you browse your matched providers and select the best one for you, we send you and
+                        your project’s information directly to them for a quote as fast as possible.</p>
+                    <h5>All for free, all in seconds.</h5>
+                    ​
+                    <h5>Stop Searching. Start Printing.</h5>
+                </div>
+
+                <div class="col-md-6 text-center">
                     <div class="about-text">
-                        <h4>Who We Are</h4>
+                        <h4>Bring Your Project to Life</h4>
                         <p>
-                            ​Find Your 3D was founded on the sole mission to streamline the process of bringing a
-                            project from idea to final product for everyone, especially beginners to 3D
-                            printing. Often times finding the best service to bring your project to life
-                            can be difficult and time consuming. So we set out to change it. We match you
-                            and your project to the best provider for a simple and fast process.
+                            ​Simply tell us about your project and we'll take care of finding the best provider
+                            for you in seconds.
                         </p>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6 text-center">
                     <div class="about-text">
-                        <h4>What We Do</h4>
+                        <h4>Join Our Network</h4>
                         <p>
-                            We aim to partner with the top 3D Printing Services in the Nation and continue to
-                            expand our network everyday. We bring you directly to the services that best fit
-                            you, your project, and most importantly your budget and goals. If you are
-                            business looking to join our network, please visit our Businesses page for
-                            more information.
+                            Are you a business looking to join our network? Great! We're looking to expand
+                            everyday. Follow the Business portal to get started.
                         </p>
-
-
                     </div>
                 </div>
             </div>
 
             <div class="row">
-                <div class="col-md-offset-4 col-md-4">
-                    <h5>Bring Your Project to Life Now</h5>
-                    <a href="{% url 'account_signup' %}" class="btn btn-default">FILL OUT OUR FORM</a>
+                <div class="col-md-6 text-center">
+                    <h5 class="about-text">Bring Your Project to Life Now</h5>
+                    <a href="{% url 'account_signup' %}" class="btn btn-default">START YOUR PROJECT</a>
                 </div>
-                <div class="col-md-4">
-                    <h5>Join Our Network Now</h5>
-                    <a href="{% url 'account_signup' %}?type=business" class="btn btn-default">BUSINESSES</a>
+                <div class="col-md-6 text-center">
+                    <h5 class="about-text">Join Our Network Now</h5>
+                    <a href="{% url 'account_signup' %}?type=business" class="btn btn-default">SIGN UP NOW</a>
                 </div>
             </div>
         </div>
     </div>
-
-{#    <!-- Services Section -->#}
-{#    <div id="services" class="text-center">#}
-{#        <div class="container">#}
-{#            <div class="section-title center">#}
-{#                <h2>Our Services</h2>#}
-{#                <hr>#}
-{#            </div>#}
-{#            <div class="space"></div>#}
-{#            <div class="row">#}
-{#                <div class="col-md-3 col-sm-6">#}
-{#                    <div class="service"> <i class="fa fa-desktop"></i>#}
-{#                        <h3>Web Design</h3>#}
-{#                        <p>Lorem ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend pellentesque natoque etiam.</p>#}
-{#                    </div>#}
-{#                </div>#}
-{#                <div class="col-md-3 col-sm-6">#}
-{#                    <div class="service"> <i class="fa fa-cogs"></i>#}
-{#                        <h3>Web Development</h3>#}
-{#                        <p>Lorem ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend pellentesque.</p>#}
-{#                    </div>#}
-{#                </div>#}
-{#                <div class="col-md-3 col-sm-6">#}
-{#                    <div class="service"> <i class="fa fa-tablet"></i>#}
-{#                        <h3>App Design</h3>#}
-{#                        <p>Lorem ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend pellentesque natoque etiam.</p>#}
-{#                    </div>#}
-{#                </div>#}
-{#                <div class="col-md-3 col-sm-6">#}
-{#                    <div class="service"><i class="fa fa-html5"></i>#}
-{#                        <h3>PSD to HTML5</h3>#}
-{#                        <p>Lorem ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend pellentesque natoque.</p>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#            <div class="space"></div>#}
-{#            <div class="row">#}
-{#                <div class="col-md-3 col-sm-6">#}
-{#                    <div class="service"><i class="fa fa-wordpress"></i>#}
-{#                        <h3>WordPress</h3>#}
-{#                        <p>Lorem ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend pellentesque natoque etiam.</p>#}
-{#                    </div>#}
-{#                </div>#}
-{#                <div class="col-md-3 col-sm-6">#}
-{#                    <div class="service"><i class="fa fa-bullhorn"></i>#}
-{#                        <h3>Marketing</h3>#}
-{#                        <p>Lorem ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend pellentesque.</p>#}
-{#                    </div>#}
-{#                </div>#}
-{#                <div class="col-md-3 col-sm-6">#}
-{#                    <div class="service"><i class="fa fa-rocket"></i>#}
-{#                        <h3>Branding</h3>#}
-{#                        <p>Lorem ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend pellentesque natoque etiam.</p>#}
-{#                    </div>#}
-{#                </div>#}
-{#                <div class="col-md-3 col-sm-6">#}
-{#                    <div class="service"><i class="fa fa-leaf"></i>#}
-{#                        <h3>Print Design</h3>#}
-{#                        <p>Lorem ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend pellentesque natoque.</p>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
+    <!-- Testimonials Section -->
+    <div id="testimonials" class="text-center">
+        <div class="container">
+            <div class="section-title center">
+                <h1>Let us handle the heavy lifting.</h1>
+                <h3 style="color: white">Stop sifting through hundreds of providers. Let us find the perfect match for you and your project.
+                    ​Our process is simple, fast, and best of all free.</h3>
+                <hr>
+            </div>
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <div class="row testimonials">
+                        <div class="col-sm-4">
+                            <blockquote>
+                                <h3 style="color: white">Enter Your Project Specs</h3>
+                                <div class="clients-name">
+                                    <p>
+                                        Fill out our simple form with your all that your project needs.
+                                        Specifications, budget, size, materials, and others.
+                                    </p>
+                                </div>
+                            </blockquote>
+                        </div>
+                        <div class="col-sm-4">
+                            <blockquote>
+                                <h3 style="color: white">We Find Your Best Match</h3>
+                                <div class="clients-name">
+                                    <p>
+                                        Given your project's needs and objectives we search and identify the
+                                        services with the best match to provide you with the perfect service for
+                                        the perfect price.
+                                    </p>
+                                </div>
+                            </blockquote>
+                        </div>
+                        <div class="col-sm-4">
+                            <blockquote>
+                                <h3 style="color: white">Request a Quote Instantly.</h3>
+                                <div class="clients-name">
+                                    <p>
+                                        We'll display the best services from the top providers in the country.
+                                        Simply browse their profiles and submit your information for a quote
+                                        instantly.
+                                    </p>
+                                </div>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <a href="{% url 'account_signup' %}?type=business"
+                       class="btn btn-default page-scroll">GET STARTED NOW</a>
+                </div>
+            </div>
+        </div>
+    </div>
 {#    <!-- Portfolio Section -->#}
 {#    <div id="works">#}
 {#        <div class="container"> <!-- Container -->#}
@@ -277,108 +281,87 @@
 {#            </div>#}
 {#        </div>#}
 {#    </div>#}
-{#    <!-- Team Section -->#}
-{#    <div id="team" class="text-center">#}
-{#        <div class="container">#}
-{#            <div class="section-title center">#}
-{#                <h2>Meet the team</h2>#}
-{#                <hr>#}
-{#                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diamcommodo nibh ante facilisis.</p>#}
-{#            </div>#}
-{#            <div id="row">#}
-{#                <div class="col-xs-6 col-md-3 col-sm-6">#}
-{#                    <div class="thumbnail"> <img src="{% static 'img/team/01.jpg' %}" alt="..." class="img-thumbnail team-img">#}
-{#                        <div class="caption">#}
-{#                            <h3>John Doe</h3>#}
-{#                            <p>Founder / CEO</p>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                </div>#}
-{#                <div class="col-xs-6 col-md-3 col-sm-6">#}
-{#                    <div class="thumbnail"> <img src="{% static 'img/team/02.jpg' %}" alt="..." class="img-thumbnail team-img">#}
-{#                        <div class="caption">#}
-{#                            <h3>Mike Doe</h3>#}
-{#                            <p>Web Designer</p>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                </div>#}
-{#                <div class="col-xs-6 col-md-3 col-sm-6">#}
-{#                    <div class="thumbnail"> <img src="{% static 'img/team/03.jpg' %}" alt="..." class="img-thumbnail team-img">#}
-{#                        <div class="caption">#}
-{#                            <h3>Jane Doe</h3>#}
-{#                            <p>Creative Director</p>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                </div>#}
-{#                <div class="col-xs-6 col-md-3 col-sm-6">#}
-{#                    <div class="thumbnail"> <img src="{% static 'img/team/04.jpg' %}" alt="..." class="img-thumbnail team-img">#}
-{#                        <div class="caption">#}
-{#                            <h3>Larry Show</h3>#}
-{#                            <p>Project Manager</p>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
-
-    <!-- Testimonials Section -->
-    <div id="testimonials" class="text-center">
+    <!-- Team Section -->
+    <div id="team" class="text-center">
         <div class="container">
             <div class="section-title center">
-                <h1>Joining our network is simple, affordable, and fast. Just like our service.​</h1>
+                <h2>Join Our Network</h2>
                 <hr>
+                <p>We're always looking for new partners.</p>
+                <a href="{% url 'account_signup' %}?type=business"
+                   class="btn btn-default page-scroll">JOIN NOW</a>
             </div>
-            <div class="row">
-                <div class="col-md-10 col-md-offset-1">
-                    <div class="row testimonials">
-                        <div class="col-sm-4">
-                            <blockquote>
-                                <h3 style="color: white">Fill Out and Submit Our Form</h3>
-                                <div class="clients-name">
-                                    <p>
-                                        Select <strong>"Join Now"</strong> and you will be taken to a separate
-                                        page to fill out our simple form about your business and what you're
-                                        looking for in customers.
-                                    </p>
-                                </div>
-                            </blockquote>
+            <div id="row">
+                <div class="col-xs-6 col-md-6 col-sm-6">
+                    <div class="thumbnail"> <img src="{% static 'img/b_1.jpg' %}" alt="..." class="img-thumbnail team-img">
+                        <div class="caption">
+                            <h4>Boosting Your Business​</h4>
+                            <p>Match with customers that are the perfect match for you and your business.
+                                No more requests you can't fill or don't need. Streamlined service delivering
+                                clients right to your door. </p>
                         </div>
-                        <div class="col-sm-4">
-                            <blockquote>
-                                <h3 style="color: white">Select a Plan Based on Your Company's Needs</h3>
-                                <div class="clients-name">
-                                    <p>
-                                        At the end of the submission you'll be taken to our pricing plans.
-                                        We have a variety of pricing plans that cater towards your business.
-                                        Whether you want to cast a wide net or have a targeted strategy we
-                                        can provide it.
-                                    </p>
-                                </div>
-                            </blockquote>
-                        </div>
-                        <div class="col-sm-4">
-                            <blockquote>
-                                <h3 style="color: white">We'll Send Customer's Right to You</h3>
-                                <div class="clients-name">
-                                    <p>
-                                        Once you're in our system we'll find customers that are actively
-                                        searching for the exact services that your company provides. ​Once
-                                        they find you, we'll send the specifications of their project directly
-                                        to you.
-                                    </p>
-                                </div>
-                            </blockquote>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-md-6 col-sm-6">
+                    <div class="thumbnail"> <img src="{% static 'img/b_2.jpg' %}" alt="..." class="img-thumbnail team-img">
+                        <div class="caption">
+                            <h4>Expand Your Reach</h4>
+                            <p>Instead of advertising in large and competitive spaces, let us narrow the
+                                fields and let your business and services speak for themselves. Directly to
+                                customers who need and want your services. </p>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="section-title center">
+                <h2>Flexible Pricing</h2>
+                <hr>
+            </div>
             <div class="row">
-                <div class="col-md-10 col-md-offset-1">
-                    <a href="{% url 'account_signup' %}?type=business"
-                       class="btn btn-default page-scroll">START THE PROCESS NOW</a>
+                <div class="col-md-12">
+                    With more than one option for pricing, we can match your marketing needs.
+                    Whether it's covering as much ground
+                    as possible, or targeting customers for the perfect match. We have you covered.
+                    For extremely affordable prices that match your budget and objective.
                 </div>
             </div>
+
+        </div>
+
+    </div>
+    <!-- Services Section -->
+    <div id="services" class="text-center">
+        <div class="container">
+            <div class="section-title center">
+                <h2>Joining our network is simple, affordable, and fast. Just like our service.​</h2>
+                <hr>
+            </div>
+            <div class="space"></div>
+            <div class="row">
+                <div class="col-md-4 col-sm-12">
+                    <h3>Fill Out and Submit Our Form</h3>
+                    <p>Select "Join Now" and you will be taken to a separate page to fill out our simple form
+                        about your business and what you're looking for in customers.</p>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <h3>Select a Plan Based on Your Company's Needs</h3>
+                    <p>At the end of the submission you'll be taken to our pricing plans. We have a variety of
+                        pricing plans that cater towards your business. Whether you want to cast a wide net or
+                        have a targeted strategy we can provide it.</p>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <h3>We'll Send Customer's Right to You</h3>
+                    <p>Once you're in our system we'll find customers that are actively searching for the exact
+                        services that your company provides. ​Once they find you, we'll send the specifications of
+                        their project directly to you.</p>
+                </div>
+            </div>
+            <div class="section-title center">
+                <a href="{% url 'account_signup' %}?type=business"
+                   class="btn btn-default page-scroll">Start the Process Now</a>
+            </div>
+            <div class="space"></div>
+
         </div>
     </div>
     <!-- Contact Section -->
@@ -422,14 +405,14 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <input type="text" id="name" class="form-control" placeholder="Name"
-                                required="required" name="name">
+                                       required="required" name="name">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <input type="text" id="company" class="form-control" placeholder="Company"
-                                name="company">
+                                       name="company">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
