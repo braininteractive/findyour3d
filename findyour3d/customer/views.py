@@ -282,7 +282,7 @@ class AddAdvancedCustomerView(LoginRequiredMixin, UpdateView):
                             logger.error('#7')
                     elif f.heat_resistance == 2:  # My project requires neither heat resistance or flexibility
                         if f.is_highest_detail == 2:  # Yes, I want the highest detail possible
-                            if f.is_full_color == 2: # Yes, I want rich and full colors for my project
+                            if f.is_full_color == 2:  # Yes, I want rich and full colors for my project
                                 print('Resins (PolyJet) Resins that are created via PolyJet printing are '
                                       'rightly superior in terms of detail and resolution.  PolyJet printing '
                                       'can print layers as thin as 16 microns (or 1.6% of a single millimeter.)'
