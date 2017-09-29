@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% load staticfiles i18n %}
+
+{% block title %} Business {% endblock %}
+
+{% block content %}
+    <div id="preloader">
+        <div id="status"> <img src="{% static 'img/preloader.gif' %}" height="64" width="64" alt=""> </div>
+    </div>
+    <!-- Navigation -->
+    {% include 'pages/includes/menu.html' %}
+
+    <div id="intro_business">
+        <div class="intro-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                        <h1><span class="brand-heading">Join Our Network</span></h1>
+                        <p class="intro-text">We're always looking for new partners.
+                        </p>
+                        <a href="" class="btn btn-default page-scroll">JOIN NOW</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Team Section -->
+    <div id="team" class="text-center">
+        <div class="container">
+            <div id="row">
+                <div class="col-xs-6 col-md-6 col-sm-6">
+                    <div class="thumbnail"> <img src="{% static 'img/b_1.jpg' %}" alt="..." class="img-thumbnail team-img">
+                        <div class="caption">
+                            <h4>Boosting Your Business​</h4>
+                            <p>Match with customers that are the perfect match for you and your business.
+                                No more requests you can't fill or don't need. Streamlined service delivering
+                                clients right to your door. </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-md-6 col-sm-6">
+                    <div class="thumbnail"> <img src="{% static 'img/b_2.jpg' %}" alt="..." class="img-thumbnail team-img">
+                        <div class="caption">
+                            <h4>Expand Your Reach</h4>
+                            <p>Instead of advertising in large and competitive spaces, let us narrow the
+                                fields and let your business and services speak for themselves. Directly to
+                                customers who need and want your services. </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section-title center">
+                <h2>Flexible Pricing</h2>
+                <hr>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    With more than one option for pricing, we can match your marketing needs.
+                    Whether it's covering as much ground
+                    as possible, or targeting customers for the perfect match. We have you covered.
+                    For extremely affordable prices that match your budget and objective.
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- Services Section -->
+    <div id="services" class="text-center">
+        <div class="container">
+            <div class="section-title center">
+                <h2>Joining our network is simple, affordable, and fast. Just like our service.​</h2>
+                <hr>
+            </div>
+            <div class="space"></div>
+            <div class="row">
+                <div class="col-md-4 col-sm-12">
+                    <h3>Fill Out and Submit Our Form</h3>
+                    <p>Select "Join Now" and you will be taken to a separate page to fill out our simple form
+                        about your business and what you're looking for in customers.</p>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <h3>Select a Plan Based on Your Company's Needs</h3>
+                    <p>At the end of the submission you'll be taken to our pricing plans. We have a variety of
+                        pricing plans that cater towards your business. Whether you want to cast a wide net or
+                        have a targeted strategy we can provide it.</p>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <h3>We'll Send Customer's Right to You</h3>
+                    <p>Once you're in our system we'll find customers that are actively searching for the exact
+                        services that your company provides. ​Once they find you, we'll send the specifications of
+                        their project directly to you.</p>
+                </div>
+            </div>
+            <div class="section-title center">
+                <a href="{% url 'account_signup' %}?type=business"
+                   class="btn btn-default page-scroll">Start the Process Now</a>
+            </div>
+            <div class="space"></div>
+
+        </div>
+    </div>
+    {% include 'pages/includes/footer.html' %}
+{% endblock content %}

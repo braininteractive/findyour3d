@@ -5,7 +5,7 @@ function main() {
    'use strict';
 
 	// Hide .navbar first
-	$(".navbar").hide();
+	// $(".navbar").hide();
 
 	// Fade in .navbar
 	$(function () {
@@ -13,8 +13,9 @@ function main() {
             // set distance user needs to scroll before we fadeIn navbar
 			if ($(this).scrollTop() > 200) {
 				$('.navbar').fadeIn();
+				$('.navbar').addClass('navbar-black').fadeIn(10000);
 			} else {
-				$('.navbar').fadeOut();
+				$('.navbar').removeClass('navbar-black').fadeIn(500);
 			}
 		});
 

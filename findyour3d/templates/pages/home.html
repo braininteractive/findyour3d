@@ -8,37 +8,7 @@
         <div id="status"> <img src="{% static 'img/preloader.gif' %}" height="64" width="64" alt=""> </div>
     </div>
     <!-- Navigation -->
-    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation" id="page-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse"> <i class="fa fa-bars"></i> </button>
-                <a class="navbar-brand page-scroll" href="#page-top">
-                    <i class="fa fa-paper-plane-o"></i> Your3D</a>
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
-                <ul class="nav navbar-nav">
-                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
-                    <li class="hidden"> <a href="#page-top"></a> </li>
-                    <li> <a class="page-scroll" href="#about">About</a> </li>
-                    <li> <a class="page-scroll" href="#testimonials">Get started</a> </li>
-                    <li> <a class="page-scroll" href="#team">Business</a> </li>
-{#                    <li> <a class="page-scroll" href="#services">Services</a> </li>#}
-{#                    <li> <a class="page-scroll" href="#works">Portfolio</a> </li>#}
-                    <li> <a class="page-scroll" href="#contact">Contact</a> </li>
-                    {% if request.user.is_authenticated %}
-                        <li><a class="page-scroll" href="{% url 'users:redirect' %}">Dashboard</a></li>
-                        <li><a class="page-scroll" href="{% url 'account_logout' %}">Sign Out</a></li>
-                    {% else %}
-                        <li> <a class="page-scroll" href="{% url 'account_login' %}">Log In</a> </li>
-                    {% endif %}
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
+    {% include 'pages/includes/menu.html' %}
 
     <!-- Header -->
     <div id="intro">
@@ -50,77 +20,28 @@
                         <p class="intro-text">Tired of searching for the perfect fit for your project?
                             Let us help. We compare the top 3D Printing Services to find you the best fit for you.
                         </p>
-                        <a href="#about" class="btn btn-default page-scroll">BRING YOUR PROJECT TO LIFE</a>
+                        <a href="#testimonials" class="btn btn-default page-scroll">BRING YOUR PROJECT TO LIFE</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
     <!-- About Section -->
     <div id="about">
         <div class="container">
             <div class="section-title text-center center">
-                <h2>A Little Bit About Us</h2>
-                <hr>
-            </div>
-            <div class="row">
-
-                <div class="col-md-12 text-center">
-                    <p>Your3D was founded on the sole mission of streamlining the process of bringing your project
-                        from an idea to life. Finding the right service to help you with bring your project to life
-                        is difficult and time consuming. Not only that, but 3D printing can be complex and difficult
-                        to understand for beginners. So, we set out to change it.</p>
-
-                    <p>Simply answer a few questions about your budget, timetable, location, and your project’s
-                        specifications and goals and we take care of the rest. We provide you with a selection of
-                        the best manufacturers for you plus a basic material and process recommendation that is
-                        best suited for your project’s specs.</p>
-
-                    <p>Once you browse your matched providers and select the best one for you, we send you and
-                        your project’s information directly to them for a quote as fast as possible.</p>
-                    <h5>All for free, all in seconds.</h5>
-                    ​
-                    <h5>Stop Searching. Start Printing.</h5>
-                </div>
-
-                <div class="col-md-6 text-center">
-                    <div class="about-text">
-                        <h4>Bring Your Project to Life</h4>
-                        <p>
-                            ​Simply tell us about your project and we'll take care of finding the best provider
-                            for you in seconds.
-                        </p>
-                    </div>
-                </div>
-                <div class="col-md-6 text-center">
-                    <div class="about-text">
-                        <h4>Join Our Network</h4>
-                        <p>
-                            Are you a business looking to join our network? Great! We're looking to expand
-                            everyday. Follow the Business portal to get started.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-6 text-center">
-                    <h5 class="about-text">Bring Your Project to Life Now</h5>
-                    <a href="{% url 'account_signup' %}" class="btn btn-default">START YOUR PROJECT</a>
-                </div>
-                <div class="col-md-6 text-center">
-                    <h5 class="about-text">Join Our Network Now</h5>
-                    <a href="{% url 'account_signup' %}?type=business" class="btn btn-default">SIGN UP NOW</a>
-                </div>
+                <p>*Space for logo*</p>
             </div>
         </div>
     </div>
+
     <!-- Testimonials Section -->
     <div id="testimonials" class="text-center">
         <div class="container">
             <div class="section-title center">
-                <h1>Let us handle the heavy lifting.</h1>
-                <h3 style="color: white">Stop sifting through hundreds of providers. Let us find the perfect match for you and your project.
+                <h1 style="color: black">Let us handle the heavy lifting.</h1>
+                <h3>Stop sifting through hundreds of providers. Let us find the perfect match for you and your project.
                     ​Our process is simple, fast, and best of all free.</h3>
                 <hr>
             </div>
@@ -129,7 +50,7 @@
                     <div class="row testimonials">
                         <div class="col-sm-4">
                             <blockquote>
-                                <h3 style="color: white">Enter Your Project Specs</h3>
+                                <h3>Enter Your Project Specs</h3>
                                 <div class="clients-name">
                                     <p>
                                         Fill out our simple form with your all that your project needs.
@@ -140,7 +61,7 @@
                         </div>
                         <div class="col-sm-4">
                             <blockquote>
-                                <h3 style="color: white">We Find Your Best Match</h3>
+                                <h3>We Find Your Best Match</h3>
                                 <div class="clients-name">
                                     <p>
                                         Given your project's needs and objectives we search and identify the
@@ -152,7 +73,7 @@
                         </div>
                         <div class="col-sm-4">
                             <blockquote>
-                                <h3 style="color: white">Request a Quote Instantly.</h3>
+                                <h3>Request a Quote Instantly.</h3>
                                 <div class="clients-name">
                                     <p>
                                         We'll display the best services from the top providers in the country.
@@ -173,291 +94,6 @@
             </div>
         </div>
     </div>
-{#    <!-- Portfolio Section -->#}
-{#    <div id="works">#}
-{#        <div class="container"> <!-- Container -->#}
-{#            <div class="section-title text-center center">#}
-{#                <h2>Our Portfolio</h2>#}
-{#                <hr>#}
-{#                <div class="clearfix"></div>#}
-{#                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diamcommodo nibh ante facilisis.</p>#}
-{#            </div>#}
-{#            <div class="categories">#}
-{#                <ul class="cat">#}
-{#                    <li>#}
-{#                        <ol class="type">#}
-{#                            <li><a href="#" data-filter="*" class="active">All</a></li>#}
-{#                            <li><a href="#" data-filter=".lorem">Web Design</a></li>#}
-{#                            <li><a href="#" data-filter=".consectetur">Web Development</a></li>#}
-{#                            <li><a href="#" data-filter=".dapibus">Branding</a></li>#}
-{#                        </ol>#}
-{#                    </li>#}
-{#                </ul>#}
-{#                <div class="clearfix"></div>#}
-{#            </div>#}
-{#            <div class="row">#}
-{#                <div class="portfolio-items">#}
-{#                    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 lorem">#}
-{#                        <div class="portfolio-item">#}
-{#                            <div class="hover-bg"> <a href="{% static 'img/portfolio/01.jpg' %}" title="Project description" rel="prettyPhoto">#}
-{#                                <div class="hover-text">#}
-{#                                    <h4>Project Title</h4>#}
-{#                                    <p>Web Design</p>#}
-{#                                </div>#}
-{#                                <img src="{% static 'img/portfolio/01.jpg' %}" class="img-responsive" alt="Project Title"> </a> </div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 consectetur">#}
-{#                        <div class="portfolio-item">#}
-{#                            <div class="hover-bg"> <a href="{% static 'img/portfolio/02.jpg' %}" title="Project description" rel="prettyPhoto">#}
-{#                                <div class="hover-text">#}
-{#                                    <h4>Project Title</h4>#}
-{#                                    <p>Web Development</p>#}
-{#                                </div>#}
-{#                                <img src="{% static 'img/portfolio/02.jpg' %}" class="img-responsive" alt="Project Title"> </a> </div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 lorem">#}
-{#                        <div class="portfolio-item">#}
-{#                            <div class="hover-bg"> <a href="{% static 'img/portfolio/03.jpg' %}" title="Project description" rel="prettyPhoto">#}
-{#                                <div class="hover-text">#}
-{#                                    <h4>Project Title</h4>#}
-{#                                    <p>Web Design</p>#}
-{#                                </div>#}
-{#                                <img src="{% static 'img/portfolio/03.jpg' %}" class="img-responsive" alt="Project Title"> </a> </div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 lorem">#}
-{#                        <div class="portfolio-item">#}
-{#                            <div class="hover-bg"> <a href="{% static 'img/portfolio/04.jpg' %}" title="Project description" rel="prettyPhoto">#}
-{#                                <div class="hover-text">#}
-{#                                    <h4>Project Title</h4>#}
-{#                                    <p>Web Design</p>#}
-{#                                </div>#}
-{#                                <img src="{% static 'img/portfolio/04.jpg' %}" class="img-responsive" alt="Project Title"> </a> </div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 consectetur">#}
-{#                        <div class="portfolio-item">#}
-{#                            <div class="hover-bg"> <a href="{% static 'img/portfolio/05.jpg' %}" title="Project description" rel="prettyPhoto">#}
-{#                                <div class="hover-text">#}
-{#                                    <h4>Project Title</h4>#}
-{#                                    <p>Web Development</p>#}
-{#                                </div>#}
-{#                                <img src="{% static 'img/portfolio/05.jpg' %}" class="img-responsive" alt="Project Title"> </a> </div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 dapibus">#}
-{#                        <div class="portfolio-item">#}
-{#                            <div class="hover-bg"> <a href="{% static 'img/portfolio/06.jpg' %}" title="Project description" rel="prettyPhoto">#}
-{#                                <div class="hover-text">#}
-{#                                    <h4>Project Title</h4>#}
-{#                                    <p>Branding</p>#}
-{#                                </div>#}
-{#                                <img src="{% static 'img/portfolio/06.jpg' %}" class="img-responsive" alt="Project Title"> </a> </div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 dapibus consectetur">#}
-{#                        <div class="portfolio-item">#}
-{#                            <div class="hover-bg"> <a href="{% static 'img/portfolio/07.jpg' %}" title="Project description" rel="prettyPhoto">#}
-{#                                <div class="hover-text">#}
-{#                                    <h4>Project Title</h4>#}
-{#                                    <p>Web Development, Branding</p>#}
-{#                                </div>#}
-{#                                <img src="{% static 'img/portfolio/07.jpg' %}" class="img-responsive" alt="Project Title"> </a> </div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 lorem">#}
-{#                        <div class="portfolio-item">#}
-{#                            <div class="hover-bg"> <a href="{% static 'img/portfolio/08.jpg' %}" title="Project description" rel="prettyPhoto">#}
-{#                                <div class="hover-text">#}
-{#                                    <h4>Project Title</h4>#}
-{#                                    <p>Web Design</p>#}
-{#                                </div>#}
-{#                                <img src="{% static 'img/portfolio/08.jpg' %}" class="img-responsive" alt="Project Title"> </a> </div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
-    <!-- Team Section -->
-    <div id="team" class="text-center">
-        <div class="container">
-            <div class="section-title center">
-                <h2>Join Our Network</h2>
-                <hr>
-                <p>We're always looking for new partners.</p>
-                <a href="{% url 'account_signup' %}?type=business"
-                   class="btn btn-default page-scroll">JOIN NOW</a>
-            </div>
-            <div id="row">
-                <div class="col-xs-6 col-md-6 col-sm-6">
-                    <div class="thumbnail"> <img src="{% static 'img/b_1.jpg' %}" alt="..." class="img-thumbnail team-img">
-                        <div class="caption">
-                            <h4>Boosting Your Business​</h4>
-                            <p>Match with customers that are the perfect match for you and your business.
-                                No more requests you can't fill or don't need. Streamlined service delivering
-                                clients right to your door. </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-6 col-md-6 col-sm-6">
-                    <div class="thumbnail"> <img src="{% static 'img/b_2.jpg' %}" alt="..." class="img-thumbnail team-img">
-                        <div class="caption">
-                            <h4>Expand Your Reach</h4>
-                            <p>Instead of advertising in large and competitive spaces, let us narrow the
-                                fields and let your business and services speak for themselves. Directly to
-                                customers who need and want your services. </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="section-title center">
-                <h2>Flexible Pricing</h2>
-                <hr>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    With more than one option for pricing, we can match your marketing needs.
-                    Whether it's covering as much ground
-                    as possible, or targeting customers for the perfect match. We have you covered.
-                    For extremely affordable prices that match your budget and objective.
-                </div>
-            </div>
 
-        </div>
-
-    </div>
-    <!-- Services Section -->
-    <div id="services" class="text-center">
-        <div class="container">
-            <div class="section-title center">
-                <h2>Joining our network is simple, affordable, and fast. Just like our service.​</h2>
-                <hr>
-            </div>
-            <div class="space"></div>
-            <div class="row">
-                <div class="col-md-4 col-sm-12">
-                    <h3>Fill Out and Submit Our Form</h3>
-                    <p>Select "Join Now" and you will be taken to a separate page to fill out our simple form
-                        about your business and what you're looking for in customers.</p>
-                </div>
-                <div class="col-md-4 col-sm-12">
-                    <h3>Select a Plan Based on Your Company's Needs</h3>
-                    <p>At the end of the submission you'll be taken to our pricing plans. We have a variety of
-                        pricing plans that cater towards your business. Whether you want to cast a wide net or
-                        have a targeted strategy we can provide it.</p>
-                </div>
-                <div class="col-md-4 col-sm-12">
-                    <h3>We'll Send Customer's Right to You</h3>
-                    <p>Once you're in our system we'll find customers that are actively searching for the exact
-                        services that your company provides. ​Once they find you, we'll send the specifications of
-                        their project directly to you.</p>
-                </div>
-            </div>
-            <div class="section-title center">
-                <a href="{% url 'account_signup' %}?type=business"
-                   class="btn btn-default page-scroll">Start the Process Now</a>
-            </div>
-            <div class="space"></div>
-
-        </div>
-    </div>
-    <!-- Contact Section -->
-    <div id="contact" class="text-center">
-        <div class="container">
-            <div class="section-title center">
-                <h2>Contact us</h2>
-                <hr>
-                <p>
-                    Do you have a question, comment, suggestion, or just want to reach out, go for it!
-                    We're always looking for feedback from our customers. Fill out our short form below
-                    and we'll get back to you.
-                </p>
-            </div>
-            <div class="col-md-8 col-md-offset-2">
-                <div class="col-md-4">
-                    <div class="contact-item"> <i class="fa fa-map-marker fa-2x"></i>
-                        <p>4321 California St,<br>
-                            San Francisco, CA 12345</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="contact-item"> <i class="fa fa-envelope-o fa-2x"></i>
-                        <p>info@company.com</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="contact-item"> <i class="fa fa-phone fa-2x"></i>
-                        <p> +1 123 456 1234<br>
-                            +1 321 456 1234</p>
-                    </div>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-            <div class="col-md-8 col-md-offset-2">
-                <h3>Reach Out To Us</h3>
-
-                <form method="post" action="{% url 'contact:form' %}">
-                    {% csrf_token %}
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <input type="text" id="name" class="form-control" placeholder="Name"
-                                       required="required" name="name">
-                                <p class="help-block text-danger"></p>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <input type="text" id="company" class="form-control" placeholder="Company"
-                                       name="company">
-                                <p class="help-block text-danger"></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <input type="email" id="email" class="form-control" placeholder="Email"
-                                       required="required" name="email">
-                                <p class="help-block text-danger"></p>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <input type="text" id="email" class="form-control"
-                                       placeholder="How can we help you" name="subject">
-                                <p class="help-block text-danger">{{ form }}</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <textarea name="body" id="message" class="form-control" rows="4" placeholder="Message" required></textarea>
-                        <p class="help-block text-danger"></p>
-                    </div>
-                    <div id="success"></div>
-                    <button type="submit" class="btn btn-default">Send Message</button>
-                </form>
-                <div class="social">
-                    <h3>Follow us</h3>
-                    <ul>
-                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                        <li><a href="#"><i class="fa fa-github"></i></a></li>
-                        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div id="footer">
-        <div class="container">
-            <p>Copyright 2017 &copy; <a href="http://findyour3d.com">findyour3d.com</a></p>
-        </div>
-    </div>
+    {% include 'pages/includes/footer.html' %}
 {% endblock content %}

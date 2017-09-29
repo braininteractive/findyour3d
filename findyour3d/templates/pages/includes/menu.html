@@ -1,0 +1,30 @@
+<nav class="navbar navbar-custom navbar-fixed-top" role="navigation" id="page-top" style="display: block">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse"> <i class="fa fa-bars"></i> </button>
+            <a class="navbar-brand page-scroll" href="#page-top">
+                <i class="fa fa-paper-plane-o"></i> Your3D</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+            <ul class="nav navbar-nav">
+                <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                <li class="hidden"> <a href="#page-top"></a> </li>
+                <li> <a class="page-scroll" href="{% url 'home' %}">Home</a> </li>
+                <li> <a class="page-scroll" href="{% url 'about' %}">About</a> </li>
+                <li> <a class="page-scroll" href="{% url 'business' %}">Business</a> </li>
+                {#                    <li> <a class="page-scroll" href="#services">Services</a> </li>#}
+                {#                    <li> <a class="page-scroll" href="#works">Portfolio</a> </li>#}
+                {% if request.user.is_authenticated %}
+                    <li><a class="page-scroll" href="{% url 'users:redirect' %}">My Account</a></li>
+                    <li><a class="page-scroll" href="{% url 'account_logout' %}">Sign Out</a></li>
+                {% else %}
+                    <li> <a class="page-scroll" href="{% url 'account_login' %}">My Account</a> </li>
+                {% endif %}
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
