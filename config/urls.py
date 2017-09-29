@@ -22,6 +22,7 @@ urlpatterns = [
                   url(r'^company/', include('findyour3d.company.urls', namespace='company')),
                   url(r'^contact/', include('findyour3d.contact.urls', namespace='contact')),
                   url(r'^find/', include('findyour3d.dashboard.urls', namespace='dashboard')),
+                  url(r'^quote/', include('findyour3d.quote.urls', namespace='quote')),
 
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

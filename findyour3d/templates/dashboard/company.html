@@ -1,5 +1,6 @@
 {% extends 'dashboard/base.html' %}
 {% load staticfiles %}
+{% load requested_tags %}
 
 {% block title %}Find Company{% endblock title %}
 
@@ -30,7 +31,15 @@
                                     </div>
 
                                     <span class="item-status">
-                            <button class="btn btn-sm btn-success invite">Request a Quote</button>
+                                        {% is_company_requested company request.user as is_requested %}
+                                        {% if not is_requested %}
+                                        <form action="{% url 'quote:req' company.pk %}" method="post">
+                                            {% csrf_token %}
+                                            <button class="btn btn-sm btn-success invite">Request a Quote</button>
+                                        </form>
+                                        {% else %}
+                                            <button class="btn btn-sm btn-default disabled">Requested</button>
+                                        {% endif %}
                         </span>
                                 </div>
                                 <div class="item-body">

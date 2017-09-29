@@ -1,3 +1,6 @@
 table {border-collapse:collapse; table-layout:fixed; width:310px;}
 table td {width:100px; word-wrap:break-word;}
 th {width:100px; word-wrap:break-word;}
+body, html {
+  font-family: 'Montserrat', sans-serif;
+}
