@@ -1,6 +1,7 @@
 import logging
 
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.exceptions import PermissionDenied
 from django.http import HttpResponseForbidden
 from django.shortcuts import redirect
 from django.urls import reverse
@@ -61,8 +62,13 @@ class EditCustomerView(LoginRequiredMixin, UpdateView):
     def dispatch(self, request, *args, **kwargs):
         if self.request.user.is_authenticated():
             if self.request.user.user_type == 1:
-                if not self.request.user.customer_set.all():
-                    return redirect('customers:add')
+                if int(self.kwargs['pk']) == request.user.customer_set.first().pk:
+                        if not self.request.user.customer_set.all():
+                            return redirect('customers:add')
+                else:
+                    raise PermissionDenied
+            else:
+                raise PermissionDenied
         return super(EditCustomerView, self).dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
@@ -104,12 +110,17 @@ class AddAdvancedCustomerView(LoginRequiredMixin, UpdateView):
     def dispatch(self, request, *args, **kwargs):
         if self.request.user.is_authenticated():
             if self.request.user.user_type == 1:
-                # if self.request.user.customer_set.all():
-                #     if self.request.user.customer_set.first().is_advanced_filled:
-                #         return reverse('dashboard:company')
-                if not self.request.user.customer_set.all():
-                    return redirect('customers:add')
-        return super(AddAdvancedCustomerView, self).dispatch(request, *args, **kwargs)
+                if int(self.kwargs['pk']) == request.user.customer_set.first().pk:
+                        # if self.request.user.customer_set.all():
+                        #     if self.request.user.customer_set.first().is_advanced_filled:
+                        #         return reverse('dashboard:company')
+                        if not self.request.user.customer_set.all():
+                            return redirect('customers:add')
+                else:
+                    raise PermissionDenied
+            else:
+                raise PermissionDenied
+            return super(AddAdvancedCustomerView, self).dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
         f = form.save(commit=False)

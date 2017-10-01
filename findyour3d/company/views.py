@@ -1,4 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.exceptions import PermissionDenied
 from django.http import HttpResponseForbidden
 from django.shortcuts import redirect
 from django.urls import reverse
@@ -52,6 +53,11 @@ class CompanyDetailView(LoginRequiredMixin, DetailView):
     model = Company
     template_name = 'company/company_detail.html'
 
+    def dispatch(self, request, *args, **kwargs):
+        if int(self.kwargs['pk']) != request.user.company_set.first().pk and not request.user.is_superuser:
+            raise PermissionDenied
+        return super(CompanyDetailView, self).dispatch(request, *args, **kwargs)
+
     def get_context_data(self, **kwargs):
         context = super(CompanyDetailView, self).get_context_data(**kwargs)
         context['company_pk'] = self.object
@@ -64,9 +70,12 @@ class EditCompanyView(LoginRequiredMixin, UpdateView):
 
     def dispatch(self, request, *args, **kwargs):
         if self.request.user.is_authenticated():
-            if self.request.user.user_type == 2:
-                if not self.request.user.company_set.all():
-                    return redirect('company:add')
+            if int(self.kwargs['pk']) == request.user.company_set.first().pk:
+                if self.request.user.user_type == 2:
+                    if not self.request.user.company_set.all():
+                        return redirect('company:add')
+            else:
+                raise PermissionDenied
         return super(EditCompanyView, self).dispatch(request, *args, **kwargs)
 
     def get_success_url(self):
