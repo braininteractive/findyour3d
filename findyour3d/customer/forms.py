@@ -1,4 +1,6 @@
 from django import forms
+from django.core.exceptions import ValidationError
+
 from .models import Customer
 
 TIME_CHOICES = (
@@ -18,8 +20,8 @@ class AddCustomerForm(forms.ModelForm):
             'prototype_type': forms.RadioSelect(attrs={'id': 'a_value', 'class': 'md-radiobtn'}),
             'budget': forms.RadioSelect(attrs={'id': 'b_value', 'class': 'md-radiobtn'}),
             'customer_type': forms.RadioSelect(attrs={'id': 'c_value', 'class': 'md-radiobtn'}),
-            'material': forms.Select(attrs={'class': 'form-control edited'}),
-            'process': forms.Select(attrs={'class': 'form-control edited'}),
+            'material': forms.Select(attrs={'class': 'form-control edited', 'style': 'margin-top: 15px'}),
+            'process': forms.Select(attrs={'class': 'form-control edited', 'style': 'margin-top: 15px'}),
             'size': forms.RadioSelect(attrs={'id': 'd_value', 'class': 'md-radiobtn'}),
             'need_assistance': forms.RadioSelect(attrs={'id': 'e_value', 'class': 'md-radiobtn'}),
             'is_time_sensitive': forms.RadioSelect(attrs={'id': 'f_value', 'class': 'md-radiobtn'},
@@ -32,6 +34,18 @@ class AddCustomerForm(forms.ModelForm):
 
             'user': forms.HiddenInput(),
         }
+
+    def clean_shipping(self):
+        if self.cleaned_data['is_time_sensitive']:
+            print(self.cleaned_data['shipping'])
+            if self.cleaned_data['shipping'] is None:
+                raise ValidationError("If you want 'time sensitive' project. You need to choose shipping method")
+
+    # def clean_need_assistance(self):
+    #     if self.cleaned_data['need_assistance']:
+    #         if self.cleaned_data['need_assistance'] == 1:
+    #             if self.cleaned_data['cad_file'] is None:
+    #                 raise ValidationError("Please upload a CAD file")
 
     def __init__(self, *args, **kwargs):
         self.user = None

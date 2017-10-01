@@ -2,7 +2,7 @@
 {% load staticfiles %}
 {% load crispy_forms_tags %}
 
-{% block title %}Add Customer{% endblock title %}
+{% block title %}Project Detail{% endblock title %}
 
 {% block extra_css %}
     <link href="{% static 'forms/js/bootstrap-fileinput/bootstrap-fileinput.css'%}"
@@ -24,7 +24,7 @@
                 <h4>Let us help. Fill out our form below and we will match your project to the nation's top providers based on your criteria.</h4>
                 <h5 class="bold">If you're unfamiliar with some of the terms, see our about page and download our 3D Printing 101 Guide.</h5>
                 <form class="form-horizontal" action="" id="submit_form" method="POST">
-                {% csrf_token %}
+                    {% csrf_token %}
                     <div class="form-wizard">
                         <div class="form-body">
                             <ul class="nav nav-pills nav-justified steps">
@@ -67,7 +67,7 @@
                                     <div class="form-group">
                                         <div class="col-md-10 col-md-offset-2">
                                             <div class="form-group form-md-radios">
-                                                <p>
+                                                <p class="bold">
                                                     {{ form.prototype_type.label|title }}
                                                     <span class="widget-title-color-red">*</span>
                                                 </p>
@@ -90,7 +90,7 @@
                                     <div class="form-group">
                                         <div class="col-md-10 col-md-offset-2">
                                             <div class="form-group form-md-radios">
-                                                <p>
+                                                <p class="bold">
                                                     {{ form.budget.label|title }}
                                                     <span class="widget-title-color-red">*</span>
                                                 </p>
@@ -113,7 +113,7 @@
                                     <div class="form-group">
                                         <div class="col-md-10 col-md-offset-2">
                                             <div class="form-group form-md-radios">
-                                                <p>
+                                                <p class="bold">
                                                     {{ form.customer_type.label|title }}
                                                     <span class="widget-title-color-red">*</span>
                                                 </p>
@@ -137,15 +137,15 @@
                                         <div class="form-group form-md-line-input form-md-floating-label
                             {% if form.material.errors %}has-error{% endif %}">
                                             {{ form.material }}
-                                            <label for="form_control_1">{{ form.material.label|title }}</label>
+                                            <label class="bold" style="color: black" for="form_control_1">{{ form.material.label|title }}</label>
                                         </div>
                                     </div>
 
-                                    <div class="col-md-10 col-md-offset-2">
+                                    <div class="col-md-10 col-md-offset-2" id="processBlock">
                                         <div class="form-group form-md-line-input form-md-floating-label
                             {% if form.process.errors %}has-error{% endif %}">
                                             {{ form.process }}
-                                            <label for="form_control_1">{{ form.process.label|title }}</label>
+                                            <label class="bold" style="color: black" for="form_control_1">{{ form.process.label|title }}</label>
                                         </div>
                                     </div>
 
@@ -155,7 +155,7 @@
                                     <div class="form-group">
                                         <div class="col-md-10 col-md-offset-2">
                                             <div class="form-group form-md-radios">
-                                                <p>
+                                                <p class="bold">
                                                     {{ form.size.label|title }}
                                                     <span class="widget-title-color-red">*</span>
                                                 </p>
@@ -178,7 +178,7 @@
                                     <div class="form-group">
                                         <div class="col-md-10 col-md-offset-2">
                                             <div class="form-group form-md-radios">
-                                                <p>
+                                                <p class="bold">
                                                     {{ form.need_assistance.label|title }}
                                                     <span class="widget-title-color-red">*</span>
                                                 </p>
@@ -198,10 +198,29 @@
                                         </div>
                                     </div>
 
+                                    <div class="form-group" id="cadUploader" style="display: none">
+                                        <div class="col-md-10 col-md-offset-2">
+                                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                <p class="bold">If you have a CAD File for your project, please upload it here.</p>
+                                                <div class="input-group input-large">
+                                                    <div class="form-control uneditable-input input-fixed input-medium" data-trigger="fileinput">
+                                                        <i class="fa fa-file fileinput-exists"></i>&nbsp;
+                                                        <span class="fileinput-filename"> </span>
+                                                    </div>
+                                                    <span class="input-group-addon btn default btn-file">
+                                                            <span class="fileinput-new" style="height: 10px;"> Select file </span>
+                                                            <span class="fileinput-exists"> Change </span>
+                                                            {{ form.cad_file }} </span>
+                                                    <a href="javascript:;" class="input-group-addon btn red fileinput-exists" data-dismiss="fileinput"> Remove </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <div class="form-group">
                                         <div class="col-md-10 col-md-offset-2">
                                             <div class="form-group form-md-radios">
-                                                <p>
+                                                <p class="bold">
                                                     {{ form.is_time_sensitive.label|title }}
                                                     <span class="widget-title-color-red">*</span>
                                                 </p>
@@ -221,23 +240,26 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-group">
+                                    <div class="form-group" id="shipping" style="display:none;">
                                         <div class="col-md-10 col-md-offset-2">
                                             <div class="form-group form-md-radios">
-                                                <p>
+                                                <p class="bold">
                                                     {{ form.shipping.label|title }}
                                                     <span class="widget-title-color-red">*</span>
                                                 </p>
                                                 <div class="md-radio-inline">
                                                     {% for radio in form.shipping %}
-                                                        <div class="md-radio">
-                                                            {{ radio.tag }}
-                                                            <label for="g_value_{{ forloop.counter0 }}">
-                                                                <span></span>
-                                                                <span class="check"></span>
-                                                                <span class="box"></span>
-                                                                {{ radio.choice_label }}</label>
-                                                        </div>
+
+                                                        {% if forloop.counter0 != 0 %}
+                                                            <div class="md-radio">
+                                                                {{ radio.tag }}
+                                                                <label for="g_value_{{ forloop.counter0 }}">
+                                                                    <span></span>
+                                                                    <span class="check"></span>
+                                                                    <span class="box"></span>
+                                                                    {{ radio.choice_label }}</label>
+                                                            </div>
+                                                        {% endif %}
                                                     {% endfor %}
                                                 </div>
                                             </div>
@@ -251,7 +273,7 @@
                                         <div class="form-group form-md-line-input form-md-floating-label
                             {% if form.geo_matters.errors %}has-error{% endif %}">
                                             {{ form.geo_matters }}
-                                            <label for="form_control_1">{{ form.geo_matters.label|title }}</label>
+                                            <label class="bold" for="form_control_1">{{ form.geo_matters.label|title }}</label>
                                         </div>
                                     </div>
 
@@ -259,7 +281,7 @@
                                         <div class="form-group form-md-line-input form-md-floating-label
                             {% if form.zip.errors %}has-error{% endif %}">
                                             {{ form.zip }}
-                                            <label for="form_control_1">{{ form.zip.label|title }}</label>
+                                            <label class="bold" for="form_control_1">{{ form.zip.label|title }}</label>
                                         </div>
                                     </div>
 
@@ -268,22 +290,6 @@
                             {% if form.description.errors %}has-error{% endif %}">
                                             {{ form.description }}
                                             <label for="form_control_1">{{ form.description.label|title }}</label>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-10 col-md-offset-2">
-                                        <div class="fileinput fileinput-new" data-provides="fileinput">
-                                            <div class="input-group input-large">
-                                                <div class="form-control uneditable-input input-fixed input-medium" data-trigger="fileinput">
-                                                    <i class="fa fa-file fileinput-exists"></i>&nbsp;
-                                                    <span class="fileinput-filename"> </span>
-                                                </div>
-                                                <span class="input-group-addon btn default btn-file">
-                                                            <span class="fileinput-new"> Select file </span>
-                                                            <span class="fileinput-exists"> Change </span>
-                                                            {{ form.cad_file }} </span>
-                                                <a href="javascript:;" class="input-group-addon btn red fileinput-exists" data-dismiss="fileinput"> Remove </a>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -324,6 +330,51 @@
     <script src="{% static 'forms/select2/js/select2.full.min.js' %}" type="text/javascript"></script>
     <script src="{% static 'forms/js/app.js' %}" type="text/javascript"></script>
     <script src="{% static 'forms/js/form-wizard.min.js' %}" type="text/javascript"></script>
+
+    <script>
+        var cadUploader = $('#cadUploader');
+        var shipping = $('#shipping');
+
+        $('input:radio[name="need_assistance"]').change(
+            function(){
+                if (this.checked && this.value == '0') {
+                    cadUploader.show();
+                } else {
+                    cadUploader.hide();
+                }
+            });
+        $('input:radio[name="is_time_sensitive"]').change(
+            function(){
+                if (this.checked && this.value == '1') {
+                    shipping.show();
+                } else {
+                    shipping.hide();
+                }
+            });
+
+        var material = $('#id_material');
+        var process = $('#id_process');
+        var processBlock = $('#processBlock');
+
+{#        material.val(null);#}
+{##}
+{#        material.on('change', function () {#}
+{#            if (this.value==''){#}
+{#                processBlock.hide()#}
+{#            }#}
+{#            if (this.value=='15'){#}
+{#                processBlock.show();#}
+{#                $('#id_process option[value="1"]').hide();#}
+{#                $('#id_process option[value="2"]').hide();#}
+{#                $('#id_process option[value="3"]').hide();#}
+{#                $('#id_process option[value="4"]').hide();#}
+{#                $('#id_process option[value="5"]').hide();#}
+{#                $('#id_process option[value="6"]').hide();#}
+{#                $('#id_process option[value="7"]').hide();#}
+{#                $('#id_process option[value="8"]').hide();#}
+{#            }#}
+{#        })#}
+    </script>
 
 {% endblock extra_js %}
 

@@ -7,15 +7,26 @@
 {% block content %}
 
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-9 col-md-offset-1">
             <div class="portlet light bordered">
                 <div class="portlet-title">
-                    <div class="caption font-green">
-                        <i class="fa fa-search font-green"></i>
+                    <div class="caption font-blue">
+                        <i class="fa fa-search font-blue"></i>
                         <span class="caption-subject bold uppercase">
                         {{ request.user.customer_set.first.get_material_display }},
                             {{ request.user.customer_set.first.get_process_display }}</span>
-                        <small>Your filters</small>
+                        <small>
+                            <br>
+                            <span class="small font-grey-salsa">Budget: {{ request.user.customer_set.first.get_budget_display }}</span>
+                            <br>
+                            <span class="small font-grey-salsa">Need Assistance: {{ request.user.customer_set.first.get_need_assistance_display }}</span>
+                            <br>
+                            <span class="small font-grey-salsa">You are: {{ request.user.customer_set.first.get_customer_type_display }}</span>
+                            <br>
+                            <span class="small font-grey-salsa">Size: {{ request.user.customer_set.first.get_size_display }}</span>
+                            <br>
+                            <span class="small font-grey-salsa">Shipping: {{ request.user.customer_set.first.get_shipping_display }}</span>
+                        </small>
                     </div>
                 </div>
 
@@ -58,11 +69,8 @@
                                             <br/> {{ company.address_line_1 }}
                                             <br/> {{ company.address_line_2 }}
                                             <br/>
-                                            <abbr title="Phone">P:</abbr> {{ company.phone }}</address>
                                         <address>
                                             <strong>{{ company.full_name }}</strong>
-                                            <br/>
-                                            <a href="mailto:{{ company.email }}"> {{ company.email }} </a>
                                         </address>
                                     </div>
                                 </div>

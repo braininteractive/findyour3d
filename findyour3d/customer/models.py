@@ -186,8 +186,9 @@ CUSTOMER_TYPE_CHOICES = (
 )
 
 SHIPPING_CHOICES = (
-    (0, 'No, timing is not an issue for me.'),
-    (1, 'Yes, I need this project manufactured as soon as physically possible.')
+    (0, 'International Shipping'),
+    (1, 'Expedited Shipping (2-3 Days)'),
+    (2, 'Next Day Shipping'),
 )
 
 METAL_CHOICES = (
@@ -242,9 +243,9 @@ class Customer(models.Model):
     material = models.IntegerField(choices=MATERIAL_CHOICES, blank=True, null=True)
     process = models.IntegerField(choices=PROCESS_CHOICES, blank=True, null=True)
     size = models.IntegerField(choices=SIZES_CHOICES, default=0)
-    need_assistance = models.IntegerField(choices=ASSISTANCE_CHOICES, default=0)
+    need_assistance = models.IntegerField(choices=ASSISTANCE_CHOICES, default=1)
     is_time_sensitive = models.BooleanField(default=False)
-    shipping = models.IntegerField(choices=SHIPPING_CHOICES, default=0)
+    shipping = models.IntegerField(choices=SHIPPING_CHOICES, blank=True, null=True)
     geo_matters = models.IntegerField(choices=GEO_MATTERS_CHOICES, default=0)
     zip = models.IntegerField(blank=True, null=True)
     description = models.TextField()

@@ -8,6 +8,8 @@ from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 
+from findyour3d.utils.views import custom_redirect
+
 from findyour3d.company.models import Company
 from .models import QuoteRequest
 
@@ -37,7 +39,7 @@ def request_quote(request, pk):
                 except Exception as e:
                     logger.error(str(e))
 
-                return redirect('dashboard:company')
+                return custom_redirect('dashboard:company', quote='requested')
             else:
                 logger.error('already requested')
                 return redirect('dashboard:company')

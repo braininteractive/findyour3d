@@ -6,7 +6,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>{% block title %}{% endblock %} | Find Your 3D</title>
+    <title>{% block title %}{% endblock %} | Your3D</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <meta content=""/>
@@ -29,59 +29,44 @@
 <!-- Page Content -->
 <div>
     <div class="page-header navbar navbar-fixed-top">
-        <!-- BEGIN HEADER INNER -->
         <div class="page-header-inner ">
-            <!-- BEGIN LOGO -->
             <div class="page-logo">
                 <a href="{% url 'home' %}">
-                    <img src="{% static 'img/logo.png' %}" alt="logo" class="logo-default" /> </a>
+                    <img src="{% static 'img/logo.png' %}" alt="logo" class="logo-default" />
+                </a>
                 <div class="menu-toggler sidebar-toggler">
-                    <!-- DOC: Remove the above "hide" to enable the sidebar toggler button on header -->
                 </div>
             </div>
-            <!-- END LOGO -->
-            <!-- BEGIN RESPONSIVE MENU TOGGLER -->
             <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse"> </a>
-            <!-- END RESPONSIVE MENU TOGGLER -->
-            <!-- BEGIN PAGE TOP -->
             <div class="page-top">
-                <!-- BEGIN TOP NAVIGATION MENU -->
                 <div class="top-menu">
                     <ul class="nav navbar-nav pull-right">
                         <li class="separator hide"> </li>
-                        <!-- BEGIN USER LOGIN DROPDOWN -->
-                        <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                         <li class="dropdown dropdown-user dropdown-dark">
-                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"
+                               data-hover="dropdown" data-close-others="true">
                                 <span class="username username-hide-on-mobile">
                                     {% if request.user.is_authenticated %}
                                         {{ request.user.username }}
                                     {% endif %}
                                 </span>
-                                <!-- DOC: Do not remove below empty space(&nbsp;) as its purposely used -->
                                 <img alt="" class="img-circle" src="" /> </a>
                             {% if request.user.is_authenticated %}
                                 <ul class="dropdown-menu dropdown-menu-default">
                                     <li>
-                                        <a href="">
-                                            <i class="icon-user"></i> My Profile </a>
+                                        <a href=""><i class="fa fa-user"></i> My Profile </a>
                                     </li>
                                     <li class="divider"> </li>
                                     <li>
-                                        <a href="{% url 'account_logout' %}">
-                                            <i class="icon-key"></i> Log Out </a>
+                                        <a href="{% url 'account_logout' %}"><i class="fa fa-key"></i> Log Out </a>
                                     </li>
                                 </ul>
                             {% endif %}
                         </li>
-                        <!-- END USER LOGIN DROPDOWN -->
                     </ul>
                 </div>
-                <!-- END TOP NAVIGATION MENU -->
             </div>
-            <!-- END PAGE TOP -->
         </div>
-        <!-- END HEADER INNER -->
     </div>
     <div class="clearfix"> </div>
     <div class="page-container">
@@ -93,18 +78,15 @@
                     </li>
 
                     <li class="nav-item">
-                        <a href="" class="nav-link ">
-                            <span class="title">Dashboard</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
                         <a href="{% url 'customers:edit' request.user.customer_set.first.id %}" class="nav-link ">
-                            <span class="title">Change Material/Process</span>
+                            <i class="fa fa-filter"></i>
+                            <span class="title">Return to Project Details</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="{% url 'customers:advanced' request.user.customer_set.first.id %}" class="nav-link ">
-                            <span class="title">Open Wizard</span>
+                            <i class="fa fa-magic"></i>
+                            <span class="title">Return to Material and Process Recommendation Wizard</span>
                         </a>
                     </li>
 
@@ -113,16 +95,25 @@
         </div>
         <div class="page-content-wrapper">
             <div class="page-content" style="margin-top: -10px;">
-
-                {% block content %}{% endblock %}
-
+                <div class="row requested" style="display: none">
+                    <div class="col-md-9 col-md-offset-1">
+                    <div class="alert alert-success alert-dismissible">
+                        Quote was successfully requested!
+                      <button type="button" class="close" style="text-indent: 1px" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    </div>
+                </div>
+                {% block content %}
+                {% endblock %}
             </div>
         </div>
     </div>
     <!-- BEGIN FOOTER -->
     <div class="page-footer">
         <div class="page-footer-inner"> {% now "Y" %} &copy;
-            <a target="_blank" href="http://findyour3d.herokuapp.com">Find Your 3D</a>
+            <a target="_blank" href="http://findyour3d.herokuapp.com">Your3D</a>
         </div>
         <div class="scroll-to-top">
             <i class="icon-arrow-up"></i>
@@ -150,6 +141,11 @@
             return results[1] || 0;
         }
     };
+
+    var isRequested = $.urlParam('quote');
+    if (isRequested == "requested") {
+        $('.requested').show();
+    }
 
 </script>
 
