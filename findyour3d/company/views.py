@@ -22,7 +22,8 @@ class AddCompanyView(LoginRequiredMixin, CreateView):
         return super(AddCompanyView, self).dispatch(request, *args, **kwargs)
 
     def get_success_url(self):
-        return reverse('company:detail', kwargs={'pk': self.object.id})
+        return reverse('users:plan')
+        # return reverse('company:detail', kwargs={'pk': self.object.id})
 
     def get_object(self):
         return Company.objects.get(user=self.request.user)

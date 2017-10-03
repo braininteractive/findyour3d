@@ -3,6 +3,11 @@
 
 {% block title %} {{ object.display_name }}{% endblock %}
 
+{% block header %}
+    <header class="masthead" style="background-image: url({% static 'img/home-bg.jpg' %}); height: 200px">
+    </header>
+{% endblock %}
+
 {% block content %}
     <div class="col-md-12">
         <div class="portlet light bordered" >

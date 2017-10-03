@@ -61,6 +61,7 @@ LOCAL_APPS = [
     'findyour3d.contact.apps.ContactConfig',
     'findyour3d.dashboard.apps.DashboardConfig',
     'findyour3d.quote.apps.QuoteConfig',
+    'findyour3d.payment.apps.PaymentConfig',
 ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -281,3 +282,5 @@ ADMIN_URL = r'^admin/'
 SENDGRID_API_KEY = env('SENDGRID_API_KEY', default='')
 EMAIL_HOST = 'localhost'
 DEFAULT_FROM_EMAIL = 'FindYour3D.io <no-reply@findyour3d.herokuapp.com>'
+
+STRIPE_API_KEY = env('STRIPE_API_KEY', default='sk_test_BS2t9JImRsscT1vyWNsPYGLK')

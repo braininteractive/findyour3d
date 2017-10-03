@@ -825,3 +825,144 @@ a:focus, .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:acti
 .portlet {
   box-shadow: none;
 }
+
+/* Plan Page */
+#intro_plan {
+  display: table;
+  width: 100%;
+  height: auto;
+  padding: 100px 0;
+  text-align: center;
+  color: #fff;
+  background: url(../img/company-bg.jpg) no-repeat center center fixed;
+  background-color: #000;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
+
+#intro_plan .intro-body {
+  display: table-cell;
+  vertical-align: middle;
+}
+#intro_plan .intro-body H1 {
+  font-size: 76px;
+  font-weight: 900;
+  color: rgba(255,255,255,0.8);
+  /*text-transform: uppercase;*/
+}
+#intro_plan .intro-body .brand-heading {
+  color: white;
+  text-shadow: 0 4px gray;
+}
+
+#intro_plan .intro-body .intro-text {
+  font-size: 18px;
+}
+
+@media(min-width:768px) {
+  #intro_plan {
+    height: 100%;
+    padding: 0;
+  }
+}
+#intro_plan .intro-body .intro-text {
+  font-size: 18px;
+  letter-spacing: 1px;
+  margin-bottom: 100px;
+  color: rgba(255,255,255,0.9);
+}
+
+#intro_plan .btn-default {
+  background: white;
+  color: black;
+  border: 0;
+  border-radius: 0px;
+  padding: 12px 24px;
+  margin: 0 8px;
+  font-size: 18px;
+  text-transform: uppercase;
+}
+#intro_plan .btn-default:hover, #contact .btn-default:focus {
+  color: white;
+  background: transparent;
+  border: 1px white solid;
+}
+#plan {
+  padding: 70px 0;
+  background: white;
+  color: black;
+}
+#plan .about-text {
+  margin-left: 10px;
+}
+#plan H4 {
+  font-size: 20px;
+}
+#plan li {
+  margin-bottom: 3px;
+  list-style: none;
+  padding: 0;
+  font-size: 13px;
+}
+#plan li:before {
+  content: "✓";
+  font-weight: 600;
+  padding-right: 10px;
+  color: gray;
+}
+#plan i.fa {
+  float: left;
+  display: block;
+  margin-right: 15px;
+  color: #fff;
+  font-size: 18px;
+  text-shadow: 0 0 1px #666;
+}
+
+#plan i.fa:hover {
+  text-shadow: 0 0 1px black;
+}
+
+#plan img {
+  margin-top: 20px;
+}
+#plan p {
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+#plan .btn-default {
+  background: black;
+  color: white;
+  border: 0;
+  border-radius: 0px;
+  padding: 12px 24px;
+  margin: 0 8px;
+  font-size: 18px;
+}
+#plan .btn-default:hover, #contact .btn-default:focus {
+  color: black;
+  background: transparent;
+  border: 1px black solid;
+}
+
+#plan h2{
+  margin-top: 40px;
+  font-size: 28px;
+  font-weight:bold;
+  color: black;
+}
+
+#plan table th, tr {
+  text-align: center;
+  color: #0d4461;
+  font-weight: bolder;
+  font-size: 16px;
+}
+#plan table tr {
+  text-align: center;
+  color: #0d4461;
+  font-size: 14px;
+}
+

@@ -52,3 +52,5 @@ redis>=2.10.5
 django-multiselectfield==0.1.8
 sendgrid==3.6.5
 sendgrid-django==3.0.0
+jsonfield==2.0.2
+stripe==1.66.0

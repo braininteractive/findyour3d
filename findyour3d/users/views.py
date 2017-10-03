@@ -1,6 +1,7 @@
+from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseForbidden
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.views.generic import DetailView, ListView, RedirectView, UpdateView
 
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -59,3 +60,12 @@ class UserListView(LoginRequiredMixin, ListView):
     # These next two lines tell the view to index lookups by username
     slug_field = 'username'
     slug_url_kwarg = 'username'
+
+
+@login_required
+def user_plan(request):
+    user = request.user
+    if user.user_type == 2:
+        return render(request, 'company/company_plan.html', {})
+    return redirect('users:redirect')
+

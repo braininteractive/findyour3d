@@ -10,6 +10,11 @@
     <link href="{% static 'forms/select2/css/select2.min.css' %}" rel="stylesheet" type="text/css" />
 {% endblock extra_css %}
 
+{% block header %}
+    <header class="masthead" style="background-image: url({% static 'img/home-bg.jpg' %}); height: 200px">
+    </header>
+{% endblock %}
+
 {% block content %}
 
     <div class="container">
@@ -352,11 +357,12 @@
                 }
             });
 
-        var material = $('#id_material');
-        var process = $('#id_process');
-        var processBlock = $('#processBlock');
-
+{#        var material = $('#id_material');#}
+{#        var process = $('#id_process');#}
+{#        var processBlock = $('#processBlock');#}
+{##}
 {#        material.val(null);#}
+{#        processBlock.hide();#}
 {##}
 {#        material.on('change', function () {#}
 {#            if (this.value==''){#}
@@ -364,14 +370,31 @@
 {#            }#}
 {#            if (this.value=='15'){#}
 {#                processBlock.show();#}
-{#                $('#id_process option[value="1"]').hide();#}
-{#                $('#id_process option[value="2"]').hide();#}
-{#                $('#id_process option[value="3"]').hide();#}
-{#                $('#id_process option[value="4"]').hide();#}
-{#                $('#id_process option[value="5"]').hide();#}
-{#                $('#id_process option[value="6"]').hide();#}
-{#                $('#id_process option[value="7"]').hide();#}
-{#                $('#id_process option[value="8"]').hide();#}
+{#                $('#id_process option[value="1"]').remove();#}
+{#                $('#id_process option[value="2"]').remove();#}
+{#                $('#id_process option[value="3"]').remove();#}
+{#                $('#id_process option[value="4"]').remove();#}
+{#                $('#id_process option[value="5"]').remove();#}
+{#                $('#id_process option[value="6"]').remove();#}
+{#                $('#id_process option[value="7"]').remove();#}
+{#                $('#id_process option[value="8"]').remove();#}
+{#            }#}
+{#            if (this.value=='0'){#}
+{#                processBlock.show();#}
+{#                $('#id_process option[value="1"]').remove();#}
+{#                $('#id_process option[value="2"]').remove();#}
+{#                $('#id_process option[value="3"]').remove();#}
+{#                $('#id_process option[value="4"]').remove();#}
+{#                $('#id_process option[value="5"]').remove();#}
+{#                $('#id_process option[value="6"]').remove();#}
+{#                $('#id_process option[value="7"]').remove();#}
+{#                $('#id_process option[value="8"]').remove();#}
+{#            }#}
+{#            if (this.value=='1'){#}
+{#                process.append($('<option>', {#}
+{#                    value: 1,#}
+{#                    text: 'My option'#}
+{#                }));#}
 {#            }#}
 {#        })#}
     </script>
