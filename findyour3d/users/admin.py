@@ -34,6 +34,7 @@ class MyUserAdmin(AuthUserAdmin):
     add_form = MyUserCreationForm
     fieldsets = (
             ('User Profile', {'fields': ('name', 'user_type')}),
+            ('Payments Info', {'fields': ('payment_active', 'plan', 'paid_at', 'is_cancelled')}),
     ) + AuthUserAdmin.fieldsets
     list_display = ('username', 'name', 'is_superuser')
     search_fields = ['name']

@@ -1,12 +1,16 @@
 import stripe
 import logging
 
+from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
+from django.utils import timezone
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.views.generic import FormView
 from django.conf import settings
 from django.forms.utils import ErrorList
 
+from .models import UserPayment
 from .forms import CreditCardForm
 
 stripe.api_key = settings.STRIPE_API_KEY
@@ -50,18 +54,91 @@ class ChangeCardView(FormView):
             return self.form_invalid(form)
 
     def get_context_data(self, **kwargs):
-        chosen_plan = self.request.GET.get('p')
+        plan = self.request.GET.get('plan')
         user = self.request.user
         context = super(ChangeCardView, self).get_context_data(**kwargs)
-        if chosen_plan:
-            context['plan'] = '1'
-        else:
-            context['plan'] = None
-
-        context['user'] = user
         context['payment_active'] = user.payment_active
         return context
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super(ChangeCardView, self).dispatch(*args, **kwargs)
+
+
+class StartPlan(ChangeCardView):
+    """
+    Adding Card to user and redirects user to specified plan_id with GET parameter `plan`
+    /make/?plan=1 will be processed with make_payment function
+    """
+    def get_success_url(self):
+        url = "{}?plan={}".format(reverse_lazy('payments:make_payment'), self.request.GET.get('p'))
+        return url
+
+
+@login_required
+def make_payment(request):
+
+    first_month_amount = 49.99
+    third_month_amount = 49.99
+    user = request.user
+
+    if request.GET.get('plan'):
+        plan_id = request.GET.get('plan')
+
+        try:
+            plan_id = int(plan_id)
+        except ValueError:
+            plan_id = None
+
+        if plan_id:
+            try:
+                amount = 0
+                if plan_id == 2:  # premium
+                    if user.paid_at:  # not new user
+                        pass
+                    else:  # newbie
+                        amount = first_month_amount
+                elif plan_id == 1:  # starter
+                    user.plan = plan_id
+                    user.save()
+                    UserPayment.objects.create(
+                        user=user,
+                        amount=amount,
+                        description="Enroll to Starter Plan by {}".format(user.email)
+                    )
+                    response = redirect('company:detail', user.company_set.first().pk)
+                    response['Location'] += '?plan=enroll'
+                    return response
+                else:
+                    logger.error('wtf with plan_id')
+
+                if amount > 0:
+                    payment = UserPayment.objects.create(
+                        user=user,
+                        amount=amount,
+                        description="Charge for Premium Plan by {}".format(user.email)
+                    )
+                    charge = stripe.Charge.create(
+                        amount=int(amount * 100),
+                        currency="usd",
+                        customer=user.stripe_id,
+                        description="Charge for Premium Plan by {}".format(user.email)
+                    )
+                    payment.trx_id = charge.id
+                    payment.status = '2'
+                    payment.history = charge
+                    payment.save()
+
+                    user.plan = plan_id
+                    user.paid_at = timezone.now()
+                    user.is_cancelled = False
+                    user.save()
+
+                    response = redirect('company:detail', request.user.company_set.first().pk)
+                    response['Location'] += '?plan=enroll'
+                    return response
+
+            except Exception as e:
+                logger.exception('Exception on StartPlan (add card & pay): {}'.format(e))
+    return redirect('company:detail', request.user.company_set.first().pk)
+    # return render(request, 'payments/make_payment.html', data)

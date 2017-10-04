@@ -33,7 +33,6 @@ class User(AbstractUser):
 
     plan = models.IntegerField(choices=PLAN_CHOICES, blank=True, null=True)
 
-    is_trial = models.BooleanField(default=True)
     is_cancelled = models.BooleanField(default=False)
     paid_at = models.DateTimeField(blank=True, null=True)
 

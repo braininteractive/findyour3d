@@ -38,6 +38,7 @@
                 <div class="col-md-6">
                     <div class="about-text">
                         <h2 class="text-center">Starter</h2>
+                        <h3 class="text-center">Just $1.99 Per Quote</h3>
                         <p>Starter is a great option to try out our service and make sure it fits perfectly with
                             your budget and goals. There's no upfront cost, just simply leave us your payment
                             information and we'll make your profile available to all our users.</p>
@@ -56,6 +57,7 @@
                 <div class="col-md-6">
                     <div class="about-text">
                         <h2 class="text-center">Premium</h2>
+                        <h3 class="text-center">A Simple Monthly Fee</h3>
                         <p>The Premium plan is our flagship offering, providing the best service and the best
                             results. Included is unlimited monthly quotes sent directly to you and unlimited
                             access to our platform. This includes more customized options to set you and your
@@ -92,15 +94,31 @@
                     </table>
                 </div>
             </div>
+            {% if not request.user.payment_active %}
             <div class="row">
                 <div class="col-md-6 text-center">
-{#                    <a href="" class="btn btn-default">CHOOSE STANDARD</a>#}
+                    <a href="{% url 'payments:start' %}?plan=1" class="btn btn-default">
+                        <i class="fa fa-shopping-cart"></i>
+                        CHOOSE STARTER</a>
                 </div>
                 <div class="col-md-6 text-center">
-                    <a href="{% url 'payments:card' %}" class="btn btn-default">
+                    <a href="{% url 'payments:start' %}?plan=2" class="btn btn-default">
                         <i class="fa fa-shopping-cart"></i> CHOOSE PREMIUM</a>
                 </div>
             </div>
+            {% else %}
+            <div class="row">
+                <div class="col-md-6 text-center">
+                    <a href="{% url 'payments:make' %}?plan=1" class="btn btn-default">
+                        <i class="fa fa-shopping-cart"></i>
+                        CHOOSE STARTER</a>
+                </div>
+                <div class="col-md-6 text-center">
+                    <a href="{% url 'payments:make' %}?plan=2" class="btn btn-default">
+                        <i class="fa fa-shopping-cart"></i> CHOOSE PREMIUM</a>
+                </div>
+            </div>
+            {% endif %}
         </div>
     </div>
 

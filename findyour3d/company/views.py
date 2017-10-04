@@ -8,6 +8,8 @@ from django.views.generic import CreateView, DetailView, UpdateView
 from .models import Company
 from .forms import AddCompanyForm
 
+from findyour3d.payment.models import UserPayment
+
 
 class AddCompanyView(LoginRequiredMixin, CreateView):
     model = Company
@@ -61,7 +63,14 @@ class CompanyDetailView(LoginRequiredMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(CompanyDetailView, self).get_context_data(**kwargs)
+        user = self.request.user
         context['company_pk'] = self.object
+        context['user'] = user
+        member_since = None
+        if UserPayment.objects.filter(user=user).exists():
+            member_since = UserPayment.objects.filter(user=user).latest('created_at').created_at
+
+        context['member_since'] = member_since
         return context
 
 

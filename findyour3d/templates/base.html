@@ -24,6 +24,7 @@
         <link href="{% static 'css/project.css' %}" rel="stylesheet">
 
     {% endblock %}
+    {% block extra_css %}{% endblock %}
 
 </head>
 
@@ -46,7 +47,20 @@
     ================================================== -->
 <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
     <script src="{% static 'js/project.js' %}"></script>
+
+        <script>
+        $.urlParam = function(name){
+            var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+            if (results==null){
+                return null;
+            }
+            else{
+                return results[1] || 0;
+            }
+        };
+    </script>
 {% endblock javascript %}
+{% block extra_js %}{% endblock %}
 </body>
 </html>
 

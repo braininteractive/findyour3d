@@ -1,29 +1,67 @@
-{% extends 'base_form.html' %}
-{% load staticfiles %}
+{% extends "base.html" %}
+{% load staticfiles i18n %}
 
-{% block title %} {{ object.display_name }}{% endblock %}
+{% block title %} {{ object.display_name }} {% endblock %}
 
-{% block header %}
-    <header class="masthead" style="background-image: url({% static 'img/home-bg.jpg' %}); height: 200px">
-    </header>
+{% block extra_css %}
+    <link href="{% static 'forms/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'forms/bootstrap-switch/js/bootstrap-switch.min.css' %}">
+    <link href="{% static 'forms/css/components-md.min.css' %}" rel="stylesheet">
+    <link href="{% static 'forms/css/plugins-md.min.css' %}" rel="stylesheet">
+    <link href="{% static 'forms/css/layout.min.css' %}" rel="stylesheet">
+    <link href="{% static 'forms/css/default.min.css' %}" rel="stylesheet">
+    <link href="{% static 'forms/css/custom.css' %}" rel="stylesheet">
+    <link href="{% static 'forms/css/project.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
-    <div class="col-md-12">
-        <div class="portlet light bordered" >
-            <div class="portlet-title">
-                <div class="caption">
-                    <h2 class="font-blue-dark">{{ object.display_name }}</h2>
-                </div>
-                <div class="actions">
-                    <div class="btn-group btn-group-devided">
-                        <a href="{% url 'company:edit' object.pk %}">
+    <div id="preloader">
+        <div id="status"> <img src="{% static 'img/preloader.gif' %}" height="64" width="64" alt=""> </div>
+    </div>
+    <!-- Navigation -->
+    {% include 'pages/includes/menu.html' %}
 
-                            <label class="btn blue btn-sm"><i class="fa fa-pencil"></i> Edit</label></a>
+    <div id="intro_company">
+        <div class="intro-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                        <h1><span class="brand-heading">My Account</span></h1>
                     </div>
                 </div>
             </div>
-            <div class="portlet-body">
+        </div>
+    </div>
+
+    <!-- Plan Section -->
+    <div id="plan">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-12">
+
+                    {% if not user.plan %}
+                        <div class="alert alert-danger text-center">
+                            <b>Your account is not active!</b> <br>
+                            You haven't choose your Subscription. Please
+                            <a class="bold" href="{% url 'users:plan' %}">click here</a> to select a plan.
+                        </div>
+                    {% endif %}
+
+                    <div class="alert alert-success text-center enrolled alert-dismissible" style="display: none">
+                        <b>Thank you!</b> <br>
+                        <span>Your Subscription is now active!</span>
+                        <button type="button" class="close" style="text-indent: 1px" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <h1>
+                        Welcome back, {{ object.display_name }}
+                    </h1>
+                </div>
+
                 <div class="row">
                     <div class="col-md-6">
                         <p>Name: {{ object.name }}</p>
@@ -32,6 +70,7 @@
                         <p>Display name: {{ object.display_name }}</p>
                     </div>
                 </div>
+
                 <div class="row">
                     <div class="col-md-6">
                         <p>Address Line 1: {{ object.address_line_1 }}</p>
@@ -86,59 +125,115 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <hr>
-    <div class="col-md-12">
-        <div class="portlet light bordered" >
-            <div class="portlet-title">
-                <div class="caption">
-                    <h3 class="font-blue-dark">Your Customer Requests</h3>
+            <div class="row edit_company">
+                <div class="col-sm-12">
+                    <div class="text-center">
+                        <a href="{% url 'company:edit' object.pk %}" class="btn btn-default page-scroll">
+                            EDIT YOUR PROFILE</a>
+                    </div>
                 </div>
             </div>
-            <div class="portlet-body">
-                <div class="mt-comments">
-                    {% for quote in user.company_set.first.quoterequest_set.all %}
-                        <div class="mt-comment">
-                            <div class="mt-comment-img">
-                                <img src="{% static 'img/avatar8.jpg' %}" />
-                            </div>
-                            <div class="mt-comment-body">
-                                <div class="mt-comment-info">
-                                    <span class="mt-comment-author">{{ quote.user }}</span>
-                                    <span class="mt-comment-date">{{ quote.created_at }}</span>
-                                </div>
-                                <div class="mt-comment-text">
-                                    <a href="mailto:{{ quote.user.email }}">{{ quote.user.email }}</a> <br>
-                                    Material: {{ quote.user.customer_set.first.get_material_display }} <br>
-                                    Process: {{ quote.user.customer_set.first.get_process_display }} <br>
-                                    Budget: {{ quote.user.customer_set.first.get_budget_display }} <br>
-                                    Need Assistance: {{ quote.user.customer_set.first.get_need_assistance_display }} <br>
-                                    Time Sensitive: {{ quote.user.customer_set.first.is_time_sensitive }} <br>
-                                    Shipping: {{ quote.user.customer_set.first.get_shipping_display }} <br>
-                                    Zip: {{ quote.user.customer_set.first.zip }} <br>
-                                    Description: {{ quote.user.customer_set.first.description }} <br>
-                                </div>
-                                <div class="mt-comment-details">
-                                    <span class="mt-comment-status mt-comment-status-pending">Pending</span>
-                                    <ul class="mt-comment-actions">
-                                        <li>
-                                            {#                                        <a href="#">Quick Edit</a>#}
-                                        </li>
-                                        <li>
-                                            {#                                        <a href="#">View</a>#}
-                                        </li>
-                                        <li>
-                                            {#                                        <a href="#">Delete</a>#}
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+        </div>
+
+        <div class="container company">
+            <div class="row text-center">
+                <div class="col-md-6">
+                    <h2>Your Membership</h2>
+                    {% if user.plan %}
+                        <h5>Membership: {{ request.user.get_plan_display }}</h5>
+                        <h5>Since: {{ member_since }}</h5>
+                    {% endif %}
+                </div>
+                <div class="col-md-6">
+                    <h2>Your Payment Information</h2>
+                    {% if user.payment_active %}
+                        <h5>{{ user.card_type }} xxxx-xxxx-xxxx-{{ user.card_last }}</h5>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="row" style="margin-top: 20px; margin-bottom: 30px;">
+                <div class="col-md-6 text-center">
+                    {% if user.plan == 1 %}
+                        <a href="{% url 'users:plan' %}" class="btn btn-default">UPGRADE NOW</a>
+                    {% elif user.plan == 2 %}
+                        <a href="" class="btn btn-default">CANCEL SUBSCRIPTION</a>
+                    {% else %}
+                        <a href="{% url 'users:plan' %}" class="btn btn-default">CHOOSE A PLAN</a>
+                    {% endif %}
+                </div>
+
+                <div class="col-md-6 text-center">
+                    {% if user.payment_active %}
+                        <a href="{% url 'payments:card' %}" class="btn btn-default">CHANGE PAYMENT OPTIONS</a>
+                    {% else %}
+                        <a href="{% url 'payments:card' %}" class="btn btn-default">ADD PAYMENT METHOD</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="col-md-12">
+                <div class="portlet light bordered" >
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <h3 class="font-blue-dark">Your Customer Requests</h3>
                         </div>
-                    {% endfor %}
+                    </div>
+                    <div class="portlet-body">
+                        <div class="mt-comments">
+                            {% for quote in user.company_set.first.quoterequest_set.all %}
+                                <div class="mt-comment">
+                                    <div class="mt-comment-img">
+                                        <img src="{% static 'img/avatar8.jpg' %}" />
+                                    </div>
+                                    <div class="mt-comment-body">
+                                        <div class="mt-comment-info">
+                                            <span class="mt-comment-author">{{ quote.user }}</span>
+                                            <span class="mt-comment-date">{{ quote.created_at }}</span>
+                                        </div>
+                                        <div class="mt-comment-text">
+                                            <a href="mailto:{{ quote.user.email }}">{{ quote.user.email }}</a> <br>
+                                            Material: {{ quote.user.customer_set.first.get_material_display }} <br>
+                                            Process: {{ quote.user.customer_set.first.get_process_display }} <br>
+                                            Budget: {{ quote.user.customer_set.first.get_budget_display }} <br>
+                                            Need Assistance: {{ quote.user.customer_set.first.get_need_assistance_display }} <br>
+                                            Time Sensitive: {{ quote.user.customer_set.first.is_time_sensitive }} <br>
+                                            Shipping: {{ quote.user.customer_set.first.get_shipping_display }} <br>
+                                            Zip: {{ quote.user.customer_set.first.zip }} <br>
+                                            Description: {{ quote.user.customer_set.first.description }} <br>
+                                        </div>
+                                        <div class="mt-comment-details">
+                                            <span class="mt-comment-status mt-comment-status-pending">Pending</span>
+                                            {#                                            <ul class="mt-comment-actions">#}
+                                            {#                                                <li>#}
+                                            {#                                        <a href="#">Quick Edit</a>#}
+                                            {#                                                </li>#}
+                                            {#                                                <li>#}
+                                            {#                                        <a href="#">View</a>#}
+                                            {#                                                </li>#}
+                                            {#                                                <li>#}
+                                            {#                                        <a href="#">Delete</a>#}
+                                            {#                                                </li>#}
+                                            {#                                            </ul>#}
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
+    {% include 'pages/includes/footer.html' %}
+{% endblock content %}
+{% block extra_js %}
+    <script>
+        var plan = $.urlParam('plan');
+        if (plan == "enroll") {
+            $('.enrolled').show();
+        }
+    </script>
 {% endblock %}
