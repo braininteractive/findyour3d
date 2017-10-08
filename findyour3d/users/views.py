@@ -76,9 +76,12 @@ def user_plan(request):
 def cancel(request):
     if request.method == 'POST':
         user = request.user
-        user.is_cancelled = True
-        user.plan = None
-        user.save()
-        return HttpResponse(json.dumps({"status": True}), content_type="application/json")
+        if user.user_type == 2:
+            user.is_cancelled = True
+            user.plan = None
+            user.save()
+            return HttpResponse(json.dumps({"status": True}), content_type="application/json")
+        else:
+            return HttpResponse(json.dumps({"status": False}), content_type="application/json")
     else:
         return HttpResponse(json.dumps({"status": False}), content_type="application/json")

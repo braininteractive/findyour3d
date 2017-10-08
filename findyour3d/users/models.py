@@ -4,6 +4,8 @@ from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
 
+from findyour3d.utils.views import add_months
+
 
 @python_2_unicode_compatible
 class User(AbstractUser):
@@ -41,3 +43,8 @@ class User(AbstractUser):
 
     def get_absolute_url(self):
         return reverse('users:detail', kwargs={'username': self.username})
+
+    def next_pay_day(self):
+        if self.paid_at:
+            next_pay_day = add_months(self.paid_at, 1)
+            return next_pay_day

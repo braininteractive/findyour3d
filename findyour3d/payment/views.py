@@ -144,3 +144,22 @@ def make_payment(request):
             except Exception as e:
                 logger.exception('Exception on StartPlan (add card & pay): {}'.format(e))
     return redirect('company:detail', request.user.company_set.first().pk)
+
+
+def starter_charge(user):
+    amount = settings.STARTER_FEE
+    payment = UserPayment.objects.create(
+        user=user,
+        amount=amount,
+        description="Quote Request"
+    )
+    charge = stripe.Charge.create(
+        amount=int(amount * 100),
+        currency="usd",
+        customer=user.stripe_id,
+        description="Quote Request by {}".format(user.email)
+    )
+    payment.trx_id = charge.id
+    payment.status = '2'
+    payment.history = charge
+    payment.save()
