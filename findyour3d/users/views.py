@@ -1,6 +1,8 @@
+import json
+
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
-from django.http import HttpResponseForbidden
+from django.http import HttpResponseForbidden, HttpResponse
 from django.shortcuts import redirect, render
 from django.views.generic import DetailView, ListView, RedirectView, UpdateView
 
@@ -69,3 +71,14 @@ def user_plan(request):
         return render(request, 'company/company_plan.html', {})
     return redirect('users:redirect')
 
+
+@login_required
+def cancel(request):
+    if request.method == 'POST':
+        user = request.user
+        user.is_cancelled = True
+        user.plan = None
+        user.save()
+        return HttpResponse(json.dumps({"status": True}), content_type="application/json")
+    else:
+        return HttpResponse(json.dumps({"status": False}), content_type="application/json")

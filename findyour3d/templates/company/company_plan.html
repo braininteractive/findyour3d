@@ -95,29 +95,41 @@
                 </div>
             </div>
             {% if not request.user.payment_active %}
-            <div class="row">
-                <div class="col-md-6 text-center">
-                    <a href="{% url 'payments:start' %}?plan=1" class="btn btn-default">
-                        <i class="fa fa-shopping-cart"></i>
-                        CHOOSE STARTER</a>
+                <div class="row">
+                    <div class="col-md-6 text-center">
+                        <a href="{% url 'payments:start' %}?plan=1" class="btn btn-default">
+                            <i class="fa fa-shopping-cart"></i>
+                            CHOOSE STARTER</a>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <a href="{% url 'payments:start' %}?plan=2" class="btn btn-default">
+                            <i class="fa fa-shopping-cart"></i> CHOOSE PREMIUM</a>
+                    </div>
                 </div>
-                <div class="col-md-6 text-center">
-                    <a href="{% url 'payments:start' %}?plan=2" class="btn btn-default">
-                        <i class="fa fa-shopping-cart"></i> CHOOSE PREMIUM</a>
-                </div>
-            </div>
             {% else %}
-            <div class="row">
-                <div class="col-md-6 text-center">
-                    <a href="{% url 'payments:make' %}?plan=1" class="btn btn-default">
-                        <i class="fa fa-shopping-cart"></i>
-                        CHOOSE STARTER</a>
+                <div class="row">
+                    <div class="col-md-6 text-center">
+                        {% if not request.user.plan == 1 %}
+                            <a href="{% url 'payments:make' %}?plan=1" class="btn btn-default">
+                                <i class="fa fa-shopping-cart"></i>
+                                CHOOSE STARTER</a>
+                        {% else %}
+                            <a href="" class="btn btn-default" disabled>
+                                <i class="fa fa-check"></i>
+                                YOUR CURRENT PLAN</a>
+                        {% endif %}
+                    </div>
+                    <div class="col-md-6 text-center">
+                        {% if not request.user.plan == 2 %}
+                        <a href="{% url 'payments:make' %}?plan=2" class="btn btn-default">
+                            <i class="fa fa-shopping-cart"></i> CHOOSE PREMIUM</a>
+                        {% else %}
+                            <a href="" class="btn btn-default" disabled>
+                                <i class="fa fa-check"></i>
+                                YOUR CURRENT PLAN</a>
+                        {% endif %}
+                    </div>
                 </div>
-                <div class="col-md-6 text-center">
-                    <a href="{% url 'payments:make' %}?plan=2" class="btn btn-default">
-                        <i class="fa fa-shopping-cart"></i> CHOOSE PREMIUM</a>
-                </div>
-            </div>
             {% endif %}
         </div>
     </div>

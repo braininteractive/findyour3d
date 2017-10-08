@@ -79,7 +79,7 @@ class StartPlan(ChangeCardView):
 def make_payment(request):
 
     first_month_amount = 49.99
-    third_month_amount = 49.99
+    third_month_amount = 4.99
     user = request.user
 
     if request.GET.get('plan'):
@@ -94,13 +94,15 @@ def make_payment(request):
             try:
                 amount = 0
                 if plan_id == 2:  # premium
+                    amount = first_month_amount  # fixme
                     if user.paid_at:  # not new user
-                        pass
+                        pass  #fixme
                     else:  # newbie
                         amount = first_month_amount
                 elif plan_id == 1:  # starter
                     user.plan = plan_id
                     user.save()
+                    user.is_cancelled = False
                     UserPayment.objects.create(
                         user=user,
                         amount=amount,
@@ -110,7 +112,8 @@ def make_payment(request):
                     response['Location'] += '?plan=enroll'
                     return response
                 else:
-                    logger.error('wtf with plan_id')
+                    logger.debug('wtf with plan_id')
+                    return redirect('company:detail', user.company_set.first().pk)
 
                 if amount > 0:
                     payment = UserPayment.objects.create(
@@ -141,4 +144,3 @@ def make_payment(request):
             except Exception as e:
                 logger.exception('Exception on StartPlan (add card & pay): {}'.format(e))
     return redirect('company:detail', request.user.company_set.first().pk)
-    # return render(request, 'payments/make_payment.html', data)

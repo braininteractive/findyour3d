@@ -45,7 +45,7 @@
                         <div class="alert alert-danger text-center">
                             <b>Your account is not active!</b> <br>
                             You haven't choose your Subscription. Please
-                            <a class="bold" href="{% url 'users:plan' %}">click here</a> to select a plan.
+                            <a class="bold" href="{% url 'users:plan' %}#plan">click here</a> to select a plan.
                         </div>
                     {% endif %}
 
@@ -154,11 +154,11 @@
             <div class="row" style="margin-top: 20px; margin-bottom: 30px;">
                 <div class="col-md-6 text-center">
                     {% if user.plan == 1 %}
-                        <a href="{% url 'users:plan' %}" class="btn btn-default">UPGRADE NOW</a>
+                        <a href="{% url 'users:plan' %}#plan" class="btn btn-default">UPGRADE NOW</a>
                     {% elif user.plan == 2 %}
-                        <a href="" class="btn btn-default">CANCEL SUBSCRIPTION</a>
+                        <a href="" class="btn btn-default" id="openWarningModal" data-target="#CancelPlan" data-toggle="modal">CANCEL SUBSCRIPTION</a>
                     {% else %}
-                        <a href="{% url 'users:plan' %}" class="btn btn-default">CHOOSE A PLAN</a>
+                        <a href="{% url 'users:plan' %}#plan" class="btn btn-default">CHOOSE A PLAN</a>
                     {% endif %}
                 </div>
 
@@ -227,6 +227,37 @@
         </div>
     </div>
 
+    <div class="modal fade modal-fade-in-scale-up" id="CancelPlan" aria-hidden="true"
+         aria-labelledby="exampleModalTitle" role="dialog" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title">Are you sure?</h4>
+                </div>
+                <div class="modal-body">
+                    {% if request.user.is_authenticated %}
+                        <div class="alert alert-danger">
+                            You current plan will be canceled. You won't be able to use ChatBot and all the other features.
+                        </div>
+                    {% endif %}
+                </div>
+
+                <form action="{% url 'users:cancel' %}" method="post" id="cancelForm">
+                    {% csrf_token %}
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default"  data-dismiss="modal">
+                            No, I don't want to cancel</button>
+                        <button type="button" id="cancelFormSubmit" class="btn btn-danger margin-0">
+                            Yes, cancel my subscription</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     {% include 'pages/includes/footer.html' %}
 {% endblock content %}
 {% block extra_js %}
@@ -235,5 +266,30 @@
         if (plan == "enroll") {
             $('.enrolled').show();
         }
+    function initForm(formId, submitId) {
+        var form = $('#' + formId);
+        var submitButton = $('#' + submitId);
+
+        submitButton.on('click', function () {
+            submitButton.css('opacity', 0.8).prop('disabled', true);
+
+            $.ajax({
+                type: form.attr('method'),
+                url: form.attr('action'),
+                data: form.serialize(),
+                success: function (data) {
+                    if (data.status) {
+                        location.reload();
+                    } else {
+                        $('#error_msg').fadeIn();
+                        $('#msg').text(data.msg);
+                    }
+                }
+            });
+        });
+    }
+
+    initForm('cancelForm', 'cancelFormSubmit');
+
     </script>
 {% endblock %}
