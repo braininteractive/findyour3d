@@ -285,5 +285,5 @@ DEFAULT_FROM_EMAIL = 'FindYour3D.io <no-reply@findyour3d.herokuapp.com>'
 
 STRIPE_API_KEY = env('STRIPE_API_KEY', default='sk_test_BS2t9JImRsscT1vyWNsPYGLK')
 
-STARTER_FEE = env('STRIPE_API_KEY', default=1.99)
-PREMIUM_FEE = env('STRIPE_API_KEY', default=49.99)
+STARTER_FEE = env('STARTER_FEE', default=1.99)
+PREMIUM_FEE = env('PREMIUM_FEE', default=49.99)
