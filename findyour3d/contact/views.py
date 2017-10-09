@@ -4,16 +4,16 @@ from .forms import ContactForm
 
 
 def contact(request):
+    context = {}
+    feedback_form = ContactForm(request.POST)
+    context["form"] = feedback_form
     if request.method == 'POST':
-        context = {}
-        feedback_form = ContactForm(request.POST)
-        context["form"] = feedback_form
         if feedback_form.is_valid():
             feedback_form.save()
             response = redirect('home')
             response['Location'] += '?message_sent=success'
             return response
         else:
-            return render(request, 'pages/home.html', context)
+            return render(request, 'pages/about.html', context)
     else:
-        return render(request, 'pages/home.html')
+        return render(request, 'pages/about.html', context)

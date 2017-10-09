@@ -112,6 +112,7 @@
             {#                <div class="clearfix"></div>#}
             {#            </div>#}
             <div class="col-md-8 col-md-offset-2">
+
                 <h3>Get In Touch With Us!</h3>
                 <hr>
                 <p>More questions about our service or what we provide? We love to hear feedback from our users!
@@ -146,9 +147,7 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input type="text" id="email" class="form-control"
-                                       placeholder="How can we help you" name="subject">
-                                <p class="help-block text-danger">{{ form }}</p>
+                                {{ form.subject }}
                             </div>
                         </div>
                     </div>

@@ -5,9 +5,12 @@ from django.contrib import admin
 from django.views.generic import TemplateView
 from django.views import defaults as default_views
 
+from findyour3d.contact.views import contact
+
 urlpatterns = [
                   url(r'^$', TemplateView.as_view(template_name='pages/home.html'), name='home'),
-                  url(r'^about/$', TemplateView.as_view(template_name='pages/about.html'), name='about'),
+                  # url(r'^about/$', TemplateView.as_view(template_name='pages/about.html'), name='about'),
+                  url(r'^about/$', contact, name='about'),
                   url(r'^business/$', TemplateView.as_view(template_name='pages/business.html'), name='business'),
 
                   # Django Admin, use {% url 'admin:index' %}

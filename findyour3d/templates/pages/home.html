@@ -12,8 +12,19 @@
 
     <!-- Header -->
     <div id="intro">
+
         <div class="intro-body">
             <div class="container">
+                <div class="row" id="message_sent" style="display: none">
+                    <div class="col-md-9 col-md-offset-1">
+                        <div class="alert alert-success alert-dismissible">
+                            Your message was sent! We will be in touch with you soon.
+                            <button type="button" class="close" style="text-indent: 1px" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-md-10 col-md-offset-1">
                         <h1><span class="brand-heading">Your3D</span></h1>
@@ -97,3 +108,12 @@
 
     {% include 'pages/includes/footer.html' %}
 {% endblock content %}
+{% block extra_js %}
+    <script>
+        console.log('aa');
+        var message_status = $.urlParam('message_sent');
+        if (message_status == "success") {
+            $('#message_sent').show();
+        }
+    </script>
+{% endblock extra_js %}
