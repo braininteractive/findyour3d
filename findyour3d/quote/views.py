@@ -24,28 +24,32 @@ def request_quote(request, pk):
         try:
             company = Company.objects.get(id=pk)
             company_owner = company.user
-            company_plan = company.user.plan
+            company_plan = company_owner.plan
+            print(company_plan)
             user = request.user
-            if not company_plan:
+            if company_plan is not None:
                 if not QuoteRequest.objects.filter(company=company, user=request.user).exists():
-                    if company_plan == 1:
-                        starter_charge(company_owner)
                     quote = QuoteRequest.objects.create(user=request.user, company=company)
-    
+
                     subject, from_email, to = 'Request Confirmation', settings.DEFAULT_FROM_EMAIL, company.email
-    
+
                     html_content = render_to_string('email/customer_request.html',
                                                     {'user': user, 'company': company, 'quote': quote})
                     text_content = strip_tags(html_content)
-    
+
                     msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
                     msg.attach_alternative(html_content, "text/html")
+
                     try:
                         msg.send()
                     except Exception as e:
                         logger.error(str(e))
-    
-                    return custom_redirect('dashboard:company', quote='requested')
+
+                    if company_plan == 1:
+                        starter_charge(company_owner)
+                        return custom_redirect('dashboard:company', quote='requested')
+                    else:
+                        return custom_redirect('dashboard:company', quote='requested')
                 else:
                     logger.error('already requested')
                     return redirect('dashboard:company')
