@@ -4,116 +4,121 @@
 {% block title %} Home {% endblock %}
 
 {% block content %}
-    <div id="preloader">
-        <div id="status"> <img src="{% static 'img/preloader.gif' %}" height="64" width="64" alt=""> </div>
-    </div>
-    <!-- Navigation -->
-    {% include 'pages/includes/menu.html' %}
+  <div id="preloader">
+    <div id="status"> <img src="{% static 'img/preloader.gif' %}" height="64" width="64" alt=""> </div>
+  </div>
+  <!-- Navigation -->
+  {% include 'pages/includes/menu.html' %}
 
-    <!-- Header -->
-    <div id="intro">
+  <!-- Header -->
+  <div id="intro">
 
-        <div class="intro-body">
-            <div class="container">
-                <div class="row" id="message_sent" style="display: none">
-                    <div class="col-md-9 col-md-offset-1">
-                        <div class="alert alert-success alert-dismissible">
-                            Your message was sent! We will be in touch with you soon.
-                            <button type="button" class="close" style="text-indent: 1px" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-10 col-md-offset-1">
-                        <h1><span class="brand-heading">Your3D</span></h1>
-                        <p class="intro-text">Tired of searching for the perfect fit for your project?
-                            Let us help. We compare the top 3D Printing Services to find you the best fit for you.
-                        </p>
-                        <a href="#testimonials" class="btn btn-default page-scroll">BRING YOUR PROJECT TO LIFE</a>
-                    </div>
-                </div>
+    <div class="intro-body">
+      <div class="container">
+        <div class="row" id="message_sent" style="display: none">
+          <div class="col-md-9 col-md-offset-1">
+            <div class="alert alert-success alert-dismissible">
+              Your message was sent! We will be in touch with you soon.
+              <button type="button" class="close" style="text-indent: 1px" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
+          </div>
         </div>
-    </div>
-
-    <!-- About Section -->
-    <div id="about">
-        <div class="container">
-            <div class="section-title text-center center">
-                <p>*Space for logo*</p>
-            </div>
+        <div class="row">
+          <div class="col-md-10 col-md-offset-1">
+            <h1><span class="brand-heading">Your3D</span></h1>
+            <p class="intro-text">
+              <b>Tired of searching for the perfect fit for your project?
+                Let us help. We compare the top 3D Printing Services to find you the best fit for you.</b>
+            </p>
+            <a href="#testimonials" class="btn btn-default page-scroll">BRING YOUR PROJECT TO LIFE</a>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 
-    <!-- Testimonials Section -->
-    <div id="testimonials" class="text-center">
-        <div class="container">
-            <div class="section-title center">
-                <h1 style="color: black">Let us handle the heavy lifting.</h1>
-                <h3>Stop sifting through hundreds of providers. Let us find the perfect match for you and your project.
-                    ​Our process is simple, fast, and best of all free.</h3>
-                <hr>
-            </div>
-            <div class="row">
-                <div class="col-md-10 col-md-offset-1">
-                    <div class="row testimonials">
-                        <div class="col-sm-4">
-                            <blockquote>
-                                <h3>Enter Your Project Specs</h3>
-                                <div class="clients-name">
-                                    <p>
-                                        Fill out our simple form with your all that your project needs.
-                                        Specifications, budget, size, materials, and others.
-                                    </p>
-                                </div>
-                            </blockquote>
-                        </div>
-                        <div class="col-sm-4">
-                            <blockquote>
-                                <h3>We Find Your Best Match</h3>
-                                <div class="clients-name">
-                                    <p>
-                                        Given your project's needs and objectives we search and identify the
-                                        services with the best match to provide you with the perfect service for
-                                        the perfect price.
-                                    </p>
-                                </div>
-                            </blockquote>
-                        </div>
-                        <div class="col-sm-4">
-                            <blockquote>
-                                <h3>Request a Quote Instantly.</h3>
-                                <div class="clients-name">
-                                    <p>
-                                        We'll display the best services from the top providers in the country.
-                                        Simply browse their profiles and submit your information for a quote
-                                        instantly.
-                                    </p>
-                                </div>
-                            </blockquote>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-10 col-md-offset-1">
-                    <a href="{% url 'account_signup' %}?type=business"
-                       class="btn btn-default page-scroll">GET STARTED NOW</a>
-                </div>
-            </div>
+  <!-- About Section -->
+  <div id="about">
+    <div class="container">
+      <div class="section-title text-center center">
+        {#        <p>*Space for logo*</p>#}
+        <div class="row">
+          <div class="col-md-10 col-md-offset-2">
+            <img class="img-responsive" src="{% static 'img/logo-main.png' %}" alt="">
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 
-    {% include 'pages/includes/footer.html' %}
+  <!-- Testimonials Section -->
+  <div id="testimonials" class="text-center">
+    <div class="container">
+      <div class="section-title center">
+        <h1 style="color: black">Let us handle the heavy lifting.</h1>
+        <h3>Stop sifting through hundreds of providers. Let us find the perfect match for you and your project.
+          ​Our process is simple, fast, and best of all free.</h3>
+        <hr>
+      </div>
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <div class="row testimonials">
+            <div class="col-sm-4">
+              <blockquote>
+                <h3>Enter Your Project Specs</h3>
+                <div class="clients-name">
+                  <p>
+                    Fill out our simple form with your all that your project needs.
+                    Specifications, budget, size, materials, and others.
+                  </p>
+                </div>
+              </blockquote>
+            </div>
+            <div class="col-sm-4">
+              <blockquote>
+                <h3>We Find Your Best Match</h3>
+                <div class="clients-name">
+                  <p>
+                    Given your project's needs and objectives we search and identify the
+                    services with the best match to provide you with the perfect service for
+                    the perfect price.
+                  </p>
+                </div>
+              </blockquote>
+            </div>
+            <div class="col-sm-4">
+              <blockquote>
+                <h3>Request a Quote Instantly.</h3>
+                <div class="clients-name">
+                  <p>
+                    We'll display the best services from the top providers in the country.
+                    Simply browse their profiles and submit your information for a quote
+                    instantly.
+                  </p>
+                </div>
+              </blockquote>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <a href="{% url 'account_signup' %}?type=business"
+             class="btn btn-default page-scroll">GET STARTED NOW</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% include 'pages/includes/footer.html' %}
 {% endblock content %}
 {% block extra_js %}
-    <script>
-        console.log('aa');
-        var message_status = $.urlParam('message_sent');
-        if (message_status == "success") {
-            $('#message_sent').show();
-        }
-    </script>
+  <script>
+      var message_status = $.urlParam('message_sent');
+      if (message_status == "success") {
+          $('#message_sent').show();
+      }
+  </script>
 {% endblock extra_js %}

@@ -243,6 +243,11 @@ hr {
   padding: 140px 0;
   background: #f6f6f6;
 }
+
+#about h2 {
+  margin-bottom: 25px;
+}
+
 #about .about-text {
   margin-left: 10px;
 }
@@ -1048,4 +1053,58 @@ a:focus, .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:acti
   color: black;
   background: transparent;
   border: 1px black solid;
+}
+
+/* Pricing Section */
+#pricing {
+  padding: 140px 0;
+  background: url(../img/pricing-bg.jpg);
+  background-size: cover;
+  background-attachment: fixed;
+}
+#pricing .service {
+  padding: 20px 10px;
+}
+#pricing h2 {
+  font-size: 25px;
+  color: black;
+}
+#pricing h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: black;
+}
+#pricing p {
+  color: black;
+}
+.space {
+  margin-top: 40px;
+}
+#pricing i.fa {
+  font-size: 36px;
+  color: #E75926;
+  transition: all 0.5s;
+}
+#pricing .btn-default {
+  text-transform: uppercase;
+  background: black;
+  color: white;
+  border: 0;
+  border-radius: 0px;
+  padding: 12px 24px;
+  margin: 0 8px;
+  font-size: 18px;
+}
+#pricing .btn-default:hover, #contact .btn-default:focus {
+  color: black;
+  background: transparent;
+  border: 1px black solid;
+}
+
+.mt-15 {
+  margin-top: 15px;
+}
+
+.mb-15 {
+  margin-bottom: 15px;
 }

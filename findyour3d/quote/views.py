@@ -26,27 +26,31 @@ def request_quote(request, pk):
             company_owner = company.user
             company_plan = company.user.plan
             user = request.user
-            if not QuoteRequest.objects.filter(company=company, user=request.user).exists():
-                if company_plan == 1:
-                    starter_charge(company_owner)
-                quote = QuoteRequest.objects.create(user=request.user, company=company)
-
-                subject, from_email, to = 'Request Confirmation', settings.DEFAULT_FROM_EMAIL, company.email
-
-                html_content = render_to_string('email/customer_request.html',
-                                                {'user': user, 'company': company, 'quote': quote})
-                text_content = strip_tags(html_content)
-
-                msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
-                msg.attach_alternative(html_content, "text/html")
-                try:
-                    msg.send()
-                except Exception as e:
-                    logger.error(str(e))
-
-                return custom_redirect('dashboard:company', quote='requested')
+            if not company_plan:
+                if not QuoteRequest.objects.filter(company=company, user=request.user).exists():
+                    if company_plan == 1:
+                        starter_charge(company_owner)
+                    quote = QuoteRequest.objects.create(user=request.user, company=company)
+    
+                    subject, from_email, to = 'Request Confirmation', settings.DEFAULT_FROM_EMAIL, company.email
+    
+                    html_content = render_to_string('email/customer_request.html',
+                                                    {'user': user, 'company': company, 'quote': quote})
+                    text_content = strip_tags(html_content)
+    
+                    msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
+                    msg.attach_alternative(html_content, "text/html")
+                    try:
+                        msg.send()
+                    except Exception as e:
+                        logger.error(str(e))
+    
+                    return custom_redirect('dashboard:company', quote='requested')
+                else:
+                    logger.error('already requested')
+                    return redirect('dashboard:company')
             else:
-                logger.error('already requested')
+                logger.error('company without plan')
                 return redirect('dashboard:company')
         except Company.DoesNotExist:
             logger.error('no company found')

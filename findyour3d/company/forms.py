@@ -39,3 +39,5 @@ class AddCompanyForm(forms.ModelForm):
 
         super(AddCompanyForm, self).__init__(*args, **kwargs)
         self.fields['user'].initial = self.user
+        self.fields['ideal_customer'].label = 'What is your company’s ideal customer that we should send to you?'
+        self.fields['budget'].label = 'What is your ideal order cost/budget?'
