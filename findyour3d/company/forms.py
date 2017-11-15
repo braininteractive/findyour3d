@@ -8,7 +8,7 @@ class AddCompanyForm(forms.ModelForm):
         model = Company
         fields = ['name', 'display_name', 'address_line_1', 'address_line_2',
                   'full_name', 'email', 'phone', 'website', 'ideal_customer',
-                  'is_cad_assistance', 'budget', 'basic_material', 'consideration',
+                  'is_cad_assistance', 'budget', 'basic_material',
                   'printing_options', 'material', 'top_printing_processes',
                   'description', 'user']
 
@@ -23,10 +23,10 @@ class AddCompanyForm(forms.ModelForm):
             'website': forms.TextInput(attrs={'class': 'form-control'}),
             'ideal_customer': forms.Select(attrs={'class': 'form-control edited'}),
             'budget': forms.Select(attrs={'class': 'form-control edited'}),
-            'basic_material': forms.Select(attrs={'class': 'form-control edited'}),
-            'consideration': forms.Select(attrs={'class': 'form-control edited'}),
+            # 'basic_material': forms.Select(attrs={'class': 'form-control edited'}),
+            # 'consideration': forms.Select(attrs={'class': 'form-control edited'}),
             'printing_options': forms.SelectMultiple(attrs={'class': 'form-control edited'}),
-            'material': forms.Select(attrs={'class': 'form-control edited'}),
+            'material': forms.SelectMultiple(attrs={'class': 'form-control edited'}),
             'top_printing_processes': forms.SelectMultiple(attrs={'class': 'form-control edited'}),
             'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
             'user': forms.HiddenInput(),
@@ -41,3 +41,4 @@ class AddCompanyForm(forms.ModelForm):
         self.fields['user'].initial = self.user
         self.fields['ideal_customer'].label = 'What is your company’s ideal customer that we should send to you?'
         self.fields['budget'].label = 'What is your ideal order cost/budget?'
+        self.fields['printing_options'].label = 'Printing Options Available'
