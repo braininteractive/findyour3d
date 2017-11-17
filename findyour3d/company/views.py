@@ -77,8 +77,9 @@ class CompanyDetailView(LoginRequiredMixin, DetailView):
         context['company_pk'] = self.object
         context['user'] = user
         context['is_owner'] = False
-        if self.object.id == user.company_set.first().pk:
-            context['is_owner'] = True
+        if user.user_type == 2:
+            if self.object.id == user.company_set.first().pk:
+                context['is_owner'] = True
         member_since = None
         if UserPayment.objects.filter(user=user).exists():
             member_since = UserPayment.objects.filter(user=user).latest('created_at').created_at
