@@ -28,6 +28,8 @@ urlpatterns = [
                   url(r'^quote/', include('findyour3d.quote.urls', namespace='quote')),
                   url(r'^payments/', include('findyour3d.payment.urls', namespace='payments')),
 
+                  url(r'^ratings/', include('star_ratings.urls', namespace='ratings', app_name='ratings')),
+
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:

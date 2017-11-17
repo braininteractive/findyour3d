@@ -1162,3 +1162,20 @@ a:focus, .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:acti
 .mb-15 {
   margin-bottom: 15px;
 }
+
+.star-ratings-rating-background li::before {
+    content: "" !important;
+    font-weight: 600;
+    padding-right: 10px;
+    color: gray;
+}
+.company_rating li:before {
+    content: "" !important;
+}
+
+.company_rating {
+  display: block;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 12px;
+}

@@ -39,7 +39,7 @@
                     {# <img class="item-pic rounded" src="{% static 'img/avatar80_1.jpg' %}">#}
                     <a href="{% url 'company:detail' company.pk %}"
                        class="item-name primary-link">{{ company.display_name }}</a>
-{#                    <span class="item-label">{{ company.full_name }}</span>#}
+                    <span class="item-label">{{ company.get_rating_html_snippet|safe }}</span>
                   </div>
 
                   <span class="item-status">

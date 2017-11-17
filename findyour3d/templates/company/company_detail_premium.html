@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load staticfiles i18n %}
+{% load ratings %}
 
 {% block title %} Premium Company {{ object.display_name }} {% endblock %}
 
@@ -74,7 +75,8 @@
 
         <div class="row">
           <div class="col-md-10 ml-auto margin-bottom-10">
-            <b>Company Rating:</b> ... <br>
+            <b>Company Rating:</b>
+            <div class="company_rating">{% ratings object %}</div>
           </div>
         </div>
 
@@ -94,12 +96,14 @@
           <div class="col-md-10 ml-auto margin-bottom-10">
             <b>Special Offers:</b>
             <ul>
-            {% for offer in object.specialoffer_set.all %}
-              <li>{{ offer.text }}</li>
-            {% endfor %}
+              {% for offer in object.specialoffer_set.all %}
+                <li>{{ offer.text }}</li>
+              {% endfor %}
             </ul>
 
-          <button class="btn btn-outline btn-default">Add Special Offer</button>
+            {% if is_owner %}
+              <button class="btn btn-outline btn-default">Add Special Offer</button>
+            {% endif %}
 
           </div>
         </div>

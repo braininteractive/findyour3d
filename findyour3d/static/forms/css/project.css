@@ -13,3 +13,8 @@ body, html {
 .primary-link:hover {
   color: gray;
 }
+
+
+.yellow-600 {
+  color: #f2a654 !important;
+}

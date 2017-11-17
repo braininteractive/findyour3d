@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load staticfiles i18n %}
+{% load ratings %}
 
 {% block title %} {{ object.display_name }} {% endblock %}
 
@@ -39,7 +40,7 @@
   <div class="container">
     <div class="row">
 
-      <div class="col-md-10 col-md-offset-1" style="min-height: 250px">
+      <div class="col-md-10 ml-auto">
 
         {% if is_owner %}
           {% if not user.plan %}
@@ -72,6 +73,7 @@
       <div class="row">
         <div class="col-md-6">
           <p><b>Company Rating:</b></p>
+          <div class="company_rating">{% ratings object %}</div>
         </div>
         <div class="col-md-6">
           <p><b>Services:</b> {{ object.top_printing_processes }}</p>

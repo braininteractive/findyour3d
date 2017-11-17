@@ -2,6 +2,8 @@ from django.db import models
 from django.conf import settings
 
 from multiselectfield import MultiSelectField
+from django.contrib.contenttypes.fields import GenericRelation
+from star_ratings.models import Rating
 
 from findyour3d.customer.models import (BASIC_MATERIAL_CHOICES, BUDGET_CHOICES, CONSIDERATION_CHOICES,
                                         MATERIAL_CHOICES, PROCESS_CHOICES)
@@ -42,6 +44,7 @@ class Company(models.Model):
     material = MultiSelectField(choices=MATERIAL_CHOICES, blank=True, null=True)
     top_printing_processes = MultiSelectField(choices=PROCESS_CHOICES, max_choices=3)
     description = models.TextField()
+    ratings = GenericRelation(Rating)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -49,6 +52,24 @@ class Company(models.Model):
 
     class Meta:
         verbose_name_plural = 'Companies'
+
+    def get_rating(self):
+        return int(self.ratings.ratings_for_instance(self).average)
+
+    def get_rating_html_snippet(self):
+        rating = self.get_rating()
+        gold_star = '<i class="fa fa-star yellow-600"></i>'
+        gray_star = gold_star.replace(' yellow-600', '')
+        html = gray_star * 5
+        if rating:
+            if rating < 5:
+                additional_stars = 5 - rating
+                html = (gold_star * rating) + (additional_stars * gray_star)
+            elif rating == 5:
+                html = rating * gold_star
+        else:
+            html = gray_star * 5
+        return html
 
 
 class SpecialOffer(models.Model):
