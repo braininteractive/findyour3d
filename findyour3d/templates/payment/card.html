@@ -6,104 +6,102 @@
 
 
 {% block content %}
-    <div id="preloader">
-        <div id="status"> <img src="{% static 'img/preloader.gif' %}" height="64" width="64" alt=""> </div>
-    </div>
-    <!-- Navigation -->
-    {% include 'pages/includes/menu.html' %}
+  <div id="preloader">
+    <div id="status"> <img src="{% static 'img/preloader.gif' %}" height="64" width="64" alt=""> </div>
+  </div>
+  <!-- Navigation -->
+  {% include 'pages/includes/menu.html' %}
 
-    <div id="intro_company">
-        <div class="intro-body">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-10 col-md-offset-1">
-                        <h1><span class="brand-heading">Your Payment Setting</span></h1>
-                    </div>
-                </div>
-            </div>
+  <div id="intro_company">
+    <div class="intro-body">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-10 col-md-offset-1">
+            <h1><span class="brand-heading">Your Payment Setting</span></h1>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 
-    <!-- Plan Section -->
-    <div id="plan">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-                    <div class="page-content container-fluid">
-                        <div class="panel" id="exampleWizardFormContainer">
-                            <div class="panel-body">
-                                <div class="clearfix form-group">
-                                    <div class="card-wrapper pull-left" id="cardContainer"></div>
+  <!-- Plan Section -->
+  <div id="plan">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <div class="page-content container-fluid">
+            <div class="panel" id="exampleWizardFormContainer">
+              <div class="panel-body">
+                <div class="clearfix form-group">
+                  <div class="card-wrapper pull-left" id="cardContainer"></div>
 
-                                    <!-- Example Heading Icon -->
-                                    {% if plan %}
-                                        <div class="col-md-2">
-                                            <!-- Example Heading Icon -->
-                                            <div class="panel panel-bordered">
-                                                <div class="panel-heading">
-                                                    <h3 class="panel-title"><i class="icon wb-briefcase" aria-hidden="true"></i>
-                                                        <a href="{% url 'payments:make_payment' %}">{{ plan.name }}</a></h3>
-                                                </div>
-                                                <div class="panel-footer">
-                                                    <p class="font-size-16">Price: $ {{ plan.price|floatformat }}/mo</p>
-                                                </div>
-                                            </div>
-                                            <!-- End Example Heading Icon -->
-                                        </div>
-                                    {% endif %}
+                  <!-- Example Heading Icon -->
+                  {% if plan %}
+                    <div class="col-md-2">
+                      <!-- Example Heading Icon -->
+                      <div class="panel panel-bordered">
+                        <div class="panel-heading">
+                          <h3 class="panel-title"><i class="icon wb-briefcase" aria-hidden="true"></i>
+                            <a href="{% url 'payments:make_payment' %}">{{ plan.name }}</a></h3>
+                        </div>
+                        <div class="panel-footer">
+                          <p class="font-size-16">Price: $ {{ plan.price|floatformat }}/mo</p>
+                        </div>
+                      </div>
+                      <!-- End Example Heading Icon -->
+                    </div>
+                  {% endif %}
 
-                                </div>
-                                <form class="wizard-content" data-plugin="card" data-target="#cardContainer" action="" method="post">
-                                    {% csrf_token %}
-                                    <div class="wizard-pane" id="exampleBillingOne" role="tabpanel">
-                                        {% if user.card_last %}
-                                            <div class="form-group">
-                                                <label class="control-label" for="">Current Card</label>
-                                                <input type="text" class="form-control" readonly disabled value="{{ user.card_type }}
+                </div>
+                <form class="wizard-content" data-plugin="card" data-target="#cardContainer" action="" method="post">
+                  {% csrf_token %}
+                  <div class="wizard-pane" id="exampleBillingOne" role="tabpanel">
+                    {% if user.card_last %}
+                      <div class="form-group">
+                        <label class="control-label" for="">Current Card</label>
+                        <input type="text" class="form-control" readonly disabled value="{{ user.card_type }}
                       XXXXXXXX{{ user.card_last|default:"" }}
                       Exp {{ user.card_expiry }}">
-                                            </div>
-                                        {% endif %}
-                                        <div class="form-group">
-                                            <label class="control-label" for="id_card_number">Card Number</label>
-                                            <i style="color: red">{{ form.number.errors.as_text }}</i>
-                                            <input type="text" class="form-control has-error" value="{{ form.number.value|default:"" }}" name="number">
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label" for="id_fullname">Full Name</label>
-                                            <i style="color: red">{{ form.name.errors.as_text }}</i>
-                                            <input type="text" value="{{ form.name.value|default:"" }}" name="name" class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="">Card Expiry</label>
-                                            {{ form.expiration }}
-                                            <i style="color: red">{{ form.expiration.errors.as_text }}</i>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label" for="id_cvc">CVC</label>
-                                            <i style="color: red">{{ form.cvc.errors.as_text }}</i>
-                                            <input type="text" value="{{ form.cvc.value|default:"" }}" name="cvc" class="form-control">
-                                        </div>
-                                        <button type="submit" class="btn btn-default">Save</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
+                      </div>
+                    {% endif %}
+                    <div class="form-group">
+                      <label class="control-label" for="id_card_number">Card Number</label>
+                      <i style="color: red">{{ form.number.errors.as_text }}</i>
+                      <input type="text" class="form-control has-error" value="{{ form.number.value|default:"" }}" name="number">
                     </div>
-                </div>
+                    <div class="form-group">
+                      <label class="control-label" for="id_fullname">Full Name</label>
+                      <i style="color: red">{{ form.name.errors.as_text }}</i>
+                      <input type="text" value="{{ form.name.value|default:"" }}" name="name" class="form-control">
+                    </div>
+                    <div class="form-group">
+                      <label for="">Card Expiry</label>
+                      {{ form.expiration }}
+                      <i style="color: red">{{ form.expiration.errors.as_text }}</i>
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label" for="id_cvc">CVC</label>
+                      <i style="color: red">{{ form.cvc.errors.as_text }}</i>
+                      <input type="text" value="{{ form.cvc.value|default:"" }}" name="cvc" class="form-control">
+                    </div>
+                    <button type="submit" class="btn btn-default">Save</button>
+                  </div>
+                </form>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 
 {% endblock content %}
 
 {% block extra_js %}
-    {#    <script src='{% static "assets/js/app.js" %}'></script>#}
-    {#    <script src='{% static "global/vendor/clipboard/clipboard.min.js" %}'></script>#}
-    {#    <script src='{% static "global/vendor/card/jquery.card.min.js" %}'></script>#}
-    {#    <script src='{% static "global/js/components/card.js" %}'></script>#}
-    <!-- Instantiate clipboard -->
-    {#    <script>#}
-    {#        var clipboard = new Clipboard('.btn');#}
-    {#    </script>#}
+{#      <script src='{% static "forms/js/app.js" %}'></script>#}
+{#      <script src='{% static "forms/js/clipboard/clipboard.min.js" %}'></script>#}
+{#      <script src='{% static "forms/js/card/jquery.card.min.js" %}'></script>#}
+{#      <script src='{% static "forms/js/card.js" %}'></script>#}
+{#  <!-- Instantiate clipboard -->#}
+
 {% endblock extra_js %}

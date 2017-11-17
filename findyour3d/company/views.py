@@ -54,11 +54,21 @@ class AddCompanyView(LoginRequiredMixin, CreateView):
 
 class CompanyDetailView(LoginRequiredMixin, DetailView):
     model = Company
-    template_name = 'company/company_detail.html'
+
+    def get_template_names(self):
+        company_id = self.kwargs.get('pk')
+        try:
+            company = Company.objects.get(pk=company_id)
+            if company.user.plan == 2:
+                template_name = 'company/company_detail_premium.html'
+            else:
+                template_name = 'company/company_detail.html'
+        except Company.DoesNotExist:
+            template_name = 'company/company_detail.html'
+
+        return template_name
 
     def dispatch(self, request, *args, **kwargs):
-        if int(self.kwargs['pk']) != request.user.company_set.first().pk and not request.user.is_superuser:
-            raise PermissionDenied
         return super(CompanyDetailView, self).dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
@@ -66,6 +76,9 @@ class CompanyDetailView(LoginRequiredMixin, DetailView):
         user = self.request.user
         context['company_pk'] = self.object
         context['user'] = user
+        context['is_owner'] = False
+        if self.object.id == user.company_set.first().pk:
+            context['is_owner'] = True
         member_since = None
         if UserPayment.objects.filter(user=user).exists():
             member_since = UserPayment.objects.filter(user=user).latest('created_at').created_at

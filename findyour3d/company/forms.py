@@ -8,7 +8,7 @@ class AddCompanyForm(forms.ModelForm):
         model = Company
         fields = ['name', 'display_name', 'address_line_1', 'address_line_2',
                   'full_name', 'email', 'phone', 'website', 'ideal_customer',
-                  'is_cad_assistance', 'budget', 'basic_material',
+                  'is_cad_assistance', 'budget',
                   'printing_options', 'material', 'top_printing_processes',
                   'description', 'user']
 

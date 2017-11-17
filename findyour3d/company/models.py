@@ -50,3 +50,11 @@ class Company(models.Model):
     class Meta:
         verbose_name_plural = 'Companies'
 
+
+class SpecialOffer(models.Model):
+    company = models.ForeignKey('Company')
+    text = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return "%s" % self.company

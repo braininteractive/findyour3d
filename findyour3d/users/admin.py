@@ -37,4 +37,4 @@ class MyUserAdmin(AuthUserAdmin):
             ('Payments Info', {'fields': ('payment_active', 'plan', 'paid_at', 'is_cancelled')}),
     ) + AuthUserAdmin.fieldsets
     list_display = ('username', 'name', 'is_superuser')
-    search_fields = ['name']
+    search_fields = ['name', 'username', 'email']

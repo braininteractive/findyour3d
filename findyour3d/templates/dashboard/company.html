@@ -10,8 +10,8 @@
     <div class="col-md-9 col-md-offset-1">
       <div class="portlet light bordered">
         <div class="portlet-title">
-          <div class="caption font-blue">
-            <i class="fa fa-search font-blue"></i>
+          <div class="caption font-black">
+            <i class="fa fa-search font-black"></i>
             <span class="caption-subject bold uppercase">
                         {{ request.user.customer_set.first.get_material_display }},
               {{ request.user.customer_set.first.get_process_display }}</span>
@@ -37,14 +37,15 @@
                 <div class="item-head">
                   <div class="item-details">
                     {# <img class="item-pic rounded" src="{% static 'img/avatar80_1.jpg' %}">#}
-                    <a href="" class="item-name primary-link">{{ company.display_name }}</a>
-                    <span class="item-label">{{ company.full_name }}</span>
+                    <a href="{% url 'company:detail' company.pk %}"
+                       class="item-name primary-link">{{ company.display_name }}</a>
+{#                    <span class="item-label">{{ company.full_name }}</span>#}
                   </div>
 
                   <span class="item-status">
                                         {% is_company_requested company request.user as is_requested %}
                     {% if not is_requested %}
-                      <form action="{% url 'quote:req' company.pk %}" method="post" onSubmit="document.getElementById('submit').disabled=true;">
+                      <form action="{% url 'quote:req' company.pk %}" method="post">
                                             {% csrf_token %}
                                             <button class="btn btn-sm btn-success invite" type="submit">
                                               Request a Quote</button>

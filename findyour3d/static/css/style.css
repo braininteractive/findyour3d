@@ -898,6 +898,7 @@ a:focus, .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:acti
   padding: 70px 0;
   background: white;
   color: black;
+  min-height: 500px;
 }
 #plan .about-text {
   margin-left: 10px;
@@ -1004,6 +1005,59 @@ a:focus, .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:acti
 
 #intro_company .intro-body .intro-text {
   font-size: 18px;
+}
+
+/* Premium Company Detail */
+#intro_premium_company {
+  display: table;
+  width: 100%;
+  height: auto;
+  padding: 100px 0;
+  text-align: center;
+  color: #fff;
+  background: url(../img/premium.jpg) no-repeat center center fixed;
+  background-color: #000;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
+
+#intro_premium_company .intro-body {
+  display: table-cell;
+  vertical-align: middle;
+}
+#intro_premium_company .intro-body H1 {
+  font-size: 76px;
+  font-weight: 900;
+  color: rgba(255,255,255,0.8);
+  /*text-transform: uppercase;*/
+}
+#intro_premium_company .intro-body .brand-heading {
+  color: white;
+  text-shadow: 0 4px gray;
+}
+
+#intro_premium_company .intro-body .intro-text {
+  font-size: 18px;
+}
+
+.premium_data_block {
+  font-size: 2rem;
+}
+
+.premium_data_block li {
+  font-size: 16px !important;
+  margin-top: 10px;
+  color: forestgreen;
+}
+.premium_data_block .btn-outline {
+  padding: 6px 12px !important;
+  margin: 0 !important;
+  background: transparent !important;
+  color: black !important;
+  font-size: 12px !important;
+  border: 1px solid black !important;
 }
 
 @media(min-width:768px) {

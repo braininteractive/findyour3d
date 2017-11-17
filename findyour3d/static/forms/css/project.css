@@ -4,3 +4,12 @@ th {width:100px; word-wrap:break-word;}
 body, html {
   font-family: 'Montserrat', sans-serif;
 }
+
+
+.primary-link {
+  color: black;
+}
+
+.primary-link:hover {
+  color: gray;
+}

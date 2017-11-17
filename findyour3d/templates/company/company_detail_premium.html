@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load staticfiles i18n %}
 
-{% block title %} {{ object.display_name }} {% endblock %}
+{% block title %} Premium Company {{ object.display_name }} {% endblock %}
 
 {% block extra_css %}
   <link href="{% static 'forms/css/bootstrap.min.css' %}" rel="stylesheet">
@@ -13,6 +13,7 @@
   <link href="{% static 'forms/css/custom.css' %}" rel="stylesheet">
   <link href="{% static 'forms/css/project.css' %}" rel="stylesheet">
   <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
 {% endblock %}
 
 {% block content %}
@@ -22,7 +23,7 @@
   <!-- Navigation -->
   {% include 'pages/includes/menu.html' %}
 
-  <div id="intro_company">
+  <div id="intro_premium_company">
     <div class="intro-body">
       <div class="container">
         <div class="row">
@@ -34,74 +35,94 @@
     </div>
   </div>
 
-  <!-- Plan Section -->
   <div id="plan">
-  <div class="container">
-    <div class="row">
-
-      <div class="col-md-10 col-md-offset-1" style="min-height: 250px">
-
-        {% if is_owner %}
-          {% if not user.plan %}
-            <div class="alert alert-danger text-center">
-              <b>Your account is not active!</b> <br>
-              You haven't choose your Subscription. Please
-              <a class="bold" href="{% url 'users:plan' %}#plan">click here</a> to select a plan.
-            </div>
-          {% endif %}
-        {% endif %}
-
-        <div class="alert alert-success text-center enrolled alert-dismissible" style="display: none">
-          <b>Thank you!</b> <br>
-          <span>Your Subscription is now active!</span>
-          <button type="button" class="close" style="text-indent: 1px" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-6">
-          <p><b>Location:</b> {{ object.address_line_1 }}, {{ object.address_line_2 }}</p>
-        </div>
-        <div class="col-md-6">
-          <p><b>Printing Options: </b> {{ object.get_printing_options_display }}</p>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-6">
-          <p><b>Company Rating:</b></p>
-        </div>
-        <div class="col-md-6">
-          <p><b>Services:</b> {{ object.top_printing_processes }}</p>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-6">
-          <p><b>Material: </b>{{ object.get_material_display }}</p>
-        </div>
-      </div>
+    <div class="container">
 
       {% if is_owner %}
-        {% if user.plan and user.plan == 2 %}
-          <div class="row edit_company">
-            <div class="col-sm-12">
-              <div class="text-center">
-                <a href="{% url 'company:edit' object.pk %}" class="btn btn-default page-scroll">
-                  EDIT YOUR PROFILE</a>
-              </div>
-            </div>
-          </div>
-        {% else %}
-          <div class="well well-sm text-center">
-            <small>You can't edit your profile info in Starter Plan. Please,
-              <a class="font-weight-bold" href="{% url 'users:plan' %}#plan">upgrade to Premium</a>!</small>
+        {% if not user.plan %}
+          <div class="alert alert-danger text-center">
+            <b>Your account is not active!</b> <br>
+            You haven't choose your Subscription. Please
+            <a class="bold" href="{% url 'users:plan' %}#plan">click here</a> to select a plan.
           </div>
         {% endif %}
       {% endif %}
+
+      <div class="alert alert-success text-center enrolled alert-dismissible" style="display: none">
+        <b>Thank you!</b> <br>
+        <span>Your Subscription is now active!</span>
+        <button type="button" class="close" style="text-indent: 1px" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
     </div>
+
+
+    <div class="container premium_data_block">
+      <div class="row">
+        <div class="row">
+          <div class="col-md-10 ml-auto margin-bottom-10">
+            <b>Location:</b> {{ object.address_line_1 }}, {{ object.address_line_2 }}
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-10 ml-auto margin-bottom-10">
+            <b>Description:</b> {{ object.description }}
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-10 ml-auto margin-bottom-10">
+            <b>Company Rating:</b> ... <br>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-10 ml-auto margin-bottom-10">
+            <b>Materials Available: </b>{{ object.get_material_display }}
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-10 ml-auto margin-bottom-10">
+            <b>Processes Available:</b> {{ object.top_printing_processes }}
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-10 ml-auto margin-bottom-10">
+            <b>Special Offers:</b>
+            <ul>
+            {% for offer in object.specialoffer_set.all %}
+              <li>{{ offer.text }}</li>
+            {% endfor %}
+            </ul>
+
+          <button class="btn btn-outline btn-default">Add Special Offer</button>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% if is_owner %}
+      {% if user.plan and user.plan == 2 %}
+        <div class="row edit_company">
+          <div class="col-sm-12">
+            <div class="text-center">
+              <a href="{% url 'company:edit' object.pk %}" class="btn btn-default page-scroll">
+                EDIT YOUR PROFILE</a>
+            </div>
+          </div>
+        </div>
+      {% else %}
+        <div class="text-center">
+          <a onclick="return false" class="btn small btn-default page-scroll" disabled="">
+            EDIT YOUR PROFILE IS NOT AVAILABLE IN STARTER PLAN</a>
+        </div>
+      {% endif %}
+    {% endif %}
     {% if is_owner %}
       <div class="container company">
         <div class="row text-center">
@@ -209,7 +230,8 @@
         <div class="modal-body">
           {% if request.user.is_authenticated %}
             <div class="alert alert-danger">
-              You current plan will be canceled. You won't be able to use ChatBot and all the other features.
+              You current plan will be canceled. You won't be able to be listed on Dashboard and
+              all the other features.
             </div>
           {% endif %}
         </div>

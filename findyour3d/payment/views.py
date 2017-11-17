@@ -71,7 +71,7 @@ class StartPlan(ChangeCardView):
     /make/?plan=1 will be processed with make_payment function
     """
     def get_success_url(self):
-        url = "{}?plan={}".format(reverse_lazy('payments:make_payment'), self.request.GET.get('p'))
+        url = "{}?plan={}".format(reverse_lazy('payments:make'), self.request.GET.get('plan'))
         return url
 
 
@@ -79,7 +79,6 @@ class StartPlan(ChangeCardView):
 def make_payment(request):
 
     first_month_amount = 49.99
-    third_month_amount = 4.99
     user = request.user
 
     if request.GET.get('plan'):
@@ -100,12 +99,13 @@ def make_payment(request):
                     else:  # newbie
                         amount = first_month_amount
                 elif plan_id == 1:  # starter
-                    user.plan = plan_id
+                    user.plan = 1
                     user.save()
                     user.is_cancelled = False
                     UserPayment.objects.create(
                         user=user,
                         amount=amount,
+                        status='2',
                         description="Enroll to Starter Plan by {}".format(user.email)
                     )
                     response = redirect('company:detail', user.company_set.first().pk)
