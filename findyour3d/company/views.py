@@ -6,7 +6,7 @@ from django.urls import reverse
 from django.views.generic import CreateView, DetailView, UpdateView
 
 from .models import Company
-from .forms import AddCompanyForm
+from .forms import AddCompanyForm, EditCompanyForm
 
 from findyour3d.payment.models import UserPayment
 
@@ -90,14 +90,17 @@ class CompanyDetailView(LoginRequiredMixin, DetailView):
 
 class EditCompanyView(LoginRequiredMixin, UpdateView):
     model = Company
-    form_class = AddCompanyForm
+    form_class = EditCompanyForm
 
     def dispatch(self, request, *args, **kwargs):
         if self.request.user.is_authenticated():
-            if int(self.kwargs['pk']) == request.user.company_set.first().pk:
-                if self.request.user.user_type == 2:
-                    if not self.request.user.company_set.all():
-                        return redirect('company:add')
+            if self.request.user.user_type == 2:
+                if request.user.plan == 2:  # Allow only premium users
+                    if int(self.kwargs['pk']) == request.user.company_set.first().pk:
+                        if not self.request.user.company_set.all():
+                            return redirect('company:add')
+                else:
+                    raise PermissionDenied
             else:
                 raise PermissionDenied
         return super(EditCompanyView, self).dispatch(request, *args, **kwargs)

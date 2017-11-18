@@ -29,6 +29,7 @@ class Company(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
     name = models.CharField(max_length=255)
     display_name = models.CharField(max_length=255)
+    logo = models.ImageField(upload_to='logo/', null=True, blank=True)
     address_line_1 = models.CharField(max_length=255)
     address_line_2 = models.CharField(max_length=255)
     full_name = models.CharField(max_length=255)

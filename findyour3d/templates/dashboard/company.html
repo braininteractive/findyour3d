@@ -36,7 +36,14 @@
               <div class="item">
                 <div class="item-head">
                   <div class="item-details">
-                    {# <img class="item-pic rounded" src="{% static 'img/avatar80_1.jpg' %}">#}
+                    {% if company.user.plan == 2 %}
+                      {% if company.logo %}
+                        <img class="item-pic rounded" src="{{ company.logo.url }}">
+                      {% else %}
+                        <img class="item-pic rounded" src="http://placehold.it/35x35">
+                      {% endif %}
+                      <i class="fa fa-diamond" title="Premium Company"></i>
+                    {% endif %}
                     <a href="{% url 'company:detail' company.pk %}"
                        class="item-name primary-link">{{ company.display_name }}</a>
                     <span class="item-label">{{ company.get_rating_html_snippet|safe }}</span>
@@ -70,10 +77,7 @@
                       <strong>{{ company.name }}</strong>
                       <br/> {{ company.address_line_1 }}
                       <br/> {{ company.address_line_2 }}
-                      <br/>
-                      <address>
-                        <strong>{{ company.full_name }}</strong>
-                      </address>
+                    </address>
                   </div>
                 </div>
               </div>
