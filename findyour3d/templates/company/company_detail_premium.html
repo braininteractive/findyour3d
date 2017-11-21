@@ -37,76 +37,65 @@
   </div>
 
   <div id="plan">
-    <div class="container">
+  <div class="container">
 
-      {% if is_owner %}
-        {% if not user.plan %}
-          <div class="alert alert-danger text-center">
-            <b>Your account is not active!</b> <br>
-            You haven't choose your Subscription. Please
-            <a class="bold" href="{% url 'users:plan' %}#plan">click here</a> to select a plan.
-          </div>
-        {% endif %}
+    {% if is_owner %}
+      {% if not user.plan %}
+        <div class="alert alert-danger text-center">
+          <b>Your account is not active!</b> <br>
+          You haven't choose your Subscription. Please
+          <a class="bold" href="{% url 'users:plan' %}#plan">click here</a> to select a plan.
+        </div>
       {% endif %}
+    {% endif %}
 
-      <div class="alert alert-success text-center enrolled alert-dismissible" style="display: none">
-        <b>Thank you!</b> <br>
-        <span>Your Subscription is now active!</span>
-        <button type="button" class="close" style="text-indent: 1px" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
+    <div class="alert alert-success text-center enrolled alert-dismissible" style="display: none">
+      <b>Thank you!</b> <br>
+      <span>Your Subscription is now active!</span>
+      <button type="button" class="close" style="text-indent: 1px" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
     </div>
+  </div>
 
 
-    <div class="container premium_data_block">
+  <div class="container premium_data_block">
+    <div class="row margin-bottom-20">
+      <div class="col-md-7 ml-auto margin-bottom-10">
+        <b>Location:</b> {{ object.address_line_1 }}, {{ object.address_line_2 }}
+        <div class="margin-bottom-10">
+          <b>Description:</b> {{ object.description }}
+        </div>
+        <div class="margin-bottom-10">
+          <b>Company Rating:</b>
+          <div class="company_rating">{% ratings object %}</div>
+        </div>
+        <div class="margin-bottom-10">
+          <b>Materials Available: </b>{{ object.get_material_display }}
+        </div>
+        <div class="margin-bottom-10">
+          <b>Processes Available:</b> {{ object.top_printing_processes }}
+        </div>
+        <div class="margin-bottom-10">
+          <b>Special Offers:</b>
+          <ul>
+            {% for offer in object.specialoffer_set.all %}
+              <li>{{ offer.text }}</li>
+            {% endfor %}
+          </ul>
+
+          {% if is_owner %}
+            <a href="{% url 'company:add_offer' %}" class="btn btn-outline btn-default">Add Special Offer</a>
+          {% endif %}
+
+        </div>
+      </div>
+      <div class="col-md-5">
+        <img class="item-pic rounded" src="{{ object.logo.url }}" alt="">
+      </div>
+
       <div class="row">
-        <div class="row">
-          <div class="col-md-10 ml-auto margin-bottom-10">
-            <b>Location:</b> {{ object.address_line_1 }}, {{ object.address_line_2 }}
-          </div>
-        </div>
 
-        <div class="row">
-          <div class="col-md-10 ml-auto margin-bottom-10">
-            <b>Description:</b> {{ object.description }}
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-10 ml-auto margin-bottom-10">
-            <b>Company Rating:</b>
-            <div class="company_rating">{% ratings object %}</div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-10 ml-auto margin-bottom-10">
-            <b>Materials Available: </b>{{ object.get_material_display }}
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-10 ml-auto margin-bottom-10">
-            <b>Processes Available:</b> {{ object.top_printing_processes }}
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-10 ml-auto margin-bottom-10">
-            <b>Special Offers:</b>
-            <ul>
-              {% for offer in object.specialoffer_set.all %}
-                <li>{{ offer.text }}</li>
-              {% endfor %}
-            </ul>
-
-            {% if is_owner %}
-              <button class="btn btn-outline btn-default">Add Special Offer</button>
-            {% endif %}
-
-          </div>
-        </div>
       </div>
     </div>
 
@@ -168,9 +157,9 @@
       <div class="container">
         <div class="col-md-12">
           <div class="portlet light bordered" >
+            <h3 class="">Your Customer Requests</h3>
             <div class="portlet-title">
               <div class="caption">
-                <h3 class="font-blue-dark">Your Customer Requests</h3>
               </div>
             </div>
             <div class="portlet-body">
@@ -197,18 +186,7 @@
                         Description: {{ quote.user.customer_set.first.description }} <br>
                       </div>
                       <div class="mt-comment-details">
-                        <span class="mt-comment-status mt-comment-status-pending">Pending</span>
-                        {#                                            <ul class="mt-comment-actions">#}
-                        {#                                                <li>#}
-                        {#                                        <a href="#">Quick Edit</a>#}
-                        {#                                                </li>#}
-                        {#                                                <li>#}
-                        {#                                        <a href="#">View</a>#}
-                        {#                                                </li>#}
-                        {#                                                <li>#}
-                        {#                                        <a href="#">Delete</a>#}
-                        {#                                                </li>#}
-                        {#                                            </ul>#}
+                        <span class="mt-comment-status mt-comment-status-pending">Received</span>
                       </div>
                     </div>
                   </div>

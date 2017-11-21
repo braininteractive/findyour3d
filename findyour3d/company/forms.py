@@ -1,12 +1,13 @@
 from django import forms
 
-from .models import Company
+from .models import Company, SpecialOffer
 
 
 EXPEDITED_CHOICES = (
     (0, 'No, we do not offer any expedited shipping options.'),
     (1, 'Yes we offer an expedited process for a fee.')
 )
+
 
 class AddCompanyForm(forms.ModelForm):
 
@@ -93,3 +94,24 @@ class EditCompanyForm(forms.ModelForm):
         self.fields['printing_options'].label = 'Printing Options Available'
         self.fields['is_expedited'].label = 'Do you offer an expedited manufacturing process?'
         self.fields['shipping'].label = 'Which of the following shipping options do you offer?'
+
+
+class AddSpecialOfferForm(forms.ModelForm):
+
+    class Meta:
+        model = SpecialOffer
+        fields = ('text', 'company')
+
+        widgets = {
+            'text': forms.Textarea(attrs={'class': 'form-control', 'rows': 3,
+                                          'placeholder': 'eg: 25% off for next order!'}),
+            'company': forms.HiddenInput()
+        }
+
+    def __init__(self, *args, **kwargs):
+        self.user = None
+        if 'company' in kwargs['initial']:
+            self.company = kwargs['initial'].pop('company')
+
+        super(AddSpecialOfferForm, self).__init__(*args, **kwargs)
+        self.fields['company'].initial = self.company

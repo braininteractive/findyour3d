@@ -5,8 +5,8 @@ from django.shortcuts import redirect
 from django.urls import reverse
 from django.views.generic import CreateView, DetailView, UpdateView
 
-from .models import Company
-from .forms import AddCompanyForm, EditCompanyForm
+from .models import Company, SpecialOffer
+from .forms import AddCompanyForm, EditCompanyForm, AddSpecialOfferForm
 
 from findyour3d.payment.models import UserPayment
 
@@ -119,4 +119,36 @@ class EditCompanyView(LoginRequiredMixin, UpdateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['user'] = self.request.user
+        return context
+
+
+class AddSpecialOfferView(LoginRequiredMixin, CreateView):
+    model = SpecialOffer
+    form_class = AddSpecialOfferForm
+
+    def get_success_url(self):
+        return reverse('company:detail', kwargs={'pk': self.object.company.id})
+
+    def get_object(self):
+        return SpecialOffer.objects.get(company__user=self.request.user)
+
+    def get_initial(self):
+        initial_data = super(AddSpecialOfferView, self).get_initial()
+        initial_data['company'] = Company.objects.get(user=self.request.user)
+        return initial_data
+
+    def get_form_kwargs(self):
+        """
+        Returns the keyword arguments for instantiating the form.
+        """
+        kwargs = super(AddSpecialOfferView, self).get_form_kwargs()
+        kwargs.update(
+            {'initial':
+                 {'company': Company.objects.get(user=self.request.user)}
+             }
+        )
+        return kwargs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
         return context

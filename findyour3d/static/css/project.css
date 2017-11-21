@@ -36,3 +36,7 @@
 [hidden][style="display: block;"] {
   display: block !important;
 }
+
+.mt-comment-body {
+  font-size: 1.4rem !important;
+}
