@@ -17,15 +17,20 @@
               {{ request.user.customer_set.first.get_process_display }}</span>
             <small>
               <br>
-              <span class="small font-grey-salsa">Budget: {{ request.user.customer_set.first.get_budget_display }}</span>
+              <span class="small font-grey-salsa">Budget:
+                {{ request.user.customer_set.first.get_budget_display }}</span>
               <br>
-              <span class="small font-grey-salsa">Need Assistance: {{ request.user.customer_set.first.get_need_assistance_display }}</span>
+              <span class="small font-grey-salsa">
+                Need Assistance: {{ request.user.customer_set.first.get_need_assistance_display }}</span>
               <br>
-              <span class="small font-grey-salsa">You are: {{ request.user.customer_set.first.get_customer_type_display }}</span>
+              <span class="small font-grey-salsa">You are:
+                {{ request.user.customer_set.first.get_customer_type_display }}</span>
               <br>
-              <span class="small font-grey-salsa">Size: {{ request.user.customer_set.first.get_size_display }}</span>
+              <span class="small font-grey-salsa">Size:
+                {{ request.user.customer_set.first.get_size_display }}</span>
               <br>
-              <span class="small font-grey-salsa">Shipping: {{ request.user.customer_set.first.get_shipping_display }}</span>
+              <span class="small font-grey-salsa">Shipping:
+                {{ request.user.customer_set.first.get_shipping_display }}</span>
             </small>
           </div>
         </div>
@@ -62,7 +67,7 @@
                     {% endif %}
                         </span>
                 </div>
-                <div class="item-body">
+                <div class="item-body {% if company.user.plan == 2 %}premium{% endif %}">
                   <p>{{ company.description }}</p>
                   Materials: <b>{{ company.get_material_display }}</b> <br>
                   Processes: <b>{{ company.get_top_printing_processes_display }}</b> <br>

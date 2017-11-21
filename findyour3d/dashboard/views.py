@@ -24,7 +24,7 @@ class DashboardView(LoginRequiredMixin, ListView):
             (Q(material__contains=str(user.material)) & Q(top_printing_processes__contains=str(user.process)) & Q(
                 user__plan__isnull=False))
             & Q(budget=user.budget)
-        )
+        ).order_by('-user__plan')
         return queryset
 
 

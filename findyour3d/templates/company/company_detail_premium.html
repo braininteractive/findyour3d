@@ -91,7 +91,11 @@
         </div>
       </div>
       <div class="col-md-5">
-        <img class="item-pic rounded" src="{{ object.logo.url }}" alt="">
+        {% if object.logo %}
+          <img class="item-pic rounded" src="{{ object.logo.url }}" alt="">
+        {% else %}
+          <img class="item-pic rounded" src="http://placehold.it/135x135">
+        {% endif %}
       </div>
 
       <div class="row">
