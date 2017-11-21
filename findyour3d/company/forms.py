@@ -1,6 +1,12 @@
 from django import forms
+
 from .models import Company
 
+
+EXPEDITED_CHOICES = (
+    (0, 'No, we do not offer any expedited shipping options.'),
+    (1, 'Yes we offer an expedited process for a fee.')
+)
 
 class AddCompanyForm(forms.ModelForm):
 
@@ -52,7 +58,7 @@ class EditCompanyForm(forms.ModelForm):
                   'full_name', 'email', 'phone', 'website', 'ideal_customer',
                   'is_cad_assistance', 'budget',
                   'printing_options', 'material', 'top_printing_processes',
-                  'description', 'user']
+                  'description', 'user', 'is_expedited', 'shipping']
 
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control'}),
@@ -66,10 +72,12 @@ class EditCompanyForm(forms.ModelForm):
             'website': forms.TextInput(attrs={'class': 'form-control'}),
             'ideal_customer': forms.Select(attrs={'class': 'form-control edited'}),
             'budget': forms.Select(attrs={'class': 'form-control edited'}),
+            'is_expedited': forms.Select(attrs={'class': 'form-control edited'}, choices=EXPEDITED_CHOICES),
             'printing_options': forms.SelectMultiple(attrs={'class': 'form-control edited'}),
             'material': forms.SelectMultiple(attrs={'class': 'form-control edited'}),
             'top_printing_processes': forms.SelectMultiple(attrs={'class': 'form-control edited'}),
             'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
+            'shipping': forms.Select(attrs={'class': 'form-control edited'}),
             'user': forms.HiddenInput(),
         }
 
@@ -83,3 +91,5 @@ class EditCompanyForm(forms.ModelForm):
         self.fields['ideal_customer'].label = 'What is your company’s ideal customer that we should send to you?'
         self.fields['budget'].label = 'What is your ideal order cost/budget?'
         self.fields['printing_options'].label = 'Printing Options Available'
+        self.fields['is_expedited'].label = 'Do you offer an expedited manufacturing process?'
+        self.fields['shipping'].label = 'Which of the following shipping options do you offer?'

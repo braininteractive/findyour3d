@@ -5,7 +5,7 @@
 {% block title %}Add Company{% endblock title %}
 
 {% block extra_css %}
-    <link href="{% static 'forms/bootstrap-fileinput/bootstrap-fileinput.css'%}" rel="stylesheet"  type="text/css" />
+  <link href="{% static 'forms/bootstrap-fileinput/bootstrap-fileinput.css'%}" rel="stylesheet"  type="text/css" />
 {% endblock extra_css %}
 
 {% block header %}
@@ -186,6 +186,25 @@
         </div>
 
         <div class="row">
+          <div class="col-md-6">
+            <div class="form-group form-md-line-input form-md-floating-label
+                            {% if form.is_expedited.errors %}has-error{% endif %}">
+              {{ form.is_expedited }}
+              <label for="form_control_1">{{ form.is_expedited.label|title }}</label>
+            </div>
+          </div>
+          <div class="col-md-6">
+
+
+            <div class="form-group form-md-line-input form-md-floating-label
+                            {% if form.shipping.errors %}has-error{% endif %}">
+              {{ form.shipping }}
+              <label for="form_control_1">{{ form.shipping.label|title }}</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
           <div class="col-md-12">
             <div class="form-group form-md-line-input form-md-floating-label
                             {% if form.description.errors %}has-error{% endif %}">
@@ -209,5 +228,5 @@
 {% endblock content %}
 
 {% block extra_js %}
-<script src="{% static 'forms/bootstrap-fileinput/bootstrap-fileinput.js' %}"></script>
+  <script src="{% static 'forms/bootstrap-fileinput/bootstrap-fileinput.js' %}"></script>
 {% endblock extra_js %}

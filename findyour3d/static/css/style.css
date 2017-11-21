@@ -228,7 +228,9 @@ hr {
 }
 .btn-default:hover, .btn-default:focus, .btn-default.focus, .btn-default:active, .btn-default.active {
   color: #f6f6f6;
-  border: 1px solid white;
+    -webkit-box-shadow:inset 0px 0px 0px 1px white;
+    -moz-box-shadow:inset 0px 0px 0px 1px white;
+    box-shadow:inset 0px 0px 0px 1px white;
   background-color: transparent;
 }
 .section-title.center {
@@ -293,7 +295,9 @@ hr {
 #about .btn-default:hover, #contact .btn-default:focus {
   color: black;
   background: transparent;
-  border: 1px black solid;
+    -webkit-box-shadow:inset 0px 0px 0px 1px black;
+    -moz-box-shadow:inset 0px 0px 0px 1px black;
+    box-shadow:inset 0px 0px 0px 1px black;
 }
 
 /* Business Section */
@@ -354,7 +358,9 @@ hr {
 #intro_business .btn-default:hover, #contact .btn-default:focus {
   color: black;
   background: transparent;
-  border: 1px black solid;
+    -webkit-box-shadow:inset 0px 0px 0px 1px black;
+    -moz-box-shadow:inset 0px 0px 0px 1px black;
+    box-shadow:inset 0px 0px 0px 1px black;
 }
 
 /* Services Section */
@@ -400,7 +406,9 @@ hr {
 #services .btn-default:hover, #contact .btn-default:focus {
   color: black;
   background: transparent;
-  border: 1px black solid;
+    -webkit-box-shadow:inset 0px 0px 0px 1px black;
+    -moz-box-shadow:inset 0px 0px 0px 1px black;
+    box-shadow:inset 0px 0px 0px 1px black;
 }
 /* Gallery Section */
 #works {
@@ -562,7 +570,9 @@ img.img-thumbnail.team-img {
 #team .btn-default:hover, #contact .btn-default:focus {
   color: black;
   background: transparent;
-  border: 1px black solid;
+    -webkit-box-shadow:inset 0px 0px 0px 1px black;
+    -moz-box-shadow:inset 0px 0px 0px 1px black;
+    box-shadow:inset 0px 0px 0px 1px black;
 }
 /* Testimonials Section */
 #testimonials {
@@ -607,7 +617,9 @@ img.img-thumbnail.team-img {
 #testimonials .btn-default:hover, #contact .btn-default:focus {
   color: white;
   background: transparent;
-  border: 1px white solid;
+    -webkit-box-shadow:inset 0px 0px 0px 1px white;
+    -moz-box-shadow:inset 0px 0px 0px 1px white;
+    box-shadow:inset 0px 0px 0px 1px white;
 }
 
 /* about_us Section */
@@ -698,7 +710,9 @@ img.img-thumbnail.team-img {
 #about_us .btn-default:hover, #contact .btn-default:focus {
   color: white;
   background: transparent;
-  border: 1px white solid;
+    -webkit-box-shadow:inset 0px 0px 0px 1px white;
+    -moz-box-shadow:inset 0px 0px 0px 1px white;
+    box-shadow:inset 0px 0px 0px 1px white;
 }
 /* Contact Section */
 #contact {
@@ -942,15 +956,18 @@ a:focus, .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:acti
   background: black;
   color: white;
   border: 0;
-  border-radius: 0px;
+  border-radius: 0;
   padding: 12px 24px;
-  margin: 0 8px;
+  margin: 1px 8px;
   font-size: 18px;
+
 }
 #plan .btn-default:hover, #contact .btn-default:focus {
   color: black;
   background: transparent;
-  border: 1px black solid;
+    -webkit-box-shadow:inset 0px 0px 0px 1px black;
+    -moz-box-shadow:inset 0px 0px 0px 1px black;
+    box-shadow:inset 0px 0px 0px 1px black;
 }
 
 #plan h2{
@@ -1106,7 +1123,9 @@ a:focus, .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:acti
 #plan .company .btn-default:hover, #contact .btn-default:focus {
   color: black;
   background: transparent;
-  border: 1px black solid;
+    -webkit-box-shadow:inset 0px 0px 0px 1px black;
+    -moz-box-shadow:inset 0px 0px 0px 1px black;
+    box-shadow:inset 0px 0px 0px 1px black;
 }
 
 /* Pricing Section */
@@ -1152,7 +1171,9 @@ a:focus, .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:acti
 #pricing .btn-default:hover, #contact .btn-default:focus {
   color: black;
   background: transparent;
-  border: 1px black solid;
+    -webkit-box-shadow:inset 0px 0px 0px 1px black;
+    -moz-box-shadow:inset 0px 0px 0px 1px black;
+    box-shadow:inset 0px 0px 0px 1px black;
 }
 
 .mt-15 {

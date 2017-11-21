@@ -6,7 +6,7 @@ from django.contrib.contenttypes.fields import GenericRelation
 from star_ratings.models import Rating
 
 from findyour3d.customer.models import (BASIC_MATERIAL_CHOICES, BUDGET_CHOICES, CONSIDERATION_CHOICES,
-                                        MATERIAL_CHOICES, PROCESS_CHOICES)
+                                        MATERIAL_CHOICES, PROCESS_CHOICES, SHIPPING_CHOICES)
 
 CUSTOMER_CHOICES = (
     (0, 'Individuals'),
@@ -46,6 +46,8 @@ class Company(models.Model):
     top_printing_processes = MultiSelectField(choices=PROCESS_CHOICES, max_choices=3)
     description = models.TextField()
     ratings = GenericRelation(Rating)
+    is_expedited = models.BooleanField(default=True)
+    shipping = models.IntegerField(choices=SHIPPING_CHOICES, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
