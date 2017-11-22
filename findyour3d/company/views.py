@@ -3,7 +3,7 @@ from django.core.exceptions import PermissionDenied
 from django.http import HttpResponseForbidden
 from django.shortcuts import redirect
 from django.urls import reverse
-from django.views.generic import CreateView, DetailView, UpdateView
+from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 
 from .models import Company, SpecialOffer
 from .forms import AddCompanyForm, EditCompanyForm, AddSpecialOfferForm
@@ -152,3 +152,10 @@ class AddSpecialOfferView(LoginRequiredMixin, CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
+
+
+class DeleteSpecialOfferView(LoginRequiredMixin, DeleteView):
+    model = SpecialOffer
+
+    def get_success_url(self):
+        return reverse('company:detail', kwargs={'pk': self.object.company.id})

@@ -80,7 +80,13 @@
           <b>Special Offers:</b>
           <ul>
             {% for offer in object.specialoffer_set.all %}
-              <li>{{ offer.text }}</li>
+              <li style="position: relative">
+                  {{ offer.text }}
+                <form action="{% url 'company:delete_offer' offer.id %}" method="post">{% csrf_token %}
+                  <input type="hidden" name="pk" value="{{ offer.id }}">
+                  <button class="btn btn-primary btn-sm delete_button" style="position: absolute; top: 0; right: 0;"><i class="fa fa-trash-o"></i></button>
+                </form>
+              </li>
             {% endfor %}
           </ul>
 

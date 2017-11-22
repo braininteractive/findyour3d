@@ -40,3 +40,18 @@
 .mt-comment-body {
   font-size: 1.4rem !important;
 }
+
+.delete_button {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+.delete_button i {
+  color: black !important;
+  font-size: 14px !important;
+}
+
+.delete_button i:hover {
+  color: red;
+}
