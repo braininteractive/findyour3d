@@ -23,7 +23,8 @@ class DashboardView(LoginRequiredMixin, ListView):
         queryset = Company.objects.filter(
             (Q(material__contains=str(user.material)) & Q(top_printing_processes__contains=str(user.process)) & Q(
                 user__plan__isnull=False))
-            & Q(budget=user.budget)
+            & Q(budget=user.budget) & Q(shipping=user.shipping) & Q(is_cad_assistance=user.need_assistance)
+            & Q(ideal_customer=user.customer_type)
         ).order_by('-user__plan')
         return queryset
 
