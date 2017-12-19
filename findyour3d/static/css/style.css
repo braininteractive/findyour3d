@@ -100,23 +100,31 @@ hr {
 /* Navigation */
 
 .navbar-black {
-  background: black;
-  color: white;
-    -webkit-transition: all 0.9s ease;
-    -moz-transition: all 0.9s ease;
-    -o-transition: all 0.9s ease;
-    transition: all 0.9s ease;
+  background: white;
+  color: black;
+  -webkit-transition: all 0.9s ease;
+  -moz-transition: all 0.9s ease;
+  -o-transition: all 0.9s ease;
+  transition: all 0.9s ease;
+}
+
+.navbar-black .nav li a {
+  color: black;
+  border: 1px solid black !important;
+}
+.navbar-black .navbar-brand {
+  color: black !important;
 }
 
 .navbar-custom {
   padding: 0;
   border-bottom: 0;
   letter-spacing: 1px;
-  /*background: black;*/
   text-transform: uppercase;
 }
 .navbar-custom .navbar-brand {
   font-weight: 600;
+  font-size: 26px;
 }
 .navbar-custom .navbar-brand i.fa {
   color: gray;
@@ -177,7 +185,7 @@ hr {
   width: 100%;
   height: auto;
   padding: 100px 0;
-  text-align: center;
+  /*text-align: center;*/
   color: #fff;
   background: url(../img/intro-bg_2.jpg) no-repeat center center fixed;
   background-color: #000;
@@ -198,7 +206,7 @@ hr {
 }
 #intro .intro-body .brand-heading {
   color: white;
-  text-shadow: 0 4px gray;
+  margin-bottom: 20px;
 }
 #intro .intro-body .intro-text {
   font-size: 18px;
@@ -223,14 +231,14 @@ hr {
   padding: 12px 24px;
   border-radius: 0px;
   margin: 0 8px;
-  font-size: 18px;
+  font-size: 14px;
   transition: all 0.5s;
 }
 .btn-default:hover, .btn-default:focus, .btn-default.focus, .btn-default:active, .btn-default.active {
   color: #f6f6f6;
-    -webkit-box-shadow:inset 0px 0px 0px 1px white;
-    -moz-box-shadow:inset 0px 0px 0px 1px white;
-    box-shadow:inset 0px 0px 0px 1px white;
+  -webkit-box-shadow:inset 0px 0px 0px 1px white;
+  -moz-box-shadow:inset 0px 0px 0px 1px white;
+  box-shadow:inset 0px 0px 0px 1px white;
   background-color: transparent;
 }
 .section-title.center {
@@ -238,6 +246,209 @@ hr {
 }
 .section-title h2, .section-title.center h2 {
   margin-bottom: 30px;
+}
+
+/* Home Section 2 (with laptop) */
+#intro_2 {
+  display: table;
+  width: 100%;
+  height: auto;
+  padding: 100px 0;
+  color: #fff;
+  background: url(../img/home_bg_2.jpg) no-repeat center center fixed;
+  background-color: #000;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
+#intro_2 .intro-body {
+  display: table-cell;
+  vertical-align: middle;
+}
+#intro_2 .intro-body H2 {
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 42px;
+  color: rgba(255,255,255,0.8);
+}
+#intro_2 .intro-body .brand-heading {
+  color: white;
+}
+#intro_2 .intro-body .intro-text {
+  font-size: 18px;
+}
+
+@media(min-width:768px) {
+  #intro_2 {
+    height: 100%;
+    padding: 0;
+  }
+  #intro_2 .intro-body .intro-text {
+    font-size: 18px;
+    letter-spacing: 1px;
+    margin-bottom: 80px;
+    margin-top: 50px;
+    color: rgba(255,255,255,0.9);
+  }
+}
+#intro_2 .btn-default {
+  color: black;
+  background: white;
+  border: 0;
+  padding: 12px 24px;
+  border-radius: 0px;
+  margin: 0 8px;
+  font-size: 14px;
+  transition: all 0.5s;
+}
+#intro_2 .btn-default:hover, .btn-default:focus, .btn-default.focus, .btn-default:active, .btn-default.active {
+  color: #f6f6f6;
+  -webkit-box-shadow:inset 0px 0px 0px 1px white;
+  -moz-box-shadow:inset 0px 0px 0px 1px white;
+  box-shadow:inset 0px 0px 0px 1px white;
+  background-color: transparent;
+}
+.section-title.center {
+  padding: 30px 0;
+}
+.section-title h2, .section-title.center h2 {
+  margin-bottom: 30px;
+}
+
+
+/* Home Section 3 (with a kid) */
+#intro_3 {
+  display: table;
+  width: 100%;
+  height: auto;
+  padding: 100px 0;
+  color: black;
+  text-align: right;
+  background: url(../img/home_bg_3.jpg) no-repeat center center fixed;
+  background-color: #000;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
+#intro_3 .intro-body {
+  display: table-cell;
+  vertical-align: middle;
+}
+#intro_3 .intro-body H2 {
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 42px;
+  color: black;
+}
+#intro_3 .intro-body .brand-heading {
+  color: black;
+}
+#intro_3 .intro-body .intro-text {
+  font-size: 18px;
+}
+
+@media(min-width:768px) {
+  #intro_3 {
+    height: 100%;
+    padding: 0;
+  }
+  #intro_3 .intro-body .intro-text {
+    font-size: 18px;
+    letter-spacing: 1px;
+    margin-bottom: 80px;
+    margin-top: 50px;
+    color: black;
+    font-weight: 700;
+  }
+}
+#intro_3 .btn-default {
+  color: white;
+  background: black;
+  border: 0;
+  padding: 12px 24px;
+  border-radius: 0px;
+  margin: 0 8px;
+  font-size: 14px;
+  transition: all 0.5s;
+}
+#intro_3 .btn-default:hover, .btn-default:focus, .btn-default.focus, .btn-default:active, .btn-default.active {
+  color: black;
+  -webkit-box-shadow:inset 0px 0px 0px 1px black;
+  -moz-box-shadow:inset 0px 0px 0px 1px black;
+  box-shadow:inset 0px 0px 0px 1px black;
+  background-color: transparent;
+}
+.section-title.center {
+  padding: 30px 0;
+}
+.section-title h2, .section-title.center h2 {
+  margin-bottom: 30px;
+}
+
+/* Home Section 4 (with eyeglasses)*/
+#intro_4 {
+  background: url(../img/home_bg_4.jpg);
+  background-size: cover;
+  background-attachment: fixed;
+  color: black;
+  padding: 140px 0;
+}
+#intro_4 h2 {
+  color: black;
+}
+#intro_4 blockquote {
+  position: relative;
+  margin-top: 20px;
+  border: 0;
+  text-align: center;
+  color: black;
+}
+#intro_4 i {
+  font-size: 24px;
+  color: black;
+  margin-bottom: 14px;
+}
+#intro_4 .clients-name {
+  display: inline-block;
+  padding: 20px 0;
+  margin-top: 10px;
+  font-weight: 700;
+}
+#intro_4 .clients-name p {
+  font-size: 16px;
+}
+
+#intro_4 .btn-default {
+  text-transform: uppercase;
+  background: black;
+  color: white;
+  border: 0;
+  border-radius: 0px;
+  padding: 12px 24px;
+  margin: 0 8px;
+  font-size: 14px;
+  transition: all 0.5s;
+}
+
+#intro_4 .brand-heading {
+  font-size: 18px;
+}
+
+#intro_4 .btn-default:hover, #contact .btn-default:focus {
+  color: black;
+  background: transparent;
+  -webkit-box-shadow:inset 0px 0px 0px 1px black;
+  -moz-box-shadow:inset 0px 0px 0px 1px black;
+  box-shadow:inset 0px 0px 0px 1px black;
+}
+
+#intro_4 h3 {
+  font-size: 22px;
+}
+#intro_4 h1 {
+  font-size: 40px;
 }
 
 /* About Section */
@@ -295,9 +506,9 @@ hr {
 #about .btn-default:hover, #contact .btn-default:focus {
   color: black;
   background: transparent;
-    -webkit-box-shadow:inset 0px 0px 0px 1px black;
-    -moz-box-shadow:inset 0px 0px 0px 1px black;
-    box-shadow:inset 0px 0px 0px 1px black;
+  -webkit-box-shadow:inset 0px 0px 0px 1px black;
+  -moz-box-shadow:inset 0px 0px 0px 1px black;
+  box-shadow:inset 0px 0px 0px 1px black;
 }
 
 /* Business Section */
@@ -358,9 +569,9 @@ hr {
 #intro_business .btn-default:hover, #contact .btn-default:focus {
   color: black;
   background: transparent;
-    -webkit-box-shadow:inset 0px 0px 0px 1px black;
-    -moz-box-shadow:inset 0px 0px 0px 1px black;
-    box-shadow:inset 0px 0px 0px 1px black;
+  -webkit-box-shadow:inset 0px 0px 0px 1px black;
+  -moz-box-shadow:inset 0px 0px 0px 1px black;
+  box-shadow:inset 0px 0px 0px 1px black;
 }
 
 /* Services Section */
@@ -406,9 +617,9 @@ hr {
 #services .btn-default:hover, #contact .btn-default:focus {
   color: black;
   background: transparent;
-    -webkit-box-shadow:inset 0px 0px 0px 1px black;
-    -moz-box-shadow:inset 0px 0px 0px 1px black;
-    box-shadow:inset 0px 0px 0px 1px black;
+  -webkit-box-shadow:inset 0px 0px 0px 1px black;
+  -moz-box-shadow:inset 0px 0px 0px 1px black;
+  box-shadow:inset 0px 0px 0px 1px black;
 }
 /* Gallery Section */
 #works {
@@ -570,9 +781,9 @@ img.img-thumbnail.team-img {
 #team .btn-default:hover, #contact .btn-default:focus {
   color: black;
   background: transparent;
-    -webkit-box-shadow:inset 0px 0px 0px 1px black;
-    -moz-box-shadow:inset 0px 0px 0px 1px black;
-    box-shadow:inset 0px 0px 0px 1px black;
+  -webkit-box-shadow:inset 0px 0px 0px 1px black;
+  -moz-box-shadow:inset 0px 0px 0px 1px black;
+  box-shadow:inset 0px 0px 0px 1px black;
 }
 /* Testimonials Section */
 #testimonials {
@@ -617,9 +828,9 @@ img.img-thumbnail.team-img {
 #testimonials .btn-default:hover, #contact .btn-default:focus {
   color: white;
   background: transparent;
-    -webkit-box-shadow:inset 0px 0px 0px 1px white;
-    -moz-box-shadow:inset 0px 0px 0px 1px white;
-    box-shadow:inset 0px 0px 0px 1px white;
+  -webkit-box-shadow:inset 0px 0px 0px 1px white;
+  -moz-box-shadow:inset 0px 0px 0px 1px white;
+  box-shadow:inset 0px 0px 0px 1px white;
 }
 
 /* about_us Section */
@@ -710,9 +921,9 @@ img.img-thumbnail.team-img {
 #about_us .btn-default:hover, #contact .btn-default:focus {
   color: white;
   background: transparent;
-    -webkit-box-shadow:inset 0px 0px 0px 1px white;
-    -moz-box-shadow:inset 0px 0px 0px 1px white;
-    box-shadow:inset 0px 0px 0px 1px white;
+  -webkit-box-shadow:inset 0px 0px 0px 1px white;
+  -moz-box-shadow:inset 0px 0px 0px 1px white;
+  box-shadow:inset 0px 0px 0px 1px white;
 }
 /* Contact Section */
 #contact {
@@ -965,9 +1176,9 @@ a:focus, .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:acti
 #plan .btn-default:hover, #contact .btn-default:focus {
   color: black;
   background: transparent;
-    -webkit-box-shadow:inset 0px 0px 0px 1px black;
-    -moz-box-shadow:inset 0px 0px 0px 1px black;
-    box-shadow:inset 0px 0px 0px 1px black;
+  -webkit-box-shadow:inset 0px 0px 0px 1px black;
+  -moz-box-shadow:inset 0px 0px 0px 1px black;
+  box-shadow:inset 0px 0px 0px 1px black;
 }
 
 #plan h2{
@@ -1123,9 +1334,9 @@ a:focus, .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:acti
 #plan .company .btn-default:hover, #contact .btn-default:focus {
   color: black;
   background: transparent;
-    -webkit-box-shadow:inset 0px 0px 0px 1px black;
-    -moz-box-shadow:inset 0px 0px 0px 1px black;
-    box-shadow:inset 0px 0px 0px 1px black;
+  -webkit-box-shadow:inset 0px 0px 0px 1px black;
+  -moz-box-shadow:inset 0px 0px 0px 1px black;
+  box-shadow:inset 0px 0px 0px 1px black;
 }
 
 /* Pricing Section */
@@ -1171,9 +1382,9 @@ a:focus, .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:acti
 #pricing .btn-default:hover, #contact .btn-default:focus {
   color: black;
   background: transparent;
-    -webkit-box-shadow:inset 0px 0px 0px 1px black;
-    -moz-box-shadow:inset 0px 0px 0px 1px black;
-    box-shadow:inset 0px 0px 0px 1px black;
+  -webkit-box-shadow:inset 0px 0px 0px 1px black;
+  -moz-box-shadow:inset 0px 0px 0px 1px black;
+  box-shadow:inset 0px 0px 0px 1px black;
 }
 
 .mt-15 {
@@ -1185,13 +1396,13 @@ a:focus, .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:acti
 }
 
 .star-ratings-rating-background li::before {
-    content: "" !important;
-    font-weight: 600;
-    padding-right: 10px;
-    color: gray;
+  content: "" !important;
+  font-weight: 600;
+  padding-right: 10px;
+  color: gray;
 }
 .company_rating li:before {
-    content: "" !important;
+  content: "" !important;
 }
 
 .company_rating {

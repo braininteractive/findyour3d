@@ -12,7 +12,6 @@
 
   <!-- Header -->
   <div id="intro">
-
     <div class="intro-body">
       <div class="container">
         <div class="row" id="message_sent" style="display: none">
@@ -27,8 +26,7 @@
         </div>
         <div class="row">
           <div class="col-md-10 col-md-offset-1 home_page">
-{#            <h1><span class="brand-heading">Your3D</span></h1>#}
-            <img class="img-responsive" src="{% static 'img/logo-main.png' %}" alt="">
+            <h1><span class="brand-heading">Your3D</span></h1>
             <p class="intro-text">
               <b>Tired of searching for the perfect fit for your project?
                 Let us help. We compare the top 3D Printing Services to find you the best fit for you.</b>
@@ -39,29 +37,79 @@
       </div>
     </div>
   </div>
-{##}
-{#  <!-- About Section -->#}
-{#  <div id="about">#}
-{#    <div class="container">#}
-{#      <div class="section-title text-center center">#}
-        {#        <p>*Space for logo*</p>#}
-{#        <div class="row">#}
-{#          <div class="col-md-10 col-md-offset-2">#}
-{#            <img class="img-responsive" src="{% static 'img/logo-main.png' %}" alt="">#}
-{#          </div>#}
-{#        </div>#}
-{#      </div>#}
-{#    </div>#}
-{#  </div>#}
 
-  <!-- Testimonials Section -->
-  <div id="testimonials" class="text-center">
+  <!-- About Section -->
+  <div id="about">
+    <div class="container">
+      <div class="section-title text-center center">
+        <div class="row">
+          <div class="col-md-8 col-md-offset-4">
+            <img class="img-responsive" src="{% static 'img/logo-main.png' %}" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Home Section 2 -->
+  <div id="intro_2">
+    <div class="intro-body">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-10 col-md-offset-1">
+            <h2><span class="brand-heading">
+              Browse the Best 3D Printing Providers <br> Instantly and All For Free.​</span></h2>
+            <p class="intro-text">
+              Stop endlessly searching for your perfect fit and paying needless fees.
+              <br>
+              Find your perfect match and starting printing today.
+
+            </p>
+            <a href="#" class="btn btn-default page-scroll">START NOW</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Home Section 3 -->
+  <div id="intro_3">
+    <div class="intro-body">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-10 col-md-offset-1">
+            <h2><span class="brand-heading">
+              3D Printing Is Tough... <br>
+              Let Us Help.
+              ​</span></h2>
+            <p class="intro-text">
+              Understanding the best options for your print isn't easy, especially for beginners.
+              <br>
+              Our Matrix helps you find the best material and process for what your print needs.
+            </p>
+
+          </div>
+          <div style="text-align: left">
+            <a href="#" class="btn btn-default page-scroll">START NOW</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Home Section 4-->
+  <div id="intro_4" class="text-center">
     <div class="container">
       <div class="section-title center">
-        <h1 style="color: black">Let us handle the heavy lifting.</h1>
-        <h3>Stop sifting through hundreds of providers. Let us find the perfect match for you and your project.
-          ​Our process is simple, fast, and best of all free.</h3>
-        <hr>
+        <h1 style="color: black">Keep things simple.</h1>
+        <h3 class="brand-heading">
+          Get back to doing more of what matters and what you love. Let us find you the perfect partner for
+          your project.
+        </h3>
+        <h3>
+          Stop Searching. Start Printing.
+        </h3>
       </div>
       <div class="row">
         <div class="col-md-10 col-md-offset-1">
@@ -117,9 +165,9 @@
 {% endblock content %}
 {% block extra_js %}
   <script>
-      var message_status = $.urlParam('message_sent');
-      if (message_status == "success") {
-          $('#message_sent').show();
-      }
+    var message_status = $.urlParam('message_sent');
+    if (message_status == "success") {
+      $('#message_sent').show();
+    }
   </script>
 {% endblock extra_js %}
