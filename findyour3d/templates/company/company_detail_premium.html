@@ -101,6 +101,9 @@
           <img class="item-pic rounded" src="{{ object.logo.url }}" alt="">
         {% else %}
           <img class="item-pic rounded" src="http://placehold.it/135x135">
+          {% if is_owner %}
+            <p style="font-size: 12px">You can upload your own logo <a href="{% url 'company:edit' object.pk %}">here</a>.</p>
+          {% endif %}
         {% endif %}
       </div>
 
@@ -110,21 +113,15 @@
     </div>
 
     {% if is_owner %}
-      {% if user.plan and user.plan == 2 %}
-        <div class="row edit_company">
-          <div class="col-sm-12">
-            <div class="text-center">
-              <a href="{% url 'company:edit' object.pk %}" class="btn btn-default page-scroll">
-                EDIT YOUR PROFILE</a>
-            </div>
+      <div class="row edit_company">
+        <div class="col-sm-12">
+          <div class="text-center">
+            <a href="{% url 'company:edit' object.pk %}" class="btn btn-default page-scroll">
+              EDIT YOUR PROFILE</a>
           </div>
         </div>
-      {% else %}
-        <div class="text-center">
-          <a onclick="return false" class="btn small btn-default page-scroll" disabled="">
-            EDIT YOUR PROFILE IS NOT AVAILABLE IN STARTER PLAN</a>
-        </div>
-      {% endif %}
+      </div>
+
     {% endif %}
     {% if is_owner %}
       <div class="container company">

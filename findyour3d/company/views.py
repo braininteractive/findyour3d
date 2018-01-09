@@ -94,13 +94,9 @@ class EditCompanyView(LoginRequiredMixin, UpdateView):
 
     def dispatch(self, request, *args, **kwargs):
         if self.request.user.is_authenticated():
-            if self.request.user.user_type == 2:
-                if request.user.plan == 2:  # Allow only premium users
-                    if int(self.kwargs['pk']) == request.user.company_set.first().pk:
-                        if not self.request.user.company_set.all():
-                            return redirect('company:add')
-                else:
-                    raise PermissionDenied
+            if int(self.kwargs['pk']) == request.user.company_set.first().pk:
+                if not self.request.user.company_set.all():
+                    return redirect('company:add')
             else:
                 raise PermissionDenied
         return super(EditCompanyView, self).dispatch(request, *args, **kwargs)
@@ -118,7 +114,11 @@ class EditCompanyView(LoginRequiredMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['user'] = self.request.user
+        user = self.request.user
+        context['user'] = user
+        context['is_starter'] = True
+        if user.plan == 2:
+            context['is_starter'] = False
         return context
 
 

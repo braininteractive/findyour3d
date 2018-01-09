@@ -37,57 +37,68 @@
 
   <!-- Plan Section -->
   <div id="plan">
-  <div class="container">
-    <div class="row">
+    <div class="container">
+      <div class="row">
 
-      <div class="col-md-10 ml-auto">
+        <div class="col-md-10 ml-auto">
+
+          {% if is_owner %}
+            {% if not user.plan %}
+              <div class="alert alert-danger text-center">
+                <b>Your account is not active!</b> <br>
+                You haven't choose your Subscription. Please
+                <a class="bold" href="{% url 'users:plan' %}#plan">click here</a> to select a plan.
+              </div>
+            {% endif %}
+          {% endif %}
+
+          <div class="alert alert-success text-center enrolled alert-dismissible" style="display: none">
+            <b>Thank you!</b> <br>
+            <span>Your Subscription is now active!</span>
+            <button type="button" class="close" style="text-indent: 1px" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <p><b>Location:</b> {{ object.address_line_1 }}, {{ object.address_line_2 }}</p>
+          </div>
+          <div class="col-md-6">
+            <p><b>Printing Options: </b> {{ object.get_printing_options_display }}</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <p><b>Company Rating:</b></p>
+            <div class="company_rating">{% ratings object %}</div>
+          </div>
+          <div class="col-md-6">
+            <p><b>Services:</b> {{ object.top_printing_processes }}</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <p><b>Material: </b>{{ object.get_material_display }}</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <b>Special Offers:</b>
+            {% if is_owner %}
+              <small>
+                Available only in Premium Plan. Please upgrade
+                <a class="bold" href="{% url 'users:plan' %}#plan">here</a>
+              </small>
+            {% endif %}
+          </div>
+        </div>
 
         {% if is_owner %}
-          {% if not user.plan %}
-            <div class="alert alert-danger text-center">
-              <b>Your account is not active!</b> <br>
-              You haven't choose your Subscription. Please
-              <a class="bold" href="{% url 'users:plan' %}#plan">click here</a> to select a plan.
-            </div>
-          {% endif %}
-        {% endif %}
-
-        <div class="alert alert-success text-center enrolled alert-dismissible" style="display: none">
-          <b>Thank you!</b> <br>
-          <span>Your Subscription is now active!</span>
-          <button type="button" class="close" style="text-indent: 1px" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-6">
-          <p><b>Location:</b> {{ object.address_line_1 }}, {{ object.address_line_2 }}</p>
-        </div>
-        <div class="col-md-6">
-          <p><b>Printing Options: </b> {{ object.get_printing_options_display }}</p>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-6">
-          <p><b>Company Rating:</b></p>
-          <div class="company_rating">{% ratings object %}</div>
-        </div>
-        <div class="col-md-6">
-          <p><b>Services:</b> {{ object.top_printing_processes }}</p>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-6">
-          <p><b>Material: </b>{{ object.get_material_display }}</p>
-        </div>
-      </div>
-
-      {% if is_owner %}
-        {% if user.plan and user.plan == 2 %}
           <div class="row edit_company">
             <div class="col-sm-12">
               <div class="text-center">
@@ -96,135 +107,130 @@
               </div>
             </div>
           </div>
-        {% else %}
-          <div class="well well-sm text-center">
-            <small>You can't edit your profile info in Starter Plan. Please,
-              <a class="font-weight-bold" href="{% url 'users:plan' %}#plan">upgrade to Premium</a>!</small>
-          </div>
         {% endif %}
+      </div>
+      {% if is_owner %}
+        <div class="container company">
+          <div class="row text-center">
+            <div class="col-md-6">
+              <h2>Your Membership</h2>
+              {% if user.plan %}
+                <h5>Membership: {{ request.user.get_plan_display }}</h5>
+                <h5>Since: {{ member_since }}</h5>
+              {% endif %}
+            </div>
+            <div class="col-md-6">
+              <h2>Your Payment Information</h2>
+              {% if user.payment_active %}
+                <h5>{{ user.card_type }} xxxx-xxxx-xxxx-{{ user.card_last }}</h5>
+              {% endif %}
+            </div>
+          </div>
+          <div class="row" style="margin-top: 20px; margin-bottom: 30px;">
+            <div class="col-md-6 text-center">
+              {% if user.plan == 1 %}
+                <a href="{% url 'users:plan' %}#plan" class="btn btn-default">UPGRADE NOW</a>
+              {% elif user.plan == 2 %}
+                <a href="" class="btn btn-default" id="openWarningModal" data-target="#CancelPlan" data-toggle="modal">CANCEL SUBSCRIPTION</a>
+              {% else %}
+                <a href="{% url 'users:plan' %}#plan" class="btn btn-default">CHOOSE A PLAN</a>
+              {% endif %}
+            </div>
+
+            <div class="col-md-6 text-center">
+              {% if user.payment_active %}
+                <a href="{% url 'payments:card' %}" class="btn btn-default">CHANGE PAYMENT OPTIONS</a>
+              {% else %}
+                <a href="{% url 'payments:card' %}" class="btn btn-default">ADD PAYMENT METHOD</a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <div class="container">
+          <div class="col-md-12">
+            <div class="portlet light bordered" >
+              <div class="portlet-title">
+                <div class="caption">
+                  <h3 class="font-blue-dark">Your Customer Requests</h3>
+                </div>
+              </div>
+              <div class="portlet-body">
+                <div class="mt-comments">
+                  {% for quote in user.company_set.first.quoterequest_set.all %}
+                    <div class="mt-comment">
+                      <div class="mt-comment-img">
+                        <img src="{% static 'img/avatar8.jpg' %}" />
+                      </div>
+                      <div class="mt-comment-body">
+                        <div class="mt-comment-info">
+                          <span class="mt-comment-author">{{ quote.user }}</span>
+                          <span class="mt-comment-date">{{ quote.created_at }}</span>
+                        </div>
+                        <div class="mt-comment-text">
+                          <a href="mailto:{{ quote.user.email }}">{{ quote.user.email }}</a> <br>
+                          Material: {{ quote.user.customer_set.first.get_material_display }} <br>
+                          Process: {{ quote.user.customer_set.first.get_process_display }} <br>
+                          Budget: {{ quote.user.customer_set.first.get_budget_display }} <br>
+                          Need Assistance: {{ quote.user.customer_set.first.get_need_assistance_display }} <br>
+                          Time Sensitive: {{ quote.user.customer_set.first.is_time_sensitive }} <br>
+                          Shipping: {{ quote.user.customer_set.first.get_shipping_display }} <br>
+                          Zip: {{ quote.user.customer_set.first.zip }} <br>
+                          Description: {{ quote.user.customer_set.first.description }} <br>
+                        </div>
+                        <div class="mt-comment-details">
+                          <span class="mt-comment-status mt-comment-status-pending">Pending</span>
+                          {#                                            <ul class="mt-comment-actions">#}
+                          {#                                                <li>#}
+                          {#                                        <a href="#">Quick Edit</a>#}
+                          {#                                                </li>#}
+                          {#                                                <li>#}
+                          {#                                        <a href="#">View</a>#}
+                          {#                                                </li>#}
+                          {#                                                <li>#}
+                          {#                                        <a href="#">Delete</a>#}
+                          {#                                                </li>#}
+                          {#                                            </ul>#}
+                        </div>
+                      </div>
+                    </div>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       {% endif %}
     </div>
-    {% if is_owner %}
-      <div class="container company">
-        <div class="row text-center">
-          <div class="col-md-6">
-            <h2>Your Membership</h2>
-            {% if user.plan %}
-              <h5>Membership: {{ request.user.get_plan_display }}</h5>
-              <h5>Since: {{ member_since }}</h5>
-            {% endif %}
-          </div>
-          <div class="col-md-6">
-            <h2>Your Payment Information</h2>
-            {% if user.payment_active %}
-              <h5>{{ user.card_type }} xxxx-xxxx-xxxx-{{ user.card_last }}</h5>
-            {% endif %}
-          </div>
-        </div>
-        <div class="row" style="margin-top: 20px; margin-bottom: 30px;">
-          <div class="col-md-6 text-center">
-            {% if user.plan == 1 %}
-              <a href="{% url 'users:plan' %}#plan" class="btn btn-default">UPGRADE NOW</a>
-            {% elif user.plan == 2 %}
-              <a href="" class="btn btn-default" id="openWarningModal" data-target="#CancelPlan" data-toggle="modal">CANCEL SUBSCRIPTION</a>
-            {% else %}
-              <a href="{% url 'users:plan' %}#plan" class="btn btn-default">CHOOSE A PLAN</a>
-            {% endif %}
-          </div>
 
-          <div class="col-md-6 text-center">
-            {% if user.payment_active %}
-              <a href="{% url 'payments:card' %}" class="btn btn-default">CHANGE PAYMENT OPTIONS</a>
-            {% else %}
-              <a href="{% url 'payments:card' %}" class="btn btn-default">ADD PAYMENT METHOD</a>
-            {% endif %}
+    <div class="modal fade modal-fade-in-scale-up" id="CancelPlan" aria-hidden="true"
+         aria-labelledby="exampleModalTitle" role="dialog" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+            <h4 class="modal-title">Are you sure?</h4>
           </div>
-        </div>
-      </div>
-
-      <div class="container">
-        <div class="col-md-12">
-          <div class="portlet light bordered" >
-            <div class="portlet-title">
-              <div class="caption">
-                <h3 class="font-blue-dark">Your Customer Requests</h3>
+          <div class="modal-body">
+            {% if request.user.is_authenticated %}
+              <div class="alert alert-danger">
+                You current plan will be canceled. You won't be able to use ChatBot and all the other features.
               </div>
-            </div>
-            <div class="portlet-body">
-              <div class="mt-comments">
-                {% for quote in user.company_set.first.quoterequest_set.all %}
-                  <div class="mt-comment">
-                    <div class="mt-comment-img">
-                      <img src="{% static 'img/avatar8.jpg' %}" />
-                    </div>
-                    <div class="mt-comment-body">
-                      <div class="mt-comment-info">
-                        <span class="mt-comment-author">{{ quote.user }}</span>
-                        <span class="mt-comment-date">{{ quote.created_at }}</span>
-                      </div>
-                      <div class="mt-comment-text">
-                        <a href="mailto:{{ quote.user.email }}">{{ quote.user.email }}</a> <br>
-                        Material: {{ quote.user.customer_set.first.get_material_display }} <br>
-                        Process: {{ quote.user.customer_set.first.get_process_display }} <br>
-                        Budget: {{ quote.user.customer_set.first.get_budget_display }} <br>
-                        Need Assistance: {{ quote.user.customer_set.first.get_need_assistance_display }} <br>
-                        Time Sensitive: {{ quote.user.customer_set.first.is_time_sensitive }} <br>
-                        Shipping: {{ quote.user.customer_set.first.get_shipping_display }} <br>
-                        Zip: {{ quote.user.customer_set.first.zip }} <br>
-                        Description: {{ quote.user.customer_set.first.description }} <br>
-                      </div>
-                      <div class="mt-comment-details">
-                        <span class="mt-comment-status mt-comment-status-pending">Pending</span>
-                        {#                                            <ul class="mt-comment-actions">#}
-                        {#                                                <li>#}
-                        {#                                        <a href="#">Quick Edit</a>#}
-                        {#                                                </li>#}
-                        {#                                                <li>#}
-                        {#                                        <a href="#">View</a>#}
-                        {#                                                </li>#}
-                        {#                                                <li>#}
-                        {#                                        <a href="#">Delete</a>#}
-                        {#                                                </li>#}
-                        {#                                            </ul>#}
-                      </div>
-                    </div>
-                  </div>
-                {% endfor %}
-              </div>
-            </div>
+            {% endif %}
           </div>
-        </div>
-      </div>
-    {% endif %}
-  </div>
 
-  <div class="modal fade modal-fade-in-scale-up" id="CancelPlan" aria-hidden="true"
-       aria-labelledby="exampleModalTitle" role="dialog" tabindex="-1">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-          <h4 class="modal-title">Are you sure?</h4>
-        </div>
-        <div class="modal-body">
-          {% if request.user.is_authenticated %}
-            <div class="alert alert-danger">
-              You current plan will be canceled. You won't be able to use ChatBot and all the other features.
+          <form action="{% url 'users:cancel' %}" method="post" id="cancelForm">
+            {% csrf_token %}
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default"  data-dismiss="modal">
+                No, I don't want to cancel</button>
+              <button type="button" id="cancelFormSubmit" class="btn btn-danger margin-0">
+                Yes, cancel my subscription</button>
             </div>
-          {% endif %}
+          </form>
         </div>
-
-        <form action="{% url 'users:cancel' %}" method="post" id="cancelForm">
-          {% csrf_token %}
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default"  data-dismiss="modal">
-              No, I don't want to cancel</button>
-            <button type="button" id="cancelFormSubmit" class="btn btn-danger margin-0">
-              Yes, cancel my subscription</button>
-          </div>
-        </form>
       </div>
     </div>
   </div>
