@@ -35,17 +35,31 @@ class DashboardTests(TestCase):
                                                      address_line_1='1', address_line_2='2',
                                                      full_name='silver_company', email='silver_company@mail.com',
                                                      phone='1234453534', website='asddsd.com',
-                                                     ideal_customer=0, is_cad_assistance=True,
-                                                     budget=2, printing_options=['1', '2'], material=['6', '10', '11'],
+                                                     ideal_customer=0,
+                                                     is_cad_assistance=True,
+                                                     budget=2,
+                                                     printing_options=['1', '2'],
+                                                     material=['6', '10', '11'],
                                                      top_printing_processes=['1', '2'],
-                                                     description='silver_company')
+                                                     description='silver_company',
+                                                     shipping=0)
 
-        self.simple_user = User.objects.create(username='simple_user', user_type=1, is_active=True,
-                                               email='simple_user@test.com')
+        self.simple_user = User.objects.create(username='simple_user',
+                                               user_type=1,
+                                               is_active=True,
+                                               email='simple_user@test.com',
+                                               plan=1)
+
         self.simple_user.set_password('1234567a')
         self.simple_user.save()
-        self.customer = Customer.objects.create(user=self.simple_user, budget=2, customer_type=0, material=6,
-                                                process=2, is_advanced_filled=True)
+        self.customer = Customer.objects.create(user=self.simple_user,
+                                                budget=2,
+                                                customer_type=0,
+                                                material='6',
+                                                process='2',
+                                                is_advanced_filled=True,
+                                                shipping=0,
+                                                need_assistance=1)
 
         self.client = Client()
         self.client.login(username='simple_user', password='1234567a')
@@ -65,6 +79,7 @@ class DashboardTests(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_match_company_and_customer(self):
-        self.client.login(username='simple_user', password='1234567a')
+        self.client.login(username='silver_user', password='1234567a')
         response = self.client.get(reverse('dashboard:company'))
+        # print(response.render().content)
         self.assertContains(response, 'silver_company')

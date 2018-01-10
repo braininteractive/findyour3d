@@ -10,6 +10,7 @@ class DashboardView(LoginRequiredMixin, ListView):
     model = Company
     template_name = 'dashboard/company.html'
     context_object_name = 'companies'
+    paginate_by = 50
 
     def dispatch(self, request, *args, **kwargs):
         if self.request.user.is_authenticated():
@@ -21,11 +22,16 @@ class DashboardView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         user = self.request.user.customer_set.first()
         queryset = Company.objects.filter(
-            (Q(material__contains=str(user.material)) & Q(top_printing_processes__contains=str(user.process)) & Q(
-                user__plan__isnull=False))
-            & Q(budget=user.budget) & Q(shipping=user.shipping) & Q(is_cad_assistance=user.need_assistance)
-            & Q(ideal_customer=user.customer_type)
-        ).order_by('-user__plan')
+            (Q(material__exact=str(user.material)) |
+             Q(material__startswith='%s,' % str(user.material)) |
+             Q(material__endswith=',%s' % str(user.material)) |
+             Q(material__contains=',%s,' % str(user.material))
+             ) &
+            Q(top_printing_processes__contains=str(user.process)) &
+            Q(user__plan__isnull=False) &
+            Q(budget=user.budget) & Q(shipping=user.shipping) &
+            Q(is_cad_assistance=user.need_assistance) &
+            Q(ideal_customer=user.customer_type)).order_by('-user__plan')
         return queryset
 
 
