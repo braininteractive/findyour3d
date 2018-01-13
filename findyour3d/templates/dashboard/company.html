@@ -42,6 +42,7 @@
                 <div class="item-head">
                   <div class="item-details">
                     {% if company.user.plan == 2 %}
+                      <h3 class="bold">Premium Manufacturer</h3>
                       {% if company.logo %}
                         <img class="item-pic rounded" src="{{ company.logo.url }}">
                       {% else %}
@@ -82,6 +83,20 @@
                   Consideration: <b>{{ company.get_consideration_display }}</b>
 
                   <p></p>
+                  <div id="plan">
+                    {% if company.user.plan == 2 %}
+                      <h4>Special Offers from manufacturer:</h4>
+                      {% if company.specialoffer_set.all %}
+                        <ul>
+                          {% for offer in company.specialoffer_set.all %}
+                            <li style="position: relative">
+                              {{ offer.text }}
+                            </li>
+                          {% endfor %}
+                        </ul>
+                      {% endif %}
+                    {% endif %}
+                  </div>
 
                   <div class="well">
                     <address>
