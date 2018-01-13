@@ -213,13 +213,13 @@
             <div class="form-group form-md-line-input form-md-floating-label
                             {% if form.description.errors %}has-error{% endif %}">
               <textarea name="description" required=""
-                        class="form-control edited {% if is_starter %}testinput{% endif %}"
+                        class="form-control edited {% if is_starter %}starter{% endif %}"
                         rows="3" id="id_description" cols="40">{{ form.description.value }}</textarea>
 
               <label class="form_control_1">{{ form.description.label }}</label>
             </div>
             <div class="alert alert-danger" style="display: none" id="starterCharsLimit">
-              Starter Membership has a limit for description in 300 characters.
+              <span id="warningText">Starter Membership has a limit for description in 300 characters.</span>
               <a class="bold" href="{% url 'users:plan' %}#plan">Please upgrade your plan here</a>.
             </div>
           </div>
@@ -235,7 +235,7 @@
   <script src="{% static 'forms/bootstrap-fileinput/bootstrap-fileinput.js' %}"></script>
 
   <script>
-      $('textarea.testinput').on('keyup', function() {
+      $('textarea.starter').on('keyup', function() {
           // 300 chars limit
           limitText(this, 300)
       });
@@ -250,6 +250,31 @@
               });
           }
       }
+
+      $('.materials').find().closest('select').attr('id', 'starter_materials');
+
+
+      var last_valid_selection = null;
+      {% if is_starter %}
+          $('#id_material').change(function(event) {
+              if ($(this).val().length > 3) {
+                  $(this).val(last_valid_selection);
+              } else {
+                  last_valid_selection = $(this).val();
+              }
+          });
+          $('#id_top_printing_processes').change(function(event) {
+              if ($(this).val().length > 3) {
+                  $('#warningText').text('Starter Membership has a limit of selection.');
+                  $('#starterCharsLimit').show();
+                  $(this).val(last_valid_selection);
+              } else {
+                  last_valid_selection = $(this).val();
+              }
+          });
+      {% endif %}
+
+
   </script>
 
 {% endblock extra_js %}
