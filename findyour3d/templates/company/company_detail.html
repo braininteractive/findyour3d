@@ -66,7 +66,7 @@
             <p><b>Location:</b> {{ object.address_line_1 }}, {{ object.address_line_2 }}</p>
           </div>
           <div class="col-md-6">
-            <p><b>Printing Options: </b> {{ object.get_printing_options_display }}</p>
+            <p><b>Services:</b> {{ object.top_printing_processes }}</p>
           </div>
         </div>
 
@@ -76,25 +76,14 @@
             <div class="company_rating">{% ratings object %}</div>
           </div>
           <div class="col-md-6">
-            <p><b>Services:</b> {{ object.top_printing_processes }}</p>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-6">
             <p><b>Material: </b>{{ object.get_material_display }}</p>
           </div>
         </div>
 
+
         <div class="row">
-          <div class="col-md-6">
-            <b>Special Offers:</b>
-            {% if is_owner %}
-              <small>
-                Available only in Premium Plan. Please upgrade
-                <a class="bold" href="{% url 'users:plan' %}#plan">here</a>
-              </small>
-            {% endif %}
+          <div class="col-md-12">
+            <b>Description: </b>{{ object.description }}
           </div>
         </div>
 

@@ -35,7 +35,7 @@ class AddCompanyForm(forms.ModelForm):
             'printing_options': forms.SelectMultiple(attrs={'class': 'form-control edited'}),
             'material': forms.SelectMultiple(attrs={'class': 'form-control edited'}),
             'top_printing_processes': forms.SelectMultiple(attrs={'class': 'form-control edited'}),
-            'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
+            'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 10}),
             'user': forms.HiddenInput(),
         }
 
@@ -48,7 +48,7 @@ class AddCompanyForm(forms.ModelForm):
         self.fields['user'].initial = self.user
         self.fields['ideal_customer'].label = 'What is your company’s ideal customer that we should send to you?'
         self.fields['budget'].label = 'What is your ideal order cost/budget?'
-        self.fields['printing_options'].label = 'Printing Options Available'
+        self.fields['printing_options'].label = 'Printing Processes Available'
 
 
 class EditCompanyForm(forms.ModelForm):
@@ -77,7 +77,7 @@ class EditCompanyForm(forms.ModelForm):
             'printing_options': forms.SelectMultiple(attrs={'class': 'form-control edited'}),
             'material': forms.SelectMultiple(attrs={'class': 'form-control edited'}),
             'top_printing_processes': forms.SelectMultiple(attrs={'class': 'form-control edited'}),
-            'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
+            'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 10}),
             'shipping': forms.Select(attrs={'class': 'form-control edited'}),
             'user': forms.HiddenInput(),
         }

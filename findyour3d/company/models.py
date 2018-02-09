@@ -43,7 +43,7 @@ class Company(models.Model):
     consideration = models.IntegerField(choices=CONSIDERATION_CHOICES, default=0)
     printing_options = MultiSelectField(choices=PRINTING_OPTIONS_CHOICES)
     material = MultiSelectField(choices=MATERIAL_CHOICES, blank=True, null=True)
-    top_printing_processes = MultiSelectField(choices=PROCESS_CHOICES, max_choices=3)
+    top_printing_processes = MultiSelectField(choices=PROCESS_CHOICES, max_choices=9)
     description = models.TextField()
     ratings = GenericRelation(Rating)
     is_expedited = models.BooleanField(default=True)

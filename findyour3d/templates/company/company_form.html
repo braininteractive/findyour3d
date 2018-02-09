@@ -39,6 +39,11 @@
 
         {{ form.user }}
 
+        <div style="margin-top: 60px; margin-bottom: 100px;">
+          <h3 class="text-center">Company Information</h3>
+          <hr style="background: #37c6d3">
+        </div>
+
         <div class="row">
           <div class="col-md-6">
             <div class="form-group form-md-line-input form-md-floating-label
@@ -129,6 +134,7 @@
         </div>
 
         <div style="margin-top: 60px; margin-bottom: 100px;">
+          <h3 class="text-center">Printing and Manufacturing Information</h3>
           <hr style="background: #37c6d3">
         </div>
 
@@ -164,13 +170,11 @@
               <label for="form_control_1">{{ form.budget.label|title }}</label>
             </div>
           </div>
-          <div class="col-md-6">
-            <div class="form-group form-md-line-input form-md-floating-label
-                            {% if form.printing_options.errors %}has-error{% endif %}">
-              {{ form.printing_options }}
-              <label for="form_control_1">{{ form.printing_options.label|title }}</label>
-            </div>
-          </div>
+        </div>
+
+        <div class="alert alert-danger" style="display: none" id="starterCharsLimit">
+          <span id="warningText">Starter Membership has a limit for description in 300 characters.</span>
+          <a class="bold" href="{% url 'users:plan' %}#plan">Please upgrade your plan here</a>.
         </div>
 
         <div class="row">
@@ -218,10 +222,6 @@
 
               <label class="form_control_1">{{ form.description.label }}</label>
             </div>
-            <div class="alert alert-danger" style="display: none" id="starterCharsLimit">
-              <span id="warningText">Starter Membership has a limit for description in 300 characters.</span>
-              <a class="bold" href="{% url 'users:plan' %}#plan">Please upgrade your plan here</a>.
-            </div>
           </div>
         </div>
 
@@ -258,6 +258,8 @@
       {% if is_starter %}
           $('#id_material').change(function(event) {
               if ($(this).val().length > 3) {
+                  $('#warningText').text('Starter Membership has a limit of selection.');
+                  $('#starterCharsLimit').show();
                   $(this).val(last_valid_selection);
               } else {
                   last_valid_selection = $(this).val();
