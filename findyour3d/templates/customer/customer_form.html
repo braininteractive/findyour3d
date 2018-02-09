@@ -25,9 +25,10 @@
             {{ form.errors }}
           </div>
         {% endif %}
-        <h3>Bring Your Project To Life.</h3>
-        <h4>Let us help. Fill out our form below and we will match your project to the nation's top providers based on your criteria.</h4>
-        <h5 class="bold">If you're unfamiliar with some of the terms, see our about page and download our 3D Printing 101 Guide.</h5>
+        <h2>Bring Your Project To Life.</h2>
+        <h4>Fill out our form below, and we will match your project to the top 3D Printing providers based on
+          your criteria.</h4>
+
         <form class="form-horizontal" action="" id="submit_form" method="POST">
           {% csrf_token %}
           <div class="form-wizard">
@@ -138,19 +139,26 @@
                     </div>
                   </div>
 
-                  <div class="col-md-10 col-md-offset-2">
-                    <div class="form-group form-md-line-input form-md-floating-label
+                  <div class="form-group">
+                    <div class="col-md-10 col-md-offset-2">
+                      <div class="form-group form-md-line-input form-md-floating-label
                             {% if form.material.errors %}has-error{% endif %}">
-                      {{ form.material }}
-                      <label class="bold" style="color: black" for="form_control_1">{{ form.material.label|title }}</label>
+                        <p class="warning_message_on_form">Please leave blank to proceed to our
+                          Recommendation Wizard.</p>
+                        {{ form.material }}
+                        <label class="bold" style="color: black" for="form_control_1">{{ form.material.label|title }}</label>
+                      </div>
                     </div>
                   </div>
-
-                  <div class="col-md-10 col-md-offset-2" id="processBlock">
-                    <div class="form-group form-md-line-input form-md-floating-label
+                  <div class="form-group">
+                    <div class="col-md-10 col-md-offset-2" id="processBlock">
+                      <div class="form-group form-md-line-input form-md-floating-label
                             {% if form.process.errors %}has-error{% endif %}">
-                      {{ form.process }}
-                      <label class="bold" style="color: black" for="form_control_1">{{ form.process.label|title }}</label>
+                        <p class="warning_message_on_form">Please leave blank to proceed to our
+                          Recommendation Wizard.</p>
+                        {{ form.process }}
+                        <label class="bold" style="color: black" for="form_control_1">{{ form.process.label|title }}</label>
+                      </div>
                     </div>
                   </div>
 
@@ -274,22 +282,6 @@
 
                 </div>
                 <div class="tab-pane" id="tab3">
-                  <div class="col-md-10 col-md-offset-2">
-                    <div class="form-group form-md-line-input form-md-floating-label
-                            {% if form.geo_matters.errors %}has-error{% endif %}">
-                      {{ form.geo_matters }}
-                      <label class="bold" for="form_control_1">{{ form.geo_matters.label|title }}</label>
-                    </div>
-                  </div>
-
-                  <div class="col-md-10 col-md-offset-2">
-                    <div class="form-group form-md-line-input form-md-floating-label
-                            {% if form.zip.errors %}has-error{% endif %}">
-                      {{ form.zip }}
-                      <label class="bold" for="form_control_1">{{ form.zip.label|title }}</label>
-                    </div>
-                  </div>
-
                   <div class="col-md-10 col-md-offset-2">
                     <div class="form-group form-md-line-input form-md-floating-label
                             {% if form.description.errors %}has-error{% endif %}">

@@ -13,8 +13,8 @@ class AddCustomerForm(forms.ModelForm):
     class Meta:
         model = Customer
         fields = ['prototype_type', 'customer_type', 'need_assistance', 'material', 'process',
-                  'size', 'is_time_sensitive', 'shipping', 'zip',
-                  'budget', 'geo_matters', 'description', 'cad_file', 'user']
+                  'size', 'is_time_sensitive', 'shipping',
+                  'budget', 'description', 'cad_file', 'user']
 
         widgets = {
             'prototype_type': forms.RadioSelect(attrs={'id': 'a_value', 'class': 'md-radiobtn'}),
@@ -29,7 +29,7 @@ class AddCustomerForm(forms.ModelForm):
             'shipping': forms.RadioSelect(attrs={'id': 'g_value', 'class': 'md-radiobtn'}),
             'geo_matters': forms.Select(attrs={'class': 'form-control edited'}),
             'zip': forms.TextInput(attrs={'class': 'form-control edited'}),
-            'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
+            'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 10}),
             'cad_file': forms.ClearableFileInput(attrs={'class': 'form-control'}),
 
             'user': forms.HiddenInput(),
@@ -58,13 +58,13 @@ class AddCustomerForm(forms.ModelForm):
         self.fields['budget'].label = 'Roughly what is your overall budget for this project?'
         self.fields['customer_type'].label = 'What would you classify yourself as?'
         self.fields['material'].label = 'If you know the exact Material you wish to use, enter it here.'
-        self.fields['process'].label = 'If you know the exact process you want to use, select it here.'
+        self.fields['process'].label = 'If You Know The Exact Printing Process You Want, Select It Here.'
         self.fields['size'].label = 'Roughly what will be the size of your design?'
         self.fields['need_assistance'].label = 'Will you need assistance rendering a 3D CAD model for printing?'
         self.fields['is_time_sensitive'].label = 'Is this project time sensitive?'
         self.fields['shipping'].label = 'Do you require any of the following shipping options for your project?'
-        self.fields['geo_matters'].label = 'Does Geographic Proximity to your provider matter?'
-        self.fields['zip'].label = 'If Yes, please enter your Zip Code.'
+        # self.fields['geo_matters'].label = 'Does Geographic Proximity to your provider matter?'
+        # self.fields['zip'].label = 'If Yes, please enter your Zip Code.'
         self.fields['description'].label = 'Please write a description of your project and any additional ' \
                                            'comments you would like your service provider to know.'
         self.fields['cad_file'].label = 'If you have a CAD File for your project, please upload it here. '
