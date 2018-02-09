@@ -30,17 +30,21 @@
                                 <i class="fa fa-check"></i>
                             </button>
                             {% if back_button %}
+                                <a onclick="location.reload()" class="btn btn-default button-next">
+                                    <i class="fa fa-undo"></i> Restart</a>
                                 <a href="{% url 'dashboard:company' %}" class="btn btn-default button-next">
-                                    <i class="fa fa-times"></i> Cancel</a>
+                                    <i class="fa fa-times"></i> Exit</a>
                             {% endif %}
                         </div>
                     </div>
                 </form>
             </div>
-            <div class="col-md-2 text-center">
+        </div>
+        <div class="row">
+            <div class="col-md-11 text-center">
                 <div id="blurb" style="display: none">
                     <i style="font-size: 32px; cursor: pointer" class="fa fa-question-circle"></i>
-                    <div class="tip">
+                    <div class="well">
                         <b id="tipTitle"></b> <br>
                         <p id="tipBody"></p>
                     </div>
