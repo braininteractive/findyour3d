@@ -30,6 +30,7 @@
         <div class="row">
           <div class="col-md-10 col-md-offset-1">
             <h1><span class="brand-heading">{{ object.display_name }}</span></h1>
+            <p class="intro-text">Premium Manufacturer</p>
           </div>
         </div>
       </div>
@@ -81,11 +82,13 @@
           <ul>
             {% for offer in object.specialoffer_set.all %}
               <li style="position: relative">
-                  {{ offer.text }}
-                <form action="{% url 'company:delete_offer' offer.id %}" method="post">{% csrf_token %}
-                  <input type="hidden" name="pk" value="{{ offer.id }}">
-                  <button class="btn btn-primary btn-sm delete_button" style="position: absolute; top: 0; right: 0;"><i class="fa fa-trash-o"></i></button>
-                </form>
+                {{ offer.text }}
+                {% if is_owner %}
+                  <form action="{% url 'company:delete_offer' offer.id %}" method="post">{% csrf_token %}
+                    <input type="hidden" name="pk" value="{{ offer.id }}">
+                    <button class="btn btn-primary btn-sm delete_button" style="position: absolute; top: 0; right: 0;"><i class="fa fa-trash-o"></i></button>
+                  </form>
+                {% endif %}
               </li>
             {% endfor %}
           </ul>
@@ -242,34 +245,34 @@
 {% endblock content %}
 {% block extra_js %}
   <script>
-      var plan = $.urlParam('plan');
-      if (plan == "enroll") {
-          $('.enrolled').show();
-      }
-      function initForm(formId, submitId) {
-          var form = $('#' + formId);
-          var submitButton = $('#' + submitId);
+    var plan = $.urlParam('plan');
+    if (plan == "enroll") {
+      $('.enrolled').show();
+    }
+    function initForm(formId, submitId) {
+      var form = $('#' + formId);
+      var submitButton = $('#' + submitId);
 
-          submitButton.on('click', function () {
-              submitButton.css('opacity', 0.8).prop('disabled', true);
+      submitButton.on('click', function () {
+        submitButton.css('opacity', 0.8).prop('disabled', true);
 
-              $.ajax({
-                  type: form.attr('method'),
-                  url: form.attr('action'),
-                  data: form.serialize(),
-                  success: function (data) {
-                      if (data.status) {
-                          location.reload();
-                      } else {
-                          $('#error_msg').fadeIn();
-                          $('#msg').text(data.msg);
-                      }
-                  }
-              });
-          });
-      }
+        $.ajax({
+          type: form.attr('method'),
+          url: form.attr('action'),
+          data: form.serialize(),
+          success: function (data) {
+            if (data.status) {
+              location.reload();
+            } else {
+              $('#error_msg').fadeIn();
+              $('#msg').text(data.msg);
+            }
+          }
+        });
+      });
+    }
 
-      initForm('cancelForm', 'cancelFormSubmit');
+    initForm('cancelForm', 'cancelFormSubmit');
 
   </script>
 {% endblock %}
