@@ -209,7 +209,7 @@ hr {
   margin-bottom: 20px;
 }
 #intro .intro-body .intro-text {
-  font-size: 18px;
+  font-size: 20px;
 }
 
 @media(min-width:768px) {
@@ -218,7 +218,7 @@ hr {
     padding: 0;
   }
   #intro .intro-body .intro-text {
-    font-size: 18px;
+    font-size: 20px;
     letter-spacing: 1px;
     margin-bottom: 100px;
     color: rgba(255,255,255,0.9);
@@ -276,7 +276,7 @@ hr {
   color: white;
 }
 #intro_2 .intro-body .intro-text {
-  font-size: 18px;
+  font-size: 20px;
 }
 
 @media(min-width:768px) {
@@ -285,7 +285,7 @@ hr {
     padding: 0;
   }
   #intro_2 .intro-body .intro-text {
-    font-size: 18px;
+    font-size: 20px;
     letter-spacing: 1px;
     margin-bottom: 80px;
     margin-top: 50px;
@@ -350,7 +350,7 @@ hr {
   color: black;
 }
 #intro_3 .intro-body .intro-text {
-  font-size: 18px;
+  font-size: 20px;
 }
 
 @media(min-width:768px) {
@@ -359,7 +359,7 @@ hr {
     padding: 0;
   }
   #intro_3 .intro-body .intro-text {
-    font-size: 18px;
+    font-size: 20px;
     letter-spacing: 1px;
     margin-bottom: 80px;
     margin-top: 50px;
@@ -457,7 +457,7 @@ hr {
 
 /* About Section */
 #about {
-  padding: 140px 0;
+  padding: 80px 0;
   background: #f6f6f6;
 }
 
@@ -470,6 +470,7 @@ hr {
 }
 #about H4 {
   font-size: 20px;
+  font-weight: 700;
 }
 #about li {
   margin-bottom: 3px;
@@ -544,7 +545,7 @@ hr {
   text-shadow: 0 4px gray;
 }
 #intro_business .intro-body .intro-text {
-  font-size: 18px;
+  font-size: 20px;
 }
 
 @media(min-width:768px) {
@@ -553,7 +554,7 @@ hr {
     padding: 0;
   }
   #intro_business .intro-body .intro-text {
-    font-size: 18px;
+    font-size: 20px;
     letter-spacing: 1px;
     margin-bottom: 100px;
     color: black;
@@ -865,7 +866,7 @@ img.img-thumbnail.team-img {
   text-shadow: 0 4px gray;
 }
 #intro_about .intro-body .intro-text {
-  font-size: 18px;
+  font-size: 20px;
 }
 
 @media(min-width:768px) {
@@ -875,7 +876,7 @@ img.img-thumbnail.team-img {
   }
 }
 #intro_about .intro-body .intro-text {
-  font-size: 18px;
+  font-size: 20px;
   letter-spacing: 1px;
   margin-bottom: 100px;
   color: rgba(255,255,255,0.9);
@@ -956,7 +957,7 @@ img.img-thumbnail.team-img {
   text-align: left;
 }
 label {
-  font-size: 12px;
+  font-size: 15px;
   font-weight: 400;
   font-family: 'Montserrat', sans-serif;
   float: left;
@@ -1090,7 +1091,7 @@ a:focus, .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:acti
 }
 
 #intro_plan .intro-body .intro-text {
-  font-size: 18px;
+  font-size: 20px;
 }
 
 @media(min-width:768px) {
@@ -1100,7 +1101,7 @@ a:focus, .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:acti
   }
 }
 #intro_plan .intro-body .intro-text {
-  font-size: 18px;
+  font-size: 20px;
   letter-spacing: 1px;
   margin-bottom: 100px;
   color: rgba(255,255,255,0.9);
@@ -1233,7 +1234,7 @@ a:focus, .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:acti
 }
 
 #intro_company .intro-body .intro-text {
-  font-size: 18px;
+  font-size: 20px;
 }
 
 /* Premium Company Detail */
@@ -1268,7 +1269,7 @@ a:focus, .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:acti
 }
 
 #intro_premium_company .intro-body .intro-text {
-  font-size: 18px;
+  font-size: 20px;
 }
 
 .premium_data_block {
@@ -1296,7 +1297,7 @@ a:focus, .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:acti
   }
 }
 #intro_company .intro-body .intro-text {
-  font-size: 18px;
+  font-size: 20px;
   letter-spacing: 1px;
   margin-bottom: 100px;
   color: rgba(255,255,255,0.9);

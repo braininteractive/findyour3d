@@ -7,11 +7,11 @@ body, h1, h2, h3, h4, h5, h6 {
 }
 
 body {
-  color: #333;
+  color: #000;
   padding: 0 !important;
   margin: 0 !important;
   direction: "ltr";
-  font-size: 14px
+  font-size: 16px
 }
 
 @-ms-viewport {
@@ -9346,12 +9346,12 @@ body[ng-controller] .modal {
 }
 
 .portlet.light > .portlet-title > .caption {
-  color: #666;
+  color: #000;
   padding: 10px 0
 }
 
 .portlet.light > .portlet-title > .caption > .caption-subject {
-  font-size: 16px
+  font-size: 17px
 }
 
 .portlet.light > .portlet-title > .caption > i {
@@ -25481,7 +25481,7 @@ body.stop-scrolling {
 }
 
 .font-grey-salsa {
-  color: #ACB5C3 !important
+  color: #000 !important
 }
 
 .bg-font-grey-salsa {

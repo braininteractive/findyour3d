@@ -227,11 +227,11 @@ body.page-md {
 }
 
 .page-sidebar .page-sidebar-menu > li > a, .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li > a {
-  color: #678098
+  color: #000
 }
 
 .page-sidebar .page-sidebar-menu > li > a > i, .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li > a > i {
-  color: #a7bdcd
+  color: #000
 }
 
 .page-sidebar .page-sidebar-menu > li > a > i[class*=icon-], .page-sidebar .page-sidebar-menu > li > a > i[class^=icon-], .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li > a > i[class*=icon-], .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li > a > i[class^=icon-] {
