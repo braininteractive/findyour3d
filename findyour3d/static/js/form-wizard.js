@@ -52,7 +52,10 @@ $(document).ready(function () {
         // metals
         if (this.value==1){
             preciousMetalBlock.show();
+            preciousMetal.val(0);
             preciousMetal.on('change', function () {
+                metalConcern.val(0);
+                metalConcernBlock.hide();
                 saveButton.hide();
                 blurb.hide();
                 if (this.value==3){
@@ -126,9 +129,10 @@ $(document).ready(function () {
                 }
             })
         }
-        // resin
+        // plastic/resin
         if (this.value==0){
             plasticConcernBlock.show();
+            plasticConcern.val(0);
             plasticConcern.on('change', function () {
                 saveButton.hide();
                 blurb.hide();
