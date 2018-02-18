@@ -1419,6 +1419,6 @@ a:focus, .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:acti
   margin-left: 14px;
 }
 
-#id_material, #id_top_printing_processes {
+.big_height_block {
   height: 390px !important;
 }
