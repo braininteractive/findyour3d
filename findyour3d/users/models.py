@@ -17,7 +17,8 @@ class User(AbstractUser):
 
     PLAN_CHOICES = (
         (1, 'Starter'),
-        (2, 'Premium')
+        (2, 'Premium - 3 month'),
+        (3, 'Premium - 12 month')
     )
 
     # First Name and Last Name do not cover name patterns
@@ -44,7 +45,12 @@ class User(AbstractUser):
     def get_absolute_url(self):
         return reverse('users:detail', kwargs={'username': self.username})
 
-    def next_pay_day(self):
+    def next_pay_day_on_three_month_plan(self):
         if self.paid_at:
-            next_pay_day = add_months(self.paid_at, 1)
+            next_pay_day = add_months(self.paid_at, 3)
+            return next_pay_day
+
+    def next_pay_day_on_one_year_plan(self):
+        if self.paid_at:
+            next_pay_day = add_months(self.paid_at, 12)
             return next_pay_day

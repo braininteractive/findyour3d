@@ -9,15 +9,28 @@ from findyour3d.company.models import Company
 
 
 @task.periodic_task(run_every=timedelta(days=1))
-def get_monthly_payments():
-    monthly_payments()
+def get_three_month_payments():
+    three_month_payments()
 
 
-def monthly_payments():
+def three_month_payments():
     companies = Company.objects.filter(user__payment_active=True, user__plan=2)
     for company in companies:
-        if company.user.next_pay_day():
-            if timezone.now().date() >= company.user.next_pay_day():
+        if company.user.next_pay_day_on_three_month_plan():
+            if timezone.now().date() >= company.user.next_pay_day_on_three_month_plan():
+                charge(company.user)
+
+
+@task.periodic_task(run_every=timedelta(days=1))
+def get_one_year_payments():
+    one_year_payments()
+
+
+def one_year_payments():
+    companies = Company.objects.filter(user__payment_active=True, user__plan=3)
+    for company in companies:
+        if company.user.next_pay_day_on_one_year_plan():
+            if timezone.now().date() >= company.user.next_pay_day_on_one_year_plan():
                 charge(company.user)
 
 

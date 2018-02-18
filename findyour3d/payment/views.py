@@ -78,7 +78,9 @@ class StartPlan(ChangeCardView):
 @login_required
 def make_payment(request):
 
-    first_month_amount = 49.99
+    three_month_amount = 105.00
+    one_year_amount = 360.00
+
     user = request.user
 
     if request.GET.get('plan'):
@@ -93,11 +95,10 @@ def make_payment(request):
             try:
                 amount = 0
                 if plan_id == 2:  # premium
-                    amount = first_month_amount  # fixme
-                    if user.paid_at:  # not new user
-                        pass  #fixme
-                    else:  # newbie
-                        amount = first_month_amount
+                    amount = three_month_amount
+                elif plan_id == 3:
+                    amount = one_year_amount
+
                 elif plan_id == 1:  # starter
                     user.plan = 1
                     user.save()

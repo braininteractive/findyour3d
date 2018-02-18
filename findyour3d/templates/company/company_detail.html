@@ -119,7 +119,7 @@
             <div class="col-md-6 text-center">
               {% if user.plan == 1 %}
                 <a href="{% url 'users:plan' %}#plan" class="btn btn-default">UPGRADE NOW</a>
-              {% elif user.plan == 2 %}
+              {% elif user.plan == 2 or user.plan == 3 %}
                 <a href="" class="btn btn-default" id="openWarningModal" data-target="#CancelPlan" data-toggle="modal">CANCEL SUBSCRIPTION</a>
               {% else %}
                 <a href="{% url 'users:plan' %}#plan" class="btn btn-default">CHOOSE A PLAN</a>
@@ -228,34 +228,34 @@
 {% endblock content %}
 {% block extra_js %}
   <script>
-      var plan = $.urlParam('plan');
-      if (plan == "enroll") {
-          $('.enrolled').show();
-      }
-      function initForm(formId, submitId) {
-          var form = $('#' + formId);
-          var submitButton = $('#' + submitId);
+    var plan = $.urlParam('plan');
+    if (plan == "enroll") {
+      $('.enrolled').show();
+    }
+    function initForm(formId, submitId) {
+      var form = $('#' + formId);
+      var submitButton = $('#' + submitId);
 
-          submitButton.on('click', function () {
-              submitButton.css('opacity', 0.8).prop('disabled', true);
+      submitButton.on('click', function () {
+        submitButton.css('opacity', 0.8).prop('disabled', true);
 
-              $.ajax({
-                  type: form.attr('method'),
-                  url: form.attr('action'),
-                  data: form.serialize(),
-                  success: function (data) {
-                      if (data.status) {
-                          location.reload();
-                      } else {
-                          $('#error_msg').fadeIn();
-                          $('#msg').text(data.msg);
-                      }
-                  }
-              });
-          });
-      }
+        $.ajax({
+          type: form.attr('method'),
+          url: form.attr('action'),
+          data: form.serialize(),
+          success: function (data) {
+            if (data.status) {
+              location.reload();
+            } else {
+              $('#error_msg').fadeIn();
+              $('#msg').text(data.msg);
+            }
+          }
+        });
+      });
+    }
 
-      initForm('cancelForm', 'cancelFormSubmit');
+    initForm('cancelForm', 'cancelFormSubmit');
 
   </script>
 {% endblock %}

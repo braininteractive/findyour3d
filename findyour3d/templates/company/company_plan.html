@@ -91,10 +91,17 @@
             </tr>
             </tbody>
           </table>
-          <p class="text-center">
+          <p class="text-center small">
             <b>Premium Billed Upfront:</b> <br>
-            3-Month - $105.00 <br>
-            12-Month - $360.00
+            {% if request.user.plan == 1 %}
+              <select class="form-control" name="upfront_payment" id="upfront_payment">
+                <option value="2">3-Month - $105.00 </option>
+                <option value="3">12-Month - $360.00 </option>
+              </select>
+            {% else %}
+              3-Month - $105.00 <br>
+              12-Month - $360.00
+            {% endif %}
           </p>
         </div>
       </div>
@@ -124,8 +131,8 @@
             {% endif %}
           </div>
           <div class="col-md-6 text-center">
-            {% if not request.user.plan == 2 %}
-              <a href="{% url 'payments:make' %}?plan=2" class="btn btn-default">
+            {% if not request.user.plan == 2 and not request.user.plan == 3 %}
+              <a href="{% url 'payments:make' %}?plan=2" id="premuimController" class="btn btn-default">
                 <i class="fa fa-shopping-cart"></i> CHOOSE PREMIUM</a>
             {% else %}
               <a href="" class="btn btn-default" disabled>
@@ -140,3 +147,13 @@
 
   {% include 'pages/includes/footer.html' %}
 {% endblock content %}
+{% block extra_js %}
+  <script>
+    var paymentUrl = $('#premuimController');
+    var upfrontPayment = $('#upfront_payment');
+
+    upfrontPayment.on('change', function () {
+      paymentUrl.attr("href", paymentUrl.attr('href').slice(0,-1) + upfrontPayment.val());
+    })
+  </script>
+{% endblock extra_js %}

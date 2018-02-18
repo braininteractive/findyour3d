@@ -59,7 +59,7 @@ class CompanyDetailView(LoginRequiredMixin, DetailView):
         company_id = self.kwargs.get('pk')
         try:
             company = Company.objects.get(pk=company_id)
-            if company.user.plan == 2:
+            if company.user.plan in [2, 3]:
                 template_name = 'company/company_detail_premium.html'
             else:
                 template_name = 'company/company_detail.html'
