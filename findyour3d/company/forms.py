@@ -58,7 +58,7 @@ class EditCompanyForm(forms.ModelForm):
         fields = ['name', 'display_name', 'logo', 'address_line_1', 'address_line_2',
                   'full_name', 'email', 'phone', 'website', 'ideal_customer',
                   'is_cad_assistance', 'budget',
-                  'printing_options', 'material', 'top_printing_processes',
+                  'material', 'top_printing_processes',
                   'description', 'user', 'is_expedited', 'shipping']
 
         widgets = {
@@ -74,11 +74,10 @@ class EditCompanyForm(forms.ModelForm):
             'ideal_customer': forms.Select(attrs={'class': 'form-control edited'}),
             'budget': forms.Select(attrs={'class': 'form-control edited'}),
             'is_expedited': forms.Select(attrs={'class': 'form-control edited'}, choices=EXPEDITED_CHOICES),
-            'printing_options': forms.SelectMultiple(attrs={'class': 'form-control edited'}),
             'material': forms.SelectMultiple(attrs={'class': 'form-control edited big_height_block'}),
             'top_printing_processes': forms.SelectMultiple(attrs={'class': 'form-control edited big_height_block'}),
             'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 10}),
-            'shipping': forms.Select(attrs={'class': 'form-control edited'}),
+            'shipping': forms.SelectMultiple(attrs={'class': 'form-control edited'}),
             'user': forms.HiddenInput(),
         }
 
@@ -91,7 +90,6 @@ class EditCompanyForm(forms.ModelForm):
         self.fields['user'].initial = self.user
         self.fields['ideal_customer'].label = 'What is your company’s ideal customer that we should send to you?'
         self.fields['budget'].label = 'What is your ideal order cost/budget?'
-        self.fields['printing_options'].label = 'Printing Options Available'
         self.fields['is_expedited'].label = 'Do you offer an expedited manufacturing process?'
         self.fields['shipping'].label = 'Which of the following shipping options do you offer?'
 

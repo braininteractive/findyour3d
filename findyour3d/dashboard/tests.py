@@ -42,7 +42,7 @@ class DashboardTests(TestCase):
                                                      material=['6', '10', '11'],
                                                      top_printing_processes=['1', '2'],
                                                      description='silver_company',
-                                                     shipping=0)
+                                                     shipping=['0', '1', '2'])
 
         self.simple_user = User.objects.create(username='simple_user',
                                                user_type=1,
@@ -58,7 +58,7 @@ class DashboardTests(TestCase):
                                                 material='6',
                                                 process='2',
                                                 is_advanced_filled=True,
-                                                shipping=0,
+                                                shipping='1',
                                                 need_assistance=1)
 
         self.client = Client()

@@ -29,7 +29,7 @@ class AddCustomerForm(forms.ModelForm):
             'shipping': forms.RadioSelect(attrs={'id': 'g_value', 'class': 'md-radiobtn'}),
             'geo_matters': forms.Select(attrs={'class': 'form-control edited'}),
             'zip': forms.TextInput(attrs={'class': 'form-control edited'}),
-            'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 10}),
+            'description': forms.Textarea(attrs={'class': 'form-control mt-20', 'rows': 10}),
             'cad_file': forms.ClearableFileInput(attrs={'class': 'form-control'}),
 
             'user': forms.HiddenInput(),

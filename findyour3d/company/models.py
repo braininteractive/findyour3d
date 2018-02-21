@@ -47,7 +47,7 @@ class Company(models.Model):
     description = models.TextField()
     ratings = GenericRelation(Rating)
     is_expedited = models.BooleanField(default=True)
-    shipping = models.IntegerField(choices=SHIPPING_CHOICES, blank=True, null=True)
+    shipping = MultiSelectField(choices=SHIPPING_CHOICES, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

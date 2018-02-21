@@ -29,7 +29,7 @@ class DashboardView(LoginRequiredMixin, ListView):
              ) &
             Q(top_printing_processes__contains=str(user.process)) &
             Q(user__plan__isnull=False) &
-            Q(budget=user.budget) & Q(shipping=user.shipping) &
+            Q(budget=user.budget) &
             Q(is_cad_assistance=user.need_assistance) &
             Q(ideal_customer=user.customer_type)).order_by('-user__plan')
         return queryset
