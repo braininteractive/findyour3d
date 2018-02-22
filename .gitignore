@@ -76,3 +76,5 @@ staticfiles/
 
 .cache/
 
+local_settings.py
+
