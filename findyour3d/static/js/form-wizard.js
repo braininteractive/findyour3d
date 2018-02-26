@@ -63,6 +63,7 @@ $(document).ready(function () {
                     metalConcern.on('change', function () {
                         saveButton.hide();
                         blurb.hide();
+                        metalDecision.val(0);
                         if (this.value==2){ // strength
                             metalDecisionBlock.show();
                             metalDecision.on('change', function () {
@@ -142,6 +143,7 @@ $(document).ready(function () {
                 ableToBend.val(0);
                 extremeStrengthBlock.hide();
                 extremeStrength.val(0);
+                heatResistance.val(0);
 
                 if (this.value==1){ // cost
                     heatResistanceBlock.hide();

@@ -61,6 +61,48 @@ class DashboardTests(TestCase):
                                                 shipping='1',
                                                 need_assistance=1)
 
+        self.metal_company_user = User.objects.create(username='metal_user',
+                                                      user_type=2,
+                                                      date_joined=self.now,
+                                                      is_active=True,
+                                                      email='metal_user@test.com',
+                                                      payment_active=True,
+                                                      default_card=default_card,
+                                                      stripe_id=stripe_id,
+                                                      plan=1)
+        # Individuals, Cad Assistance, $250 - 500, Stereoligtography (SLM)'), Copper
+        self.metal_company = Company.objects.create(user=self.metal_company_user,
+                                                    name='metal_company',
+                                                    display_name='metal_company',
+                                                    address_line_1='1', address_line_2='2',
+                                                    full_name='metal_company', email='metal_company@mail.com',
+                                                    phone='1234453534', website='metal_company.com',
+                                                    ideal_customer=0,
+                                                    is_cad_assistance=True,
+                                                    budget=2,
+                                                    printing_options=['1', ],
+                                                    material=['13', ],
+                                                    top_printing_processes=['1', ],
+                                                    description='metal_company',
+                                                    shipping=['0', '1', '2'])
+
+        self.metal_customer_user = User.objects.create(username='metal_customer_user',
+                                                       user_type=1,
+                                                       is_active=True,
+                                                       email='metal_customer_user@test.com',
+                                                       plan=1)
+
+        self.metal_customer_user.set_password('1234567a')
+        self.metal_customer_user.save()
+        self.metal_customer = Customer.objects.create(user=self.metal_customer_user,
+                                                      budget=2,
+                                                      customer_type=0,
+                                                      material='9',  # setting one of the metal choices
+                                                      process='1',
+                                                      is_advanced_filled=True,
+                                                      shipping='1',
+                                                      need_assistance=1)
+
         self.client = Client()
         self.client.login(username='simple_user', password='1234567a')
 
@@ -83,3 +125,8 @@ class DashboardTests(TestCase):
         response = self.client.get(reverse('dashboard:company'))
         # print(response.render().content)
         self.assertContains(response, 'silver_company')
+
+    def test_match_metal_company_with_same_process(self):
+        self.client.login(username='metal_customer_user', password='1234567a')
+        response = self.client.get(reverse('dashboard:company'))
+        self.assertContains(response, 'metal_company')

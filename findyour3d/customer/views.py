@@ -256,15 +256,15 @@ class AddAdvancedCustomerView(LoginRequiredMixin, UpdateView):
                                   'premium cost, look no further.')
                             f.process = 8
                             f.material = 16
-                            print('PEI (SLA) PEI or Polyetherimide is an extremely robust thermoplastic '
-                                  'that can withstand extreme temperatures and stress. It is a close '
-                                  'cousin to PEEK plastic with some difference. It is cheaper than '
-                                  'PEEK, but boasts less temperature and stress resistance. '
-                                  'A popular brand of this is call ULTEM made by SABIC. If youre '
-                                  'looking for one of the toughest out there, but want to spend less '
-                                  'than PEEK, PEI is the best option.')
-                            f.process = 6
-                            f.material = 7
+                            # print('PEI (SLA) PEI or Polyetherimide is an extremely robust thermoplastic '
+                            #       'that can withstand extreme temperatures and stress. It is a close '
+                            #       'cousin to PEEK plastic with some difference. It is cheaper than '
+                            #       'PEEK, but boasts less temperature and stress resistance. '
+                            #       'A popular brand of this is call ULTEM made by SABIC. If youre '
+                            #       'looking for one of the toughest out there, but want to spend less '
+                            #       'than PEEK, PEI is the best option.')
+                            # f.process = 6
+                            # f.material = 7
                         elif f.is_extreme_strength == 3:  # No I don't need extreme strength and performance
                             if f.is_better_appearance == 2:  # I want a more functional material for my project
                                 print('Reinforced Nylons (FDM) Nylon is a family of synthetic polymers that'
