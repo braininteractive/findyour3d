@@ -16,7 +16,7 @@ class AddCompanyForm(forms.ModelForm):
         fields = ['name', 'display_name', 'address_line_1', 'address_line_2',
                   'full_name', 'email', 'phone', 'website', 'ideal_customer',
                   'is_cad_assistance', 'budget',
-                  'printing_options', 'material', 'top_printing_processes',
+                  'material', 'top_printing_processes',
                   'description', 'user']
 
         widgets = {
@@ -30,9 +30,6 @@ class AddCompanyForm(forms.ModelForm):
             'website': forms.TextInput(attrs={'class': 'form-control'}),
             'ideal_customer': forms.Select(attrs={'class': 'form-control edited'}),
             'budget': forms.Select(attrs={'class': 'form-control edited'}),
-            # 'basic_material': forms.Select(attrs={'class': 'form-control edited'}),
-            # 'consideration': forms.Select(attrs={'class': 'form-control edited'}),
-            'printing_options': forms.SelectMultiple(attrs={'class': 'form-control edited'}),
             'material': forms.SelectMultiple(attrs={'class': 'form-control edited big_height_block'}),
             'top_printing_processes': forms.SelectMultiple(attrs={'class': 'form-control edited big_height_block'}),
             'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 10}),
