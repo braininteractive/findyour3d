@@ -45,7 +45,7 @@ class AddCompanyForm(forms.ModelForm):
         self.fields['user'].initial = self.user
         self.fields['ideal_customer'].label = 'What is your company’s ideal customer that we should send to you?'
         self.fields['budget'].label = 'What is your ideal order cost/budget?'
-        self.fields['printing_options'].label = 'Printing Processes Available'
+        self.fields['top_printing_processes'].label = 'Printing Processes Available'
 
 
 class EditCompanyForm(forms.ModelForm):
