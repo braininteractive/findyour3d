@@ -247,24 +247,27 @@ class AddAdvancedCustomerView(LoginRequiredMixin, UpdateView):
                 elif f.plastic_concern == 2:  # quality
                     if f.heat_resistance == 1:  # I want my project to be able to withstand heat
                         if f.is_extreme_strength == 2:  # I am willing to spend top dollar ($250+)
-                            print('PEEK (Various) PEEK or Polyether Ether Ketone is the 3D Printing variant of'
-                                  ' PAEK which was designed to withstand extreme temperatures while providing'
-                                  ' incredible strength and durability. Due to this incredible strength and '
-                                  'durability it is usually limited to automotive, aerospace, or medical '
-                                  'industries because of high price. If youre looking for ultimate material'
-                                  ' to keep your project operating under the harshest conditions for a '
-                                  'premium cost, look no further.')
-                            f.process = 8
-                            f.material = 16
-                            # print('PEI (SLA) PEI or Polyetherimide is an extremely robust thermoplastic '
-                            #       'that can withstand extreme temperatures and stress. It is a close '
-                            #       'cousin to PEEK plastic with some difference. It is cheaper than '
-                            #       'PEEK, but boasts less temperature and stress resistance. '
-                            #       'A popular brand of this is call ULTEM made by SABIC. If youre '
-                            #       'looking for one of the toughest out there, but want to spend less '
-                            #       'than PEEK, PEI is the best option.')
-                            # f.process = 6
-                            # f.material = 7
+                            if f.performance_or_price == 2:
+                                print('PEEK (Various) PEEK or Polyether Ether Ketone is the 3D Printing variant of'
+                                      ' PAEK which was designed to withstand extreme temperatures while providing'
+                                      ' incredible strength and durability. Due to this incredible strength and '
+                                      'durability it is usually limited to automotive, aerospace, or medical '
+                                      'industries because of high price. If youre looking for ultimate material'
+                                      ' to keep your project operating under the harshest conditions for a '
+                                      'premium cost, look no further.')
+                                f.process = 8
+                                f.material = 16
+                            elif f.performance_or_price == 1:
+                                print("PEI or Polyetherimide is an extremely robust thermoplastic that can withstand"
+                                      " extreme temperatures and stress. It is a close cousin to PEEK plastic with "
+                                      "some differences. It is cheaper than PEEK, but boasts less temperature and "
+                                      "stress resistance. A popular brand of this is call ULTEM made by SABIC. "
+                                      "If you're looking for one of the toughest out there, but want to spend less "
+                                      "than PEEK, PEI is the best option.")
+                                f.process = 6
+                                f.material = 17
+                            else:
+                                logger.error('#12')
                         elif f.is_extreme_strength == 3:  # No I don't need extreme strength and performance
                             if f.is_better_appearance == 2:  # I want a more functional material for my project
                                 print('Reinforced Nylons (FDM) Nylon is a family of synthetic polymers that'

@@ -19,6 +19,7 @@ $(document).ready(function () {
     var ableToBend = $('#id_is_able_to_bend');
     var betterAppearance = $('#id_is_better_appearance');
     var fullColor = $('#id_is_full_color');
+    var performanceOrPrice = $('#id_performance_or_price');
 
     var preciousMetalBlock = $('#div_id_is_precious_metal');
     var metalConcernBlock = $('#div_id_metal_concern');
@@ -34,11 +35,12 @@ $(document).ready(function () {
     var highestDetailBlock = $('#div_id_is_highest_detail');
     var fullColorBlock = $('#div_id_is_full_color');
     var ableToBendBlock = $('#div_id_is_able_to_bend');
+    var performanceOrPriceBlock = $('#div_id_performance_or_price');
 
     var all = [saveButton, preciousMetalBlock, metalConcernBlock, metalDecisionBlock, otherMaterialsBlock,
         plasticConcernBlock, foodSafePlasticBlock, functionalOrBasicBlock, plasticDecisionBlock,
         heatResistanceBlock, extremeStrengthBlock, betterAppearanceBlock, highestDetailBlock,
-        fullColorBlock, ableToBendBlock];
+        fullColorBlock, ableToBendBlock, performanceOrPriceBlock];
 
     $.each(all, function(){ $(this).hide()});
 
@@ -144,6 +146,8 @@ $(document).ready(function () {
                 extremeStrengthBlock.hide();
                 extremeStrength.val(0);
                 heatResistance.val(0);
+                performanceOrPriceBlock.hide();
+                performanceOrPrice.val(0);
 
                 if (this.value==1){ // cost
                     heatResistanceBlock.hide();
@@ -228,6 +232,8 @@ $(document).ready(function () {
                         betterAppearance.val(0);
                         ableToBendBlock.hide();
                         ableToBend.val(0);
+                        performanceOrPriceBlock.hide();
+                        performanceOrPrice.val(0);
 
                         if (this.value==1){ // I want my project to be able to withstand heat
                             highestDetailBlock.hide();
@@ -237,11 +243,15 @@ $(document).ready(function () {
 
                             extremeStrengthBlock.show();
                             extremeStrength.on('change', function () {
+                                performanceOrPriceBlock.hide();
+                                performanceOrPrice.val(0);
                                 saveButton.hide();
                                 blurb.hide();
                                 if (this.value==3){ // No I don't need extreme strength and performance
                                     betterAppearanceBlock.show();
                                     betterAppearance.on('change', function () {
+                                        performanceOrPriceBlock.hide();
+                                        performanceOrPrice.val(0);
                                         if (this.value==2){ // I want a more functional material for my project
                                             saveButton.show();
                                             tipTitle.text("Reinforced Nylons (FDM)");
@@ -263,10 +273,21 @@ $(document).ready(function () {
                                 if (this.value==2){ // I am willing to spend top dollar ($250+)
                                     betterAppearanceBlock.hide();
                                     betterAppearance.val(0);
-                                    saveButton.show();
-                                    tipTitle.text("PEEK (Various) PEI (SLA)");
-                                    tipBody.text("PEEK or Polyether Ether Ketone is the 3D Printing variant of PAEK which was designed to withstand the most extreme temperatures while providing incredible strength and durability. Due to this incredible strength and durability, it is usually limited to automotive, aerospace, or medical industries because of the high price. If you're looking for the ultimate material to keep your project operating under the harshest conditions for a premium cost, look no further.");
-                                    blurb.show();
+                                    performanceOrPriceBlock.show();
+                                    performanceOrPrice.on('change', function () {
+                                        if (this.value==2){
+                                            saveButton.show();
+                                            tipTitle.text("PEEK (Various)");
+                                            tipBody.text("PEEK or Polyether Ether Ketone is the 3D Printing variant of PAEK which was designed to withstand the most extreme temperatures while providing incredible strength and durability. Due to this incredible strength and durability, it is usually limited to automotive, aerospace, or medical industries because of the high price. If you're looking for the ultimate material to keep your project operating under the harshest conditions for a premium cost, look no further.\n");
+                                            blurb.show();
+                                        }
+                                        if (this.value==1){
+                                            saveButton.show();
+                                            tipTitle.text("PEI (SLA)");
+                                            tipBody.text("PEI or Polyetherimide is an extremely robust thermoplastic that can withstand extreme temperatures and stress. It is a close cousin to PEEK plastic with some differences. It is cheaper than PEEK, but boasts less temperature and stress resistance. A popular brand of this is call ULTEM made by SABIC. If you're looking for one of the toughest out there, but want to spend less than PEEK, PEI is the best option.\n");
+                                            blurb.show();
+                                        }
+                                    });
                                 }
                             })
                         }

@@ -233,6 +233,12 @@ BEND_CHOICES = (
     (3, "I want my project to feel and act almost like rubber")
 )
 
+PERFORMANCE_OR_PRICE_CHOICES = (
+    (0, 'Unknown'),
+    (1, 'No, I want the very best quality for the price'),
+    (2, "Yes, I'd settle for a little less quality for a little less of the cost"),
+)
+
 
 class Customer(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
@@ -276,6 +282,7 @@ class Customer(models.Model):
     heat_resistance = models.IntegerField(choices=HEAT_RESISTANCE_CHOICES, default=0)
     # if Heat:
     is_extreme_strength = models.IntegerField(choices=EXTREME_CHOICES, default=0)
+    performance_or_price = models.IntegerField(choices=PERFORMANCE_OR_PRICE_CHOICES, default=0)
     # if NOT is_extreme_strength:
     is_better_appearance = models.IntegerField(choices=APPEARANCE_CHOICES, default=0)
 

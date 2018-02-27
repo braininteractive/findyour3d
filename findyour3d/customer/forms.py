@@ -78,7 +78,7 @@ class AddAdvancedCustomerForm(forms.ModelForm):
                   'other_materials',
                   'plastic_concern', 'is_food_safe_plastic', 'is_functional_or_basic',
                   'plastic_decision', 'heat_resistance', 'is_extreme_strength', 'is_better_appearance',
-                  'is_highest_detail', 'is_full_color', 'is_able_to_bend']
+                  'is_highest_detail', 'is_full_color', 'is_able_to_bend', 'performance_or_price']
 
         widgets = {
             'basic_material': forms.Select(attrs={'class': 'form-control edited'}),
@@ -89,6 +89,7 @@ class AddAdvancedCustomerForm(forms.ModelForm):
             'is_highest_detail': forms.Select(attrs={'class': 'form-control edited'}),
             'is_full_color': forms.Select(attrs={'class': 'form-control edited'}),
             'is_able_to_bend': forms.Select(attrs={'class': 'form-control edited'}),
+            'performance_or_price': forms.Select(attrs={'class': 'form-control edited'}),
 
         }
 
@@ -120,3 +121,5 @@ class AddAdvancedCustomerForm(forms.ModelForm):
         self.fields['is_full_color'].label = 'Will Your project require rich and full color?'
         self.fields['is_able_to_bend'].label = 'Do you want your project to be able to bend under some ' \
                                                'pressure or act similar to rubber?'
+        self.fields['performance_or_price'].label = 'Would you settle for slightly less performance for slightly' \
+                                                    'less price?'
