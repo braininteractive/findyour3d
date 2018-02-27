@@ -280,11 +280,8 @@ ADMIN_URL = r'^admin/'
 
 # Your common stuff: Below this line define 3rd party library settings
 # ------------------------------------------------------------------------------
-SENDGRID_API_KEY = env('SENDGRID_API_KEY', default='')
-EMAIL_HOST = 'localhost'
-DEFAULT_FROM_EMAIL = 'FindYour3D.io <no-reply@findyour3d.herokuapp.com>'
 
-STRIPE_API_KEY = env('STRIPE_API_KEY', default='sk_test_BS2t9JImRsscT1vyWNsPYGLK')
-
-STARTER_FEE = env('STARTER_FEE', default=1.99)
-PREMIUM_FEE = env('PREMIUM_FEE', default=49.99)
+try:
+    from .local_settings import *
+except ImportError:
+    pass
