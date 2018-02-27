@@ -78,8 +78,8 @@ class StartPlan(ChangeCardView):
 @login_required
 def make_payment(request):
 
-    three_month_amount = 105.00
-    one_year_amount = 360.00
+    three_month_amount = settings.THREE_MONTH_AMOUNT
+    one_year_amount = settings.ONE_YEAR_AMOUNT
 
     user = request.user
 
