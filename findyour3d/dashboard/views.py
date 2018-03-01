@@ -25,21 +25,18 @@ class DashboardView(LoginRequiredMixin, ListView):
         if user.material in [9, 12, 13, 14]:
             queryset = Company.objects.filter(Q(top_printing_processes='1') &
                                               Q(user__plan__isnull=False) &
-                                              Q(budget=user.budget) &
+                                              Q(budget__contains=str(user.budget)) &
                                               Q(is_cad_assistance=user.need_assistance) &
-                                              Q(ideal_customer=user.customer_type)).order_by('-user__plan')
+                                              Q(ideal_customer__contains=str(user.customer_type))).order_by(
+                '-user__plan')
         else:
             queryset = Company.objects.filter(
-                (Q(material__exact=str(user.material)) |
-                 Q(material__startswith='%s,' % str(user.material)) |
-                 Q(material__endswith=',%s' % str(user.material)) |
-                 Q(material__contains=',%s,' % str(user.material))
-                 ) &
+                (Q(material__contains=str(user.material))) &
                 Q(top_printing_processes__contains=str(user.process)) &
                 Q(user__plan__isnull=False) &
-                Q(budget=user.budget) &
+                Q(budget__contains=str(user.budget)) &
                 Q(is_cad_assistance=user.need_assistance) &
-                Q(ideal_customer=user.customer_type)).order_by('-user__plan')
+                Q(ideal_customer__contains=str(user.customer_type))).order_by('-user__plan')
         return queryset
 
 

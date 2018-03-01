@@ -30,7 +30,7 @@
                 {{ request.user.customer_set.first.get_size_display }}</span>
               <br>
               <span class="small font-grey-salsa">Shipping:
-                {{ request.user.customer_set.first.get_shipping_display }}</span>
+                {{ request.user.customer_set.first.get_shipping_display|default:"n/a" }}</span>
             </small>
           </div>
         </div>

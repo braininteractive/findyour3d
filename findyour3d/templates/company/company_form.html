@@ -172,9 +172,13 @@
           </div>
         </div>
 
-        <div class="alert alert-danger" style="display: none" id="starterCharsLimit">
+        <div class="small alert alert-danger alert-dismissible" style="display: none" id="starterCharsLimit">
           <span id="warningText">Starter Membership has a limit for description in 300 characters.</span>
-          <a class="bold" href="{% url 'users:plan' %}#plan">Please upgrade your plan here</a>.
+          <a style="text-decoration: underline" class="bold" href="{% url 'users:plan' %}#plan">
+            Please upgrade your plan here</a>.
+          <button type="button" class="close" style="text-indent: 1px" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
 
         <div class="row">
@@ -267,6 +271,24 @@
       });
       $('#id_top_printing_processes').change(function(event) {
         if ($(this).val().length > 3) {
+          $('#warningText').text('Starter Membership has a limit of selection.');
+          $('#starterCharsLimit').show();
+          $(this).val(last_valid_selection);
+        } else {
+          last_valid_selection = $(this).val();
+        }
+      });
+      $('#id_budget').change(function(event) {
+        if ($(this).val().length > 1) {
+          $('#warningText').text('Starter Membership has a limit of selection.');
+          $('#starterCharsLimit').show();
+          $(this).val(last_valid_selection);
+        } else {
+          last_valid_selection = $(this).val();
+        }
+      });
+      $('#id_ideal_customer').change(function(event) {
+        if ($(this).val().length > 1) {
           $('#warningText').text('Starter Membership has a limit of selection.');
           $('#starterCharsLimit').show();
           $(this).val(last_valid_selection);
