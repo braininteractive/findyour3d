@@ -8,6 +8,10 @@ from django.views.generic import DetailView, ListView, RedirectView, UpdateView
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+from django.conf import settings
+
+from findyour3d.payment.models import Coupon
+from findyour3d.utils.views import get_amount_with_discount
 from .models import User
 
 
@@ -67,8 +71,18 @@ class UserListView(LoginRequiredMixin, ListView):
 @login_required
 def user_plan(request):
     user = request.user
+    three_amount_amount = get_amount_with_discount(user, settings.THREE_MONTH_AMOUNT)
+    one_year_amount = get_amount_with_discount(user, settings.ONE_YEAR_AMOUNT)
+    has_coupon = False
+    if Coupon.objects.filter(activated_by=user).exists():
+        has_coupon = True
+    data = {
+        'three_amount_amount': three_amount_amount,
+        'one_year_amount': one_year_amount,
+        'has_coupon': has_coupon
+    }
     if user.user_type == 2:
-        return render(request, 'company/company_plan.html', {})
+        return render(request, 'company/company_plan.html', data)
     return redirect('users:redirect')
 
 

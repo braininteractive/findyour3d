@@ -1,16 +1,20 @@
+import json
+
 import stripe
 import logging
 
+from django.http import HttpResponse, HttpResponseForbidden
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.utils import timezone
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import FormView
 from django.conf import settings
 from django.forms.utils import ErrorList
 
-from .models import UserPayment
+from .models import UserPayment, Coupon
 from .forms import CreditCardForm
 
 stripe.api_key = settings.STRIPE_API_KEY
@@ -164,3 +168,23 @@ def starter_charge(user):
     payment.status = '2'
     payment.history = charge
     payment.save()
+
+
+@csrf_exempt
+def activate_coupon(request):
+    if request.method == 'POST':
+        coupon_number = request.POST.get('coupon_number')
+        if coupon_number:
+            try:
+                coupon = Coupon.objects.get(number=coupon_number, expired=False)
+                coupon.activated_by = request.user
+                coupon.activated_at = timezone.now()
+                coupon.expired = True
+                coupon.save()
+                return HttpResponse(json.dumps({'success': True}), content_type="application/json")
+            except Coupon.DoesNotExist:
+                return HttpResponse(json.dumps({'success': False}), content_type="application/json")
+        else:
+            return HttpResponse(json.dumps({'success': False}), content_type="application/json")
+    else:
+        return HttpResponseForbidden()

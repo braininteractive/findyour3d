@@ -4,6 +4,7 @@ from datetime import timedelta
 from django.utils import timezone
 from django.conf import settings
 
+from findyour3d.utils.views import get_amount_with_discount
 from .models import UserPayment
 from findyour3d.company.models import Company
 
@@ -18,7 +19,7 @@ def three_month_payments():
     for company in companies:
         if company.user.next_pay_day_on_three_month_plan():
             if timezone.now().date() >= company.user.next_pay_day_on_three_month_plan():
-                charge(company.user, settings.THREE_MONTH_AMOUNT)
+                charge(company.user, get_amount_with_discount(company.user, settings.THREE_MONTH_AMOUNT))
 
 
 @task.periodic_task(run_every=timedelta(days=1))
@@ -31,10 +32,12 @@ def one_year_payments():
     for company in companies:
         if company.user.next_pay_day_on_one_year_plan():
             if timezone.now().date() >= company.user.next_pay_day_on_one_year_plan():
-                charge(company.user, settings.ONE_YEAR_AMOUNT)
+                charge(company.user, get_amount_with_discount(company.user, settings.ONE_YEAR_AMOUNT))
 
 
 def charge(user, amount):
+    amount = get_amount_with_discount(user, amount)
+
     payment = UserPayment.objects.create(
         user=user,
         amount=amount,

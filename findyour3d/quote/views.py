@@ -25,7 +25,6 @@ def request_quote(request, pk):
             company = Company.objects.get(id=pk)
             company_owner = company.user
             company_plan = company_owner.plan
-            print(company_plan)
             user = request.user
             if company_plan is not None:
                 if not QuoteRequest.objects.filter(company=company, user=request.user).exists():

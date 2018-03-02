@@ -1431,3 +1431,11 @@ a:focus, .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:acti
 .form-control {
   margin-left: 15px;
 }
+
+#coupon_submit {
+  color: white;
+  background: black;
+  border-radius: 0;
+  margin-top: 5px;
+  border-color: black;
+}

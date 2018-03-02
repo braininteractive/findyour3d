@@ -95,16 +95,48 @@
             <b>Premium Billed Upfront:</b> <br>
             {% if request.user.plan == 1 %}
               <select class="form-control" name="upfront_payment" id="upfront_payment">
-                <option value="2">3-Month - $105.00 </option>
-                <option value="3">12-Month - $360.00 </option>
+                <option value="2">3-Month - ${{ three_amount_amount }} </option>
+                <option value="3">12-Month - ${{ one_year_amount }} </option>
               </select>
             {% else %}
-              3-Month - $105.00 <br>
-              12-Month - $360.00
+              3-Month - ${{ three_amount_amount }} <br>
+              12-Month - ${{ one_year_amount }}
             {% endif %}
           </p>
         </div>
       </div>
+
+      {% if not has_coupon %}
+        <div class="col-md-offset-4 col-md-4 text-center">
+          <div class="panel-group" id="exampleAccordionDefault" aria-multiselectable="true" role="tablist">
+            <div class="panel-heading" id="exampleHeadingDefaultOne" role="tab">
+              <a class="text-center" style="text-decoration: underline" data-toggle="collapse" href="#exampleCollapseDefaultOne" data-parent="#exampleAccordionDefault" aria-expanded="true" aria-controls="exampleCollapseDefaultOne">
+                Do you have a coupon?
+              </a>
+            </div>
+            <div class="panel-collapse collapse" id="exampleCollapseDefaultOne"
+                 aria-labelledby="exampleHeadingDefaultOne" role="tabpanel">
+              <div class="form-group has-feedback" id="coupon_form">
+                <div class="row">
+                  <small class="control-label red-600" id="error_message" style="display: none">
+                    Sorry this code is invalid or expired :(
+                  </small>
+                  <form action="{% url 'payments:activate_coupon' %}" method="post">
+                    {% csrf_token %}
+                    <input type="text" class="form-control" id="id_coupon_number"
+                           aria-describedby="inputErrorStatus" name="coupon_number" autocomplete="off">
+                    <span class="form-control-feedback" aria-hidden="true"></span>
+                    <span class="sr-only" id="inputErrorStatus">(error)</span>
+                    <button type="submit" onclick="return false" id="coupon_submit"
+                            class="btn btn-outline btn-primary btn-xs">Use Coupon</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+
       {% if not request.user.payment_active %}
         <div class="row">
           <div class="col-md-6 text-center">
@@ -149,11 +181,51 @@
 {% endblock content %}
 {% block extra_js %}
   <script>
+    // using jQuery
+    function getCookie(name) {
+      var cookieValue = null;
+      if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+          var cookie = jQuery.trim(cookies[i]);
+          // Does this cookie string begin with the name we want?
+          if (cookie.substring(0, name.length + 1) === (name + '=')) {
+            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+            break;
+          }
+        }
+      }
+      return cookieValue;
+    }
+
     var paymentUrl = $('#premuimController');
     var upfrontPayment = $('#upfront_payment');
 
     upfrontPayment.on('change', function () {
       paymentUrl.attr("href", paymentUrl.attr('href').slice(0,-1) + upfrontPayment.val());
-    })
+    });
+
+    var coupon_form = $('#coupon_form');
+    var coupon_submit = $('#coupon_submit');
+    coupon_submit.on('click', function () {
+      $.ajax({
+        type: "POST",
+        url: "{% url 'payments:activate_coupon' %}",
+        data: {'coupon_number': $('#id_coupon_number').val(), 'csrftoken': getCookie('csrftoken')},
+        success: function(data) {
+          if (data.success) {
+            $('#error_message').fadeOut();
+            coupon_form.removeClass('has-error');
+            coupon_form.addClass('has-success');
+            coupon_submit.removeClass('btn-default').addClass('btn-success');
+            coupon_submit.text('Thanks! Your code is accepted.');
+            setTimeout(location.reload.bind(location), 1000);
+          } else {
+            coupon_form.addClass('has-error');
+            $('#error_message').fadeIn();
+          }
+        }
+      });
+    });
   </script>
 {% endblock extra_js %}
