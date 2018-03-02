@@ -247,7 +247,7 @@ class AddAdvancedCustomerView(LoginRequiredMixin, UpdateView):
                 elif f.plastic_concern == 2:  # quality
                     if f.heat_resistance == 1:  # I want my project to be able to withstand heat
                         if f.is_extreme_strength == 2:  # I am willing to spend top dollar ($250+)
-                            if f.performance_or_price == 2:
+                            if f.performance_or_price == 1:  # best quality
                                 print('PEEK (Various) PEEK or Polyether Ether Ketone is the 3D Printing variant of'
                                       ' PAEK which was designed to withstand extreme temperatures while providing'
                                       ' incredible strength and durability. Due to this incredible strength and '
@@ -257,7 +257,7 @@ class AddAdvancedCustomerView(LoginRequiredMixin, UpdateView):
                                       'premium cost, look no further.')
                                 f.process = 8
                                 f.material = 16
-                            elif f.performance_or_price == 1:
+                            elif f.performance_or_price == 2:  # Willing to pay slightly less
                                 print("PEI or Polyetherimide is an extremely robust thermoplastic that can withstand"
                                       " extreme temperatures and stress. It is a close cousin to PEEK plastic with "
                                       "some differences. It is cheaper than PEEK, but boasts less temperature and "
