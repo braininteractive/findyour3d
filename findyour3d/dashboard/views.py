@@ -29,6 +29,13 @@ class DashboardView(LoginRequiredMixin, ListView):
                                               Q(is_cad_assistance=user.need_assistance) &
                                               Q(ideal_customer__contains=str(user.customer_type))).order_by(
                 '-user__plan')
+        elif user.material in [16, ]:  # material is PEEK, no need to look at proccess
+            queryset = Company.objects.filter(Q(material__contains='16') &
+                                              Q(user__plan__isnull=False) &
+                                              Q(budget__contains=str(user.budget)) &
+                                              Q(is_cad_assistance=user.need_assistance) &
+                                              Q(ideal_customer__contains=str(user.customer_type))).order_by(
+                '-user__plan')
         else:
             queryset = Company.objects.filter(
                 (Q(material__contains=str(user.material))) &

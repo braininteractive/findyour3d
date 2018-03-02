@@ -298,6 +298,27 @@
       });
     {% endif %}
 
+    $('#id_material').change(function(event) {
+      if ($(this).val() == "16") {  // if it's PEEK
+        $('#id_top_printing_processes').prop('disabled', true);
+        $('#id_top_printing_processes option[value="8"]').attr("selected", "selected");
+      } else {
+        $('#id_top_printing_processes').prop('disabled', false);
+      }
+    });
+
+    $("#id_top_printing_processes option").each(function() {
+
+      if($(this).val() == 8) {
+        $(this).hide();
+      }
+    });
+
+    $('form').submit(function(e) {
+      $(':disabled').each(function(e) {
+        $(this).removeAttr('disabled');
+      })
+    });
 
   </script>
 
