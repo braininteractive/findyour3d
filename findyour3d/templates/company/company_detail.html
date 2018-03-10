@@ -80,7 +80,6 @@
           </div>
         </div>
 
-
         <div class="row">
           <div class="col-md-12">
             <b>Description: </b>{{ object.description }}
@@ -88,6 +87,13 @@
         </div>
 
         {% if is_owner %}
+
+        <div class="row">
+          <div class="col-md-12">
+            <b>Quotes left: </b>{{ object.quote_limit }}
+          </div>
+        </div>
+
           <div class="row edit_company">
             <div class="col-sm-12">
               <div class="text-center">

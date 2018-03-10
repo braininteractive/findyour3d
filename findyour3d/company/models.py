@@ -49,6 +49,7 @@ class Company(models.Model):
     is_expedited = models.BooleanField(default=True)
     shipping = MultiSelectField(choices=SHIPPING_CHOICES, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    quote_limit = models.IntegerField(default=10)
 
     def __str__(self):
         return "%s" % self.user
