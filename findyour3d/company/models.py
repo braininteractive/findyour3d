@@ -75,6 +75,12 @@ class Company(models.Model):
             html = gray_star * 5
         return html
 
+    def get_quote_limit(self):
+        if self.quote_limit <= 3:
+            return '<span style="color: red">{}</span>'.format(self.quote_limit)
+        else:
+            return self.quote_limit
+
 
 class SpecialOffer(models.Model):
     company = models.ForeignKey('Company')

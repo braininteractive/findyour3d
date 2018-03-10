@@ -50,6 +50,13 @@
                 <a class="bold" href="{% url 'users:plan' %}#plan">click here</a> to select a plan.
               </div>
             {% endif %}
+            {% if not object.quote_limit %}
+              <div class="alert alert-danger text-center">
+                <b>Your company is not visible in search results!</b> <br>
+                You have reached limit of quotes.
+                You can change limits <a class="bold" href="{% url 'company:edit' object.pk %}#quote_limit">here</a>.
+              </div>
+            {% endif %}
           {% endif %}
 
           <div class="alert alert-success text-center enrolled alert-dismissible" style="display: none">
@@ -87,12 +94,11 @@
         </div>
 
         {% if is_owner %}
-
-        <div class="row">
-          <div class="col-md-12">
-            <b>Quotes left: </b>{{ object.quote_limit }}
+          <div class="row">
+            <div class="col-md-12">
+              <b>Quotes left: </b> {{ object.get_quote_limit|safe }}
+            </div>
           </div>
-        </div>
 
           <div class="row edit_company">
             <div class="col-sm-12">

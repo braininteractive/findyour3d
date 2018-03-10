@@ -46,6 +46,8 @@ def request_quote(request, pk):
 
                     if company_plan == 1:
                         starter_charge(company_owner)
+                        company.quote_limit -= 1
+                        company.save()
                         return custom_redirect('dashboard:company', quote='requested')
                     else:
                         return custom_redirect('dashboard:company', quote='requested')

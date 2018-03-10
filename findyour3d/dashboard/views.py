@@ -21,20 +21,22 @@ class DashboardView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         user = self.request.user.customer_set.first()
-        # showing metals with SLM / DMLS
-        if user.material in [9, 12, 13, 14]:
+
+        if user.material in [9, 12, 13, 14]:  # showing metals with SLM / DMLS
             queryset = Company.objects.filter(Q(top_printing_processes='1') &
                                               Q(user__plan__isnull=False) &
                                               Q(budget__contains=str(user.budget)) &
                                               Q(is_cad_assistance=user.need_assistance) &
-                                              Q(ideal_customer__contains=str(user.customer_type))).order_by(
+                                              Q(ideal_customer__contains=str(user.customer_type)),
+                                              quote_limit__gt=0).order_by(
                 '-user__plan')
-        elif user.material in [16, ]:  # material is PEEK, no need to look at proccess
+        elif user.material in [16, ]:  # material is PEEK, no need to look at process
             queryset = Company.objects.filter(Q(material__contains='16') &
                                               Q(user__plan__isnull=False) &
                                               Q(budget__contains=str(user.budget)) &
                                               Q(is_cad_assistance=user.need_assistance) &
-                                              Q(ideal_customer__contains=str(user.customer_type))).order_by(
+                                              Q(ideal_customer__contains=str(user.customer_type)),
+                                              quote_limit__gt=0).order_by(
                 '-user__plan')
         else:
             queryset = Company.objects.filter(
@@ -43,7 +45,7 @@ class DashboardView(LoginRequiredMixin, ListView):
                 Q(user__plan__isnull=False) &
                 Q(budget__contains=str(user.budget)) &
                 Q(is_cad_assistance=user.need_assistance) &
-                Q(ideal_customer__contains=str(user.customer_type))).order_by('-user__plan')
+                Q(ideal_customer__contains=str(user.customer_type)), quote_limit__gt=0).order_by('-user__plan')
         return queryset
 
 
