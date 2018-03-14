@@ -157,46 +157,7 @@
                 </div>
               </div>
               <div class="portlet-body">
-                <div class="mt-comments">
-                  {% for quote in user.company_set.first.quoterequest_set.all %}
-                    <div class="mt-comment">
-                      <div class="mt-comment-img">
-                        <img src="{% static 'img/avatar8.jpg' %}" />
-                      </div>
-                      <div class="mt-comment-body">
-                        <div class="mt-comment-info">
-                          <span class="mt-comment-author">{{ quote.user }}</span>
-                          <span class="mt-comment-date">{{ quote.created_at }}</span>
-                        </div>
-                        <div class="mt-comment-text">
-                          <a href="mailto:{{ quote.user.email }}">{{ quote.user.email }}</a> <br>
-                          Material: {{ quote.user.customer_set.first.get_material_display }} <br>
-                          Process: {{ quote.user.customer_set.first.get_process_display }} <br>
-                          Budget: {{ quote.user.customer_set.first.get_budget_display }} <br>
-                          Need Assistance: {{ quote.user.customer_set.first.get_need_assistance_display }} <br>
-                          Time Sensitive: {{ quote.user.customer_set.first.is_time_sensitive }} <br>
-                          Shipping: {{ quote.user.customer_set.first.get_shipping_display }} <br>
-                          Zip: {{ quote.user.customer_set.first.zip }} <br>
-                          Description: {{ quote.user.customer_set.first.description }} <br>
-                        </div>
-                        <div class="mt-comment-details">
-                          <span class="mt-comment-status mt-comment-status-pending">Pending</span>
-                          {#                                            <ul class="mt-comment-actions">#}
-                          {#                                                <li>#}
-                          {#                                        <a href="#">Quick Edit</a>#}
-                          {#                                                </li>#}
-                          {#                                                <li>#}
-                          {#                                        <a href="#">View</a>#}
-                          {#                                                </li>#}
-                          {#                                                <li>#}
-                          {#                                        <a href="#">Delete</a>#}
-                          {#                                                </li>#}
-                          {#                                            </ul>#}
-                        </div>
-                      </div>
-                    </div>
-                  {% endfor %}
-                </div>
+                {% include 'pages/includes/company_quotes.html' %}
               </div>
             </div>
           </div>
@@ -217,7 +178,7 @@
           <div class="modal-body">
             {% if request.user.is_authenticated %}
               <div class="alert alert-danger">
-                You current plan will be canceled. You won't be able to use ChatBot and all the other features.
+                You current plan will be canceled. You won't be visible in Search Results.
               </div>
             {% endif %}
           </div>
@@ -225,7 +186,7 @@
           <form action="{% url 'users:cancel' %}" method="post" id="cancelForm">
             {% csrf_token %}
             <div class="modal-footer">
-              <button type="button" class="btn btn-default"  data-dismiss="modal">
+              <button type="button" class="btn btn-primary"  data-dismiss="modal">
                 No, I don't want to cancel</button>
               <button type="button" id="cancelFormSubmit" class="btn btn-danger margin-0">
                 Yes, cancel my subscription</button>

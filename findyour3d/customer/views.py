@@ -24,7 +24,7 @@ class AddCustomerView(LoginRequiredMixin, CreateView):
                     if self.request.user.customer_set.first().is_advanced_filled:
                         return reverse('dashboard:company')
                     else:
-                        return redirect('customers:advanced', self.request.user.customer_set.first().pk)
+                        return reverse('customers:advanced', kwargs={'pk': self.request.user.customer_set.first().pk})
             else:
                 return HttpResponseForbidden()
         return super(AddCustomerView, self).dispatch(request, *args, **kwargs)

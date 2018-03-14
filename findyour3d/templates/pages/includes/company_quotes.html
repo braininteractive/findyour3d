@@ -1,0 +1,23 @@
+<div class="mt-comments">
+  {% for quote in user.company_set.first.quoterequest_set.all %}
+    <div class="mt-comment">
+      <div class="mt-comment-img">
+        <img src="https://placeimg.com/41/41/people" />
+      </div>
+      <div class="mt-comment-body">
+        <div class="mt-comment-info">
+          <span class="mt-comment-author">{{ quote.user }}</span>
+          <span class="mt-comment-date">{{ quote.created_at }}</span>
+        </div>
+        <div class="mt-comment-text">
+          <a href="mailto:{{ quote.user.email }}">{{ quote.user.email }}</a> <br>
+          Material: {{ quote.user.customer_set.first.get_material_display }} <br>
+          Process: {{ quote.user.customer_set.first.get_process_display }} <br>
+        </div>
+        <div class="mt-comment-details">
+          <span class="mt-comment-status mt-comment-status-pending">received</span>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
