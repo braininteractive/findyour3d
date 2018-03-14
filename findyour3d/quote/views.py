@@ -1,14 +1,11 @@
 import logging
 
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect
 
-from django.conf import settings
-from django.core.mail import EmailMultiAlternatives
-from django.template.loader import render_to_string
-from django.utils.html import strip_tags
 
 from findyour3d.payment.views import starter_charge
+from findyour3d.users.email_template import send_templated_email
 from findyour3d.utils.views import custom_redirect
 
 from findyour3d.company.models import Company
@@ -30,19 +27,17 @@ def request_quote(request, pk):
                 if not QuoteRequest.objects.filter(company=company, user=request.user).exists():
                     quote = QuoteRequest.objects.create(user=request.user, company=company)
 
-                    subject, from_email, to = 'Request Confirmation', settings.DEFAULT_FROM_EMAIL, company.email
+                    # sending email to company
+                    send_templated_email('Your3d: New Request Received',
+                                         'email/customer_request.html',
+                                         {'user': user, 'company': company, 'quote': quote},
+                                         [company.email])
 
-                    html_content = render_to_string('email/customer_request.html',
-                                                    {'user': user, 'company': company, 'quote': quote})
-                    text_content = strip_tags(html_content)
-
-                    msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
-                    msg.attach_alternative(html_content, "text/html")
-
-                    try:
-                        msg.send()
-                    except Exception as e:
-                        logger.error(str(e))
+                    # sending email to customer
+                    send_templated_email('Your3d: Request Confirmation',
+                                         'email/company_request.html',
+                                         {'user': user, 'company': company, 'quote': quote},
+                                         [user.email])
 
                     if company_plan == 1:
                         starter_charge(company_owner)
