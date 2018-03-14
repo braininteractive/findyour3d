@@ -6,51 +6,51 @@
 {% block head_title %}{% trans "Signup" %}{% endblock %}
 
 {% block inner %}
-    <h1>{% trans "Sign Up" %}</h1>
+  <h1>{% trans "Sign Up" %}</h1>
 
-    <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+  <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
 
-    {% if form.errors %}
-        <div class="alert alert-danger">
-            {{ form.errors }}
-        </div>
+  {% if form.errors %}
+    <div class="alert alert-danger">
+      {{ form.errors }}
+    </div>
+  {% endif %}
+
+  <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+    {% csrf_token %}
+    {{ form|crispy }}
+    {% if redirect_field_value %}
+      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
     {% endif %}
-
-    <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
-        {% csrf_token %}
-        {{ form|crispy }}
-        {% if redirect_field_value %}
-            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-        {% endif %}
-        <button class="btn btn-primary" type="submit">{% trans "Sign Up" %} &raquo;</button>
-    </form>
+    <button class="btn btn-primary" type="submit">{% trans "Sign Up" %} &raquo;</button>
+  </form>
 
 {% endblock %}
 
 {% block extra_js %}
-    <script>
-        $.urlParam = function(name){
-            var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
-            if (results==null){
-                return null;
-            }
-            else{
-                return results[1] || 0;
-            }
-        };
+  <script>
+    $.urlParam = function(name){
+      var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+      if (results==null){
+        return null;
+      }
+      else{
+        return results[1] || 0;
+      }
+    };
 
-        var userType = $.urlParam('type');
+    var userType = $.urlParam('type');
 
-        if (userType == "business") {
-            var inpt = $('#id_user_type');
-            inpt.val(2).change();
-            inpt.attr('disabled','disabled')
-        }
-        $('form').submit(function(e) {
-            $(':disabled').each(function(e) {
-                $(this).removeAttr('disabled');
-            })
-        });
-    </script>
+    if (userType == "business") {
+      var inpt = $('#id_user_type');
+      inpt.val(2).change();
+      inpt.attr('disabled','disabled')
+    }
+    $('form').submit(function(e) {
+      $(':disabled').each(function(e) {
+        $(this).removeAttr('disabled');
+      })
+    });
+  </script>
 {% endblock extra_js %}
 
