@@ -5,121 +5,117 @@
 <!--[if !IE]><!-->
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <title>{% block title %}{% endblock %} | Your3D</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta content="width=device-width, initial-scale=1" name="viewport" />
-    <meta content=""/>
-    <meta content="" name="author" />
-    <link href="{% static 'fonts/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css" />
-    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
-    <link href="{% static 'forms/bootstrap-switch/css/bootstrap-switch.min.css' %}" rel="stylesheet"
-          type="text/css" />
-    <link href="{% static 'forms/css/components-md.min.css' %}" rel="stylesheet" id="style_components" type="text/css" />
-    <link href="{% static 'forms/css/plugins-md.min.css' %}" rel="stylesheet" type="text/css" />
-    <link href="{% static 'forms/css/layout.min.css' %}" rel="stylesheet" type="text/css" />
-    <link href="{% static 'forms/css/default.min.css' %}" rel="stylesheet" type="text/css" id="style_color" />
-    <link href="{% static 'forms/css/project.css' %}" rel="stylesheet" type="text/css" />
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-    {% block extra_css %}{% endblock extra_css %}
+  <meta charset="utf-8" />
+  <title>{% block title %}{% endblock %} | Your3D</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <meta content=""/>
+  <meta content="" name="author" />
+  <link href="{% static 'fonts/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css" />
+  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+  <link href="{% static 'forms/bootstrap-switch/css/bootstrap-switch.min.css' %}" rel="stylesheet"
+        type="text/css" />
+  <link href="{% static 'forms/css/components-md.min.css' %}" rel="stylesheet" id="style_components" type="text/css" />
+  <link href="{% static 'forms/css/plugins-md.min.css' %}" rel="stylesheet" type="text/css" />
+  <link href="{% static 'forms/css/layout.min.css' %}" rel="stylesheet" type="text/css" />
+  <link href="{% static 'forms/css/default.min.css' %}" rel="stylesheet" type="text/css" id="style_color" />
+  <link href="{% static 'forms/css/project.css' %}" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  {% block extra_css %}{% endblock extra_css %}
 </head>
 
 <body class="page-container-bg-solid page-header-fixed page-sidebar-closed-hide-logo page-md">
 
 <!-- Page Content -->
 <div>
-    <div class="page-header navbar navbar-fixed-top">
-        <div class="page-header-inner ">
-            <div class="page-logo">
-                <a href="{% url 'home' %}">
-                    <img src="{% static 'img/logo.png' %}" alt="logo" class="logo-default" />
-                </a>
-                <div class="menu-toggler sidebar-toggler">
-                </div>
-            </div>
-            <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse"> </a>
-            <div class="page-top">
-                <div class="top-menu">
-                    <ul class="nav navbar-nav pull-right">
-                        <li class="separator hide"> </li>
-                        <li class="dropdown dropdown-user dropdown-dark">
-                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"
-                               data-hover="dropdown" data-close-others="true">
+  <div class="page-header navbar navbar-fixed-top">
+    <div class="page-header-inner ">
+      <div class="page-logo">
+        <a href="{% url 'home' %}">
+          <img src="{% static 'img/logo.png' %}" alt="logo" class="logo-default" />
+        </a>
+        <div class="menu-toggler sidebar-toggler">
+        </div>
+      </div>
+      <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse"> </a>
+      <div class="page-top">
+        <div class="top-menu">
+          <ul class="nav navbar-nav pull-right">
+            <li class="separator hide"> </li>
+            <li class="dropdown dropdown-user dropdown-dark">
+              <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"
+                 data-hover="dropdown" data-close-others="true">
                                 <span class="username username-hide-on-mobile">
                                     {% if request.user.is_authenticated %}
-                                        {{ request.user.username }}
+                                      {{ request.user.username }}
                                     {% endif %}
                                 </span>
-                                <img alt="" class="img-circle" src="" /> </a>
-                            {% if request.user.is_authenticated %}
-                                <ul class="dropdown-menu dropdown-menu-default">
-                                    <li>
-                                        <a href=""><i class="fa fa-user"></i> My Profile </a>
-                                    </li>
-                                    <li class="divider"> </li>
-                                    <li>
-                                        <a href="{% url 'account_logout' %}"><i class="fa fa-key"></i> Log Out </a>
-                                    </li>
-                                </ul>
-                            {% endif %}
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="clearfix"> </div>
-    <div class="page-container">
-        <div class="page-sidebar-wrapper">
-            <div class="page-sidebar navbar-collapse collapse">
-                <ul class="page-sidebar-menu" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
-                    <li class="heading">
-                        <h3 class="uppercase">Menu</h3>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="{% url 'customers:edit' request.user.customer_set.first.id %}" class="nav-link ">
-                            <i class="fa fa-filter"></i>
-                            <span class="title">Return to Project Details</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{% url 'customers:advanced' request.user.customer_set.first.id %}" class="nav-link ">
-                            <i class="fa fa-magic"></i>
-                            <span class="title">Return to Material and Process Recommendation Wizard</span>
-                        </a>
-                    </li>
-
+                <img alt="" class="img-circle" src="" /> </a>
+              {% if request.user.is_authenticated %}
+                <ul class="dropdown-menu dropdown-menu-default">
+                  <li>
+                    <a href="{% url 'account_logout' %}"><i class="fa fa-key"></i> Log Out </a>
+                  </li>
                 </ul>
-            </div>
+              {% endif %}
+            </li>
+          </ul>
         </div>
-        <div class="page-content-wrapper">
-            <div class="page-content" style="margin-top: -10px;">
-                <div class="row requested" style="display: none">
-                    <div class="col-md-9 col-md-offset-1">
-                    <div class="alert alert-success alert-dismissible">
-                        Quote was successfully requested!
-                      <button type="button" class="close" style="text-indent: 1px" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    </div>
-                </div>
-                {% block content %}
-                {% endblock %}
-            </div>
-        </div>
+      </div>
     </div>
-    <!-- BEGIN FOOTER -->
-    <div class="page-footer">
-        <div class="page-footer-inner"> {% now "Y" %} &copy;
-            <a target="_blank" href="http://findyour3d.com">Your3D</a>
-        </div>
-        <div class="scroll-to-top">
-            <i class="icon-arrow-up"></i>
-        </div>
+  </div>
+  <div class="clearfix"> </div>
+  <div class="page-container">
+    <div class="page-sidebar-wrapper">
+      <div class="page-sidebar navbar-collapse collapse">
+        <ul class="page-sidebar-menu" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+          <li class="heading">
+            <h3 class="uppercase">Menu</h3>
+          </li>
+
+          <li class="nav-item">
+            <a href="{% url 'customers:edit' request.user.customer_set.first.id %}" class="nav-link ">
+              <i class="fa fa-filter"></i>
+              <span class="title">Return to Project Details</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'customers:advanced' request.user.customer_set.first.id %}" class="nav-link ">
+              <i class="fa fa-magic"></i>
+              <span class="title">Return to Material and Process Recommendation Wizard</span>
+            </a>
+          </li>
+
+        </ul>
+      </div>
     </div>
-    <!-- END FOOTER -->
+    <div class="page-content-wrapper">
+      <div class="page-content" style="margin-top: -10px;">
+        <div class="row requested" style="display: none">
+          <div class="col-md-9 col-md-offset-1">
+            <div class="alert alert-success alert-dismissible">
+              Quote was successfully requested!
+              <button type="button" class="close" style="text-indent: 1px" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        {% block content %}
+        {% endblock %}
+      </div>
+    </div>
+  </div>
+  <!-- BEGIN FOOTER -->
+  <div class="page-footer">
+    <div class="page-footer-inner"> {% now "Y" %} &copy;
+      <a target="_blank" href="http://findyour3d.com">Your3D</a>
+    </div>
+    <div class="scroll-to-top">
+      <i class="icon-arrow-up"></i>
+    </div>
+  </div>
+  <!-- END FOOTER -->
 </div>
 
 <script src="{% static 'forms/js/jquery.min.js' %}" type="text/javascript"></script>
@@ -132,20 +128,20 @@
 <script src="{% static 'js/dashboard.min.js' %}" type="text/javascript"></script>
 
 <script>
-    $.urlParam = function(name){
-        var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
-        if (results==null){
-            return null;
-        }
-        else{
-            return results[1] || 0;
-        }
-    };
-
-    var isRequested = $.urlParam('quote');
-    if (isRequested == "requested") {
-        $('.requested').show();
+  $.urlParam = function(name){
+    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+    if (results==null){
+      return null;
     }
+    else{
+      return results[1] || 0;
+    }
+  };
+
+  var isRequested = $.urlParam('quote');
+  if (isRequested == "requested") {
+    $('.requested').show();
+  }
 
 </script>
 
