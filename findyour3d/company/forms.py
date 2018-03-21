@@ -46,6 +46,8 @@ class AddCompanyForm(forms.ModelForm):
         self.fields['ideal_customer'].label = 'What is your company’s ideal customer that we should send to you?'
         self.fields['budget'].label = 'What is your ideal order cost/budget?'
         self.fields['top_printing_processes'].label = 'Printing Processes Available'
+        self.fields['name'].label = 'Company Name'
+        self.fields['display_name'].label = 'Company Display Name'
 
 
 class EditCompanyForm(forms.ModelForm):
@@ -91,6 +93,8 @@ class EditCompanyForm(forms.ModelForm):
         self.fields['shipping'].label = 'Which of the following shipping options do you offer?'
         self.fields['quote_limit'].required = False
         self.fields['quote_limit'].widget.attrs['class'] = 'form-control'
+        self.fields['name'].label = 'Company Name'
+        self.fields['display_name'].label = 'Company Display Name'
 
 
 class AddSpecialOfferForm(forms.ModelForm):

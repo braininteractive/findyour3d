@@ -31,7 +31,7 @@ class Company(models.Model):
     display_name = models.CharField(max_length=255)
     logo = models.ImageField(upload_to='logo/', null=True, blank=True)
     address_line_1 = models.CharField(max_length=255)
-    address_line_2 = models.CharField(max_length=255)
+    address_line_2 = models.CharField(max_length=255, blank=True, null=True)
     full_name = models.CharField(max_length=255)
     email = models.CharField(max_length=255)
     phone = models.CharField(max_length=255)
