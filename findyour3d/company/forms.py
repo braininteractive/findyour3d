@@ -33,6 +33,7 @@ class AddCompanyForm(forms.ModelForm):
             'material': forms.SelectMultiple(attrs={'class': 'form-control edited big_height_block'}),
             'top_printing_processes': forms.SelectMultiple(attrs={'class': 'form-control edited big_height_block'}),
             'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 10}),
+            'quote_limit': forms.NumberInput(attrs={'class': 'form-control edited'}),
             'user': forms.HiddenInput(),
         }
 
@@ -47,6 +48,7 @@ class AddCompanyForm(forms.ModelForm):
         self.fields['budget'].label = 'What is your ideal order cost/budget?'
         self.fields['top_printing_processes'].label = 'Printing Processes Available'
         self.fields['name'].label = 'Company Name'
+        self.fields['quote_limit'].required = False
         self.fields['display_name'].label = 'Company Display Name'
 
 
@@ -77,6 +79,7 @@ class EditCompanyForm(forms.ModelForm):
             'top_printing_processes': forms.SelectMultiple(attrs={'class': 'form-control edited big_height_block'}),
             'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 10}),
             'shipping': forms.SelectMultiple(attrs={'class': 'form-control edited'}),
+            'quote_limit': forms.NumberInput(attrs={'class': 'form-control edited'}),
             'user': forms.HiddenInput(),
         }
 
@@ -92,7 +95,6 @@ class EditCompanyForm(forms.ModelForm):
         self.fields['is_expedited'].label = 'Do you offer an expedited manufacturing process?'
         self.fields['shipping'].label = 'Which of the following shipping options do you offer?'
         self.fields['quote_limit'].required = False
-        self.fields['quote_limit'].widget.attrs['class'] = 'form-control'
         self.fields['name'].label = 'Company Name'
         self.fields['display_name'].label = 'Company Display Name'
 
