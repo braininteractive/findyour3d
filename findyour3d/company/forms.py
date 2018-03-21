@@ -50,6 +50,8 @@ class AddCompanyForm(forms.ModelForm):
         self.fields['name'].label = 'Company Name'
         self.fields['quote_limit'].required = False
         self.fields['display_name'].label = 'Company Display Name'
+        self.fields['full_name'].label = "Company Contact's Full Name"
+        self.fields['email'].label = "Company Contact's Email"
 
 
 class EditCompanyForm(forms.ModelForm):
@@ -97,6 +99,8 @@ class EditCompanyForm(forms.ModelForm):
         self.fields['quote_limit'].required = False
         self.fields['name'].label = 'Company Name'
         self.fields['display_name'].label = 'Company Display Name'
+        self.fields['full_name'].label = "Company Contact's Full Name"
+        self.fields['email'].label = "Company Contact's Email"
 
 
 class AddSpecialOfferForm(forms.ModelForm):
