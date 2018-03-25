@@ -14,4 +14,5 @@ class ContactAdmin(admin.ModelAdmin):
             return self.readonly_fields + ('is_sent', )
         return self.readonly_fields
 
+
 admin.site.register(Contact, ContactAdmin)

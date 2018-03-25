@@ -1415,7 +1415,7 @@ a:focus, .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:acti
 }
 
 .warning_message_on_form {
-  margin-top: 10px !important;
+  margin-top: 30px !important;
   margin-left: 14px;
 }
 

@@ -1,5 +1,7 @@
 from django.db import models
 
+from findyour3d.users.email_template import send_templated_email
+
 
 class Contact(models.Model):
 
@@ -22,3 +24,14 @@ class Contact(models.Model):
 
     def __str__(self):
         return "Message from {}".format(self.name)
+
+    def save(self, *args, **kwargs):
+        if not self.is_sent:
+            if self.reply_text:
+                send_templated_email('Your Request on Your3d',
+                                     'email/contact_form_reply.html',
+                                     {'reply_text': self.reply_text, 'name': self.name},
+                                     [self.email, ])
+
+                self.is_sent = True
+        super().save(*args, **kwargs)
