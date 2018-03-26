@@ -20,7 +20,7 @@ def contact(request):
                                      {'body': feedback_form.cleaned_data.get('body'),
                                       'name': feedback_form.cleaned_data.get('name'),
                                       'subject:': feedback_form.cleaned_data.get('subject')},
-                                     [settings.ADMINS, ])
+                                     [settings.ADMINS[1], ])
             except Exception as e:
                 logger.exception(str(e))
 
