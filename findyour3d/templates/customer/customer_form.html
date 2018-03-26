@@ -348,7 +348,18 @@
           shipping.hide();
         }
       });
-    $('#id_process option[value="8"]').hide();
+
+    $('#id_process option[value="8"]').attr("disabled", "disabled");
+
+    $('#id_material').change(function(event) {
+      if ($(this).val() == "16") {  // if it's PEEK
+        $('#id_process').prop('disabled', true);
+        $('#id_process option[value="8"]').attr("selected", "selected");
+      } else {
+        $('#id_process').prop('disabled', false);
+      }
+    });
+
 
     {#        var material = $('#id_material');#}
     {#        var process = $('#id_process');#}
