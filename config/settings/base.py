@@ -109,7 +109,7 @@ ADMINS = [
     ("Oleksii Dubniak", 'adubnyak@gmail.com'),
 ]
 
-DEREKS_EMAIL = 'derekcavanaugh@gmail.com'
+DEREKS_EMAIL = 'derekcavanaugh@findyour3d.com'
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#managers
 MANAGERS = ADMINS
