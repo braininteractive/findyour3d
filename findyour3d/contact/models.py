@@ -2,16 +2,16 @@ from django.db import models
 
 from findyour3d.users.email_template import send_templated_email
 
+SUBJECT_CHOICES = (
+    (0, 'Comment'),
+    (1, 'Suggestion'),
+    (2, 'Question'),
+    (3, 'General Inquiry'),
+    (4, 'Business Inquiry')
+)
+
 
 class Contact(models.Model):
-
-    SUBJECT_CHOICES = (
-        (0, 'Comment'),
-        (1, 'Suggestion'),
-        (2, 'Question'),
-        (3, 'General Inquiry'),
-        (4, 'Business Inquiry')
-    )
 
     name = models.CharField(max_length=50)
     email = models.EmailField()
