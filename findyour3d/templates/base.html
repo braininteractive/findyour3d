@@ -25,6 +25,8 @@
 
     <link href="{% static 'css/project.css' %}" rel="stylesheet">
 
+    {% include 'pages/includes/google_analytics.html' %}
+
   {% endblock %}
   {% block extra_css %}{% endblock %}
 
@@ -52,15 +54,15 @@
   <script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
 
   <script>
-      $.urlParam = function(name){
-          var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
-          if (results==null){
-              return null;
-          }
-          else{
-              return results[1] || 0;
-          }
-      };
+    $.urlParam = function(name){
+      var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+      if (results==null){
+        return null;
+      }
+      else{
+        return results[1] || 0;
+      }
+    };
   </script>
 {% endblock javascript %}
 {% block extra_js %}{% endblock %}
