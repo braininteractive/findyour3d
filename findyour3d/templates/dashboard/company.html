@@ -56,16 +56,16 @@
                   </div>
 
                   <span class="item-status">
-                                        {% is_company_requested company request.user as is_requested %}
-                    {% if not is_requested %}
+{#                                        {% is_company_requested company request.user as is_requested %}#}
+{#                    {% if not is_requested %}#}
                       <form action="{% url 'quote:req' company.pk %}" method="post">
                                             {% csrf_token %}
                                             <button class="btn btn-sm btn-success invite" type="submit">
                                               Request a Quote</button>
                                         </form>
-                    {% else %}
-                      <button class="btn btn-sm btn-default disabled">Requested</button>
-                    {% endif %}
+{#                    {% else %}#}
+{#                      <button class="btn btn-sm btn-default disabled">Requested</button>#}
+{#                    {% endif %}#}
                         </span>
                 </div>
                 <div class="item-body {% if company.user.plan == 2 or company.user.plan == 3 %}premium{% endif %}">
@@ -160,8 +160,8 @@
 
 {% block extra_js %}
   <script>
-      $(":submit").closest("form").submit(function(){
-          $(':submit').attr('disabled', 'disabled');
-      });
+    $(":submit").closest("form").submit(function(){
+      $(':submit').attr('disabled', 'disabled');
+    });
   </script>
 {% endblock extra_js %}
