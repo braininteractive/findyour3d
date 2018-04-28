@@ -158,15 +158,20 @@ def starter_charge(user):
         amount=amount,
         description="Quote Request"
     )
-    charge = stripe.Charge.create(
-        amount=int(amount * 100),
-        currency="usd",
-        customer=user.stripe_id,
-        description="Quote Request by {}".format(user.email)
-    )
-    payment.trx_id = charge.id
-    payment.status = '2'
-    payment.history = charge
+    try:
+        charge = stripe.Charge.create(
+            amount=int(amount * 100),
+            currency="usd",
+            customer=user.stripe_id,
+            description="Quote Request by {}".format(user.email)
+        )
+        payment.trx_id = charge.id
+        payment.status = '2'
+        payment.history = charge
+    except Exception as e:
+        payment.status = '1'
+        payment.history = json.dumps(str(e))
+
     payment.save()
 
 

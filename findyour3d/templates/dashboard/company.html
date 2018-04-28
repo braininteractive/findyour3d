@@ -56,16 +56,17 @@
                   </div>
 
                   <span class="item-status">
-{#                                        {% is_company_requested company request.user as is_requested %}#}
-{#                    {% if not is_requested %}#}
+                    {% is_company_requested company request.user as is_requested %}
+                    {% if not is_requested %}
                       <form action="{% url 'quote:req' company.pk %}" method="post">
                                             {% csrf_token %}
                                             <button class="btn btn-sm btn-success invite" type="submit">
                                               Request a Quote</button>
                                         </form>
-{#                    {% else %}#}
-{#                      <button class="btn btn-sm btn-default disabled">Requested</button>#}
-{#                    {% endif %}#}
+                    {% else %}
+                      <button class="btn btn-sm btn-default" data-toggle="modal"
+                              data-target="#exampleModal">Requested</button>
+                    {% endif %}
                         </span>
                 </div>
                 <div class="item-body {% if company.user.plan == 2 or company.user.plan == 3 %}premium{% endif %}">
@@ -155,6 +156,25 @@
       </div>
     </div>
   </div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Already requested</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        You can send a new quote in an hour
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 {% endblock content %}
 
