@@ -48,7 +48,7 @@ class AddCompanyForm(forms.ModelForm):
         self.fields['budget'].label = 'What is your ideal order cost/budget?'
         self.fields['top_printing_processes'].label = 'Printing Processes Available'
         self.fields['name'].label = 'Company Name'
-        self.fields['quote_limit'].required = False
+        # self.fields['quote_limit'].required = False
         self.fields['display_name'].label = 'Company Display Name'
         self.fields['full_name'].label = "Company Contact's Full Name"
         self.fields['email'].label = "Company Contact's Email"

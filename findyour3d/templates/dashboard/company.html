@@ -38,7 +38,8 @@
         <div class="general-item-list">
           {% if companies %}
             {% for company in companies %}
-              <div class="item">
+              {% if company.user.is_payment_active_or_free_coupon %}
+                <div class="item">
                 <div class="item-head">
                   <div class="item-details">
                     {% if company.user.plan == 2 or company.user.plan == 3 %}
@@ -107,6 +108,7 @@
                   </div>
                 </div>
               </div>
+              {% endif %}
             {% endfor %}
           {% else %}
             <div class="alert alert-info text-center">

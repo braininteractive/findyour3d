@@ -49,6 +49,23 @@ def request_quote(request, pk):
                 else:
                     logger.error('already requested')
                     return redirect('dashboard:company')
+            elif company_owner.is_payment_active_or_free_coupon():
+                if not QuoteRequest.objects.filter(company=company, user=request.user).exists():
+                    quote = QuoteRequest.objects.create(user=request.user, company=company)
+
+                    # sending email to company
+                    send_templated_email('Your3d: New Request Received',
+                                         'email/customer_request.html',
+                                         {'user': user, 'company': company, 'quote': quote},
+                                         [company.email])
+
+                    # sending email to customer
+                    send_templated_email('Your3d: Request Confirmation',
+                                         'email/company_request.html',
+                                         {'user': user, 'company': company, 'quote': quote},
+                                         [user.email])
+
+                    return custom_redirect('dashboard:company', quote='requested')
             else:
                 logger.error('company without plan')
                 return redirect('dashboard:company')

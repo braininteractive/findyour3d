@@ -4,7 +4,7 @@ from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
 
-from findyour3d.utils.views import add_months
+from findyour3d.utils.views import add_months, check_full_discount_for_premium
 
 
 @python_2_unicode_compatible
@@ -54,3 +54,9 @@ class User(AbstractUser):
         if self.paid_at:
             next_pay_day = add_months(self.paid_at, 12)
             return next_pay_day
+
+    def is_payment_active_or_free_coupon(self):
+        if self.payment_active:
+            return True
+        else:
+            return check_full_discount_for_premium(self)

@@ -2,6 +2,7 @@ import random
 import string
 
 import jsonfield
+from django.core.exceptions import ValidationError
 from django.core.validators import MaxValueValidator
 
 from django.db import models
@@ -42,15 +43,30 @@ class UserPayment(models.Model):
 
 
 class Coupon(models.Model):
+
+    PLAN_CHOICES = (
+        (1, 'Starter'),
+        (2, 'Premium - 3 month'),
+        (3, 'Premium - 12 month')
+    )
+
     number = models.CharField(max_length=6, unique=True, blank=True, null=True,
                               help_text='Leave blank if you want coupon number to be generated automatically')
     duration = models.IntegerField(blank=True, null=True,
                                    help_text='Coupon duration in days. Leave blank if its a one-time deal')
     discount = models.PositiveIntegerField(validators=[MaxValueValidator(100), ],
-                                           help_text='Discount value in percents, for e.g. 10 or 50')
+                                           help_text='Discount value in percents, for e.g. 10 or 50',
+                                           blank=True, null=True)
     expired = models.BooleanField(default=False)
     activated_at = models.DateTimeField(blank=True, null=True)
+    applies_to = models.IntegerField(choices=PLAN_CHOICES, blank=True, null=True)
+    number_of_free_quotes = models.IntegerField(blank=True, null=True)
     activated_by = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True)
+
+    def clean(self):
+        if self.number_of_free_quotes and self.applies_to != 1:
+            raise ValidationError('Please choose Starter Plan and Number of free quotes')
+        super().clean()
 
     @staticmethod
     def coupon_generator(size=6, chars=string.ascii_uppercase + string.digits):
