@@ -33,7 +33,13 @@
                 {{ request.user.customer_set.first.get_shipping_display|default:"n/a" }}</span>
             </small>
           </div>
+
         </div>
+      <div class="portlet-title">
+      <p class="text-center">
+        Select <b>Request A Quote</b> on as many retailers as you'd like to submit a quote directly.
+      </p>
+      </div>
 
         <div class="general-item-list">
           {% if companies %}
