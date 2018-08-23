@@ -17,12 +17,12 @@
           <tr><td style="text-align: center;"><b>Project Size:</b> {{ user.get_size_display }}</td></tr>
           <tr><td style="text-align: center;"><b>Project Basic Material Class:</b> {{ user.get_basic_material_display }}</td></tr>
 
-          <tr><td style="text-align: center;"><b>Does the customer require CAD design assistance:</b> {{ user.need_assistance }}</td></tr>
+          <tr><td style="text-align: center;"><b>Does the customer require CAD design assistance:</b> {{ user.get_need_assistance_display }}</td></tr>
           <tr><td style="text-align: center;"><b>Does the project require rapid manufacturing?:</b> </td></tr>
           <tr><td style="text-align: center;"><b>Does the project require expedited shipping?:</b> {{ user.get_shipping_display }}</td></tr>
 
-          <tr><td style="text-align: center;"><b>Recommended Project Material:</b> {{ user.material }}</td></tr>
-          <tr><td style="text-align: center;"><b>Recommended Manufacturing Process:</b> {{ user.process }}</td></tr>
+          <tr><td style="text-align: center;"><b>Recommended Project Material:</b> {{ user.get_material_display }}</td></tr>
+          <tr><td style="text-align: center;"><b>Recommended Manufacturing Process:</b> {{ user.get_process_display }}</td></tr>
 
           <tr><td style="text-align: center;"><b>Customer Notes:</b> {{ user.description }}</td></tr>
           </tbody>
