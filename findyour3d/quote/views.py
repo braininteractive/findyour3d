@@ -29,7 +29,8 @@ def request_quote(request, pk):
                 # sending email to company
                 send_templated_email('Your3d: New Request Received',
                                      'email/customer_request.html',
-                                     {'user': user.customer_set.first(), 'company': company, 'quote': quote},
+                                     {'user': user.customer_set.first(), 'company': company, 'quote': quote,
+                                      'email': user.email},
                                      [company.email])
 
                 # sending email to customer
@@ -51,7 +52,8 @@ def request_quote(request, pk):
                 # sending email to company
                 send_templated_email('Your3d: New Request Received',
                                      'email/customer_request.html',
-                                     {'user': user.customer_set.first(), 'company': company, 'quote': quote},
+                                     {'user': user.customer_set.first(), 'company': company, 'quote': quote,
+                                      'email': user.email},
                                      [company.email])
 
                 # sending email to customer
