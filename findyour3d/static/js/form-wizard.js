@@ -361,7 +361,6 @@ $(document).ready(function () {
                             })
                         }
                         if (this.value==0){
-                            console.log('close heat');
                             highestDetailBlock.hide();
                             highestDetail.val(0);
                             ableToBendBlock.hide();
@@ -376,7 +375,6 @@ $(document).ready(function () {
                     })
                 }
                 if (this.value==0){
-                    console.log('close child');
                     heatResistanceBlock.hide();
                     heatResistance.val(0);
                     highestDetailBlock.hide();

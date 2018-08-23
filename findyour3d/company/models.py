@@ -81,6 +81,14 @@ class Company(models.Model):
         else:
             return self.quote_limit
 
+    def get_is_cad_assistance_snippet(self):
+        if self.is_cad_assistance:
+            sign = 'check'
+        else:
+            sign= 'times'
+        snippet = '<i class="fa fa-{} grey-600"></i>'.format(sign)
+        return snippet
+
 
 class SpecialOffer(models.Model):
     company = models.ForeignKey('Company')

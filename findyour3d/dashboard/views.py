@@ -25,24 +25,33 @@ class DashboardView(LoginRequiredMixin, ListView):
         if user.material in [9, 12, 13, 14]:  # showing metals with SLM / DMLS
             queryset = Company.objects.filter(Q(top_printing_processes='1') &
                                               Q(budget__contains=str(user.budget)) &
-                                              Q(is_cad_assistance=user.need_assistance) &
                                               Q(ideal_customer__contains=str(user.customer_type)),
                                               quote_limit__gt=0).order_by(
                 '-user__plan')
+            if not user.need_assistance:
+                queryset = queryset.filter(Q(is_cad_assistance=False) | Q(is_cad_assistance=True))
+            else:
+                queryset = queryset.filter(is_cad_assistance=True)
         elif user.material in [16, ]:  # material is PEEK, no need to look at process
             queryset = Company.objects.filter(Q(material__contains='16') &
                                               Q(budget__contains=str(user.budget)) &
-                                              Q(is_cad_assistance=user.need_assistance) &
                                               Q(ideal_customer__contains=str(user.customer_type)),
                                               quote_limit__gt=0).order_by(
                 '-user__plan')
+            if not user.need_assistance:
+                queryset = queryset.filter(Q(is_cad_assistance=False) | Q(is_cad_assistance=True))
+            else:
+                queryset = queryset.filter(is_cad_assistance=True)
         else:
             queryset = Company.objects.filter(
                 (Q(material__contains=str(user.material))) &
                 Q(top_printing_processes__contains=str(user.process)) &
                 Q(budget__contains=str(user.budget)) &
-                Q(is_cad_assistance=user.need_assistance) &
                 Q(ideal_customer__contains=str(user.customer_type)), quote_limit__gt=0).order_by('-user__plan')
+            if not user.need_assistance:
+                queryset = queryset.filter(Q(is_cad_assistance=False) | Q(is_cad_assistance=True))
+            else:
+                queryset = queryset.filter(is_cad_assistance=True)
         return queryset
 
 
