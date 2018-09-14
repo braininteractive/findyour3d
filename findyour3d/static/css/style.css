@@ -212,6 +212,15 @@ hr {
   font-size: 20px;
 }
 
+.main_intro_text {
+  background: white;
+  opacity: 0.9;
+  border-radius: 10px;
+  color: black !important;
+  padding: 50px;
+  width: 100%;
+}
+
 @media(min-width:768px) {
   #intro {
     height: 100%;
