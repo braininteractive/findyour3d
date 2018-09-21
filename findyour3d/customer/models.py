@@ -57,12 +57,12 @@ ASSISTANCE_CHOICES = (
 
 PROCESS_CHOICES = (
     (0, 'Fused Deposition Modeling (FDM)'),
-    (1, 'Stereoligtography (SLM)'),
+    (1, 'Selective Laser Melting / Direct Metal Laser Sintering (SLM / DMLS)'),
     (2, 'Selective Laser Sintering (SLS)'),
     (3, 'Material Jetting (MJ)'),
     (4, 'Binder Jetting (BJ) (Stone)'),
     (5, 'Electron Beam Melting (EBM) (Metals)'),
-    (6, 'SLA'),
+    (6, 'Stereolithography (SLA)'),
     (7, 'PolyJet'),
     (8, 'Various'),
 )
