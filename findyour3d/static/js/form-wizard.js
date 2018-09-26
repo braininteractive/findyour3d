@@ -264,12 +264,12 @@ $(document).ready(function () {
                                     performanceOrPriceBlock.show();
                                     performanceOrPrice.on('change', function () {
                                         if (this.value==1){
-                                            tipTitle.text("FDM");
+                                            tipTitle.text("PEEK (FDM)");
                                             tipBody.text("PEEK or Polyether Ether Ketone is the 3D Printing variant of PAEK which was designed to withstand the most extreme temperatures while providing incredible strength and durability. Due to this incredible strength and durability, it is usually limited to automotive, aerospace, or medical industries because of the high price. If you're looking for the ultimate material to keep your project operating under the harshest conditions for a premium cost, look no further.\n");
                                             show_blurb();
                                         }
                                         if (this.value==2){
-                                            tipTitle.text("SLS");
+                                            tipTitle.text("PEI (SLS)");
                                             tipBody.text("PEI or Polyetherimide is an extremely robust thermoplastic that can withstand extreme temperatures and stress. It is a close cousin to PEEK plastic with some differences. It is cheaper than PEEK, but boasts less temperature and stress resistance. A popular brand of this is call ULTEM made by SABIC. If you're looking for one of the toughest out there, but want to spend less than PEEK, PEI is the best option.\n");
                                             show_blurb();
                                         }
