@@ -23,9 +23,9 @@ class DashboardView(LoginRequiredMixin, ListView):
         user = self.request.user.customer_set.first()
 
         if user.material in [9, 12, 13, 14]:  # showing metals with SLM / DMLS
-            queryset = Company.objects.active().filter(Q(top_printing_processes__startswith='1') &
-                                                       Q(budget__startswith=str(user.budget)) &
-                                                       Q(ideal_customer__startswith=str(user.customer_type)))
+            queryset = Company.objects.active().filter(Q(top_printing_processes='1') &
+                                                       Q(budget__contains=str(user.budget)) &
+                                                       Q(ideal_customer__contains=str(user.customer_type)))
             if not user.need_assistance:
                 queryset = queryset.filter(Q(is_cad_assistance=False) | Q(is_cad_assistance=True))
             else:
@@ -39,7 +39,7 @@ class DashboardView(LoginRequiredMixin, ListView):
             else:
                 queryset = Company.objects.active().filter(
                     (Q(material__startswith=str(user.material))) &
-                    Q(top_printing_processes__startswith=str(user.process)) &
+                    Q(top_printing_processes__contains=str(user.process)) &
                     Q(budget__contains=str(user.budget)) &
                     Q(ideal_customer__contains=str(user.customer_type)))
                 if not user.need_assistance:
