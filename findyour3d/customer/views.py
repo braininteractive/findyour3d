@@ -261,7 +261,7 @@ class AddAdvancedCustomerView(LoginRequiredMixin, UpdateView):
                                       "stress resistance. A popular brand of this is call ULTEM made by SABIC. "
                                       "If you're looking for one of the toughest out there, but want to spend less "
                                       "than PEEK, PEI is the best option.")
-                                f.process = 2
+                                f.process = 0
                                 f.material = 17
                             else:
                                 logger.error('#12')

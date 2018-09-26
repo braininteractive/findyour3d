@@ -269,7 +269,7 @@ $(document).ready(function () {
                                             show_blurb();
                                         }
                                         if (this.value==2){
-                                            tipTitle.text("PEI (SLS)");
+                                            tipTitle.text("PEI (FDM)");
                                             tipBody.text("PEI or Polyetherimide is an extremely robust thermoplastic that can withstand extreme temperatures and stress. It is a close cousin to PEEK plastic with some differences. It is cheaper than PEEK, but boasts less temperature and stress resistance. A popular brand of this is call ULTEM made by SABIC. If you're looking for one of the toughest out there, but want to spend less than PEEK, PEI is the best option.\n");
                                             show_blurb();
                                         }
