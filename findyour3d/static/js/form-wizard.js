@@ -46,6 +46,16 @@ $(document).ready(function () {
 
     basicMaterial.val(4);  // set init val to null
 
+    function hide_blurb(){
+        saveButton.hide();
+        blurb.hide();
+    }
+
+    function show_blurb(){
+        saveButton.show();
+        blurb.show();
+    }
+
     basicMaterial.on('change', function () {
         basicMaterial.attr('readonly', true);
         basicMaterial.prop('disabled', true);
@@ -58,33 +68,28 @@ $(document).ready(function () {
             preciousMetal.on('change', function () {
                 metalConcern.val(0);
                 metalConcernBlock.hide();
-                saveButton.hide();
-                blurb.hide();
+                hide_blurb();
                 if (this.value==3){
                     metalConcernBlock.show();
                     metalConcern.on('change', function () {
-                        saveButton.hide();
-                        blurb.hide();
+                        hide_blurb();
                         metalDecision.val(0);
                         if (this.value==2){ // strength
                             metalDecisionBlock.show();
                             metalDecision.on('change', function () {
                                 if (this.value==1){ // I want the very best for top dollar. ($250+ per print)
-                                    saveButton.show();
                                     tipTitle.text("Inconel (SLM)");
                                     tipBody.text("Inconel is a family of superalloys that combine various metals to form an incredibly durable and robust product. Inconel is used mostly in aerospace, automotive, or other extreme environments. Inconel is printed mostly using Selective Laser Melting (SLM). This material is ideal for projects that must undergo the most inhospitable conditions and continue to perform. ");
-                                    blurb.show();
+                                    show_blurb();
                                 }
                                 if (this.value==2){ // No, but I still want a high quality metal
-                                    saveButton.show();
                                     tipTitle.text("Stainless Steel  (SLM / DMLS)");
                                     tipBody.text("Stainless Steel is an affordable, reliable, and strong alloy that resists corrosion. An all-around reliable material, it is also able to 3D Print in high detail. To top it all off, many services can coat the Stainless Steel with other metals such as bronze, gold, or silver. Stainless Steel is printed using Direct Metal Laser Sintering (DMLS) or Selective Laser Melting (SLM). This material is ideal for a cost-effective and all-around versatile metal project.");
-                                    blurb.show();
+                                    show_blurb()
                                 }
 
                                 if (this.value==0){
-                                    saveButton.hide();
-                                    blurb.hide();
+                                    hide_blurb();
                                 }
                             })
                         }
@@ -92,25 +97,22 @@ $(document).ready(function () {
                             metalDecisionBlock.hide();
                             metalDecision.val(0);
 
-                            saveButton.show();
                             tipTitle.text("Copper (SLM / DMLS)");
                             tipBody.text("Copper is a commonly used conductive metal that is rather inexpensive, even to 3D Print. It offers good resistance to wear and can even be polished down to reveal rather ornate features if required. Copper is printed using Direct Metal Laser Sintering (DMLS) or Selective Laser Melting (SLM). This is great for a rather cheap, detailed, and conductive metal prototype or design. ");
-                            blurb.show();
+                            show_blurb();
                         }
                         if (this.value==0){
                             metalDecisionBlock.hide();
                             metalDecision.val(0);
 
-                            saveButton.hide();
-                            blurb.hide();
+                            hide_blurb();
                         }
                     })
                 }
                 if (this.value==2){ // is precious metal
-                    saveButton.show();
                     tipTitle.text("Silver / Gold (DMLS / SLM)");
                     tipBody.text("Gold or Silver are obvious choices for things like jewelry or trinkets that are ornate and luxurious. Their beauty and rarity come at a price though, as they are both hard to print and are very expensive. Silver or Gold are printed via Direct Metal Laser Sintering (DMLS) or Selective Laser Melting (SLM). This is ideal for a project that stands above in beauty and is worth every penny.");
-                    blurb.show();
+                    show_blurb();
                 }
             })
         }
@@ -119,16 +121,14 @@ $(document).ready(function () {
             otherMaterialsBlock.show();
             otherMaterials.on('change', function () {
                 if (this.value==1){ // I want my project to be wood-like
-                    saveButton.show();
                     tipTitle.text("Wood-Like (FDM)");
                     tipBody.text("There are varying techniques by providers to bring a wood-like print to life, but a common and proven way is a mixture of PLA plastic and wooden fibers. Using this technique, prints can achieve high detail and can have a variety of wooden-like finishes. This wood-like material is printed using Fused Deposition Modelling (FDM). The combination of the material and process is perfect for amazing wood-like trinkets, prototypes, or decor, cheaply and quickly.");
-                    blurb.show();
+                    show_blurb();
                 }
                 if (this.value==2){ // I want my project to be from stone
-                    saveButton.show();
                     tipTitle.text("Stone (BJ)");
                     tipBody.text("Stone gives you the power of Michelangelo, easily and for far less cost. Stone can be used to make amazing pieces of art that can be full-size if you desire. Finishing options offered by some services polish the printed piece to mimic things such as marble in a wide variety of colors. Stone is printed this way using Binder Jetting (BJ). This is perfect for ornate and realistic looking statues, artworks, or trinkets for display.  ");
-                    blurb.show();
+                    show_blurb();
                 }
             })
         }
@@ -137,8 +137,7 @@ $(document).ready(function () {
             plasticConcernBlock.show();
             plasticConcern.val(0);
             plasticConcern.on('change', function () {
-                saveButton.hide();
-                blurb.hide();
+                hide_blurb();
                 highestDetailBlock.hide();
                 highestDetail.val(0);
                 ableToBendBlock.hide();
@@ -166,19 +165,16 @@ $(document).ready(function () {
                                 if (this.value==1){ // Yes, ... functional as possible for the cost
                                     tipTitle.text("PETG (FDM)");
                                     tipBody.text("PETG is a 3D Printer-friendly variation of PET, a commonly used plastic that’s found in anything from clothing fibers to food packaging. It is a somewhat newer 3D Printing material that boasts the strength of traditional ABS and the simplicity of PLA. It is printed using Fused Deposition Modeling (FDM). In short, it's a simple staple material for strong and durable prints. Great for prototypes that need to handle stress.");
-                                    blurb.show();
-                                    saveButton.show();
+                                    show_blurb();
                                 }
                                 if (this.value==2){ // No, I just need my ... printed very simply
                                     tipTitle.text("PLA (FDM)");
                                     tipBody.text("PLA is a staple material in 3D Printing. It is a very inexpensive material that is very commonly used in 3D Printing at home. It has it's drawbacks, however. PLA tends to very brittle and cannot withstand high temperatures. Most variations are deemed food-safe and are semi-biodegradable as well. PLA is printed using Fused Deposition Modeling (FDM). Overall, it is perfect for creating cheap first-time prototypes and visual representations of your creations.");
-                                    blurb.show();
-                                    saveButton.show();
+                                    show_blurb();
                                 }
 
                                 if (this.value==0){
-                                    saveButton.hide();
-                                    blurb.hide();
+                                    hide_blurb();
                                 }
                             })
                         }
@@ -191,19 +187,16 @@ $(document).ready(function () {
                                 if (this.value==1){ // Yes, .. to pay slightly more to get a better material
                                     tipTitle.text("Nylon (FDM) ");
                                     tipBody.text("Nylon is a family of synthetic polymers that are used in countless everyday items. Compared to other basic filament materials for 3D Printing, Nylon is considered a top contender for strength, durability, and even flexibility. This overall performance comes with a slightly higher price than other basic filaments but is often considered worth it. For the most cost-effective route, Nylon can be made with Fused Deposition Modeling. Overall, it is a strong and versatile material that is great for working prototypes and even mechanical parts.  ");
-                                    blurb.show();
-                                    saveButton.show();
+                                    show_blurb();
                                 }
                                 if (this.value==2){ // No I want my project to pretty simple for a pretty low price
                                     tipTitle.text("PETG (FDM)");
                                     tipBody.text("PETG is a 3D Printer friendly variation of PET, a commonly used plastic that is found in anything from clothing fibers to food packaging. It is a somewhat newer 3D Printing material that boasts the strength of traditional ABS and the simplicity of PLA. It is printed using Fused Deposition Modeling (FDM). In short, it's a simple staple for strong, durable, and simple prints. Great for functional prototypes that need to handle some stress.");
-                                    blurb.show();
-                                    saveButton.show();
+                                    show_blurb();
                                 }
 
                                 if (this.value==0){
-                                    saveButton.hide();
-                                    blurb.hide();
+                                    hide_blurb();
                                 }
 
                             })
@@ -226,8 +219,7 @@ $(document).ready(function () {
 
                     heatResistanceBlock.show();
                     heatResistance.on('change', function () {
-                        saveButton.hide();
-                        blurb.hide();
+                        hide_blurb();
                         betterAppearanceBlock.hide();
                         betterAppearance.val(0);
                         ableToBendBlock.hide();
@@ -245,28 +237,24 @@ $(document).ready(function () {
                             extremeStrength.on('change', function () {
                                 performanceOrPriceBlock.hide();
                                 performanceOrPrice.val(0);
-                                saveButton.hide();
-                                blurb.hide();
+                                hide_blurb();
                                 if (this.value==3){ // No I don't need extreme strength and performance
                                     betterAppearanceBlock.show();
                                     betterAppearance.on('change', function () {
                                         performanceOrPriceBlock.hide();
                                         performanceOrPrice.val(0);
                                         if (this.value==2){ // I want a more functional material for my project
-                                            saveButton.show();
                                             tipTitle.text("Reinforced Nylons (FDM)");
                                             tipBody.text("Nylon is a family of synthetic polymers that are used in countless everyday items. Often, Nylon is reinforced to add durability or heat resistance. A common example is Carbon reinforcement to add strength and heat resistance. Reinforced Nylons are often made with Fused Deposition Modeling. These nylon-variants are perfect for a cost-effective yet strong and durable functional prototype.");
-                                            blurb.show();
+                                            show_blurb();
                                         }
                                         if (this.value==3){ // I want a better looking appearance for my project
-                                            saveButton.show();
                                             tipTitle.text("Alumide (FDM)");
                                             tipBody.text("Alumide is Nylon that is combined with flakes of Aluminum. Alumide provides the durability and heat resistance of aluminum and the detail and strength of nylon. Projects made from Alumide can be colored and then polished for amazingly detailed and smooth creations that are strong and resistant to heat. Alumide projects are made from Fused Deposition Modelling. This is a perfect material if you're looking for your project to not only be tough and resistant to wear, but intricate and polished when finished.");
-                                            blurb.show();
+                                            show_blurb();
                                         }
                                         if (this.value==1){
-                                            saveButton.hide();
-                                            blurb.hide();
+                                            hide_blurb();
                                         }
                                     })
                                 }
@@ -276,16 +264,14 @@ $(document).ready(function () {
                                     performanceOrPriceBlock.show();
                                     performanceOrPrice.on('change', function () {
                                         if (this.value==1){
-                                            saveButton.show();
-                                            tipTitle.text("PEEK (Various)");
+                                            tipTitle.text("FDM");
                                             tipBody.text("PEEK or Polyether Ether Ketone is the 3D Printing variant of PAEK which was designed to withstand the most extreme temperatures while providing incredible strength and durability. Due to this incredible strength and durability, it is usually limited to automotive, aerospace, or medical industries because of the high price. If you're looking for the ultimate material to keep your project operating under the harshest conditions for a premium cost, look no further.\n");
-                                            blurb.show();
+                                            show_blurb();
                                         }
                                         if (this.value==2){
-                                            saveButton.show();
-                                            tipTitle.text("PEI (SLA)");
+                                            tipTitle.text("SLS");
                                             tipBody.text("PEI or Polyetherimide is an extremely robust thermoplastic that can withstand extreme temperatures and stress. It is a close cousin to PEEK plastic with some differences. It is cheaper than PEEK, but boasts less temperature and stress resistance. A popular brand of this is call ULTEM made by SABIC. If you're looking for one of the toughest out there, but want to spend less than PEEK, PEI is the best option.\n");
-                                            blurb.show();
+                                            show_blurb();
                                         }
                                     });
                                 }
@@ -300,36 +286,31 @@ $(document).ready(function () {
                             highestDetail.on('change', function () {
                                 fullColorBlock.hide();
                                 fullColor.val(0);
-                                saveButton.hide();
-                                blurb.hide();
+                                hide_blurb();
 
                                 if (this.value==2){ // Yes, I want the highest detail possible
                                     fullColorBlock.show();
                                     fullColor.on('change', function () {
                                         if (this.value==2){ // Yes, I want rich and full colors for my project
-                                            saveButton.show();
                                             tipTitle.text("Resins (PolyJet)");
                                             tipBody.text("Resins that are created via PolyJet printing are rightly superior regarding detail and resolution. PolyJet printing can print layers as thin as 16 microns (or 1.6% of a single millimeter.) Objects printed via PolyJet can also be a wide array of colors including transparent. This incredible accuracy comes at a price, as the resin and printing process are costly compared to regular printing methods. This method is ideal for small and extremely intricate prototype designs. It is not recommended for anything other than small projects.");
-                                            blurb.show();
+                                            show_blurb();
                                         }
                                         if (this.value==3){ // No I don't need my project to have full colors ...
-                                            saveButton.show();
                                             tipTitle.text("Resins (SLA)");
                                             tipBody.text("Resins that are printed via SLA are considered one of the best regarding resolution and fine details. They are at the intersection of superior quality and fast printing. Resins printed via SLA are not as detailed as PolyJet printing, but this offers advantages as SLA is better for printing larger projects. Using SLA for printing Resins are more expensive than more basic printing methods.This method is best if you're looking for speed and accuracy combined for your project. ");
-                                            blurb.show();
+                                            show_blurb();
                                         }
 
                                         if (this.value==1){
-                                            saveButton.hide();
-                                            blurb.hide();
+                                            hide_blurb();
                                         }
                                     })
                                 }
                                 if (this.value==3){ // I want detail, but don't need the highest detail possible
-                                    saveButton.show();
                                     tipTitle.text("Nylons (SLS)");
                                     tipBody.text("Nylon is a family of synthetic polymers that are used in countless everyday items. Nylon is considered one of the more versatile materials used in 3D printing today. It has strength, flexibility, and durability, all while being fairly cost-effective. While Nylon can be printed using Fused Deposition Modelling (FDM), for the best quality output we recommend using Selective Laser Sintering (SLS). The SLS process will often take longer to print and cost more, but the process can handle much more complex printing jobs, and the output has a definitive edge over it's FDM counterpart.  ");
-                                    blurb.show();
+                                    show_blurb();
                                 }
                             })
                         }
@@ -342,21 +323,18 @@ $(document).ready(function () {
                             ableToBendBlock.show();
                             ableToBend.on('change', function () {
                                 if (this.value==2){ // I want my project to handle some bending, ...
-                                    saveButton.show();
                                     tipTitle.text("Nylons (SLS)");
                                     tipBody.text("Nylon is a family of synthetic polymers that are used in countless everyday items. Nylon is considered one of the more versatile materials used in 3D printing today. It has strength, flexibility, and durability, all while being fairly cost-effective. While Nylon can be printed using Fused Deposition Modelling (FDM), for the best quality output we recommend using Selective Laser Sintering (SLS). The right type of Nylon will not only be strong but fairly flexible as well. This is an ideal material and process for designing functional and durable prototypes, toys, or components that are not brittle or rigid. ");
-                                    blurb.show();
+                                    show_blurb();
                                 }
                                 if (this.value==3){ // I want my project to feel and act almost like rubber
-                                    saveButton.show();
                                     tipTitle.text("TPE (FDM)");
                                     tipBody.text("ThermoPlastic Elastomer or TPE is a class of material that is a polymer blend of usually plastic and rubber. By mixing the two, it takes distinct characteristics from both. They are not only durable but have the flexibility of rubber. Common applications of this material are covers for smartphones, automotive parts, or small rubber-like toys. TPE is printed using Fused Deposition Modeling. This material is great for projects that need to be as flexible as possible.");
-                                    blurb.show();
+                                    show_blurb();
                                 }
 
                                 if (this.value==1){
-                                    saveButton.hide();
-                                    blurb.hide();
+                                    hide_blurb();
                                 }
                             })
                         }

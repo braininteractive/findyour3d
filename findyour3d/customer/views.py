@@ -111,9 +111,6 @@ class AddAdvancedCustomerView(LoginRequiredMixin, UpdateView):
         if self.request.user.is_authenticated():
             if self.request.user.user_type == 1:
                 if int(self.kwargs['pk']) == request.user.customer_set.first().pk:
-                        # if self.request.user.customer_set.all():
-                        #     if self.request.user.customer_set.first().is_advanced_filled:
-                        #         return reverse('dashboard:company')
                         if not self.request.user.customer_set.all():
                             return redirect('customers:add')
                 else:
@@ -248,23 +245,23 @@ class AddAdvancedCustomerView(LoginRequiredMixin, UpdateView):
                     if f.heat_resistance == 1:  # I want my project to be able to withstand heat
                         if f.is_extreme_strength == 2:  # I am willing to spend top dollar ($250+)
                             if f.performance_or_price == 1:  # best quality
-                                print('PEEK (Various) PEEK or Polyether Ether Ketone is the 3D Printing variant of'
+                                print('FDM: PEEK or Polyether Ether Ketone is the 3D Printing variant of'
                                       ' PAEK which was designed to withstand extreme temperatures while providing'
                                       ' incredible strength and durability. Due to this incredible strength and '
                                       'durability it is usually limited to automotive, aerospace, or medical '
                                       'industries because of high price. If youre looking for ultimate material'
                                       ' to keep your project operating under the harshest conditions for a '
                                       'premium cost, look no further.')
-                                f.process = 8
+                                f.process = 0
                                 f.material = 16
                             elif f.performance_or_price == 2:  # Willing to pay slightly less
-                                print("PEI or Polyetherimide is an extremely robust thermoplastic that can withstand"
+                                print("SLS is an extremely robust thermoplastic that can withstand"
                                       " extreme temperatures and stress. It is a close cousin to PEEK plastic with "
                                       "some differences. It is cheaper than PEEK, but boasts less temperature and "
                                       "stress resistance. A popular brand of this is call ULTEM made by SABIC. "
                                       "If you're looking for one of the toughest out there, but want to spend less "
                                       "than PEEK, PEI is the best option.")
-                                f.process = 6
+                                f.process = 2
                                 f.material = 17
                             else:
                                 logger.error('#12')

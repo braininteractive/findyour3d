@@ -25,6 +25,12 @@ PRINTING_OPTIONS_CHOICES = (
 )
 
 
+class CompanyManager(models.Manager):
+
+    def active(self):
+        return self.filter(quote_limit__gt=0).order_by('-user__plan')
+
+
 class Company(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
     name = models.CharField(max_length=255)
@@ -50,6 +56,8 @@ class Company(models.Model):
     shipping = MultiSelectField(choices=SHIPPING_CHOICES, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     quote_limit = models.IntegerField(default=10)
+
+    objects = CompanyManager()
 
     def __str__(self):
         return "%s" % self.user
