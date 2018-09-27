@@ -31,7 +31,7 @@ def request_quote(request, pk):
                                      'email/customer_request.html',
                                      {'user': user.customer_set.first(), 'company': company, 'quote': quote,
                                       'email': user.email},
-                                     [company.email])
+                                     [company.email], files=user.customer_set.first().cad_file.path)
 
                 # sending email to customer
                 send_templated_email('Your3d: Request Confirmation',
@@ -54,7 +54,7 @@ def request_quote(request, pk):
                                      'email/customer_request.html',
                                      {'user': user.customer_set.first(), 'company': company, 'quote': quote,
                                       'email': user.email},
-                                     [company.email])
+                                     [company.email], files=user.customer_set.first().cad_file.path)
 
                 # sending email to customer
                 send_templated_email('Your3d: Request Confirmation',

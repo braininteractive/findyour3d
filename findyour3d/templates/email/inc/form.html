@@ -27,7 +27,8 @@
           <tr><td style="text-align: center;"><b>Recommended Project Material:</b> {{ user.get_material_display }}</td></tr>
           <tr><td style="text-align: center;"><b>Recommended Manufacturing Process:</b> {{ user.get_process_display }}</td></tr>
           {% if user.cad_file %}
-            <tr><td style="text-align: center;"><b>CAD File attached:</b> https://findyour3d.com/media/{{ user.cad_file }}</td></tr>
+            <tr><td style="text-align: center;"><b>CAD File attached:</b> <a
+              href="https://findyour3d.com/media/{{ user.cad_file }}" target="_blank">Download file</a></td></tr>
           {% endif %}
 
           <tr><td style="text-align: center;"><b>Customer Notes:</b> {{ user.description }}</td></tr>
