@@ -1,6 +1,9 @@
 from django.db import models
 from django.conf import settings
 
+from django.core.validators import FileExtensionValidator
+
+
 BASIC_MATERIAL_CHOICES = (
     (0, 'Plastic / Resin'),
     (1, 'Metal'),
@@ -255,7 +258,8 @@ class Customer(models.Model):
     geo_matters = models.IntegerField(choices=GEO_MATTERS_CHOICES, default=0)
     zip = models.IntegerField(blank=True, null=True)
     description = models.TextField()
-    cad_file = models.FileField(upload_to='cads/', blank=True, null=True)
+    cad_file = models.FileField(upload_to='cads/', blank=True, null=True,
+                                validators=[FileExtensionValidator(allowed_extensions=['stl', 'obj', 'step', 'iges'])])
 
     basic_material = models.IntegerField(choices=BASIC_MATERIAL_CHOICES, default=4)
 

@@ -209,20 +209,17 @@
                     </div>
                   </div>
 
-                  <div class="form-group" id="cadUploader" style="display: none">
+                  <div class="form-group" id="cadUploader">
                     <div class="col-md-10 col-md-offset-1">
-                      <div class="fileinput fileinput-new" data-provides="fileinput">
+                      <div class="fileinput fileinput-new" data-provides="">
                         <p class="bold">If you have a CAD File for your project, please upload it here.</p>
+                        <small>Allowed extensions are: 'stl, obj, step, iges'</small>
                         <div class="input-group input-large">
-                          <div class="form-control uneditable-input input-fixed input-medium" data-trigger="fileinput">
-                            <i class="fa fa-file fileinput-exists"></i>&nbsp;
-                            <span class="fileinput-filename"> </span>
+                          <div class="form-control uneditable-input input-fixed input-medium" data-trigger="">
                           </div>
                           <span class="input-group-addon btn default btn-file">
-                                                            <span class="fileinput-new" style="height: 10px;"> Select file </span>
-                                                            <span class="fileinput-exists"> Change </span>
-                                                            {{ form.cad_file }} </span>
-                          <a href="javascript:;" class="input-group-addon btn red fileinput-exists" data-dismiss="fileinput"> Remove </a>
+                            {{ form.cad_file }}
+                          </span>
                         </div>
                       </div>
                     </div>
