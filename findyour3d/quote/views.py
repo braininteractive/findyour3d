@@ -27,11 +27,18 @@ def request_quote(request, pk):
                 quote = QuoteRequest.objects.create(user=request.user, company=company)
 
                 # sending email to company
-                send_templated_email('Your3d: New Request Received',
-                                     'email/customer_request.html',
-                                     {'user': user.customer_set.first(), 'company': company, 'quote': quote,
-                                      'email': user.email},
-                                     [company.email], files=user.customer_set.first().cad_file.path)
+                if user.customer_set.first().cad_file:
+                    send_templated_email('Your3d: New Request Received',
+                                         'email/customer_request.html',
+                                         {'user': user.customer_set.first(), 'company': company, 'quote': quote,
+                                          'email': user.email},
+                                         [company.email], files=user.customer_set.first().cad_file.path)
+                else:
+                    send_templated_email('Your3d: New Request Received',
+                                         'email/customer_request.html',
+                                         {'user': user.customer_set.first(), 'company': company, 'quote': quote,
+                                          'email': user.email},
+                                         [company.email])
 
                 # sending email to customer
                 send_templated_email('Your3d: Request Confirmation',
@@ -50,11 +57,18 @@ def request_quote(request, pk):
                 quote = QuoteRequest.objects.create(user=request.user, company=company)
 
                 # sending email to company
-                send_templated_email('Your3d: New Request Received',
-                                     'email/customer_request.html',
-                                     {'user': user.customer_set.first(), 'company': company, 'quote': quote,
-                                      'email': user.email},
-                                     [company.email], files=user.customer_set.first().cad_file.path)
+                if user.customer_set.first().cad_file:
+                    send_templated_email('Your3d: New Request Received',
+                                         'email/customer_request.html',
+                                         {'user': user.customer_set.first(), 'company': company, 'quote': quote,
+                                          'email': user.email},
+                                         [company.email], files=user.customer_set.first().cad_file.path)
+                else:
+                    send_templated_email('Your3d: New Request Received',
+                                         'email/customer_request.html',
+                                         {'user': user.customer_set.first(), 'company': company, 'quote': quote,
+                                          'email': user.email},
+                                         [company.email])
 
                 # sending email to customer
                 send_templated_email('Your3d: Request Confirmation',
