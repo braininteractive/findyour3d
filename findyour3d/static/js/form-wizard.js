@@ -292,7 +292,7 @@ $(document).ready(function () {
                                     fullColorBlock.show();
                                     fullColor.on('change', function () {
                                         if (this.value==2){ // Yes, I want rich and full colors for my project
-                                            tipTitle.text("Resins (PolyJet)");
+                                            tipTitle.text("Resins (PolyJet / Material Jetting)");
                                             tipBody.text("Resins that are created via PolyJet printing are rightly superior regarding detail and resolution. PolyJet printing can print layers as thin as 16 microns (or 1.6% of a single millimeter.) Objects printed via PolyJet can also be a wide array of colors including transparent. This incredible accuracy comes at a price, as the resin and printing process are costly compared to regular printing methods. This method is ideal for small and extremely intricate prototype designs. It is not recommended for anything other than small projects.");
                                             show_blurb();
                                         }
