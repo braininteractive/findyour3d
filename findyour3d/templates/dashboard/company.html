@@ -109,7 +109,7 @@
                     <address>
                       <strong>{{ company.name }}</strong>
                       <br/> {{ company.address_line_1 }}
-                      <br/> {{ company.address_line_2 }}
+                      <br/> {{ company.address_line_2|default:"" }}
                     </address>
                   </div>
                 </div>
