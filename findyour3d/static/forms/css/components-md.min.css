@@ -1507,6 +1507,10 @@ code {
   color: #96a5aa
 }
 
+.general-item-list > .item > .item-body span {
+  color: black;
+}
+
 .file-drop-zone {
   border: 2px dashed #ddd;
   padding: 30px;

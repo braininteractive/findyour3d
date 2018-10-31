@@ -84,10 +84,10 @@
                       {{ company.description }}
                     {% endif %}
                   </p>
-                  Materials: <b>{{ company.get_material_display }}</b> <br>
-                  Processes: <b>{{ company.get_top_printing_processes_display }}</b> <br>
-                  Budget: <b>{{ company.get_budget_display }}</b> <br>
-                  Cad Assistance: <b>{{ company.get_is_cad_assistance_snippet|safe }}</b> <br>
+                  <span>Materials:</span> <b>{{ company.get_material_display }}</b> <br>
+                  <span>Processes:</span> <b>{{ company.get_top_printing_processes_display }}</b> <br>
+                  <span>Budget:</span> <b>{{ company.get_budget_display }}</b> <br>
+                  <span>Cad Assistance:</span> <b>{{ company.get_is_cad_assistance_snippet|safe }}</b> <br>
 
                   <p></p>
                   <div id="plan">
