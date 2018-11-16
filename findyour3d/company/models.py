@@ -1,8 +1,7 @@
-from django.db import models
 from django.conf import settings
-
-from multiselectfield import MultiSelectField
 from django.contrib.contenttypes.fields import GenericRelation
+from django.db import models
+from multiselectfield import MultiSelectField
 from star_ratings.models import Rating
 
 from findyour3d.customer.models import (BASIC_MATERIAL_CHOICES, BUDGET_CHOICES, CONSIDERATION_CHOICES,

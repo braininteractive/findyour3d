@@ -225,30 +225,7 @@
                     </div>
                   </div>
 
-                  <div class="form-group">
-                    <div class="col-md-10 col-md-offset-1">
-                      <div class="form-group form-md-radios">
-                        <p class="bold">
-                          {{ form.is_time_sensitive.label|title }}
-                          <span class="widget-title-color-red">*</span>
-                        </p>
-                        <div class="md-radio-inline">
-                          {% for radio in form.is_time_sensitive %}
-                            <div class="md-radio">
-                              {{ radio.tag }}
-                              <label for="f_value_{{ forloop.counter0 }}">
-                                <span></span>
-                                <span class="check"></span>
-                                <span class="box"></span>
-                                {{ radio.choice_label }}</label>
-                            </div>
-                          {% endfor %}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="form-group" id="shipping" style="display:none;">
+                  <div class="form-group" id="shipping">
                     <div class="col-md-10 col-md-offset-1">
                       <div class="form-group form-md-radios">
                         <p class="bold">
@@ -334,14 +311,6 @@
           cadUploader.show();
         } else {
           cadUploader.hide();
-        }
-      });
-    $('input:radio[name="is_time_sensitive"]').change(
-      function(){
-        if (this.checked && this.value == '1') {
-          shipping.show();
-        } else {
-          shipping.hide();
         }
       });
 

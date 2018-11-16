@@ -126,6 +126,13 @@ class DashboardTests(TestCase):
         # print(response.render().content)
         self.assertContains(response, 'silver_company')
 
+    def test_match_company_without_shipping_and_customer(self):
+        self.client.login(username='silver_user', password='1234567a')
+        self.silver_company.shipping = []
+        self.silver_company.save()
+        response = self.client.get(reverse('dashboard:company'))
+        self.assertContains(response, 'silver_company')
+
     def test_match_metal_company_with_same_process(self):
         self.client.login(username='metal_customer_user', password='1234567a')
         response = self.client.get(reverse('dashboard:company'))

@@ -19,6 +19,21 @@ class DashboardView(LoginRequiredMixin, ListView):
                     return redirect('customers:add')
         return super(DashboardView, self).dispatch(request, *args, **kwargs)
 
+    def filter_assistance(self, qs):
+        user = self.request.user.customer_set.first()
+        if not user.need_assistance:
+            queryset = qs.filter(Q(is_cad_assistance=False) | Q(is_cad_assistance=True))
+        else:
+            queryset = qs.filter(is_cad_assistance=True)
+        return queryset
+
+    def filter_shipping(self, qs):
+        user = self.request.user.customer_set.first()
+        queryset = qs
+        if user.shipping is not None:
+            queryset = qs.filter(Q(shipping__contains=user.shipping) | Q(shipping=[]))
+        return queryset
+
     def get_queryset(self):
         user = self.request.user.customer_set.first()
 
@@ -26,27 +41,18 @@ class DashboardView(LoginRequiredMixin, ListView):
             queryset = Company.objects.active().filter(Q(top_printing_processes='1') &
                                               Q(budget__contains=str(user.budget)) &
                                               Q(ideal_customer__contains=str(user.customer_type)))
-            if not user.need_assistance:
-                queryset = queryset.filter(Q(is_cad_assistance=False) | Q(is_cad_assistance=True))
-            else:
-                queryset = queryset.filter(is_cad_assistance=True)
         elif user.material in [16, ]:  # material is PEEK, no need to look at process
             queryset = Company.objects.active().filter(Q(material__contains='16') &
                                               Q(budget__contains=str(user.budget)) &
                                               Q(ideal_customer__contains=str(user.customer_type)))
-            if not user.need_assistance:
-                queryset = queryset.filter(Q(is_cad_assistance=False) | Q(is_cad_assistance=True))
-            else:
-                queryset = queryset.filter(is_cad_assistance=True)
         else:
             queryset = Company.objects.active().filter(
                 (Q(material__contains=str(user.material))) &
                 Q(top_printing_processes__contains=str(user.process)) &
                 Q(budget__contains=str(user.budget)) &
                 Q(ideal_customer__contains=str(user.customer_type)))
-            if not user.need_assistance:
-                queryset = queryset.filter(Q(is_cad_assistance=False) | Q(is_cad_assistance=True))
-            else:
-                queryset = queryset.filter(is_cad_assistance=True)
+
+        queryset = self.filter_assistance(queryset)
+        queryset = self.filter_shipping(queryset)
         return queryset
 

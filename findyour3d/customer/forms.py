@@ -13,7 +13,7 @@ class AddCustomerForm(forms.ModelForm):
     class Meta:
         model = Customer
         fields = ['prototype_type', 'customer_type', 'need_assistance', 'material', 'process',
-                  'size', 'is_time_sensitive', 'shipping',
+                  'size', 'shipping',
                   'budget', 'description', 'cad_file', 'user']
 
         widgets = {
@@ -24,8 +24,6 @@ class AddCustomerForm(forms.ModelForm):
             'process': forms.Select(attrs={'class': 'form-control edited', 'style': 'margin-top: 15px'}),
             'size': forms.RadioSelect(attrs={'id': 'd_value', 'class': 'md-radiobtn'}),
             'need_assistance': forms.RadioSelect(attrs={'id': 'e_value', 'class': 'md-radiobtn'}),
-            'is_time_sensitive': forms.RadioSelect(attrs={'id': 'f_value', 'class': 'md-radiobtn'},
-                                                   choices=TIME_CHOICES),
             'shipping': forms.RadioSelect(attrs={'id': 'g_value', 'class': 'md-radiobtn'}),
             'geo_matters': forms.Select(attrs={'class': 'form-control edited'}),
             'zip': forms.TextInput(attrs={'class': 'form-control edited'}),
@@ -34,18 +32,6 @@ class AddCustomerForm(forms.ModelForm):
 
             'user': forms.HiddenInput(),
         }
-
-    def clean_shipping(self):
-        if self.cleaned_data['is_time_sensitive']:
-            print(self.cleaned_data['shipping'])
-            if self.cleaned_data['shipping'] is None:
-                raise ValidationError("If you want 'time sensitive' project. You need to choose shipping method")
-
-    # def clean_need_assistance(self):
-    #     if self.cleaned_data['need_assistance']:
-    #         if self.cleaned_data['need_assistance'] == 1:
-    #             if self.cleaned_data['cad_file'] is None:
-    #                 raise ValidationError("Please upload a CAD file")
 
     def __init__(self, *args, **kwargs):
         self.user = None
@@ -61,8 +47,7 @@ class AddCustomerForm(forms.ModelForm):
         self.fields['process'].label = 'If You Know The Exact Printing Process You Want, Select It Here.'
         self.fields['size'].label = 'Roughly what will be the size of your design?'
         self.fields['need_assistance'].label = 'Will you need assistance rendering a 3D CAD model for printing?'
-        self.fields['is_time_sensitive'].label = 'Is this project time sensitive?'
-        self.fields['shipping'].label = 'Do you require any of the following shipping options for your project?'
+        self.fields['shipping'].label = 'Do you require expedited manufacturing for your project?'
         # self.fields['geo_matters'].label = 'Does Geographic Proximity to your provider matter?'
         # self.fields['zip'].label = 'If Yes, please enter your Zip Code.'
         self.fields['description'].label = 'Please write a description of your project and any additional ' \

@@ -209,7 +209,7 @@
               <label for="form_control_1">{{ form.is_expedited.label|title }}</label>
             </div>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-6" id="shipping">
 
             <div class="form-group form-md-line-input form-md-floating-label
                             {% if form.shipping.errors %}has-error{% endif %}">
@@ -330,6 +330,19 @@
 
       if($(this).val() == 8) {
         $(this).hide();
+      }
+    });
+    var shipping = $('#shipping');
+    shipping.hide();
+    $('#id_is_expedited').change(function() {
+      if (this.value == '1') {
+        shipping.show();
+        $('#id_shipping').prop('required', true);
+        console.log(this.value)
+      } else {
+        shipping.hide();
+        $('#id_shipping').removeAttr('required');
+        console.log(this.value)
       }
     });
 
