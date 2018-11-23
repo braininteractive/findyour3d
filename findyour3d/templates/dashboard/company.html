@@ -29,6 +29,9 @@
               <span class="small font-grey-salsa">Size:
                 {{ request.user.customer_set.first.get_size_display }}</span>
               <br>
+              <span class="small font-grey-salsa">Expedited manufacturing:
+                {{ request.user.customer_set.first.get_expedited_option }}</span>
+              <br>
               <span class="small font-grey-salsa">Shipping:
                 {{ request.user.customer_set.first.get_shipping_display|default:"n/a" }}</span>
             </small>
@@ -88,6 +91,8 @@
                   <span>Processes:</span> <b>{{ company.get_top_printing_processes_display }}</b> <br>
                   <span>Budget:</span> <b>{{ company.get_budget_display }}</b> <br>
                   <span>Cad Assistance:</span> <b>{{ company.get_is_cad_assistance_snippet|safe }}</b> <br>
+                  <span>Expedited manufacturing:</span> <b>{{ company.get_is_expedited_snippet|safe }}</b> <br>
+                  <span>Shipping:</span> <b>{{ company.get_shipping_display|default:"n/a" }}</b> <br>
 
                   <p></p>
                   <div id="plan">

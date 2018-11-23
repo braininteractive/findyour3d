@@ -30,8 +30,14 @@ class DashboardView(LoginRequiredMixin, ListView):
     def filter_shipping(self, qs):
         user = self.request.user.customer_set.first()
         queryset = qs
+
+        if user.is_expedited:
+            queryset = qs.filter(is_expedited=True)
+
         if user.shipping is not None:
-            queryset = qs.filter(Q(shipping__contains=user.shipping) | Q(shipping=[]))
+            # queryset = qs.filter(Q(shipping__contains=user.shipping) | Q(shipping=[]))
+            queryset = qs.filter(shipping__contains=user.shipping)
+
         return queryset
 
     def get_queryset(self):

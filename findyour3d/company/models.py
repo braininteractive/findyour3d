@@ -96,6 +96,14 @@ class Company(models.Model):
         snippet = '<i class="fa fa-{} grey-600"></i>'.format(sign)
         return snippet
 
+    def get_is_expedited_snippet(self):
+        if self.is_expedited:
+            sign = 'check'
+        else:
+            sign= 'times'
+        snippet = '<i class="fa fa-{} grey-600"></i>'.format(sign)
+        return snippet
+
 
 class SpecialOffer(models.Model):
     company = models.ForeignKey('Company')

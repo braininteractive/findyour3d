@@ -4,8 +4,8 @@ from .models import Company, SpecialOffer
 
 
 EXPEDITED_CHOICES = (
-    (0, 'No, we do not offer any expedited shipping options.'),
-    (1, 'Yes we offer an expedited process for a fee.')
+    (0, 'No, we only have standard timetables for our various printing types.'),
+    (1, 'Yes, we offer customers a faster than usual turnaround for a fee.')
 )
 
 
@@ -76,7 +76,8 @@ class EditCompanyForm(forms.ModelForm):
             'website': forms.TextInput(attrs={'class': 'form-control'}),
             'ideal_customer': forms.SelectMultiple(attrs={'class': 'form-control edited'}),
             'budget': forms.SelectMultiple(attrs={'class': 'form-control edited'}),
-            'is_expedited': forms.Select(attrs={'class': 'form-control edited'}, choices=EXPEDITED_CHOICES),
+            'is_expedited': forms.Select(attrs={'class': 'form-control edited margin-top-10'},
+                                         choices=EXPEDITED_CHOICES),
             'material': forms.SelectMultiple(attrs={'class': 'form-control edited big_height_block'}),
             'top_printing_processes': forms.SelectMultiple(attrs={'class': 'form-control edited big_height_block'}),
             'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 10}),
@@ -94,8 +95,11 @@ class EditCompanyForm(forms.ModelForm):
         self.fields['user'].initial = self.user
         self.fields['ideal_customer'].label = 'What is your company’s ideal customer that we should send to you?'
         self.fields['budget'].label = 'What is your ideal order cost/budget?'
-        self.fields['is_expedited'].label = 'Do you offer an expedited manufacturing process?'
-        self.fields['shipping'].label = 'Which of the following shipping options do you offer?'
+        self.fields['is_expedited'].label = 'Do you offer expedited manufacturing for customers needing ' \
+                                            'their project as fast a possible?'
+        self.fields['shipping'].label = 'Select all of the shipping options your firm provides below ' \
+                                        '(Select all that apply)'
+        self.fields['is_cad_assistance'].label = 'We are providing CAD assistance'
         self.fields['quote_limit'].required = False
         self.fields['name'].label = 'Company Name'
         self.fields['display_name'].label = 'Company Display Name'

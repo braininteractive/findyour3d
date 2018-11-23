@@ -57,6 +57,10 @@ ASSISTANCE_CHOICES = (
     (0, 'No, I have my own 3D CAD model ready to upload.'),
     (1, 'Yes, I need help designing a 3D model.'),
 )
+EXPEDITED_CHOICES = (
+    (0, 'No, time is not an issue in manufacturing my project'),
+    (1, 'Yes I require the project to be manufactured as fast as possible.'),
+)
 
 PROCESS_CHOICES = (
     (0, 'Fused Deposition Modeling (FDM)'),
@@ -189,7 +193,7 @@ CUSTOMER_TYPE_CHOICES = (
 
 SHIPPING_CHOICES = (
     (0, 'International Shipping'),
-    (1, 'Expedited Shipping (2-3 Days)'),
+    (1, 'Expedited Shipping (2-3 days roughly from completion)'),
     (2, 'Next Day Shipping'),
 )
 
@@ -253,6 +257,7 @@ class Customer(models.Model):
     size = models.IntegerField(choices=SIZES_CHOICES, default=0)
     need_assistance = models.IntegerField(choices=ASSISTANCE_CHOICES, default=1)
     is_time_sensitive = models.BooleanField(default=False)
+    is_expedited = models.IntegerField(choices=EXPEDITED_CHOICES, default=1)
     shipping = models.IntegerField(choices=SHIPPING_CHOICES, blank=True, null=True)
     geo_matters = models.IntegerField(choices=GEO_MATTERS_CHOICES, default=0)
     zip = models.IntegerField(blank=True, null=True)
@@ -310,3 +315,6 @@ class Customer(models.Model):
 
     def __str__(self):
         return "%s" % self.user
+
+    def get_expedited_option(self):
+        return EXPEDITED_CHOICES[self.is_expedited][1]

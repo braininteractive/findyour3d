@@ -13,7 +13,7 @@ class AddCustomerForm(forms.ModelForm):
     class Meta:
         model = Customer
         fields = ['prototype_type', 'customer_type', 'need_assistance', 'material', 'process',
-                  'size', 'shipping',
+                  'size', 'is_expedited', 'shipping',
                   'budget', 'description', 'cad_file', 'user']
 
         widgets = {
@@ -24,6 +24,7 @@ class AddCustomerForm(forms.ModelForm):
             'process': forms.Select(attrs={'class': 'form-control edited', 'style': 'margin-top: 15px'}),
             'size': forms.RadioSelect(attrs={'id': 'd_value', 'class': 'md-radiobtn'}),
             'need_assistance': forms.RadioSelect(attrs={'id': 'e_value', 'class': 'md-radiobtn'}),
+            'is_expedited': forms.RadioSelect(attrs={'id': 'h_value', 'class': 'md-radiobtn'}),
             'shipping': forms.RadioSelect(attrs={'id': 'g_value', 'class': 'md-radiobtn'}),
             'geo_matters': forms.Select(attrs={'class': 'form-control edited'}),
             'zip': forms.TextInput(attrs={'class': 'form-control edited'}),
@@ -47,7 +48,10 @@ class AddCustomerForm(forms.ModelForm):
         self.fields['process'].label = 'If You Know The Exact Printing Process You Want, Select It Here.'
         self.fields['size'].label = 'Roughly what will be the size of your design?'
         self.fields['need_assistance'].label = 'Will you need assistance rendering a 3D CAD model for printing?'
-        self.fields['shipping'].label = 'Do you require expedited manufacturing for your project?'
+        self.fields['is_expedited'].label = 'Do you require expedited manufacturing for your project? ' \
+                                            '(Note, a rapid manufacturing process may add cost to your project)'
+        self.fields['shipping'].label = 'Do you require any of the following shipping options for your project? ' \
+                                        '(Note, additional shipping may cost extra)'
         # self.fields['geo_matters'].label = 'Does Geographic Proximity to your provider matter?'
         # self.fields['zip'].label = 'If Yes, please enter your Zip Code.'
         self.fields['description'].label = 'Please write a description of your project and any additional ' \

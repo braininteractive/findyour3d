@@ -332,19 +332,6 @@
         $(this).hide();
       }
     });
-    var shipping = $('#shipping');
-    shipping.hide();
-    $('#id_is_expedited').change(function() {
-      if (this.value == '1') {
-        shipping.show();
-        $('#id_shipping').prop('required', true);
-        console.log(this.value)
-      } else {
-        shipping.hide();
-        $('#id_shipping').removeAttr('required');
-        console.log(this.value)
-      }
-    });
 
     $('form').submit(function(e) {
       $(':disabled').each(function(e) {
