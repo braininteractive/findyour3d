@@ -52,11 +52,11 @@ class AddCustomerForm(forms.ModelForm):
                                             '(Note, a rapid manufacturing process may add cost to your project)'
         self.fields['shipping'].label = 'Do you require any of the following shipping options for your project? ' \
                                         '(Note, additional shipping may cost extra)'
-        # self.fields['geo_matters'].label = 'Does Geographic Proximity to your provider matter?'
-        # self.fields['zip'].label = 'If Yes, please enter your Zip Code.'
         self.fields['description'].label = 'Please write a description of your project and any additional ' \
                                            'comments you would like your service provider to know.'
         self.fields['cad_file'].label = 'If you have a CAD File for your project, please upload it here. '
+        self.fields['is_expedited'].required = False
+        self.fields['shipping'].required = False
 
 
 class AddAdvancedCustomerForm(forms.ModelForm):

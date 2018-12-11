@@ -266,51 +266,22 @@ class Customer(models.Model):
                                 validators=[FileExtensionValidator(allowed_extensions=['stl', 'obj', 'step', 'iges'])])
 
     basic_material = models.IntegerField(choices=BASIC_MATERIAL_CHOICES, default=4)
-
-    # METALS
     is_precious_metal = models.IntegerField(choices=METAL_CHOICES, default=0)
-    # if NOT is_precious_metal:
     metal_concern = models.IntegerField(choices=METAL_CONCERN_CHOICES, default=0)
     metal_decision = models.IntegerField(choices=METAL_DECISION_CHOICES, default=0)
-
-    # OTHER
     other_materials = models.IntegerField(choices=OTHER_DECISION_CHOICES, default=0)
-
-    # PLASTIC/RESINS
     plastic_concern = models.IntegerField(choices=PLASTIC_CONCERN_CHOICES, default=0)
-
-    # if Cost:
     is_food_safe_plastic = models.IntegerField(choices=IS_FOOD_SAFE_CHOICES, default=0)
-    # if is_food_safe_plastic:
     is_functional_or_basic = models.IntegerField(choices=IF_FOOD_SAFE_CHOICES, default=0)
-    # if NOT is_food_safe_plastic:
     plastic_decision = models.IntegerField(choices=PLASTIC_DECISION_CHOICES, default=0)
-
-    # if Quality:
     heat_resistance = models.IntegerField(choices=HEAT_RESISTANCE_CHOICES, default=0)
-    # if Heat:
     is_extreme_strength = models.IntegerField(choices=EXTREME_CHOICES, default=0)
     performance_or_price = models.IntegerField(choices=PERFORMANCE_OR_PRICE_CHOICES, default=0)
-    # if NOT is_extreme_strength:
     is_better_appearance = models.IntegerField(choices=APPEARANCE_CHOICES, default=0)
-
-    # if neither:
     is_highest_detail = models.IntegerField(choices=BEST_DETAILS_CHOICES, default=0)
-    # if is_highest_detail:
     is_full_color = models.IntegerField(choices=COLORS_CHOICES, default=0)
-
-    # if flexible:
     is_able_to_bend = models.IntegerField(choices=BEND_CHOICES, default=0)
-
-    # NOT IN USE
-    # is_flexible = models.BooleanField(default=True)
-    # is_semi_biodegradable = models.BooleanField(default=True)
-    # is_heat_withstand = models.BooleanField(default=True)
-    # consideration = models.IntegerField(choices=CONSIDERATION_CHOICES, default=0)
-    # state = models.CharField(max_length=3, choices=STATES_CHOICES, blank=True, null=True)
-
     is_advanced_filled = models.BooleanField(default=False)
-
     created_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)
 
     def __str__(self):
