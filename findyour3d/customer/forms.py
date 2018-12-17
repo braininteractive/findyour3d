@@ -55,7 +55,7 @@ class AddCustomerForm(forms.ModelForm):
         self.fields['description'].label = 'Please write a description of your project and any additional ' \
                                            'comments you would like your service provider to know.'
         self.fields['cad_file'].label = 'If you have a CAD File for your project, please upload it here. '
-        self.fields['is_expedited'].required = False
+        self.fields['is_expedited'].required = True
         self.fields['shipping'].required = False
 
 
