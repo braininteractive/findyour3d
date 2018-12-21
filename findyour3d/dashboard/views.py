@@ -34,9 +34,9 @@ class DashboardView(LoginRequiredMixin, ListView):
         if user.is_expedited:
             queryset = qs.filter(is_expedited=True)
 
-        if user.shipping is not None:
-            queryset = qs.filter(Q(shipping__contains=user.shipping) | Q(shipping=[]))
-            # queryset = qs.filter(shipping__contains=user.shipping)
+        # if user.shipping:
+        #     queryset = qs.filter(Q(shipping=str(user.shipping)) | Q(shipping=[]) | Q(shipping__isnull=True))
+        #     queryset = qs.filter(shipping=user.shipping)
 
         return queryset
 
