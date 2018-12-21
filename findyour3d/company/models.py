@@ -92,7 +92,7 @@ class Company(models.Model):
         if self.is_cad_assistance:
             sign = 'check'
         else:
-            sign= 'times'
+            sign = 'times'
         snippet = '<i class="fa fa-{} grey-600"></i>'.format(sign)
         return snippet
 

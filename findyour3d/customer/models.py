@@ -1,7 +1,8 @@
 from django.db import models
 from django.conf import settings
-
 from django.core.validators import FileExtensionValidator
+
+from multiselectfield import MultiSelectField
 
 
 BASIC_MATERIAL_CHOICES = (
@@ -258,7 +259,7 @@ class Customer(models.Model):
     need_assistance = models.IntegerField(choices=ASSISTANCE_CHOICES, default=1)
     is_time_sensitive = models.BooleanField(default=False)
     is_expedited = models.IntegerField(choices=EXPEDITED_CHOICES, default=1)
-    shipping = models.IntegerField(choices=SHIPPING_CHOICES, blank=True, null=True)
+    shipping = MultiSelectField(choices=SHIPPING_CHOICES, blank=True, null=True)
     geo_matters = models.IntegerField(choices=GEO_MATTERS_CHOICES, default=0)
     zip = models.IntegerField(blank=True, null=True)
     description = models.TextField()

@@ -248,32 +248,22 @@
                     </div>
                   </div>
 
-                  <div class="form-group" id="shipping">
+
+
+
+                  <div class="form-group form-md-checkboxes">
                     <div class="col-md-10 col-md-offset-1">
-                      <div class="form-group form-md-radios">
+                      <div class="form-group">
                         <p class="bold">
                           {{ form.shipping.label|title }}
                           <span class="widget-title-color-red">*</span>
                         </p>
-                        <div class="md-radio-inline">
-                          {% for radio in form.shipping %}
-
-                            {% if forloop.counter0 != 0 %}
-                              <div class="md-radio">
-                                {{ radio.tag }}
-                                <label for="g_value_{{ forloop.counter0 }}">
-                                  <span></span>
-                                  <span class="check"></span>
-                                  <span class="box"></span>
-                                  {{ radio.choice_label }}</label>
-                              </div>
-                            {% endif %}
-                          {% endfor %}
-                        </div>
+                      </div>
+                      <div class="md-checkbox-inline">
+                        {{ form.shipping }}
                       </div>
                     </div>
                   </div>
-
                 </div>
                 <div class="tab-pane" id="tab3">
                   <div class="col-md-10 col-md-offset-1">
@@ -325,6 +315,8 @@
   <script>
     var cadUploader = $('#cadUploader');
     var shipping = $('#shipping');
+    {#$("label[for='id_shipping_0']").hide();#}
+    {#$('#id_shipping_0').hide();#}
     cadUploader.show();
     $('.input-fixed').hide();
     $('input:radio[name="need_assistance"]').change(

@@ -25,7 +25,7 @@ class AddCustomerForm(forms.ModelForm):
             'size': forms.RadioSelect(attrs={'id': 'd_value', 'class': 'md-radiobtn'}),
             'need_assistance': forms.RadioSelect(attrs={'id': 'e_value', 'class': 'md-radiobtn'}),
             'is_expedited': forms.RadioSelect(attrs={'id': 'h_value', 'class': 'md-radiobtn'}),
-            'shipping': forms.RadioSelect(attrs={'id': 'g_value', 'class': 'md-radiobtn'}),
+            'shipping': forms.CheckboxSelectMultiple(attrs={'class': 'mt-checkbox mt-checkbox-outline'}),
             'geo_matters': forms.Select(attrs={'class': 'form-control edited'}),
             'zip': forms.TextInput(attrs={'class': 'form-control edited'}),
             'description': forms.Textarea(attrs={'class': 'form-control mt-20', 'rows': 10}),
@@ -57,6 +57,7 @@ class AddCustomerForm(forms.ModelForm):
         self.fields['cad_file'].label = 'If you have a CAD File for your project, please upload it here. '
         self.fields['is_expedited'].required = True
         self.fields['shipping'].required = False
+        self.fields['shipping'].empty_label = None
 
 
 class AddAdvancedCustomerForm(forms.ModelForm):
