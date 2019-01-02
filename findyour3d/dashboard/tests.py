@@ -38,7 +38,6 @@ class DashboardTests(TestCase):
                                                      ideal_customer=['0', ],
                                                      is_cad_assistance=True,
                                                      budget=['2', ],
-                                                     printing_options=['1', '2'],
                                                      material=['6', '10', '11'],
                                                      top_printing_processes=['1', '2'],
                                                      description='silver_company',
@@ -80,7 +79,6 @@ class DashboardTests(TestCase):
                                                     ideal_customer=['0', ],
                                                     is_cad_assistance=True,
                                                     budget=['2', ],
-                                                    printing_options=['1', ],
                                                     material=['13', ],
                                                     top_printing_processes=['1', ],
                                                     description='metal_company',
@@ -100,6 +98,7 @@ class DashboardTests(TestCase):
                                                       material='9',  # setting one of the metal choices
                                                       process='1',
                                                       is_advanced_filled=True,
+                                                      is_expedited=True,
                                                       shipping='1',
                                                       need_assistance=1)
 
