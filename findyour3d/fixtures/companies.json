@@ -890,7 +890,7 @@
       "consideration": 0,
       "printing_options": "",
       "material": "0,1",
-      "top_printing_processes": "0",
+      "top_printing_processes": "0,1",
       "description": "Entre3D",
       "is_expedited": true,
       "shipping": "",

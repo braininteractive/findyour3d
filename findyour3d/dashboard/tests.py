@@ -53,6 +53,6 @@ class DashboardTests(TestCase):
         self.assertContains(response, 'Forerunner')
 
     def test_match_metal_company_with_same_process(self):
-        self.client.login(username='test1', password='1234567a')
+        self.client.login(username='admin', password='123')
         response = self.client.get(reverse('dashboard:company'))
-        self.assertContains(response, 'Forerunner')
+        self.assertContains(response, 'PrintAWorld')

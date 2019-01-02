@@ -23,6 +23,8 @@ class DashboardView(LoginRequiredMixin, ListView):
         user = self.request.user.customer_set.first()
         if not user.need_assistance:
             queryset = qs.filter(Q(is_cad_assistance=False) | Q(is_cad_assistance=True))
+        elif not user.need_assistance and user.cad_file is not None:
+            queryset = qs.filter(Q(is_cad_assistance=False) | Q(is_cad_assistance=True))
         else:
             queryset = qs.filter(is_cad_assistance=True)
         return queryset
@@ -40,17 +42,22 @@ class DashboardView(LoginRequiredMixin, ListView):
 
         return queryset
 
+    def filter_metals(self, qs):
+        user = self.request.user.customer_set.first()
+        queryset = qs
+        if user.material in [9, 12, 13, 14]:  # showing metals with SLM / DMLS
+            queryset = qs.filter(Q(top_printing_processes__contains='1') &
+                                 Q(budget__contains=str(user.budget)) &
+                                 Q(ideal_customer__contains=str(user.customer_type)))
+        return queryset
+
     def get_queryset(self):
         user = self.request.user.customer_set.first()
 
-        if user.material in [9, 12, 13, 14]:  # showing metals with SLM / DMLS
-            queryset = Company.objects.active().filter(Q(top_printing_processes='1') &
-                                              Q(budget__contains=str(user.budget)) &
-                                              Q(ideal_customer__contains=str(user.customer_type)))
-        elif user.material in [16, ]:  # material is PEEK, no need to look at process
+        if user.material in [16, ]:  # material is PEEK, no need to look at process
             queryset = Company.objects.active().filter(Q(material__contains='16') &
-                                              Q(budget__contains=str(user.budget)) &
-                                              Q(ideal_customer__contains=str(user.customer_type)))
+                                                       Q(budget__contains=str(user.budget)) &
+                                                       Q(ideal_customer__contains=str(user.customer_type)))
         else:
             queryset = Company.objects.active().filter(
                 (Q(material__contains=str(user.material))) &
@@ -60,5 +67,6 @@ class DashboardView(LoginRequiredMixin, ListView):
 
         queryset = self.filter_assistance(queryset)
         queryset = self.filter_shipping(queryset)
+        queryset = self.filter_metals(queryset)
         return queryset
 
