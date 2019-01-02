@@ -4,7 +4,7 @@ from .models import Company, SpecialOffer
 
 class CompanyAdmin(admin.ModelAdmin):
     list_display = ('name', 'user', 'get_budget_display', 'get_material_display',
-                    'get_top_printing_processes_display', 'is_expedited')
+                    'get_top_printing_processes_display', 'is_expedited', 'is_cad_assistance')
     search_fields = ('name', 'user__username', 'email', 'display_name', 'phone')
     list_filter = ('is_cad_assistance', )
     ordering = ['created_at', ]

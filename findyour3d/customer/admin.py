@@ -4,7 +4,7 @@ from .models import Customer
 
 class CustomerAdmin(admin.ModelAdmin):
     list_display = ('user', 'get_budget_display', 'get_material',
-                    'get_process', 'is_expedited')
+                    'get_process', 'is_expedited', 'need_assistance')
     search_fields = ('user__username', 'user__email')
 
     fieldsets = [
