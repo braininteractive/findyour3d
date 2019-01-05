@@ -249,7 +249,7 @@ $(document).ready(function () {
                                             show_blurb();
                                         }
                                         if (this.value==3){ // I want a better looking appearance for my project
-                                            tipTitle.text("Alumide (FDM)");
+                                            tipTitle.text("Alumide (SLS)");
                                             tipBody.text("Alumide is Nylon that is combined with flakes of Aluminum. Alumide provides the durability and heat resistance of aluminum and the detail and strength of nylon. Projects made from Alumide can be colored and then polished for amazingly detailed and smooth creations that are strong and resistant to heat. Alumide projects are made from Fused Deposition Modelling. This is a perfect material if you're looking for your project to not only be tough and resistant to wear, but intricate and polished when finished.");
                                             show_blurb();
                                         }

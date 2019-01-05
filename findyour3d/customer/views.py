@@ -277,7 +277,7 @@ class AddAdvancedCustomerView(LoginRequiredMixin, UpdateView):
                                 f.process = 0
                                 f.material = 7
                             elif f.is_better_appearance == 3:  # I want a better looking appearance for my project
-                                print('Alumide (FDM) Alumide is Nylon that is combined with flakes of Aluminum.'
+                                print('Alumide (SLS) Alumide is Nylon that is combined with flakes of Aluminum.'
                                       ' Alumide provides the durability and heat resistance of aluminum, '
                                       'and the detail and strength of nylon. Projects made from Alumide can'
                                       ' be colored and then polished for amazingly detailed and smooth '
@@ -285,7 +285,7 @@ class AddAdvancedCustomerView(LoginRequiredMixin, UpdateView):
                                       ' are made from Fused Deposition Modelling. This is a perfect material'
                                       ' if youre looking for your project to not only be tough and resistant'
                                       ' to wear, but intricate and polished when finished.')
-                                f.process = 0
+                                f.process = 2
                                 f.material = 18
                             else:
                                 logger.error('#6')
