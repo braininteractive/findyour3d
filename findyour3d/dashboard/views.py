@@ -51,6 +51,14 @@ class DashboardView(LoginRequiredMixin, ListView):
                                  Q(ideal_customer__contains=str(user.customer_type)))
         return queryset
 
+    def filter_budget(self, qs):
+        user = self.request.user.customer_set.first()
+        return qs.filter(budget__contains=str(user.budget))
+
+    def filter_customer(self, qs):
+        user = self.request.user.customer_set.first()
+        return qs.filter(ideal_customer__contains=str(user.customer_type))
+
     def get_queryset(self):
         user = self.request.user.customer_set.first()
 
@@ -59,14 +67,18 @@ class DashboardView(LoginRequiredMixin, ListView):
                                                        Q(budget__contains=str(user.budget)) &
                                                        Q(ideal_customer__contains=str(user.customer_type)))
         else:
-            queryset = Company.objects.active().filter(
-                (Q(material__contains=str(user.material))) &
-                Q(top_printing_processes__contains=str(user.process)) &
-                Q(budget__contains=str(user.budget)) &
-                Q(ideal_customer__contains=str(user.customer_type)))
+            regex_material = "(^|,)%s(,|$)" % "|".join([str(user.material), ])
+            regex_process = "(^|,)%s(,|$)" % "|".join([str(user.process), ])
+            queryset = Company.objects.active().filter((Q(material__regex=regex_material)) & Q(
+                top_printing_processes__regex=regex_process))
+            # queryset = Company.objects.active().filter(
+            #     (Q(material__contains=str(user.material))) &
+            #     Q(top_printing_processes__contains=str(user.process)))
 
         queryset = self.filter_assistance(queryset)
         queryset = self.filter_shipping(queryset)
         queryset = self.filter_metals(queryset)
+        queryset = self.filter_budget(queryset)
+        queryset = self.filter_customer(queryset)
         return queryset
 

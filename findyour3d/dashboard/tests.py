@@ -46,6 +46,7 @@ class DashboardTests(TestCase):
         response = self.client.get(reverse('dashboard:company'))
         # print(response.render().content)
         self.assertContains(response, 'Halo Technologies')
+        self.assertNotIn('DesignPoint', response)
 
     def test_match_company_without_shipping_and_customer(self):
         self.client.login(username='test1', password='1234567a')
